@@ -1,0 +1,64 @@
+{
+  "suite_id": "qwen3-8b-phase-2e",
+  "suite_version": "1.0.0",
+  "not_cobrabench": true,
+  "baseline_run_id": "20260722T200000Z-8bba5e01",
+  "max_generations_budget": 32,
+  "cohorts": {
+    "A_output_cap": {
+      "variable": "max_new_tokens",
+      "values": [512, 1024, 2048],
+      "cases": [
+        "cb-023-long-memo-key-facts",
+        "cb-024-long-policy-exceptions",
+        "cb-001-evidence-grounded-investigation"
+      ],
+      "hold_constant": ["temperature", "seed", "enable_thinking", "prompt"],
+      "notes": "cb-023/024 finished ~128 tokens in baseline; include 512 as diagnostic control plus higher caps. cb-001 hit 512 tokens."
+    },
+    "B_thinking": {
+      "variable": "enable_thinking",
+      "values": [false, true],
+      "cases": [
+        "cb-019-metric-contradiction",
+        "cb-004-hypothesis-ranking-with-gaps",
+        "cb-018-schedule-contradiction",
+        "cb-015-citation-key-discipline"
+      ],
+      "hold_constant": ["temperature", "seed", "max_new_tokens"],
+      "max_new_tokens": 512,
+      "notes": "cb-015 is a strong control case."
+    },
+    "C_prompt_format": {
+      "variable": "prompt_variant",
+      "values": ["original", "clarified_format", "schema_oriented"],
+      "cases": ["cb-027-exact-output-format"],
+      "hold_constant": ["temperature", "seed", "enable_thinking", "max_new_tokens"]
+    },
+    "D_evidence_delimiters": {
+      "variable": "evidence_presentation",
+      "values": ["current", "numbered_blocks", "fact_inference_instructions"],
+      "cases": [
+        "cb-008-log-vs-witness-grounding",
+        "cb-010-email-thread-grounding"
+      ],
+      "hold_constant": ["temperature", "seed", "enable_thinking", "max_new_tokens"]
+    },
+    "E_stability": {
+      "variable": "repetition_index",
+      "values": [0, 1, 2],
+      "cases": [
+        "cb-019-metric-contradiction",
+        "cb-013-name-invention-resistance"
+      ],
+      "hold_constant": ["temperature", "seed", "enable_thinking", "max_new_tokens", "prompt"],
+      "notes": "Same seed/settings; measure residual variability."
+    }
+  },
+  "planned_generation_count": 25,
+  "runner_plan_note": "scripts/run_phase2e_diagnostics.py plan_jobs(): A=6 (1024/2048 only) B=6 C=3 D=4 E=6 total=25 within budget 32",
+  "strong_control_cases": [
+    "cb-015-citation-key-discipline",
+    "cb-013-name-invention-resistance"
+  ]
+}

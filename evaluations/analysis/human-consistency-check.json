@@ -1,0 +1,78 @@
+{
+  "mean_absolute_difference": 0.036250000000000004,
+  "rows": [
+    {
+      "case_id": "cb-015-citation-key-discipline",
+      "category": "citation_correctness",
+      "original_score": 1.0,
+      "second_score": 0.95,
+      "absolute_difference": 0.05,
+      "original_rationale": "precision=1.00; coverage=1.00; keys=['SRC-A', 'SRC-B']; fab=0",
+      "second_rationale": "Citations valid and disciplined; strong control case."
+    },
+    {
+      "case_id": "cb-020-python-parse-log-lines",
+      "category": "coding",
+      "original_score": 1.0,
+      "second_score": 0.95,
+      "absolute_difference": 0.05,
+      "original_rationale": "code_like=True; base=1.00",
+      "second_rationale": "Correct short Python; clear coding success."
+    },
+    {
+      "case_id": "cb-001-evidence-grounded-investigation",
+      "category": "evidence_grounding",
+      "original_score": 0.88,
+      "second_score": 0.86,
+      "absolute_difference": 0.02,
+      "original_rationale": "Strong grounding, labeled rumor, noted camera limits, listed open questions.",
+      "second_rationale": "Grounded synthesis with open questions; slight verbosity."
+    },
+    {
+      "case_id": "cb-011-missing-source-resistance",
+      "category": "hallucination_resistance",
+      "original_score": 0.9,
+      "second_score": 0.88,
+      "absolute_difference": 0.02,
+      "original_rationale": "Correctly refused to invent AR-900 findings; cited SRC-A only.",
+      "second_rationale": "Appropriately refuses inventing AR-900 findings."
+    },
+    {
+      "case_id": "cb-019-metric-contradiction",
+      "category": "contradiction_detection",
+      "original_score": 0.55,
+      "second_score": 0.5,
+      "absolute_difference": 0.05,
+      "original_rationale": "Detected inconsistency but weaker numerical conflict explanation than ideal.",
+      "second_rationale": "Notices mismatch but shallow numerical conflict explanation."
+    },
+    {
+      "case_id": "cb-023-long-memo-key-facts",
+      "category": "long_document_analysis",
+      "original_score": 0.75,
+      "second_score": 0.72,
+      "absolute_difference": 0.03,
+      "original_rationale": "Captured key milestones/budget/risk; some formatting verbosity.",
+      "second_rationale": "Key facts present; citation keys nonstandard (P2 vs SRC)."
+    },
+    {
+      "case_id": "cb-024-long-policy-exceptions",
+      "category": "long_document_analysis",
+      "original_score": 0.7,
+      "second_score": 0.68,
+      "absolute_difference": 0.02,
+      "original_rationale": "Partial long-doc extraction quality; not empty but incomplete relative to expectations.",
+      "second_rationale": "Partial policy extraction; incomplete relative to dense memo."
+    },
+    {
+      "case_id": "cb-027-exact-output-format",
+      "category": "instruction_following",
+      "original_score": 0.7,
+      "second_score": 0.65,
+      "absolute_difference": 0.05,
+      "original_rationale": "Used markdown bullets instead of exact FINDING/RISK/NEXT lines; content otherwise aligned.",
+      "second_rationale": "Semantically correct FINDING/RISK/NEXT but markdown-bulleted."
+    }
+  ],
+  "disagreement_count": 0
+}

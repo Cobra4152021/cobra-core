@@ -1,0 +1,26 @@
+{
+  "run_id": "20260722T220000Z-2ediag01",
+  "status": "blocked_before_generation",
+  "not_official_cobrabench": true,
+  "baseline_run_id": "20260722T200000Z-8bba5e01",
+  "planning_completed": true,
+  "job_count": 25,
+  "dry_run_passed": true,
+  "generations_completed": 0,
+  "partial_output_exists": false,
+  "partial_output_notes": "Only diagnostic-plan.json was written under evaluations/results/diagnostics/qwen3-8b-phase-2e/20260722T220000Z-2ediag01/; no response texts or summary metrics.",
+  "block_reason": "Model weight load crashed with Windows ACCESS_VIOLATION before any diagnostic generation completed.",
+  "crash_code": "0xC0000005",
+  "hardware_state_when_blocked": {
+    "approx_vram_already_in_use_gb": 6,
+    "approx_free_system_ram_gb": 5.1,
+    "gpu": "RTX 4070 12 GB",
+    "notes": "Concurrent GPU processes occupied substantial VRAM; load reached ~20% then crashed."
+  },
+  "resumable": false,
+  "new_run_id_required": true,
+  "resume_guidance": "Do not reuse 20260722T220000Z-2ediag01 for a successful live run. Preserve this blocked-run record and start a new run ID via scripts/run_phase2e_diagnostics.py after following docs/PHASE_2E_DIAGNOSTICS_RUNBOOK.md.",
+  "cohort_suite": "benchmarks/diagnostics/qwen3-8b-phase-2e/cohorts.json",
+  "plan_artifact_gitignored_path": "evaluations/results/diagnostics/qwen3-8b-phase-2e/20260722T220000Z-2ediag01/diagnostic-plan.json",
+  "recorded_at": "2026-07-22T22:50:00Z"
+}

@@ -1,0 +1,23 @@
+{
+  "lock_id": "qwen3-8b-cobrabench-v0.1",
+  "run_id": "20260722T200000Z-8bba5e01",
+  "model_slug": "qwen3-8b",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "benchmark_version": "0.1",
+  "artifact_inventory_ref": "D:\\cobra-models\\qwen\\qwen3-8b\\b968826d9c46dd6066d109eabc6255188de91218\\provenance\\artifact-inventory.json",
+  "benchmark_release_hash": "372edd36808909e191a4a6e2b8d012373f3b4a3f1e3831488b866ff6c598bf5a",
+  "protocol_path": "evaluations/protocols/qwen3-8b-cobrabench-v0.1.json",
+  "protocol_hash": "6a12d9c4621771a7591c8e00efed9e8b7c915c06efd1126281dad1a36c8c7012",
+  "result_run_path": "evaluations/results/cobrabench-v0.1/qwen3-8b/20260722T200000Z-8bba5e01",
+  "result_inventory_hash": "84b0972fc0c028e5e38392d64e438d7eca473c6d2157ade085534cfead9a1de6",
+  "scoring_implementation_version": "cobrabench-evaluator-v0.1.0",
+  "human_review_version": "human-interim-reviewer-v0.1",
+  "report_references": [
+    "evaluations/reports/QWEN3_8B_COBRABENCH_V0_1.md",
+    "evaluations/reports/QWEN3_8B_VS_32B_COMPARISON.md",
+    "docs/decisions/ADR-0003-qwen3-8b-interim-baseline.md"
+  ],
+  "created_at": "2026-07-22T21:43:53.165573Z",
+  "immutable": true,
+  "notes": "Official Phase 2D interim baseline. Diagnostic runs must use new run IDs."
+}

@@ -53,6 +53,11 @@ adapters/**/*.safetensors
 evaluations/results/**
 !evaluations/results/.gitkeep
 !evaluations/results/README.md
+evaluations/analysis/**
+!evaluations/analysis/.gitkeep
+!evaluations/analysis/*.json
+evaluations/baselines/**
+!evaluations/baselines/*.json
 evaluations/reports/**
 !evaluations/reports/.gitkeep
 !evaluations/reports/README.md
@@ -63,6 +68,14 @@ evaluations/reports/**
 !evaluations/reports/QWEN3_8B_VS_32B_COMPARISON.md
 !evaluations/reports/QWEN3_32B_LOCAL_LOAD_FAILURE.md
 !evaluations/reports/COBRABENCH_V0_1_DEFECT_REVIEW.md
+!evaluations/reports/QWEN3_8B_*.md
+!evaluations/reports/UNSUPPORTED_CLAIM_HEURISTIC_AUDIT.md
+!evaluations/reports/HUMAN_REVIEW_CONSISTENCY_CHECK.md
+!evaluations/reports/PHASE2E_DIAGNOSTIC_RUN_STATUS.md
+!docs/PHASE_2E_STATUS.md
+!docs/PHASE_2E_DIAGNOSTICS_RUNBOOK.md
+!benchmarks/diagnostics/
+!benchmarks/diagnostics/**
 !evaluations/protocols/**
 evaluations/environment/**
 !evaluations/environment/.gitkeep
