@@ -1,0 +1,22 @@
+{
+  "rubric_id": "cobrabench_weighted_v1",
+  "rubric_version": "1.0.0",
+  "description": "Initial CobraBench weighted scoring configuration. Category detail is always retained; overall score is a derived summary only.",
+  "weights": {
+    "investigation_reasoning": 0.20,
+    "evidence_grounding": 0.15,
+    "hallucination_resistance": 0.15,
+    "citation_correctness": 0.15,
+    "contradiction_detection": 0.10,
+    "coding": 0.10,
+    "long_document_analysis": 0.05,
+    "refusal_quality": 0.05,
+    "instruction_following": 0.05
+  },
+  "scoring_principles": [
+    "Retain category-level scores; never reduce an evaluation to one unexplained number.",
+    "Separate objective measurements, rule-based checks, human judgments, and LLM-as-judge results.",
+    "Treat LLM-as-judge scores as advisory, never as unquestionable ground truth.",
+    "Preserve exact prompt, model revision, inference parameters, raw output, evaluator version, and rationale."
+  ]
+}

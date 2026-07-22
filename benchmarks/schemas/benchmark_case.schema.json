@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cobra.local/schemas/benchmark_case.schema.json",
+  "title": "BenchmarkCase",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "version",
+    "category",
+    "title",
+    "system_prompt",
+    "user_prompt",
+    "expected_behaviors",
+    "scoring_rubric",
+    "sensitivity"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "version": { "type": "string", "minLength": 1 },
+    "category": {
+      "type": "string",
+      "enum": [
+        "investigation_reasoning",
+        "evidence_grounding",
+        "citation_correctness",
+        "hallucination_resistance",
+        "contradiction_detection",
+        "long_document_analysis",
+        "coding",
+        "refusal_quality",
+        "instruction_following"
+      ]
+    },
+    "title": { "type": "string", "minLength": 1 },
+    "system_prompt": { "type": "string", "minLength": 1 },
+    "user_prompt": { "type": "string", "minLength": 1 },
+    "supporting_sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_id", "title", "content", "citation_key"],
+        "properties": {
+          "source_id": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "content": { "type": "string", "minLength": 1 },
+          "citation_key": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "expected_behaviors": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["behavior_id", "description"],
+        "properties": {
+          "behavior_id": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1 },
+          "required": { "type": "boolean" }
+        }
+      }
+    },
+    "prohibited_behaviors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["behavior_id", "description"],
+        "properties": {
+          "behavior_id": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "scoring_rubric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rubric_id", "rubric_version"],
+      "properties": {
+        "rubric_id": { "type": "string", "minLength": 1 },
+        "rubric_version": { "type": "string", "minLength": 1 },
+        "notes": { "type": ["string", "null"] }
+      }
+    },
+    "sensitivity": {
+      "type": "string",
+      "enum": ["public_synthetic", "internal_nonsensitive", "restricted"]
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

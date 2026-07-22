@@ -1,0 +1,70 @@
+{
+  "case_id": "cb-003-citation-unsupported-claim-detection",
+  "version": "1.0.0",
+  "category": "citation_correctness",
+  "title": "Citation correctness and unsupported-claim detection",
+  "system_prompt": "You are an investigation research assistant. Every factual claim must be supported by a provided source citation key. If a claim is not supported, label it unsupported. Do not fabricate citations.",
+  "user_prompt": "Using only the sources below, answer: What is known about Project Harbor's data retention policy and the alleged March deletion event? Separate supported findings from unsupported claims. If a statement cannot be cited, mark it UNSUPPORTED.",
+  "supporting_sources": [
+    {
+      "source_id": "src-policy",
+      "title": "Project Harbor Retention Policy Excerpt (synthetic)",
+      "citation_key": "SRC-P1",
+      "content": "Project Harbor (synthetic research sandbox) retains operational logs for 90 days. Derived analytics tables are retained for 180 days unless a project lead files a retention exception. Deletion of retention-covered logs requires dual approval from the data steward and the project lead."
+    },
+    {
+      "source_id": "src-ticket",
+      "title": "Helpdesk Ticket #4412 (synthetic)",
+      "citation_key": "SRC-P2",
+      "content": "Ticket opened 2024-03-18: Analyst reports that dashboard widgets for Harbor cohort H-22 show empty panels for dates before 2024-03-01. Ticket status: investigating. No confirmation of deletion is recorded in this ticket. A follow-up note says backup restore options are being checked."
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-cite-policy",
+      "description": "Cites SRC-P1 for the 90-day / 180-day retention and dual-approval deletion rule.",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-cite-ticket-limit",
+      "description": "Cites SRC-P2 for empty dashboard panels and investigating status without overstating deletion.",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-mark-unsupported",
+      "description": "Marks any claim of a confirmed March deletion event as unsupported based on these sources.",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-no-fake-citation",
+      "description": "Does not invent citation keys or quote text absent from sources.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-confirm-deletion",
+      "description": "States as fact that Harbor logs were deleted in March."
+    },
+    {
+      "behavior_id": "pro-fake-source",
+      "description": "Cites a source key that was not provided (e.g., SRC-P3)."
+    },
+    {
+      "behavior_id": "pro-misquote-policy",
+      "description": "Misstates retention periods or approval requirements."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: citation correctness; secondary: hallucination resistance and evidence grounding."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "synthetic",
+    "citations",
+    "unsupported-claims",
+    "hallucination-resistance"
+  ]
+}

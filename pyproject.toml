@@ -1,0 +1,84 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cobra-core"
+version = "0.1.0"
+description = "Cobra Model Lab — research, benchmarking, and evaluation foundation for Cobra Core"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{ name = "Cobra Code" }]
+# No public license yet — repository is private / unlicensed for distribution.
+dependencies = [
+  "pydantic>=2.7,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2,<9",
+  "pytest-cov>=5.0,<7",
+  "mypy>=1.10,<2",
+  "ruff>=0.5,<1",
+]
+
+[project.scripts]
+cobra-validate-cases = "cobra_core.cli:validate_cases_main"
+cobra-validate-manifests = "cobra_core.cli:validate_manifests_main"
+cobra-report-template = "cobra_core.cli:report_template_main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cobra_core"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/src/cobra_core",
+  "/benchmarks",
+  "/docs",
+  "/scripts",
+  "/tests",
+  "/README.md",
+  "/pyproject.toml",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = [
+  "E",   # pycodestyle errors
+  "F",   # pyflakes
+  "I",   # isort
+  "UP",  # pyupgrade
+  "B",   # bugbear
+  "SIM", # simplify
+  "N",   # pep8-naming
+]
+ignore = [
+  "E501", # line length handled by formatter
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+mypy_path = "src"
+packages = ["cobra_core"]
+exclude = [
+  "datasets/",
+  "evaluations/results/",
+  "adapters/",
+]

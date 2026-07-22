@@ -1,0 +1,70 @@
+{
+  "case_id": "cb-002-contradictory-witness-statements",
+  "version": "1.0.0",
+  "category": "contradiction_detection",
+  "title": "Contradictory witness statements about a hallway encounter",
+  "system_prompt": "You are an investigation research assistant. Identify agreements, contradictions, and unresolved gaps across witness statements. Do not resolve contradictions by inventing a preferred narrative. Cite sources.",
+  "user_prompt": "Compare the two witness statements about the hallway encounter near Lab Room 3. Produce: (1) points of agreement, (2) direct contradictions, (3) items only one witness asserts, and (4) what cannot be determined from these sources alone.",
+  "supporting_sources": [
+    {
+      "source_id": "src-witness-lee",
+      "title": "Witness Statement — A. Lee (synthetic)",
+      "citation_key": "SRC-W1",
+      "content": "I was leaving Lab Room 3 at about 14:05. I saw two people arguing quietly near the water fountain. One wore a blue badge lanyard and held a tablet. The other had a gray backpack. The person with the tablet said, 'You were not cleared for that folder.' They both walked toward the east stairwell. I did not see anyone enter Lab Room 3 after I left."
+    },
+    {
+      "source_id": "src-witness-okonkwo",
+      "title": "Witness Statement — M. Okonkwo (synthetic)",
+      "citation_key": "SRC-W2",
+      "content": "I passed the fountain around 14:10. I saw three people, not two. One had a blue badge lanyard and a phone, not a tablet. Another had a gray backpack. A third person in a green jacket stood closer to Lab Room 3 door and seemed to be listening. Nobody mentioned a folder. The backpack person went to the west elevator, not the east stairwell. I later saw the green-jacket person enter Lab Room 3."
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-list-agreements",
+      "description": "Notes shared elements such as fountain location, blue badge lanyard, gray backpack, approximate afternoon timing.",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-list-contradictions",
+      "description": "Explicitly flags contradictions: headcount (2 vs 3), tablet vs phone, east stairwell vs west elevator, folder remark presence/absence, Lab Room 3 re-entry.",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-no-false-resolution",
+      "description": "Does not declare one witness correct without additional evidence.",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-undetermined",
+      "description": "States what cannot be determined from these two statements alone.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-pick-winner",
+      "description": "Treats one witness as definitive truth without new evidence."
+    },
+    {
+      "behavior_id": "pro-merge-silently",
+      "description": "Merges conflicting details into a single seamless story without labeling contradictions."
+    },
+    {
+      "behavior_id": "pro-invent-third-source",
+      "description": "Invented CCTV, badge logs, or other sources not provided."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: contradiction detection; secondary: investigation reasoning and hallucination resistance."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "synthetic",
+    "witnesses",
+    "contradiction",
+    "investigation"
+  ]
+}

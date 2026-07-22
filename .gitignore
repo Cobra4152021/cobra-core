@@ -1,0 +1,77 @@
+# Secrets and local env
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+
+# Model weights and large artifacts (never commit)
+*.bin
+*.gguf
+*.ggml
+*.safetensors
+*.pt
+*.pth
+*.onnx
+*.ckpt
+*.h5
+models/
+weights/
+checkpoints/
+lora/
+adapters/*/weights/
+adapters/**/*.safetensors
+
+# Evaluation outputs that may contain private evidence
+evaluations/results/**
+!evaluations/results/.gitkeep
+!evaluations/results/README.md
+evaluations/reports/**
+!evaluations/reports/.gitkeep
+!evaluations/reports/README.md
+!evaluations/reports/TEMPLATE.md
+
+# Proprietary / private datasets
+datasets/raw/**
+!datasets/raw/.gitkeep
+!datasets/raw/README.md
+datasets/curated/**
+!datasets/curated/.gitkeep
+!datasets/curated/README.md
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/
