@@ -16,6 +16,7 @@ from cobra_core.schemas.evaluation import (
     InferenceSettings,
     ScoreBreakdown,
 )
+from cobra_core.schemas.inference import ChatMessage, InferenceRequest, InferenceResult
 from cobra_core.schemas.manifest import (
     AcquisitionStatus,
     ArchitectureFamily,
@@ -24,6 +25,7 @@ from cobra_core.schemas.manifest import (
     ModelManifest,
     QuantizationInfo,
 )
+from cobra_core.schemas.runtime import GpuDevice, RuntimeEnvironment, StorageGateResult
 
 __all__ = [
     "AcquisitionStatus",
@@ -32,17 +34,23 @@ __all__ = [
     "BenchmarkCase",
     "BenchmarkCategory",
     "CATEGORY_WEIGHTS",
+    "ChatMessage",
     "EvaluationRun",
     "EvaluatorKind",
     "EvaluatorScore",
     "ExpectedBehavior",
+    "GpuDevice",
     "HardwareMetadata",
     "HashVerificationState",
+    "InferenceRequest",
+    "InferenceResult",
     "InferenceSettings",
     "ModelManifest",
     "ProhibitedBehavior",
     "QuantizationInfo",
+    "RuntimeEnvironment",
     "ScoreBreakdown",
     "SensitivityLevel",
+    "StorageGateResult",
     "SupportingSource",
 ]

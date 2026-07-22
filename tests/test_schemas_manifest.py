@@ -59,18 +59,30 @@ def test_qwen_intake_manifests_validate(repo_root: Path) -> None:
     manifests_dir = repo_root / "model-cards"
     manifests, issues = validate_json_dir(manifests_dir, ModelManifest, recursive=True)
     assert issues == []
-    names = {item.model_name for item in manifests}
-    assert names == {
+    by_name = {item.model_name: item for item in manifests}
+    assert set(by_name) == {
         "Qwen3-32B",
         "Qwen3-8B",
         "Qwen3-30B-A3B-Thinking-2507",
     }
-    assert all(item.acquisition_status == AcquisitionStatus.NOT_ACQUIRED for item in manifests)
-    assert all(
-        artifact.verification_state == HashVerificationState.PENDING
-        for item in manifests
-        for artifact in item.artifact_files
+    assert by_name["Qwen3-32B"].acquisition_status == AcquisitionStatus.NOT_ACQUIRED
+    assert by_name["Qwen3-30B-A3B-Thinking-2507"].acquisition_status == (
+        AcquisitionStatus.NOT_ACQUIRED
     )
+    # Development baseline may be acquired after Phase 2B.
+    eight = by_name["Qwen3-8B"]
+    if eight.acquisition_status == AcquisitionStatus.NOT_ACQUIRED:
+        assert all(
+            artifact.verification_state == HashVerificationState.PENDING
+            for artifact in eight.artifact_files
+        )
+    else:
+        assert eight.acquisition_status == AcquisitionStatus.ACQUIRED
+        assert eight.local_artifact_root
+        assert all(
+            artifact.verification_state == HashVerificationState.VERIFIED and artifact.sha256
+            for artifact in eight.artifact_files
+        )
 
 
 def test_primary_manifest_file_loads(repo_root: Path) -> None:
@@ -171,6 +183,8 @@ def test_acquired_manifest_requires_real_hashes() -> None:
         _valid_preacquisition(
             acquisition_status="acquired",
             acquisition_date=date(2026, 7, 22),
+            local_artifact_root="D:/cobra-models/qwen/qwen3-8b/rev/artifacts",
+            local_inventory_ref="D:/cobra-models/qwen/qwen3-8b/rev/provenance/artifact-inventory.json",
             artifact_files=[
                 {
                     "path": "model.safetensors",

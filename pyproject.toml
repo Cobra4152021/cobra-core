@@ -21,6 +21,16 @@ dev = [
   "mypy>=1.10,<2",
   "ruff>=0.5,<1",
 ]
+acquisition = [
+  "huggingface_hub>=0.26",
+]
+inference = [
+  "torch>=2.3",
+  "transformers>=4.51,<5",
+  "accelerate>=0.33",
+  "safetensors>=0.4",
+  "bitsandbytes>=0.43",
+]
 
 [project.scripts]
 cobra-validate-cases = "cobra_core.cli:validate_cases_main"
@@ -44,7 +54,12 @@ include = [
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
-addopts = "-q"
+addopts = "-q -m \"not integration and not model_required\""
+markers = [
+  "integration: exercises external systems or acquired models",
+  "model_required: requires a locally acquired model",
+  "gpu_optional: may use GPU when present but must skip cleanly otherwise",
+]
 
 [tool.ruff]
 target-version = "py312"
@@ -82,3 +97,16 @@ exclude = [
   "evaluations/results/",
   "adapters/",
 ]
+
+[[tool.mypy.overrides]]
+module = [
+  "torch",
+  "torch.*",
+  "transformers",
+  "transformers.*",
+  "huggingface_hub",
+  "huggingface_hub.*",
+  "bitsandbytes",
+  "bitsandbytes.*",
+]
+ignore_missing_imports = true

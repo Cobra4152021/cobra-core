@@ -9,81 +9,189 @@
   "artifact_files": [
     {
       "path": "LICENSE",
-      "sha256": null,
-      "verification_state": "pending",
-      "size_bytes": null
+      "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+      "verification_state": "verified",
+      "size_bytes": 11343
     },
     {
       "path": "config.json",
-      "sha256": null,
-      "verification_state": "pending",
-      "size_bytes": null
+      "sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30",
+      "verification_state": "verified",
+      "size_bytes": 728
     },
     {
       "path": "generation_config.json",
-      "sha256": null,
-      "verification_state": "pending",
-      "size_bytes": null
+      "sha256": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2",
+      "verification_state": "verified",
+      "size_bytes": 239
     },
     {
       "path": "model.safetensors.index.json",
-      "sha256": null,
-      "verification_state": "pending",
-      "size_bytes": null
+      "sha256": "f9fdbcb91c23971c13ec5d5f2573d2349e8f61f2f049371ec699281748fdb1bc",
+      "verification_state": "verified",
+      "size_bytes": 32878
     },
     {
       "path": "model-00001-of-00005.safetensors",
-      "sha256": null,
-      "verification_state": "pending",
-      "size_bytes": null
+      "sha256": "31d6a825ae35f11fb85b195b4c42c146c051e446433125a215336abdf95cbf5f",
+      "verification_state": "verified",
+      "size_bytes": 3996250744
     },
     {
       "path": "model-00002-of-00005.safetensors",
-      "sha256": null,
-      "verification_state": "pending",
-      "size_bytes": null
+      "sha256": "5991236cea6fe21f3d43cab0f0e84448734fbbe0789816202989f2ddc9d18282",
+      "verification_state": "verified",
+      "size_bytes": 3993160032
     },
     {
       "path": "model-00003-of-00005.safetensors",
-      "sha256": null,
-      "verification_state": "pending",
-      "size_bytes": null
+      "sha256": "c5185c4794be2d8a9784d5753c9922db38df478ce11f9ed0b415b7304d896836",
+      "verification_state": "verified",
+      "size_bytes": 3959604768
     },
     {
       "path": "model-00004-of-00005.safetensors",
-      "sha256": null,
-      "verification_state": "pending",
-      "size_bytes": null
+      "sha256": "b5ee7de71fbf17db3d5704e0c8f2bc7d005ca9e1d7ca2aeb19827b0cfcaa917a",
+      "verification_state": "verified",
+      "size_bytes": 3187841392
     },
     {
       "path": "model-00005-of-00005.safetensors",
-      "sha256": null,
-      "verification_state": "pending",
-      "size_bytes": null
+      "sha256": "20c2d6366ab85c90786ccdd829cd2b9e7d30ef3b2ebbb998280e7e4014b542ff",
+      "verification_state": "verified",
+      "size_bytes": 1244659840
     },
     {
       "path": "tokenizer.json",
-      "sha256": null,
-      "verification_state": "pending",
-      "size_bytes": null
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "verification_state": "verified",
+      "size_bytes": 11422654
     },
     {
       "path": "tokenizer_config.json",
-      "sha256": null,
-      "verification_state": "pending",
-      "size_bytes": null
+      "sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+      "verification_state": "verified",
+      "size_bytes": 9732
     },
     {
       "path": "merges.txt",
-      "sha256": null,
-      "verification_state": "pending",
-      "size_bytes": null
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "verification_state": "verified",
+      "size_bytes": 1671853
     },
     {
       "path": "vocab.json",
-      "sha256": null,
-      "verification_state": "pending",
-      "size_bytes": null
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "verification_state": "verified",
+      "size_bytes": 2776833
+    },
+    {
+      "path": ".cache/huggingface/.gitignore",
+      "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1",
+      "verification_state": "verified",
+      "size_bytes": 1
+    },
+    {
+      "path": ".cache/huggingface/download/.gitattributes.metadata",
+      "sha256": "e7b65611eb7daab67067564e9878ee6cfc945ab5f2593ca4758f0b7d30880141",
+      "verification_state": "verified",
+      "size_bytes": 104
+    },
+    {
+      "path": ".cache/huggingface/download/LICENSE.metadata",
+      "sha256": "8728afd5f829d58f67fdcff3497be1ed383b8d9078d757b5d512336a22438f27",
+      "verification_state": "verified",
+      "size_bytes": 104
+    },
+    {
+      "path": ".cache/huggingface/download/README.md.metadata",
+      "sha256": "c25352734c130781adb5adad679a1f004c2183ae24cb547efe3b1f3a0e2d20d3",
+      "verification_state": "verified",
+      "size_bytes": 104
+    },
+    {
+      "path": ".cache/huggingface/download/config.json.metadata",
+      "sha256": "2adf29caea3e5b44c53bc9e09a5ba7d57637ce8048ad4bff7f7be2ce3d737fd9",
+      "verification_state": "verified",
+      "size_bytes": 104
+    },
+    {
+      "path": ".cache/huggingface/download/generation_config.json.metadata",
+      "sha256": "c5b2dcdf20d7dca24cfce26fdae6f23be80256aefbcb94e9dc29196d48ec9f06",
+      "verification_state": "verified",
+      "size_bytes": 103
+    },
+    {
+      "path": ".cache/huggingface/download/merges.txt.metadata",
+      "sha256": "03caf56a394ec62b4b6a455554589392cdbc06bab2967985e7b7c76084f74202",
+      "verification_state": "verified",
+      "size_bytes": 104
+    },
+    {
+      "path": ".cache/huggingface/download/model-00001-of-00005.safetensors.metadata",
+      "sha256": "a0962acaa4c05463a100a1efe67ec946647d18b93c504f82edba14dc7728597a",
+      "verification_state": "verified",
+      "size_bytes": 127
+    },
+    {
+      "path": ".cache/huggingface/download/model-00002-of-00005.safetensors.metadata",
+      "sha256": "9f5c493d65799b919f9a964bcd03e657b48dd1ba0a4d24a577febb52ccf86e75",
+      "verification_state": "verified",
+      "size_bytes": 127
+    },
+    {
+      "path": ".cache/huggingface/download/model-00003-of-00005.safetensors.metadata",
+      "sha256": "1a40f22ab1e330b0e75b75ed32d5ded0f81eb1d21c92998030af6261e9674522",
+      "verification_state": "verified",
+      "size_bytes": 127
+    },
+    {
+      "path": ".cache/huggingface/download/model-00004-of-00005.safetensors.metadata",
+      "sha256": "ab2e59953ebbba8fb9b278a2cb5fcd7cb4ce39bcc2253ce0fbf4833d06f0987b",
+      "verification_state": "verified",
+      "size_bytes": 128
+    },
+    {
+      "path": ".cache/huggingface/download/model-00005-of-00005.safetensors.metadata",
+      "sha256": "ea9d756da8ce73fa52ac77bb4c3da7055744d1526afb69f65cb5ee214dd74aa9",
+      "verification_state": "verified",
+      "size_bytes": 128
+    },
+    {
+      "path": ".cache/huggingface/download/model.safetensors.index.json.metadata",
+      "sha256": "e5418c295f9d567a7650aa9043e4b80f66d90f0f0645e0e79e80014447065a1c",
+      "verification_state": "verified",
+      "size_bytes": 104
+    },
+    {
+      "path": ".cache/huggingface/download/tokenizer.json.metadata",
+      "sha256": "a2803aa89cd89f5db5f990938f235e763350376b286fc69020d2f216984f3c82",
+      "verification_state": "verified",
+      "size_bytes": 127
+    },
+    {
+      "path": ".cache/huggingface/download/tokenizer_config.json.metadata",
+      "sha256": "f32665d851d5278a06ecdefc349c91345e74f75f73ae7c263f4c0c74b9ea88d6",
+      "verification_state": "verified",
+      "size_bytes": 104
+    },
+    {
+      "path": ".cache/huggingface/download/vocab.json.metadata",
+      "sha256": "e3e57874dd2b021a5211477a46be689697ff8b38b9dd7fcba75ded078066452d",
+      "verification_state": "verified",
+      "size_bytes": 103
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "34448b82c17d60fec9b65b1f093c115ddbaadc04beb1b0140b6bfed2e012a930",
+      "verification_state": "verified",
+      "size_bytes": 1570
+    },
+    {
+      "path": "README.md",
+      "sha256": "0f36caaff9c2516411a7738db384606263ba653c1e63e61d72f511606164d5a6",
+      "verification_state": "verified",
+      "size_bytes": 16660
     }
   ],
   "parameter_count": 8200000000,
@@ -95,8 +203,10 @@
   },
   "context_window": 32768,
   "context_window_provenance": "Official Hugging Face model card for Qwen/Qwen3-8B: native context 32768 tokens; YaRN extension to 131072 documented on the same card.",
-  "acquisition_status": "not_acquired",
+  "acquisition_status": "acquired",
   "intake_date": "2026-07-22",
-  "acquisition_date": null,
-  "notes": "RESOURCE-CONSTRAINED / DEVELOPMENT BASELINE (pre-acquisition). Same hybrid Qwen3 family as primary for inexpensive repeated runs. Pinned to Hub commit b968826d9c46dd6066d109eabc6255188de91218 (HF API, 2026-07-22). Weights not downloaded."
+  "acquisition_date": "2026-07-22",
+  "local_artifact_root": "D:\\cobra-models\\qwen\\qwen3-8b\\b968826d9c46dd6066d109eabc6255188de91218\\artifacts",
+  "local_inventory_ref": "D:\\cobra-models\\qwen\\qwen3-8b\\b968826d9c46dd6066d109eabc6255188de91218\\provenance\\artifact-inventory.json",
+  "notes": "RESOURCE-CONSTRAINED / DEVELOPMENT BASELINE (pre-acquisition). Same hybrid Qwen3 family as primary for inexpensive repeated runs. Pinned to Hub commit b968826d9c46dd6066d109eabc6255188de91218 (HF API, 2026-07-22). Weights not downloaded. | Phase 2B: acquired and locally SHA256-verified. Development baseline only; not Cobra Core."
 }

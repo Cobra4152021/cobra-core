@@ -15,6 +15,7 @@ __pycache__/
 .Python
 .venv/
 venv/
+D:/temp/
 ENV/
 env/
 *.egg-info/
@@ -56,6 +57,14 @@ evaluations/reports/**
 !evaluations/reports/.gitkeep
 !evaluations/reports/README.md
 !evaluations/reports/TEMPLATE.md
+!evaluations/reports/QWEN3_8B_SMOKE_REPORT.md
+evaluations/environment/**
+!evaluations/environment/.gitkeep
+!evaluations/environment/README.md
+
+# External model homes (never commit)
+D:/cobra-models/
+**/cobra-models/
 
 # Proprietary / private datasets
 datasets/raw/**

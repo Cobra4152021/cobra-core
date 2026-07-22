@@ -25,6 +25,13 @@
 
 LLM-as-judge outputs may contain regurgitated prompt content. Treat them as advisory artifacts, redacted when needed, and never as sole ground truth.
 
+## Model weights and prompts
+
+- Weights live only under `COBRA_MODEL_HOME` (default `D:\cobra-models`), never in git.
+- Acquisition logs must not print tokens or Authorization headers.
+- Smoke-run prompts are synthetic and gitignored under `evaluations/results/`.
+- Do not commit private investigation prompts or evidence.
+
 ## Scope boundary
 
 This lab must not grow into a shadow Investigator app. Auth, billing, Evidence Vault, and case management belong in `cobra-investigator`, not here.

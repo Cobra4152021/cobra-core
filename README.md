@@ -106,6 +106,12 @@ python -m pip install -e ".[dev]"
 | Type check | `python scripts/run_typecheck.py` or `mypy src/cobra_core` |
 | Empty eval report template | `python scripts/report_template.py` or `cobra-report-template` |
 | All quality gates | `python scripts/run_quality.py` |
+| Preflight environment | `python scripts/preflight_environment.py` |
+| Acquire pinned model | `python scripts/acquire_model.py --manifest model-cards/qwen/qwen3-8b.manifest.json` |
+| Verify hashes | `python scripts/verify_model.py --manifest model-cards/qwen/qwen3-8b.manifest.json` |
+| Smoke tests (model required) | `python scripts/run_smoke_tests.py` |
+
+Weights are stored outside git under `COBRA_MODEL_HOME` (default `D:\cobra-models`). See `docs/MODEL_STORAGE.md` and `docs/LOCAL_INFERENCE.md`.
 
 ## Repository map
 

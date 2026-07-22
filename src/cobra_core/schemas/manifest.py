@@ -168,6 +168,14 @@ class ModelManifest(BaseModel):
     acquisition_status: AcquisitionStatus = AcquisitionStatus.NOT_ACQUIRED
     intake_date: date
     acquisition_date: date | None = None
+    local_artifact_root: Annotated[
+        str | None,
+        Field(default=None, description="External path to acquired artifacts (outside git)"),
+    ] = None
+    local_inventory_ref: Annotated[
+        str | None,
+        Field(default=None, description="Path to artifact-inventory.json outside git"),
+    ] = None
     notes: str | None = None
 
     @field_validator("source_repository")
@@ -229,11 +237,19 @@ class ModelManifest(BaseModel):
         if self.acquisition_status == AcquisitionStatus.NOT_ACQUIRED:
             if self.acquisition_date is not None:
                 raise ValueError("not_acquired manifests must not set acquisition_date")
+            if self.local_artifact_root is not None or self.local_inventory_ref is not None:
+                raise ValueError(
+                    "not_acquired manifests must not set local_artifact_root/inventory refs"
+                )
             if any(state != HashVerificationState.PENDING for state in states):
                 raise ValueError("not_acquired manifests may only use pending artifact hashes")
         elif self.acquisition_status == AcquisitionStatus.ACQUIRED:
             if self.acquisition_date is None:
                 raise ValueError("acquired manifests require acquisition_date")
+            if not self.local_artifact_root or not self.local_inventory_ref:
+                raise ValueError(
+                    "acquired manifests require local_artifact_root and local_inventory_ref"
+                )
             if any(
                 item.verification_state
                 not in {HashVerificationState.VERIFIED, HashVerificationState.OFFICIAL}
