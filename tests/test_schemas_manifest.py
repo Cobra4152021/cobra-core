@@ -88,9 +88,12 @@ def test_qwen_intake_manifests_validate(repo_root: Path) -> None:
                 artifact.verification_state == HashVerificationState.VERIFIED and artifact.sha256
                 for artifact in model.artifact_files
             )
-    eight_b = by_name["Qwen3-8B"]
-    assert eight_b.runtime_validation_status == RuntimeValidationStatus.LOAD_PASSED
-    assert eight_b.benchmark_eligibility_status == BenchmarkEligibilityStatus.INTERIM_ELIGIBLE
+        eight_b = by_name["Qwen3-8B"]
+        assert eight_b.runtime_validation_status == RuntimeValidationStatus.LOAD_PASSED
+        assert eight_b.benchmark_eligibility_status in {
+            BenchmarkEligibilityStatus.INTERIM_ELIGIBLE,
+            BenchmarkEligibilityStatus.BENCHMARK_COMPLETED,
+        }
     thirty_two_b = by_name["Qwen3-32B"]
     assert thirty_two_b.runtime_validation_status == (
         RuntimeValidationStatus.UNSUPPORTED_ON_ENVIRONMENT

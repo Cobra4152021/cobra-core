@@ -1,0 +1,75 @@
+{
+  "protocol_id": "qwen3-8b-cobrabench-v0.1",
+  "protocol_version": "1.0.0",
+  "created_at": "2026-07-22",
+  "purpose": "Interim single-model CobraBench v0.1 baseline for Qwen3-8B (not a 32B comparison; not Cobra Core).",
+  "model": {
+    "repository": "Qwen/Qwen3-8B",
+    "source_url": "https://huggingface.co/Qwen/Qwen3-8B",
+    "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+    "manifest_path": "model-cards/qwen/qwen3-8b.manifest.json",
+    "artifact_inventory_ref": "D:\\cobra-models\\qwen\\qwen3-8b\\b968826d9c46dd6066d109eabc6255188de91218\\provenance\\artifact-inventory.json",
+    "local_artifact_root": "D:\\cobra-models\\qwen\\qwen3-8b\\b968826d9c46dd6066d109eabc6255188de91218\\artifacts"
+  },
+  "benchmark": {
+    "version": "0.1",
+    "release_dir": "benchmarks/releases/cobrabench-v0.1",
+    "case_count": 28,
+    "inventory_sha256": "372edd36808909e191a4a6e2b8d012373f3b4a3f1e3831488b866ff6c598bf5a",
+    "release_tree_sha256": "ee4fcd14840d580da8676540a5b03fcf624e5bde90990283d2e000980602a0ee",
+    "evaluator_version": "cobrabench-evaluator-v0.1.0"
+  },
+  "runtime": {
+    "framework": "transformers",
+    "runtime_version_note": "Recorded at run time in environment.json / case meta",
+    "precision": "bitsandbytes-4bit-nf4-from-official-bf16",
+    "bitsandbytes": {
+      "load_in_4bit": true,
+      "bnb_4bit_quant_type": "nf4",
+      "bnb_4bit_use_double_quant": true,
+      "bnb_4bit_compute_dtype": "float16"
+    },
+    "device_map": "auto",
+    "max_memory": { "0": "9GiB", "cpu": "18GiB" },
+    "trust_remote_code": false,
+    "context_window_limit": 32768,
+    "max_input_tokens_soft": 4096,
+    "max_new_tokens": 512
+  },
+  "sampling": {
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "top_k": null,
+    "repetition_penalty": null,
+    "seed": 123,
+    "do_sample": false
+  },
+  "thinking_mode": {
+    "enable_thinking": false,
+    "rationale": "Primary interim cohort uses thinking disabled for reproducibility and answer-format clarity."
+  },
+  "system_prompt_policy": "Use each case's frozen system_prompt unchanged; append supporting sources to the user prompt via build_user_prompt.",
+  "timeout_policy": {
+    "per_case_timeout_seconds": null,
+    "notes": "No hard per-case timeout enforced in runner v0.1; preserve OS/runtime failures as errors."
+  },
+  "retry_policy": {
+    "max_retries": 0,
+    "allowed_transient_conditions": [],
+    "notes": "No silent retries. Preserve failed runs. One retry only if a future protocol revision defines an objective transient condition; both attempts must be preserved."
+  },
+  "failure_preservation_policy": "Write errors.json entries and keep partial case artifacts; do not overwrite unfavorable valid answers.",
+  "environment_reference": "evaluations/environment/local-machine.json",
+  "environment_key": "local-windows-rtx4070-12gb",
+  "judge_policy": "not_run_unless_pinned_external_judge_configured",
+  "human_review_policy": {
+    "minimum_coverage": 0.5,
+    "prefer_all_cases_for_first_baseline": true,
+    "required_categories": [
+      "citation_correctness",
+      "hallucination_resistance",
+      "contradiction_detection",
+      "refusal_quality"
+    ]
+  }
+}

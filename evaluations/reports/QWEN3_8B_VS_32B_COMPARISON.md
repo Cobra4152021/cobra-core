@@ -1,37 +1,24 @@
-# Qwen3-8B vs Qwen3-32B — CobraBench v0.1 Comparison
+# Qwen3-8B vs Qwen3-32B — Comparison Status
 
-**Status:** Incomplete — no dual-model scores.  
 **Date:** 2026-07-22  
-**Benchmark:** CobraBench v0.1 (28 cases frozen)  
-**Not Cobra Core.** Neither model is designated Cobra Core by this phase.
+**Status:** No dual-model comparison exists.
 
-## Verdict
+## Explicit non-results
 
-No quality comparison is available. Qwen3-32B failed local load validation; the dual-model evaluation was not started.
+- Qwen3-32B completed artifact acquisition and SHA256 verification.
+- Qwen3-32B **did not** complete load validation on this machine (crash `0xC0000005`).
+- **No Qwen3-32B CobraBench scores exist.**
+- Qwen3-8B interim CobraBench v0.1 results **must not** be used to infer Qwen3-32B performance.
+- Future comparison requires a compatible environment and a completed 32B load gate under a frozen protocol.
 
-## Planned comparison axes (unevaluated)
+## What was completed instead
 
-| Axis | Status |
-| --- | --- |
-| Areas where 32B materially outperforms 8B | Unknown |
-| Areas of similar performance | Unknown |
-| Areas where 8B performs better | Unknown |
-| Quality vs cost | 32B acquired (~65.5 GB disk) but cannot run here; 8B runs |
-| Quality vs speed | Unknown for CobraBench; 32B load unstable |
-| Statistically weak conclusions | N/A — zero case pairs |
-| Cases needing reruns | All 28, after Gate 5 passes |
-| Benchmark weaknesses discovered | Harness/heuristics prepared; not stress-tested on live outputs |
+An authorized **Qwen3-8B-only** interim baseline under CobraBench v0.1. See:
 
-## Resource comparison (local measurements)
+- `evaluations/reports/QWEN3_8B_COBRABENCH_V0_1.md`
+- `evaluations/reports/QWEN3_32B_LOCAL_LOAD_FAILURE.md`
+- `docs/decisions/ADR-0003-qwen3-8b-interim-baseline.md`
 
-| Item | Qwen3-8B | Qwen3-32B |
-| --- | --- | --- |
-| Artifact size | ~16.4 GB | ~65.5 GB |
-| Load on this machine | Success (Phase 2B) | Fail (crash `0xC0000005`) |
-| CobraBench v0.1 | Not run (gate stop) | Not run |
+## Forbidden interpretations
 
-## Recommendation
-
-1. Do not invent a winner from weighted totals.  
-2. Follow ADR-0002: stop 32B local evaluation on this host until resources improve.  
-3. Optionally authorize 8B-only CobraBench v0.1 as an interim control baseline.
+Do not treat 8B category scores as evidence that 32B would be better, worse, or similar.

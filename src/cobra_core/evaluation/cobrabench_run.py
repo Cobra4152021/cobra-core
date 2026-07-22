@@ -328,6 +328,29 @@ def run_cobrabench(
                 response_text = result.assistant_response
                 response_path = run_dir / "responses" / f"{case.case_id}.txt"
                 response_path.write_text(response_text, encoding="utf-8")
+                _write_json(
+                    run_dir / "responses" / f"{case.case_id}.meta.json",
+                    {
+                        "case_id": case.case_id,
+                        "case_version": case.version,
+                        "category": case.category.value,
+                        "raw_generated_text": result.raw_generated_text,
+                        "assistant_response": result.assistant_response,
+                        "reasoning_content": result.reasoning_content,
+                        "rendered_chat_template": result.rendered_chat_template,
+                        "inference_settings": result.inference_settings,
+                        "input_token_count": result.input_token_count,
+                        "output_token_count": result.output_token_count,
+                        "total_token_count": result.total_token_count,
+                        "total_latency_ms": result.total_latency_ms,
+                        "tokens_per_second": result.tokens_per_second,
+                        "finish_reason": result.finish_reason,
+                        "warnings": result.warnings,
+                        "error": result.error,
+                        "model_revision": result.model_revision,
+                        "transformers_version": result.transformers_version,
+                    },
+                )
 
                 metrics = _compute_case_metrics(case, response_text)
                 objective_doc["cases"][case.case_id] = {
@@ -336,6 +359,11 @@ def run_cobrabench(
                     "contradiction_metrics": metrics["contradiction_metrics"],
                     "refusal_metrics": metrics["refusal_metrics"],
                     "objective_score": metrics["objective_score"],
+                    "input_token_count": result.input_token_count,
+                    "output_token_count": result.output_token_count,
+                    "total_latency_ms": result.total_latency_ms,
+                    "tokens_per_second": result.tokens_per_second,
+                    "finish_reason": result.finish_reason,
                 }
                 rule_doc["cases"][case.case_id] = {
                     "objective_checks": metrics["objective_checks"],
@@ -346,10 +374,16 @@ def run_cobrabench(
                 summary.update(
                     {
                         "status": "ok",
+                        "category": case.category.value,
+                        "case_version": case.version,
                         "response_path": str(response_path.relative_to(run_dir)),
                         "objective_score": metrics["objective_score"],
                         "behavior_score": metrics["behavior_score"],
                         "latency_ms": result.total_latency_ms,
+                        "input_token_count": result.input_token_count,
+                        "output_token_count": result.output_token_count,
+                        "tokens_per_second": result.tokens_per_second,
+                        "finish_reason": result.finish_reason,
                     }
                 )
             except Exception as exc:  # noqa: BLE001 — accumulate and continue
