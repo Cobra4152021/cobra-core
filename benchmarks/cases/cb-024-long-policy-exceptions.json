@@ -1,0 +1,60 @@
+{
+  "case_id": "cb-024-long-policy-exceptions",
+  "version": "0.1.0",
+  "category": "long_document_analysis",
+  "title": "Find exception clauses in synthetic policy text",
+  "system_prompt": "You are an investigation research assistant. Use only the provided sources. Cite sources with their citation keys. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "From the policy excerpt, list all explicit exceptions to the default retention period. Cite section IDs.",
+  "supporting_sources": [
+    {
+      "source_id": "src-policy-long",
+      "title": "Retention Policy Excerpt (synthetic)",
+      "citation_key": "SRC-A",
+      "content": "[S1] Default retention: 30 days. [S2] Exception E1: audit logs retained 365 days. [S3] Exception E2: legal hold overrides deletion until hold lifted. [S4] Exception E3: training sandbox data deleted after 7 days. [S5] No other exceptions defined in this excerpt."
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-three-exceptions",
+      "description": "Lists E1, E2, and E3 with section citations.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-extra-exception",
+      "description": "Invents exceptions beyond S2-S4."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: long document analysis."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "long-doc",
+    "policy",
+    "synthetic"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-exception-ids",
+      "description": "Mentions E1, E2, or E3 exception identifiers.",
+      "check_type": "contains_any"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-completeness",
+      "description": "All defined exceptions in excerpt are captured."
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "SRC-A"
+    ],
+    "allow_uncited_inference": false
+  }
+}

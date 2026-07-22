@@ -50,10 +50,12 @@ def test_valid_case_accepted_and_tags_normalized() -> None:
     assert case.tags == ["synthetic", "test"]
 
 
-def test_three_synthetic_cases_validate(cases_dir: Path) -> None:
+def test_synthetic_cases_validate_and_include_required_ids(cases_dir: Path) -> None:
     cases, issues = validate_json_dir(cases_dir, BenchmarkCase)
     assert issues == []
-    assert {c.case_id for c in cases} == REQUIRED_CASE_IDS
+    case_ids = {c.case_id for c in cases}
+    assert REQUIRED_CASE_IDS.issubset(case_ids)
+    assert len(cases) >= 28
     assert all(c.sensitivity.value == "public_synthetic" for c in cases)
 
 

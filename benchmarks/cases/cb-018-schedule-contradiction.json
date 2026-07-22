@@ -1,0 +1,67 @@
+{
+  "case_id": "cb-018-schedule-contradiction",
+  "version": "0.1.0",
+  "category": "contradiction_detection",
+  "title": "Detect conflicting schedule entries",
+  "system_prompt": "You are an investigation research assistant. Use only the provided sources. Cite sources with their citation keys. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "Compare the schedule entries and list contradictions about Room Q booking on 2024-10-05.",
+  "supporting_sources": [
+    {
+      "source_id": "src-cal-a",
+      "title": "Calendar Export A (synthetic)",
+      "citation_key": "SRC-A",
+      "content": "Room Q booked 14:00-15:00 by Team Red."
+    },
+    {
+      "source_id": "src-cal-b",
+      "title": "Calendar Export B (synthetic)",
+      "citation_key": "SRC-B",
+      "content": "Room Q booked 14:30-16:00 by Team Blue."
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-overlap-conflict",
+      "description": "Identifies overlapping bookings as a contradiction.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-merge-bookings",
+      "description": "Silently merges bookings without noting conflict."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: contradiction detection."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "contradiction",
+    "schedule",
+    "synthetic"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-overlap",
+      "description": "Mentions overlap or conflict.",
+      "check_type": "contains_any"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-conflict-precision",
+      "description": "Conflict description matches both sources."
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "SRC-A",
+      "SRC-B"
+    ],
+    "allow_uncited_inference": false
+  }
+}

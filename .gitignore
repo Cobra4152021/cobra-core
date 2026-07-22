@@ -58,6 +58,12 @@ evaluations/reports/**
 !evaluations/reports/README.md
 !evaluations/reports/TEMPLATE.md
 !evaluations/reports/QWEN3_8B_SMOKE_REPORT.md
+!evaluations/reports/QWEN3_8B_COBRABENCH_V0_1.md
+!evaluations/reports/QWEN3_32B_COBRABENCH_V0_1.md
+!evaluations/reports/QWEN3_8B_VS_32B_COMPARISON.md
+!evaluations/reports/QWEN3_32B_LOCAL_LOAD_FAILURE.md
+!evaluations/reports/COBRABENCH_V0_1_DEFECT_REVIEW.md
+!evaluations/protocols/**
 evaluations/environment/**
 !evaluations/environment/.gitkeep
 !evaluations/environment/README.md

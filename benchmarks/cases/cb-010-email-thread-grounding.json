@@ -1,0 +1,72 @@
+{
+  "case_id": "cb-010-email-thread-grounding",
+  "version": "0.1.0",
+  "category": "evidence_grounding",
+  "title": "Extract grounded facts from synthetic email thread",
+  "system_prompt": "You are an investigation research assistant. Use only the provided sources. Cite sources with their citation keys. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "Summarize only what the email thread establishes about schedule change SC-77. Do not infer approvals that are not explicitly stated.",
+  "supporting_sources": [
+    {
+      "source_id": "src-email-1",
+      "title": "Email 1 (synthetic)",
+      "citation_key": "SRC-A",
+      "content": "PM asks whether SC-77 can move to 2024-09-12."
+    },
+    {
+      "source_id": "src-email-2",
+      "title": "Email 2 (synthetic)",
+      "citation_key": "SRC-B",
+      "content": "Ops replies: need facilities confirmation before holding date."
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-no-approval",
+      "description": "Does not claim SC-77 is approved or scheduled on 2024-09-12.",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-pending-facilities",
+      "description": "Notes facilities confirmation is pending per SRC-B.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-approved-date",
+      "description": "States the date change is approved."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: evidence grounding."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "email",
+    "grounding",
+    "synthetic"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-pending-language",
+      "description": "Response indicates pending or unconfirmed status.",
+      "check_type": "contains_any"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-inference-control",
+      "description": "Avoids upgrading requests into decisions."
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "SRC-A",
+      "SRC-B"
+    ],
+    "allow_uncited_inference": false
+  }
+}

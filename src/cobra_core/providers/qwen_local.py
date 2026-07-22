@@ -23,8 +23,17 @@ class QwenLocalAdapter:
     provider_id = "qwen"
     trust_remote_code = False
 
-    def __init__(self, *, load_in_4bit: bool = True) -> None:
+    def __init__(
+        self,
+        *,
+        load_in_4bit: bool = True,
+        max_memory: dict[int | str, str] | None = None,
+        offload_folder: Path | str | None = None,
+    ) -> None:
         self.load_in_4bit = load_in_4bit
+        # Conservative hybrid offload defaults help 12GB GPUs with larger models.
+        self.max_memory = max_memory
+        self.offload_folder = Path(offload_folder) if offload_folder is not None else None
         self._model: Any = None
         self._tokenizer: Any = None
         self._artifact_dir: Path | None = None
@@ -38,8 +47,11 @@ class QwenLocalAdapter:
         self._tokenizer = None
         self._artifact_dir = None
         try:
+            import gc
+
             import torch
 
+            gc.collect()
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
         except Exception:
@@ -61,11 +73,24 @@ class QwenLocalAdapter:
             str(artifact_dir),
             trust_remote_code=self.trust_remote_code,
         )
+        default_max_memory: dict[int | str, str] = {0: "8GiB", "cpu": "14GiB"}
+        resolved_max_memory = self.max_memory or default_max_memory
+        offload_dir = self.offload_folder
+        if offload_dir is None:
+            offload_dir = artifact_dir.parent / "offload-cache"
+        offload_dir.mkdir(parents=True, exist_ok=True)
         load_kwargs: dict[str, Any] = {
             "trust_remote_code": self.trust_remote_code,
             "device_map": "auto",
+            "max_memory": resolved_max_memory,
+            "low_cpu_mem_usage": True,
+            "offload_folder": str(offload_dir),
+            "offload_state_dict": True,
         }
-        warnings: list[str] = []
+        warnings: list[str] = [
+            f"max_memory={resolved_max_memory!r}",
+            f"offload_folder={offload_dir}",
+        ]
         if self.load_in_4bit:
             try:
                 from transformers import BitsAndBytesConfig
@@ -73,6 +98,8 @@ class QwenLocalAdapter:
                 load_kwargs["quantization_config"] = BitsAndBytesConfig(  # type: ignore[no-untyped-call]
                     load_in_4bit=True,
                     bnb_4bit_compute_dtype=torch.float16,
+                    bnb_4bit_use_double_quant=True,
+                    bnb_4bit_quant_type="nf4",
                 )
             except Exception as exc:
                 warnings.append(
@@ -80,7 +107,6 @@ class QwenLocalAdapter:
                     "falling back to float16 with GPU/CPU offload"
                 )
                 load_kwargs["torch_dtype"] = torch.float16
-                load_kwargs["max_memory"] = {0: "10GiB", "cpu": "24GiB"}
         else:
             load_kwargs["torch_dtype"] = (
                 torch.bfloat16 if torch.cuda.is_available() else torch.float32
@@ -93,7 +119,6 @@ class QwenLocalAdapter:
                 warnings.append(f"4-bit load failed ({exc}); retrying float16 offload")
                 load_kwargs.pop("quantization_config", None)
                 load_kwargs["torch_dtype"] = torch.float16
-                load_kwargs["max_memory"] = {0: "10GiB", "cpu": "24GiB"}
                 model = AutoModelForCausalLM.from_pretrained(str(artifact_dir), **load_kwargs)
             else:
                 raise
@@ -144,7 +169,8 @@ class QwenLocalAdapter:
                 )
 
         inputs = self._tokenizer([rendered], return_tensors="pt")
-        inputs = {k: v.to(self._model.device) for k, v in inputs.items()}
+        input_device = _resolve_input_device(self._model)
+        inputs = {k: v.to(input_device) for k, v in inputs.items()}
         input_len = int(inputs["input_ids"].shape[-1])
 
         gen_kwargs: dict[str, Any] = {
@@ -236,6 +262,17 @@ class QwenLocalAdapter:
             transformers_version=transformers_version,
             trust_remote_code=self.trust_remote_code,
         )
+
+
+def _resolve_input_device(model: Any) -> Any:
+    """Pick a device for inputs when models use device_map offload."""
+    device = getattr(model, "device", None)
+    if device is not None:
+        return device
+    try:
+        return next(model.parameters()).device
+    except StopIteration as exc:
+        raise RuntimeError("model has no parameters to resolve input device") from exc
 
 
 def _split_qwen_thinking(text: str) -> tuple[str | None, str]:

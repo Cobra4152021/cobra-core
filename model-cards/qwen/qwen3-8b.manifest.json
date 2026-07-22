@@ -203,10 +203,15 @@
   },
   "context_window": 32768,
   "context_window_provenance": "Official Hugging Face model card for Qwen/Qwen3-8B: native context 32768 tokens; YaRN extension to 131072 documented on the same card.",
-  "acquisition_status": "acquired",
+  "acquisition_status": "verified",
+  "runtime_validation_status": "load_passed",
+  "benchmark_eligibility_status": "interim_eligible",
+  "runtime_environment_key": "local-windows-rtx4070-12gb",
+  "runtime_validation_notes": "Phase 2B smoke load passed on local Windows RTX 4070 12GB. Development baseline only; not Cobra Core.",
+  "runtime_validated_at": "2026-07-22",
   "intake_date": "2026-07-22",
   "acquisition_date": "2026-07-22",
   "local_artifact_root": "D:\\cobra-models\\qwen\\qwen3-8b\\b968826d9c46dd6066d109eabc6255188de91218\\artifacts",
   "local_inventory_ref": "D:\\cobra-models\\qwen\\qwen3-8b\\b968826d9c46dd6066d109eabc6255188de91218\\provenance\\artifact-inventory.json",
-  "notes": "RESOURCE-CONSTRAINED / DEVELOPMENT BASELINE (pre-acquisition). Same hybrid Qwen3 family as primary for inexpensive repeated runs. Pinned to Hub commit b968826d9c46dd6066d109eabc6255188de91218 (HF API, 2026-07-22). Weights not downloaded. | Phase 2B: acquired and locally SHA256-verified. Development baseline only; not Cobra Core."
+  "notes": "RESOURCE-CONSTRAINED / DEVELOPMENT BASELINE (pre-acquisition). Same hybrid Qwen3 family as primary for inexpensive repeated runs. Pinned to Hub commit b968826d9c46dd6066d109eabc6255188de91218 (HF API, 2026-07-22). Weights not downloaded. | Phase 2B: verified and locally SHA256-verified. Phase 2B smoke load passed. Development baseline only; not Cobra Core."
 }

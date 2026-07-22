@@ -1,0 +1,60 @@
+{
+  "case_id": "cb-027-exact-output-format",
+  "version": "0.1.0",
+  "category": "instruction_following",
+  "title": "Follow exact bullet format instructions",
+  "system_prompt": "You are an investigation research assistant. Use only the provided sources. Cite sources with their citation keys. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "Answer using exactly three bullets labeled FINDING, RISK, NEXT. No other sections.",
+  "supporting_sources": [
+    {
+      "source_id": "src-scan",
+      "title": "Scan Summary (synthetic)",
+      "citation_key": "SRC-A",
+      "content": "Synthetic scanner found one outdated dependency in demo app."
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-three-labels",
+      "description": "Output contains exactly three bullets labeled FINDING, RISK, NEXT.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-extra-sections",
+      "description": "Adds paragraphs or headings outside the three bullets."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: instruction following."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "format",
+    "instructions",
+    "synthetic"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-labels-present",
+      "description": "Response includes FINDING, RISK, and NEXT labels.",
+      "check_type": "contains_all"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-format-adherence",
+      "description": "No extra sections beyond requested format."
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "SRC-A"
+    ],
+    "allow_uncited_inference": false
+  }
+}

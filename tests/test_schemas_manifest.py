@@ -12,8 +12,10 @@ from cobra_core.schemas.manifest import (
     AcquisitionStatus,
     ArchitectureFamily,
     ArtifactFile,
+    BenchmarkEligibilityStatus,
     HashVerificationState,
     ModelManifest,
+    RuntimeValidationStatus,
 )
 from cobra_core.validation import load_json_model, validate_json_dir
 
@@ -65,24 +67,40 @@ def test_qwen_intake_manifests_validate(repo_root: Path) -> None:
         "Qwen3-8B",
         "Qwen3-30B-A3B-Thinking-2507",
     }
-    assert by_name["Qwen3-32B"].acquisition_status == AcquisitionStatus.NOT_ACQUIRED
     assert by_name["Qwen3-30B-A3B-Thinking-2507"].acquisition_status == (
         AcquisitionStatus.NOT_ACQUIRED
     )
-    # Development baseline may be acquired after Phase 2B.
-    eight = by_name["Qwen3-8B"]
-    if eight.acquisition_status == AcquisitionStatus.NOT_ACQUIRED:
-        assert all(
-            artifact.verification_state == HashVerificationState.PENDING
-            for artifact in eight.artifact_files
-        )
-    else:
-        assert eight.acquisition_status == AcquisitionStatus.ACQUIRED
-        assert eight.local_artifact_root
-        assert all(
-            artifact.verification_state == HashVerificationState.VERIFIED and artifact.sha256
-            for artifact in eight.artifact_files
-        )
+    # Development / primary baselines may be verified after Phase 2B/2C.
+    for name in ("Qwen3-8B", "Qwen3-32B"):
+        model = by_name[name]
+        if model.acquisition_status == AcquisitionStatus.NOT_ACQUIRED:
+            assert all(
+                artifact.verification_state == HashVerificationState.PENDING
+                for artifact in model.artifact_files
+            )
+        else:
+            assert model.acquisition_status in {
+                AcquisitionStatus.ACQUIRED,
+                AcquisitionStatus.VERIFIED,
+            }
+            assert model.local_artifact_root
+            assert all(
+                artifact.verification_state == HashVerificationState.VERIFIED and artifact.sha256
+                for artifact in model.artifact_files
+            )
+    eight_b = by_name["Qwen3-8B"]
+    assert eight_b.runtime_validation_status == RuntimeValidationStatus.LOAD_PASSED
+    assert eight_b.benchmark_eligibility_status == BenchmarkEligibilityStatus.INTERIM_ELIGIBLE
+    thirty_two_b = by_name["Qwen3-32B"]
+    assert thirty_two_b.runtime_validation_status == (
+        RuntimeValidationStatus.UNSUPPORTED_ON_ENVIRONMENT
+    )
+    assert (
+        thirty_two_b.benchmark_eligibility_status == BenchmarkEligibilityStatus.BLOCKED_BY_RUNTIME
+    )
+    thinking = by_name["Qwen3-30B-A3B-Thinking-2507"]
+    assert thinking.runtime_validation_status == RuntimeValidationStatus.NOT_TESTED
+    assert thinking.benchmark_eligibility_status == BenchmarkEligibilityStatus.NOT_ELIGIBLE
 
 
 def test_primary_manifest_file_loads(repo_root: Path) -> None:
@@ -175,6 +193,27 @@ def test_rejects_duplicate_artifact_paths() -> None:
                 ]
             )
         )
+
+
+def test_verified_manifest_requires_real_hashes() -> None:
+    digest = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    manifest = ModelManifest.model_validate(
+        _valid_preacquisition(
+            acquisition_status="verified",
+            acquisition_date=date(2026, 7, 22),
+            local_artifact_root="D:/cobra-models/qwen/qwen3-8b/rev/artifacts",
+            local_inventory_ref="D:/cobra-models/qwen/qwen3-8b/rev/provenance/artifact-inventory.json",
+            artifact_files=[
+                {
+                    "path": "model.safetensors",
+                    "sha256": digest,
+                    "verification_state": "verified",
+                    "size_bytes": 1,
+                }
+            ],
+        )
+    )
+    assert manifest.sha256_map()["model.safetensors"] == digest
 
 
 def test_acquired_manifest_requires_real_hashes() -> None:

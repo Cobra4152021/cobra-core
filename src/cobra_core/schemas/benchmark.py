@@ -63,6 +63,46 @@ class ScoringRubricRef(BaseModel):
     notes: str | None = None
 
 
+class ObjectiveCheckType(StrEnum):
+    """Automated check types for objective scoring."""
+
+    CONTAINS_ANY = "contains_any"
+    CONTAINS_ALL = "contains_all"
+    REGEX = "regex"
+    JSON_PARSE = "json_parse"
+    CITATION_KEYS_VALID = "citation_keys_valid"
+    EXACT_MATCH_OPTIONAL = "exact_match_optional"
+
+
+class ObjectiveCheck(BaseModel):
+    """Rule-based check applied to model output."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    check_id: Annotated[str, Field(min_length=1)]
+    description: Annotated[str, Field(min_length=1)]
+    check_type: ObjectiveCheckType
+
+
+class HumanScoredDimension(BaseModel):
+    """Dimension evaluated by a human or advisory LLM judge."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    dimension_id: Annotated[str, Field(min_length=1)]
+    description: Annotated[str, Field(min_length=1)]
+
+
+class CitationRequirements(BaseModel):
+    """Citation discipline expectations for a case."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    required: bool
+    allowed_keys: list[str] = Field(default_factory=list)
+    allow_uncited_inference: bool = False
+
+
 class BenchmarkCase(BaseModel):
     """
     A single CobraBench evaluation case.
@@ -85,6 +125,11 @@ class BenchmarkCase(BaseModel):
     scoring_rubric: ScoringRubricRef
     sensitivity: SensitivityLevel = SensitivityLevel.PUBLIC_SYNTHETIC
     tags: list[str] = Field(default_factory=list)
+    objective_checks: list[ObjectiveCheck] = Field(default_factory=list)
+    human_scored_dimensions: list[HumanScoredDimension] = Field(default_factory=list)
+    citation_requirements: CitationRequirements | None = None
+    uncertainty_expectations: str | None = None
+    refusal_expectations: str | None = None
 
     @field_validator("tags")
     @classmethod

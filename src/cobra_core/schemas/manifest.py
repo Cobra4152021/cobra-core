@@ -41,9 +41,31 @@ class AcquisitionStatus(StrEnum):
     """Whether weight artifacts have been acquired and validated locally."""
 
     NOT_ACQUIRED = "not_acquired"
+    DOWNLOADING = "downloading"
     ACQUIRED = "acquired"
+    VERIFIED = "verified"
     QUARANTINED = "quarantined"
     FAILED = "failed"
+
+
+class RuntimeValidationStatus(StrEnum):
+    """Whether the model loads successfully in a recorded runtime environment."""
+
+    NOT_TESTED = "not_tested"
+    LOAD_PASSED = "load_passed"
+    LOAD_FAILED = "load_failed"
+    UNSUPPORTED_ON_ENVIRONMENT = "unsupported_on_environment"
+    QUARANTINED = "quarantined"
+
+
+class BenchmarkEligibilityStatus(StrEnum):
+    """Whether benchmark execution is permitted for this manifest state."""
+
+    NOT_ELIGIBLE = "not_eligible"
+    TECHNICALLY_ELIGIBLE = "technically_eligible"
+    INTERIM_ELIGIBLE = "interim_eligible"
+    BLOCKED_BY_RUNTIME = "blocked_by_runtime"
+    BENCHMARK_COMPLETED = "benchmark_completed"
 
 
 class HashVerificationState(StrEnum):
@@ -166,6 +188,13 @@ class ModelManifest(BaseModel):
         ),
     ]
     acquisition_status: AcquisitionStatus = AcquisitionStatus.NOT_ACQUIRED
+    runtime_validation_status: RuntimeValidationStatus = RuntimeValidationStatus.NOT_TESTED
+    benchmark_eligibility_status: BenchmarkEligibilityStatus = (
+        BenchmarkEligibilityStatus.NOT_ELIGIBLE
+    )
+    runtime_environment_key: str | None = None
+    runtime_validation_notes: str | None = None
+    runtime_validated_at: date | None = None
     intake_date: date
     acquisition_date: date | None = None
     local_artifact_root: Annotated[
@@ -243,12 +272,18 @@ class ModelManifest(BaseModel):
                 )
             if any(state != HashVerificationState.PENDING for state in states):
                 raise ValueError("not_acquired manifests may only use pending artifact hashes")
-        elif self.acquisition_status == AcquisitionStatus.ACQUIRED:
+        elif self.acquisition_status in {
+            AcquisitionStatus.ACQUIRED,
+            AcquisitionStatus.VERIFIED,
+        }:
             if self.acquisition_date is None:
-                raise ValueError("acquired manifests require acquisition_date")
+                raise ValueError(
+                    f"{self.acquisition_status.value} manifests require acquisition_date"
+                )
             if not self.local_artifact_root or not self.local_inventory_ref:
                 raise ValueError(
-                    "acquired manifests require local_artifact_root and local_inventory_ref"
+                    f"{self.acquisition_status.value} manifests require "
+                    "local_artifact_root and local_inventory_ref"
                 )
             if any(
                 item.verification_state
@@ -257,8 +292,12 @@ class ModelManifest(BaseModel):
                 for item in self.artifact_files
             ):
                 raise ValueError(
-                    "acquired manifests require verified/official sha256 for every artifact"
+                    f"{self.acquisition_status.value} manifests require "
+                    "verified/official sha256 for every artifact"
                 )
+        elif self.acquisition_status == AcquisitionStatus.DOWNLOADING:
+            if any(state != HashVerificationState.PENDING for state in states):
+                raise ValueError("downloading manifests may only use pending artifact hashes")
         elif self.acquisition_status in {
             AcquisitionStatus.QUARANTINED,
             AcquisitionStatus.FAILED,
@@ -270,6 +309,10 @@ class ModelManifest(BaseModel):
 
         if self.architecture == ArchitectureFamily.UNKNOWN:
             raise ValueError("architecture must not be unknown for intake candidates")
+
+        from cobra_core.schemas.eligibility import assert_valid_eligibility_combo
+
+        assert_valid_eligibility_combo(self)
 
         return self
 

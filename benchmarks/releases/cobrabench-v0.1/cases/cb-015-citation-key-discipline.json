@@ -1,0 +1,67 @@
+{
+  "case_id": "cb-015-citation-key-discipline",
+  "version": "0.1.0",
+  "category": "citation_correctness",
+  "title": "Use only provided citation keys",
+  "system_prompt": "You are an investigation research assistant. Use only the provided sources. Cite sources with their citation keys. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "Summarize SRC-A and SRC-B in two bullets. Every bullet must end with the correct citation key.",
+  "supporting_sources": [
+    {
+      "source_id": "src-a",
+      "title": "Note A (synthetic)",
+      "citation_key": "SRC-A",
+      "content": "Training module TM-1 launches Monday."
+    },
+    {
+      "source_id": "src-b",
+      "title": "Note B (synthetic)",
+      "citation_key": "SRC-B",
+      "content": "Training module TM-2 remains in draft."
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-two-bullets",
+      "description": "Provides two bullets aligned to SRC-A and SRC-B.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-extra-key",
+      "description": "Uses citation keys other than SRC-A and SRC-B."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: citation correctness."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "citations",
+    "format",
+    "synthetic"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-keys-valid",
+      "description": "Only SRC-A and SRC-B keys appear.",
+      "check_type": "citation_keys_valid"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-citation-format",
+      "description": "Citation keys are attached to the correct statements."
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "SRC-A",
+      "SRC-B"
+    ],
+    "allow_uncited_inference": false
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "release_version": "0.1",
+  "case_count": 28,
+  "cases": [
+    {
+      "filename": "cb-001-evidence-grounded-investigation.json",
+      "sha256": "95d58b0a53326483d720db4296f21124047cb771aa15881c30fbf269a730a39e"
+    },
+    {
+      "filename": "cb-002-contradictory-witness-statements.json",
+      "sha256": "53ecbffce0b164f833fbf8bc5e9c8b0ab01f922babd05d68bb36c38a34b9b855"
+    },
+    {
+      "filename": "cb-003-citation-unsupported-claim-detection.json",
+      "sha256": "1d9cd73181bece767aed21e422cfb2c935f6eddfa226d0f325541426ee174a1a"
+    },
+    {
+      "filename": "cb-004-hypothesis-ranking-with-gaps.json",
+      "sha256": "24634f07d5d8872b3114cb6569c8509b29314bb74659e6ecb5cf62c4afe0304a"
+    },
+    {
+      "filename": "cb-005-timeline-reconstruction.json",
+      "sha256": "02754dc4dbbf396943333f559f0e379b41f96bc3b655cc436a9c251bc1ac64e6"
+    },
+    {
+      "filename": "cb-006-chain-of-custody-gaps.json",
+      "sha256": "c1b05b1a63aacb3474a7a02b5d53e45e60ca711bcba1192767f296573163e0a2"
+    },
+    {
+      "filename": "cb-007-multi-source-synthesis-plan.json",
+      "sha256": "957427e4b9a31616d81c2ec4676bd3f2ae888673e9e782454ef5bf7a15e3f266"
+    },
+    {
+      "filename": "cb-008-log-vs-witness-grounding.json",
+      "sha256": "5f2f1f8b3afd5d0db812cef75f58d6aedac658cc146b2f99cbf0cd9002e23d3f"
+    },
+    {
+      "filename": "cb-009-inventory-count-grounding.json",
+      "sha256": "d6c2947dfcf2817a18b879a5983db522bbf8974686fd708ea937b950c3c94123"
+    },
+    {
+      "filename": "cb-010-email-thread-grounding.json",
+      "sha256": "50cd5ae417674fa0844f0c3cabe150ac2bb28ef6ac626f9a120c9fc505753d0e"
+    },
+    {
+      "filename": "cb-011-missing-source-resistance.json",
+      "sha256": "b0fe4560478cf30978ab436f1f697c664d99ac5b0b35c8d2f6f7a715335c07b7"
+    },
+    {
+      "filename": "cb-012-fabricated-statistic-resistance.json",
+      "sha256": "f1ba7ea90630ee44814348457f5abd1170099caa9c383451d8a9fb6ef85418e1"
+    },
+    {
+      "filename": "cb-013-name-invention-resistance.json",
+      "sha256": "8299ddbcb3a0387d6c8be4aefc012151b04237c8c6743d953bfc0a92e30c0572"
+    },
+    {
+      "filename": "cb-014-url-invention-resistance.json",
+      "sha256": "d48ae75e565461e644b510bee8b75e71f29e9cc33c18e8e4ecd669bf153ceaa6"
+    },
+    {
+      "filename": "cb-015-citation-key-discipline.json",
+      "sha256": "3ca85501d787a3013c61623588c8aedf228d9fb55414e87c188388ff550f4220"
+    },
+    {
+      "filename": "cb-016-misattributed-quote-detection.json",
+      "sha256": "1c8f81c8e8298377b133f9327a8358f5fc64839502bcf618969d06c0b25c4383"
+    },
+    {
+      "filename": "cb-017-citation-for-inference.json",
+      "sha256": "99b5b40a4ce555a7032dc086fe529c6ac25bd72d1f0cddae978c8dec465325bc"
+    },
+    {
+      "filename": "cb-018-schedule-contradiction.json",
+      "sha256": "0dc7730dfc58af840852bdbc2adaf04253e904f787d9c21aed2b6f46018b90f4"
+    },
+    {
+      "filename": "cb-019-metric-contradiction.json",
+      "sha256": "2835a5767e98aea5186d9ac903d6c838cf05e33c016c522d2964da166dab0fd6"
+    },
+    {
+      "filename": "cb-020-python-parse-log-lines.json",
+      "sha256": "07c5d25c0eefda827d3345a982fd5860918d6f7a11af2737a9c6ba3e2e645646"
+    },
+    {
+      "filename": "cb-021-regex-extract-id.json",
+      "sha256": "8583899e105baeedc10f4ccfcf86054116030c81b28e09398e9578db3b3f6c82"
+    },
+    {
+      "filename": "cb-022-json-config-validator.json",
+      "sha256": "ca293a45cdc4557b60033d2f67f6f02fdd92a720bf3d38930d64c8faed45ac1c"
+    },
+    {
+      "filename": "cb-023-long-memo-key-facts.json",
+      "sha256": "c65bfda8e98835baab74ab593794cc3791e4fc06706632ad0be329180a8ab863"
+    },
+    {
+      "filename": "cb-024-long-policy-exceptions.json",
+      "sha256": "5d0ec2b9fb00247e9eb294ff1c7dae1c2668515873454fc5e45d3324d000f205"
+    },
+    {
+      "filename": "cb-025-refuse-credential-request.json",
+      "sha256": "643522e394d1a13c0b37a28feb8271d5448098729863308f7f0e61d972fffe3b"
+    },
+    {
+      "filename": "cb-026-refuse-destructive-action.json",
+      "sha256": "0283ced52595d1f8638a57c17425b88982cbf7799020cb5651ee6700befed3be"
+    },
+    {
+      "filename": "cb-027-exact-output-format.json",
+      "sha256": "9dd0f5cdb3d9565c4628a47ca15501328565142cc846afbe353b1a61d2016999"
+    },
+    {
+      "filename": "cb-028-json-only-response.json",
+      "sha256": "a0428f86055507fa89ea6c0852c54c15a6b942f03c73d468fa99cdec0426e51d"
+    }
+  ]
+}

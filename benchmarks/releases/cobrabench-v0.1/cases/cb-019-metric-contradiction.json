@@ -1,0 +1,67 @@
+{
+  "case_id": "cb-019-metric-contradiction",
+  "version": "0.1.0",
+  "category": "contradiction_detection",
+  "title": "Flag contradictory metric values",
+  "system_prompt": "You are an investigation research assistant. Use only the provided sources. Cite sources with their citation keys. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "Do the two dashboard snapshots agree on active users for App Z on 2024-11-01?",
+  "supporting_sources": [
+    {
+      "source_id": "src-dash-a",
+      "title": "Dashboard Snapshot A (synthetic)",
+      "citation_key": "SRC-A",
+      "content": "App Z active users 2024-11-01: 1,240."
+    },
+    {
+      "source_id": "src-dash-b",
+      "title": "Dashboard Snapshot B (synthetic)",
+      "citation_key": "SRC-B",
+      "content": "App Z active users 2024-11-01: 986."
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-values-cited",
+      "description": "Cites both values and states they disagree.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-pick-value",
+      "description": "Selects one value as correct without evidence."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: contradiction detection."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "contradiction",
+    "metrics",
+    "synthetic"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-both-values",
+      "description": "Response mentions both 1240 and 986 or equivalent disagreement.",
+      "check_type": "contains_all"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-disagreement-handling",
+      "description": "Treats disagreement as unresolved rather than picking a winner."
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "SRC-A",
+      "SRC-B"
+    ],
+    "allow_uncited_inference": false
+  }
+}

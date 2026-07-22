@@ -1,0 +1,60 @@
+{
+  "case_id": "cb-017-citation-for-inference",
+  "version": "0.1.0",
+  "category": "citation_correctness",
+  "title": "Label inference vs cited fact",
+  "system_prompt": "You are an investigation research assistant. Use only the provided sources. Cite sources with their citation keys. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "Explain whether the sources prove server S-9 was rebooted. Mark inference explicitly if used.",
+  "supporting_sources": [
+    {
+      "source_id": "src-ticket",
+      "title": "Ticket (synthetic)",
+      "citation_key": "SRC-A",
+      "content": "Monitoring alert cleared at 03:10 for server S-9. Reboot not mentioned."
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-no-reboot-proof",
+      "description": "States reboot is not documented in SRC-A.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-reboot-fact",
+      "description": "States as fact that S-9 was rebooted."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: citation correctness; secondary: hallucination resistance."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "citations",
+    "inference",
+    "synthetic"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-not-documented",
+      "description": "Response says reboot is not documented or unknown.",
+      "check_type": "contains_any"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-inference-labeling",
+      "description": "Any optional inference is labeled separately from cited facts."
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "SRC-A"
+    ],
+    "allow_uncited_inference": true
+  }
+}

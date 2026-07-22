@@ -1,0 +1,11 @@
+{
+  "release_id": "cobrabench-v0.1",
+  "release_version": "0.1",
+  "case_schema_version": "0.1.0",
+  "rubric_id": "cobrabench_weighted_v1",
+  "rubric_version": "1.0.0",
+  "case_count": 28,
+  "sensitivity_default": "public_synthetic",
+  "frozen": true,
+  "description": "Initial frozen CobraBench release with 28 fully synthetic, public-safe evaluation cases."
+}

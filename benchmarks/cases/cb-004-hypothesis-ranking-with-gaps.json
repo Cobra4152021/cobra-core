@@ -1,0 +1,92 @@
+{
+  "case_id": "cb-004-hypothesis-ranking-with-gaps",
+  "version": "0.1.0",
+  "category": "investigation_reasoning",
+  "title": "Rank hypotheses for a synthetic badge-access anomaly",
+  "system_prompt": "You are an investigation research assistant. Use only the provided sources. Cite sources with their citation keys. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "Given the sources, list plausible explanations for the after-hours badge ping at Server Room B. Rank hypotheses from most to least supported, cite evidence for each, and state what additional data would reduce uncertainty.",
+  "supporting_sources": [
+    {
+      "source_id": "src-badge-log",
+      "title": "Badge Access Log Excerpt (synthetic)",
+      "citation_key": "SRC-A",
+      "content": "2024-06-02 02:14 — Badge ID B-771 (assigned to temp contractor K. Ellis) granted entry to Server Room B. Ellis assignment expired 2024-05-31. No checkout recorded."
+    },
+    {
+      "source_id": "src-workorder",
+      "title": "Maintenance Work Order (synthetic)",
+      "citation_key": "SRC-B",
+      "content": "Work order WO-992 scheduled rack fan replacement in Server Room B for 2024-06-02 night shift. Assigned vendor: CoolFlow Inc. Approved escort list includes on-site staff only; no contractors listed for 2024-06-02."
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-rank-with-citations",
+      "description": "Presents ranked hypotheses with explicit citations to SRC-A and/or SRC-B.",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-expired-badge",
+      "description": "Notes Ellis badge was expired at time of entry per SRC-A.",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-data-gaps",
+      "description": "Lists additional data needed (e.g., escort logs, vendor check-in) not present in sources.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-definitive-culprit",
+      "description": "Declares certain malicious intent without supporting evidence."
+    },
+    {
+      "behavior_id": "pro-invent-logs",
+      "description": "Invents CCTV, SIEM, or HR records not provided."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: investigation reasoning; secondary: evidence grounding."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "hypothesis",
+    "investigation",
+    "ranking",
+    "synthetic"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-ranking-language",
+      "description": "Response includes ranked or ordered hypotheses.",
+      "check_type": "contains_any"
+    },
+    {
+      "check_id": "obj-cites-sources",
+      "description": "Response cites SRC-A or SRC-B.",
+      "check_type": "citation_keys_valid"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-reasoning-quality",
+      "description": "Hypothesis ranking reflects evidential support rather than narrative preference."
+    },
+    {
+      "dimension_id": "hum-gap-identification",
+      "description": "Additional data requests are specific and actionable."
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "SRC-A",
+      "SRC-B"
+    ],
+    "allow_uncited_inference": false
+  },
+  "uncertainty_expectations": "Should acknowledge that expired badge use may have multiple explanations."
+}

@@ -1,0 +1,65 @@
+{
+  "case_id": "cb-028-json-only-response",
+  "version": "0.1.0",
+  "category": "instruction_following",
+  "title": "Return JSON-only synthetic status object",
+  "system_prompt": "Follow output format instructions exactly.",
+  "user_prompt": "Using SRC-A, return JSON only: {\"status\": str, \"source\": str, \"note\": str}.",
+  "supporting_sources": [
+    {
+      "source_id": "src-status",
+      "title": "Status Note (synthetic)",
+      "citation_key": "SRC-A",
+      "content": "Batch B-22 completed successfully in sandbox."
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-json-only",
+      "description": "Response is parseable JSON with keys status, source, note.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-markdown-wrap",
+      "description": "Wraps JSON in markdown or adds commentary."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: instruction following."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "instructions",
+    "json",
+    "synthetic"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-json-parse",
+      "description": "Response body is valid JSON with required keys.",
+      "check_type": "json_parse"
+    },
+    {
+      "check_id": "obj-exact-keys",
+      "description": "JSON includes status, source, and note keys.",
+      "check_type": "exact_match_optional"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-json-cleanliness",
+      "description": "JSON is not wrapped in fences or explanatory text."
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "SRC-A"
+    ],
+    "allow_uncited_inference": false
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "case_id": "cb-016-misattributed-quote-detection",
+  "version": "0.1.0",
+  "category": "citation_correctness",
+  "title": "Detect misattribution across synthetic memos",
+  "system_prompt": "You are an investigation research assistant. Use only the provided sources. Cite sources with their citation keys. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "Verify whether Memo B confirms budget approval. Quote only supported text and cite correctly.",
+  "supporting_sources": [
+    {
+      "source_id": "src-memo-a",
+      "title": "Memo A (synthetic)",
+      "citation_key": "SRC-A",
+      "content": "Budget request BR-10 submitted for review."
+    },
+    {
+      "source_id": "src-memo-b",
+      "title": "Memo B (synthetic)",
+      "citation_key": "SRC-B",
+      "content": "Finance notes BR-10 requires vendor quotes before approval."
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-not-approved",
+      "description": "States BR-10 is not approved per SRC-B.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-quote-swap",
+      "description": "Attributes approval language to Memo B."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: citation correctness."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "citations",
+    "quotes",
+    "synthetic"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-cites-memo-b",
+      "description": "References SRC-B when discussing approval status.",
+      "check_type": "citation_keys_valid"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-attribution",
+      "description": "Statements are attributed to the correct memo."
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "SRC-A",
+      "SRC-B"
+    ],
+    "allow_uncited_inference": false
+  }
+}

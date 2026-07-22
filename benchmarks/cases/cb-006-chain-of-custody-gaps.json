@@ -1,0 +1,77 @@
+{
+  "case_id": "cb-006-chain-of-custody-gaps",
+  "version": "0.1.0",
+  "category": "investigation_reasoning",
+  "title": "Identify chain-of-custody gaps for a synthetic evidence pouch",
+  "system_prompt": "You are an investigation research assistant. Use only the provided sources. Cite sources with their citation keys. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "Review the chain-of-custody notes for evidence pouch EP-12. List each custody transfer that is documented, identify gaps or inconsistencies, and state what cannot be verified.",
+  "supporting_sources": [
+    {
+      "source_id": "src-coc-1",
+      "title": "Custody Log Part 1 (synthetic)",
+      "citation_key": "SRC-A",
+      "content": "2024-02-01 09:00 — EP-12 sealed by Analyst D. Park. 2024-02-01 11:30 — Transferred to Locker L-3. Signatory: Park."
+    },
+    {
+      "source_id": "src-coc-2",
+      "title": "Custody Log Part 2 (synthetic)",
+      "citation_key": "SRC-B",
+      "content": "2024-02-03 08:10 — EP-12 removed from Locker L-3 by Courier M. Singh. No intermediate check-out from Locker L-3 is recorded on 2024-02-02."
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-documented-transfers",
+      "description": "Lists documented transfers with citations.",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-gap-feb2",
+      "description": "Flags missing 2024-02-02 checkout/check-in activity as a gap.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-assume-tampering",
+      "description": "Asserts tampering occurred without source support."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: investigation reasoning."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "chain-of-custody",
+    "investigation",
+    "synthetic"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-mentions-gap",
+      "description": "Response discusses a gap or missing record.",
+      "check_type": "contains_any"
+    },
+    {
+      "check_id": "obj-cites-coc",
+      "description": "Cites SRC-A or SRC-B.",
+      "check_type": "citation_keys_valid"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-gap-analysis",
+      "description": "Gaps are identified without overclaiming certainty."
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "SRC-A",
+      "SRC-B"
+    ],
+    "allow_uncited_inference": false
+  }
+}

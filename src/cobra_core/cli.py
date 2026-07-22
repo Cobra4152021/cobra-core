@@ -24,8 +24,19 @@ def validate_cases_main(argv: list[str] | None = None) -> int:
         default=_repo_root() / "benchmarks" / "cases",
         help="Directory containing benchmark case JSON files",
     )
+    parser.add_argument(
+        "--also-validate-release",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Also validate the frozen cobrabench-v0.1 release cases directory",
+    )
     args = parser.parse_args(argv)
     cases, issues = validate_json_dir(args.cases_dir, BenchmarkCase)
+    if args.also_validate_release:
+        release_dir = _repo_root() / "benchmarks" / "releases" / "cobrabench-v0.1" / "cases"
+        release_cases, release_issues = validate_json_dir(release_dir, BenchmarkCase)
+        cases.extend(release_cases)
+        issues.extend(release_issues)
     if issues:
         for issue in issues:
             print(f"ERROR: {issue}", file=sys.stderr)

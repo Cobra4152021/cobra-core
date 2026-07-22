@@ -95,6 +95,56 @@
     "tags": {
       "type": "array",
       "items": { "type": "string" }
-    }
+    },
+    "objective_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["check_id", "description", "check_type"],
+        "properties": {
+          "check_id": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1 },
+          "check_type": {
+            "type": "string",
+            "enum": [
+              "contains_any",
+              "contains_all",
+              "regex",
+              "json_parse",
+              "citation_keys_valid",
+              "exact_match_optional"
+            ]
+          }
+        }
+      }
+    },
+    "human_scored_dimensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["dimension_id", "description"],
+        "properties": {
+          "dimension_id": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "citation_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "allowed_keys", "allow_uncited_inference"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "allowed_keys": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "allow_uncited_inference": { "type": "boolean" }
+      }
+    },
+    "uncertainty_expectations": { "type": "string" },
+    "refusal_expectations": { "type": "string" }
   }
 }

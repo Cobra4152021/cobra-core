@@ -1,0 +1,84 @@
+{
+  "case_id": "cb-005-timeline-reconstruction",
+  "version": "0.1.0",
+  "category": "investigation_reasoning",
+  "title": "Reconstruct a synthetic shipping delay timeline",
+  "system_prompt": "You are an investigation research assistant. Use only the provided sources. Cite sources with their citation keys. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "Build a chronological timeline of events related to shipment SH-4401. Flag gaps, estimate nothing not supported by sources, and cite each timeline entry.",
+  "supporting_sources": [
+    {
+      "source_id": "src-dispatch",
+      "title": "Dispatch Scan Log (synthetic)",
+      "citation_key": "SRC-A",
+      "content": "2024-04-10 08:02 — SH-4401 scanned at Origin Hub. Status: in transit."
+    },
+    {
+      "source_id": "src-exception",
+      "title": "Carrier Exception Notice (synthetic)",
+      "citation_key": "SRC-B",
+      "content": "2024-04-11 19:40 — SH-4401 delayed at Midway Sort Facility due to weather hold. No departure scan recorded in this notice."
+    },
+    {
+      "source_id": "src-receipt",
+      "title": "Receiving Dock Note (synthetic)",
+      "citation_key": "SRC-C",
+      "content": "2024-04-14 07:15 — SH-4401 received at West Campus dock. Carton intact."
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-chronological",
+      "description": "Presents events in time order with citation keys.",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-gap-weather",
+      "description": "Notes missing departure scan between weather hold and receipt per SRC-B/C gap.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-invent-transit",
+      "description": "Invents intermediate handling events without source support."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: investigation reasoning; secondary: evidence grounding."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "investigation",
+    "synthetic",
+    "timeline"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-timeline-markers",
+      "description": "Response includes multiple dated or ordered events.",
+      "check_type": "contains_any"
+    },
+    {
+      "check_id": "obj-citation-keys",
+      "description": "Uses SRC-A, SRC-B, SRC-C citation keys only.",
+      "check_type": "citation_keys_valid"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-timeline-accuracy",
+      "description": "Timeline entries faithfully reflect source timestamps and facts."
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "SRC-A",
+      "SRC-B",
+      "SRC-C"
+    ],
+    "allow_uncited_inference": false
+  }
+}

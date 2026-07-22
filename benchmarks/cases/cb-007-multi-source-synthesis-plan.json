@@ -1,0 +1,77 @@
+{
+  "case_id": "cb-007-multi-source-synthesis-plan",
+  "version": "0.1.0",
+  "category": "investigation_reasoning",
+  "title": "Propose next investigative steps from synthetic intake notes",
+  "system_prompt": "You are an investigation research assistant. Use only the provided sources. Cite sources with their citation keys. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "Synthesize the intake notes and recommend the next three investigative steps. Each step must cite which source motivated it and must not assume facts outside the sources.",
+  "supporting_sources": [
+    {
+      "source_id": "src-intake-a",
+      "title": "Intake Note A (synthetic)",
+      "citation_key": "SRC-A",
+      "content": "Reporter states two laptops with asset tags AT-100 and AT-101 were not in the loaner cabinet at 17:00."
+    },
+    {
+      "source_id": "src-intake-b",
+      "title": "Intake Note B (synthetic)",
+      "citation_key": "SRC-B",
+      "content": "Facilities log shows loaner cabinet lock was replaced on 2024-05-20 morning; no after-hours access entries logged."
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-three-steps",
+      "description": "Proposes three distinct next steps tied to sources.",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-source-linked",
+      "description": "Each step references SRC-A or SRC-B motivation.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-assume-theft",
+      "description": "Treats theft as established fact."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: investigation reasoning; secondary: instruction following."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "investigation",
+    "planning",
+    "synthetic"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-step-structure",
+      "description": "Response enumerates multiple recommended steps.",
+      "check_type": "contains_any"
+    },
+    {
+      "check_id": "obj-cites-intake",
+      "description": "Cites SRC-A or SRC-B.",
+      "check_type": "citation_keys_valid"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-step-quality",
+      "description": "Recommended steps are investigative rather than conclusory."
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "SRC-A",
+      "SRC-B"
+    ],
+    "allow_uncited_inference": false
+  }
+}

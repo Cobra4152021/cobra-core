@@ -71,8 +71,40 @@
     "context_window_provenance": { "type": "string", "minLength": 8 },
     "acquisition_status": {
       "type": "string",
-      "enum": ["not_acquired", "acquired", "quarantined", "failed"]
+      "enum": [
+        "not_acquired",
+        "downloading",
+        "acquired",
+        "verified",
+        "quarantined",
+        "failed"
+      ]
     },
+    "runtime_validation_status": {
+      "type": "string",
+      "enum": [
+        "not_tested",
+        "load_passed",
+        "load_failed",
+        "unsupported_on_environment",
+        "quarantined"
+      ],
+      "default": "not_tested"
+    },
+    "benchmark_eligibility_status": {
+      "type": "string",
+      "enum": [
+        "not_eligible",
+        "technically_eligible",
+        "interim_eligible",
+        "blocked_by_runtime",
+        "benchmark_completed"
+      ],
+      "default": "not_eligible"
+    },
+    "runtime_environment_key": { "type": ["string", "null"] },
+    "runtime_validation_notes": { "type": ["string", "null"] },
+    "runtime_validated_at": { "type": ["string", "null"], "format": "date" },
     "intake_date": { "type": "string", "format": "date" },
     "acquisition_date": { "type": ["string", "null"], "format": "date" },
     "local_artifact_root": { "type": ["string", "null"] },

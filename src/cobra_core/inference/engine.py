@@ -40,8 +40,11 @@ class LocalInferenceEngine:
         results_dir: Path | None = None,
         persist: bool = True,
     ) -> InferenceResult:
-        if manifest.acquisition_status != AcquisitionStatus.ACQUIRED:
-            raise RuntimeError("manifest is not in acquired state")
+        if manifest.acquisition_status not in {
+            AcquisitionStatus.ACQUIRED,
+            AcquisitionStatus.VERIFIED,
+        }:
+            raise RuntimeError("manifest is not in acquired or verified state")
         paths = resolve_model_paths(
             manifest.provider,
             manifest.model_name,

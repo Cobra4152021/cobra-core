@@ -8,6 +8,11 @@ from cobra_core.schemas.benchmark import (
     SupportingSource,
 )
 from cobra_core.schemas.categories import CATEGORY_WEIGHTS, BenchmarkCategory
+from cobra_core.schemas.eligibility import (
+    assert_valid_eligibility_combo,
+    environment_blocks_runtime,
+    is_benchmark_runnable,
+)
 from cobra_core.schemas.evaluation import (
     EvaluationRun,
     EvaluatorKind,
@@ -21,9 +26,11 @@ from cobra_core.schemas.manifest import (
     AcquisitionStatus,
     ArchitectureFamily,
     ArtifactFile,
+    BenchmarkEligibilityStatus,
     HashVerificationState,
     ModelManifest,
     QuantizationInfo,
+    RuntimeValidationStatus,
 )
 from cobra_core.schemas.runtime import GpuDevice, RuntimeEnvironment, StorageGateResult
 
@@ -33,6 +40,7 @@ __all__ = [
     "ArtifactFile",
     "BenchmarkCase",
     "BenchmarkCategory",
+    "BenchmarkEligibilityStatus",
     "CATEGORY_WEIGHTS",
     "ChatMessage",
     "EvaluationRun",
@@ -49,8 +57,12 @@ __all__ = [
     "ProhibitedBehavior",
     "QuantizationInfo",
     "RuntimeEnvironment",
+    "RuntimeValidationStatus",
     "ScoreBreakdown",
     "SensitivityLevel",
     "StorageGateResult",
     "SupportingSource",
+    "assert_valid_eligibility_combo",
+    "environment_blocks_runtime",
+    "is_benchmark_runnable",
 ]

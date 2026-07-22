@@ -1,0 +1,65 @@
+{
+  "case_id": "cb-023-long-memo-key-facts",
+  "version": "0.1.0",
+  "category": "long_document_analysis",
+  "title": "Extract key facts from synthetic long memo",
+  "system_prompt": "You are an investigation research assistant. Use only the provided sources. Cite sources with their citation keys. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "Read the memo and list five key facts about Project Lumen milestones. Cite paragraph labels.",
+  "supporting_sources": [
+    {
+      "source_id": "src-long-memo",
+      "title": "Project Lumen Memo (synthetic)",
+      "citation_key": "SRC-A",
+      "content": "[P1] Project Lumen is a synthetic training program with no production deployment. [P2] Milestone M1 completed desk review on 2024-01-15. [P3] Milestone M2 hardware emulation began 2024-02-01. [P4] Milestone M3 user pilot is scheduled but not started. [P5] Budget cap remains 120k credits. [P6] External publish date undecided. [P7] Risk register lists staffing as medium risk only."
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-five-facts",
+      "description": "Lists five distinct facts grounded in memo paragraphs.",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-paragraph-labels",
+      "description": "References paragraph labels such as P2/P3 when citing.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-production-claim",
+      "description": "Claims Lumen is in production contrary to P1."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: long document analysis."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "extraction",
+    "long-doc",
+    "synthetic"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-paragraph-ref",
+      "description": "Response references paragraph labels like P1-P7.",
+      "check_type": "regex"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-fact-selection",
+      "description": "Selected facts are materially relevant and supported."
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "SRC-A"
+    ],
+    "allow_uncited_inference": false
+  }
+}

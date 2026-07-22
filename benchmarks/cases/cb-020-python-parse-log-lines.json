@@ -1,0 +1,56 @@
+{
+  "case_id": "cb-020-python-parse-log-lines",
+  "version": "0.1.0",
+  "category": "coding",
+  "title": "Parse synthetic log lines with Python",
+  "system_prompt": "You are a coding assistant. Return correct, runnable Python 3 code in a single fenced code block. Use only the Python standard library.",
+  "user_prompt": "Given log_lines: list[str], return the number of entries that contain the substring 'ERROR'. Provide a function count_error_lines(log_lines: list[str]) -> int.",
+  "supporting_sources": [],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-function-signature",
+      "description": "Defines count_error_lines with the requested signature.",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-stdlib-only",
+      "description": "Uses only Python standard library.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-wrong-language",
+      "description": "Returns code in a non-Python language."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: coding."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "coding",
+    "python",
+    "synthetic"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-code-block",
+      "description": "Response includes a Python code block.",
+      "check_type": "contains_any"
+    },
+    {
+      "check_id": "obj-def-name",
+      "description": "Defines count_error_lines function.",
+      "check_type": "regex"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-correctness",
+      "description": "Function logic correctly counts lines containing ERROR."
+    }
+  ]
+}

@@ -125,12 +125,12 @@ def update_manifest_from_inventory(
     return manifest.model_copy(
         update={
             "artifact_files": artifacts,
-            "acquisition_status": AcquisitionStatus.ACQUIRED,
+            "acquisition_status": AcquisitionStatus.VERIFIED,
             "acquisition_date": date.today(),
             "local_artifact_root": local_artifact_root,
             "local_inventory_ref": local_inventory_ref,
             "notes": (
-                (manifest.notes or "") + " | Phase 2B: acquired and locally SHA256-verified. "
+                (manifest.notes or "") + " | Phase 2B: verified and locally SHA256-verified. "
                 "Development baseline only; not Cobra Core."
             ).strip(" |"),
         }
@@ -265,7 +265,7 @@ def acquire_from_manifest(
     finished = datetime.now(UTC)
     total_bytes = sum(item.size_bytes for item in inventory.items)
     log_payload = {
-        "status": "acquired",
+        "status": "verified",
         "repo_id": repo_id,
         "revision": revision,
         "started_at": started.isoformat(),
@@ -289,7 +289,7 @@ def acquire_from_manifest(
                 f"- Total bytes: {total_bytes}",
                 f"- Inventory: `{inv_path}`",
                 f"- SHA256SUMS: `{sums_path}`",
-                "- Status: acquired / locally verified",
+                "- Status: verified / locally verified",
                 "",
                 "Tokens and auth headers are never written to this report.",
                 "",

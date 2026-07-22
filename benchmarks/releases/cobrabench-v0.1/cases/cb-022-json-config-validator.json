@@ -1,0 +1,52 @@
+{
+  "case_id": "cb-022-json-config-validator",
+  "version": "0.1.0",
+  "category": "coding",
+  "title": "Validate synthetic JSON config shape",
+  "system_prompt": "You are a coding assistant. Return Python 3 code in a fenced code block.",
+  "user_prompt": "Implement validate_config(data: dict) -> bool with the rules above.",
+  "supporting_sources": [],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-type-checks",
+      "description": "Checks both presence and types of name and enabled.",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-no-validation",
+      "description": "Returns True without checking types."
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v1",
+    "rubric_version": "1.0.0",
+    "notes": "Primary focus: coding."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "coding",
+    "json",
+    "python",
+    "synthetic"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-json-parse-friendly",
+      "description": "Function validates dict shape programmatically.",
+      "check_type": "json_parse"
+    },
+    {
+      "check_id": "obj-fn-name",
+      "description": "Defines validate_config.",
+      "check_type": "regex"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-edge-cases",
+      "description": "Handles missing keys and wrong types safely."
+    }
+  ]
+}

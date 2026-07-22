@@ -56,10 +56,10 @@ def validate_token_budget(
 
 def validate_model_loadable(paths: ModelStoragePaths, manifest_status: str) -> None:
     assert_not_quarantined(paths)
-    if manifest_status != "acquired":
+    if manifest_status not in {"acquired", "verified"}:
         raise InferenceSafetyError(
             f"refusing to load model with acquisition_status={manifest_status!r}; "
-            "require acquired/verified manifests"
+            "require acquired or verified manifests"
         )
     if not paths.artifacts.is_dir() or not any(paths.artifacts.iterdir()):
         raise InferenceSafetyError(f"artifact path missing or empty: {paths.artifacts}")
