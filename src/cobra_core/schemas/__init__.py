@@ -16,9 +16,18 @@ from cobra_core.schemas.evaluation import (
     InferenceSettings,
     ScoreBreakdown,
 )
-from cobra_core.schemas.manifest import ArtifactFile, ModelManifest, QuantizationInfo
+from cobra_core.schemas.manifest import (
+    AcquisitionStatus,
+    ArchitectureFamily,
+    ArtifactFile,
+    HashVerificationState,
+    ModelManifest,
+    QuantizationInfo,
+)
 
 __all__ = [
+    "AcquisitionStatus",
+    "ArchitectureFamily",
     "ArtifactFile",
     "BenchmarkCase",
     "BenchmarkCategory",
@@ -28,6 +37,7 @@ __all__ = [
     "EvaluatorScore",
     "ExpectedBehavior",
     "HardwareMetadata",
+    "HashVerificationState",
     "InferenceSettings",
     "ModelManifest",
     "ProhibitedBehavior",

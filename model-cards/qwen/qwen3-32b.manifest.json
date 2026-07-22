@@ -1,0 +1,174 @@
+{
+  "provider": "qwen",
+  "model_name": "Qwen3-32B",
+  "model_revision": "9216db5781bf21249d130ec9da846c4624c16137",
+  "source_repository": "https://huggingface.co/Qwen/Qwen3-32B",
+  "source_commit": "9216db5781bf21249d130ec9da846c4624c16137",
+  "license_name": "Apache-2.0",
+  "license_url": "https://huggingface.co/Qwen/Qwen3-32B/raw/main/LICENSE",
+  "artifact_files": [
+    {
+      "path": "LICENSE",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "config.json",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "generation_config.json",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model.safetensors.index.json",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00001-of-00017.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00002-of-00017.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00003-of-00017.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00004-of-00017.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00005-of-00017.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00006-of-00017.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00007-of-00017.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00008-of-00017.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00009-of-00017.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00010-of-00017.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00011-of-00017.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00012-of-00017.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00013-of-00017.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00014-of-00017.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00015-of-00017.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00016-of-00017.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00017-of-00017.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "tokenizer.json",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "tokenizer_config.json",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "merges.txt",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "vocab.json",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    }
+  ],
+  "parameter_count": 32800000000,
+  "architecture": "transformer-decoder",
+  "quantization": {
+    "method": "none",
+    "bits": 16,
+    "notes": "Official BF16 safetensors checkpoint. Quantized derivatives may be evaluated later; not acquired here."
+  },
+  "context_window": 32768,
+  "context_window_provenance": "Official Hugging Face model card for Qwen/Qwen3-32B: native context 32768 tokens; YaRN extension to 131072 documented on the same card (not selected as default acquisition context).",
+  "acquisition_status": "not_acquired",
+  "intake_date": "2026-07-22",
+  "acquisition_date": null,
+  "notes": "PRIMARY BASELINE CANDIDATE (pre-acquisition). Hybrid thinking/non-thinking dense model. Pinned to Hugging Face Hub commit 9216db5781bf21249d130ec9da846c4624c16137 (retrieved 2026-07-22 via HF API). Weights not downloaded. This selection authorizes acquisition and baseline evaluation only; it does not designate the model as Cobra Core."
+}

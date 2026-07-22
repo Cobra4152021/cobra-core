@@ -1,0 +1,102 @@
+{
+  "provider": "qwen",
+  "model_name": "Qwen3-8B",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "source_repository": "https://huggingface.co/Qwen/Qwen3-8B",
+  "source_commit": "b968826d9c46dd6066d109eabc6255188de91218",
+  "license_name": "Apache-2.0",
+  "license_url": "https://huggingface.co/Qwen/Qwen3-8B/blob/main/LICENSE",
+  "artifact_files": [
+    {
+      "path": "LICENSE",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "config.json",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "generation_config.json",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model.safetensors.index.json",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00001-of-00005.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00002-of-00005.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00003-of-00005.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00004-of-00005.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "model-00005-of-00005.safetensors",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "tokenizer.json",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "tokenizer_config.json",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "merges.txt",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    },
+    {
+      "path": "vocab.json",
+      "sha256": null,
+      "verification_state": "pending",
+      "size_bytes": null
+    }
+  ],
+  "parameter_count": 8200000000,
+  "architecture": "transformer-decoder",
+  "quantization": {
+    "method": "none",
+    "bits": 16,
+    "notes": "Official BF16 safetensors checkpoint for development / CI smoke evaluation."
+  },
+  "context_window": 32768,
+  "context_window_provenance": "Official Hugging Face model card for Qwen/Qwen3-8B: native context 32768 tokens; YaRN extension to 131072 documented on the same card.",
+  "acquisition_status": "not_acquired",
+  "intake_date": "2026-07-22",
+  "acquisition_date": null,
+  "notes": "RESOURCE-CONSTRAINED / DEVELOPMENT BASELINE (pre-acquisition). Same hybrid Qwen3 family as primary for inexpensive repeated runs. Pinned to Hub commit b968826d9c46dd6066d109eabc6255188de91218 (HF API, 2026-07-22). Weights not downloaded."
+}

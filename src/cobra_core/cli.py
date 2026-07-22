@@ -44,16 +44,19 @@ def validate_manifests_main(argv: list[str] | None = None) -> int:
         help="Directory containing ModelManifest JSON files",
     )
     args = parser.parse_args(argv)
-    manifests, issues = validate_json_dir(args.manifests_dir, ModelManifest)
-    # Allow empty model-cards during Phase 1 (no weights acquired yet),
-    # but fail hard on any malformed file that is present.
+    manifests, issues = validate_json_dir(
+        args.manifests_dir,
+        ModelManifest,
+        recursive=True,
+    )
+    # Allow empty model-cards before intake, but fail hard on malformed files.
     malformed = [i for i in issues if "no files matching" not in i.message]
     if malformed:
         for issue in malformed:
             print(f"ERROR: {issue}", file=sys.stderr)
         return 1
     if not manifests:
-        print(f"OK: no manifests yet in {args.manifests_dir} (expected in Phase 1)")
+        print(f"OK: no manifests yet in {args.manifests_dir}")
         return 0
     print(f"OK: validated {len(manifests)} model manifest(s) in {args.manifests_dir}")
     return 0

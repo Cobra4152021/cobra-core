@@ -11,38 +11,52 @@
     "source_repository",
     "source_commit",
     "license_name",
+    "license_url",
     "artifact_files",
     "architecture",
     "context_window",
-    "acquisition_date"
+    "context_window_provenance",
+    "acquisition_status",
+    "intake_date"
   ],
   "properties": {
     "provider": { "type": "string", "minLength": 1 },
     "model_name": { "type": "string", "minLength": 1 },
     "model_revision": { "type": "string", "minLength": 1 },
     "source_repository": { "type": "string", "minLength": 1 },
-    "source_commit": { "type": "string", "minLength": 1 },
+    "source_commit": { "type": "string", "minLength": 7 },
     "license_name": { "type": "string", "minLength": 1 },
-    "license_url": { "type": ["string", "null"] },
+    "license_url": { "type": "string", "minLength": 1 },
     "artifact_files": {
       "type": "array",
       "minItems": 1,
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["path", "sha256"],
+        "required": ["path", "verification_state"],
         "properties": {
           "path": { "type": "string", "minLength": 1 },
           "sha256": {
+            "type": ["string", "null"],
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "verification_state": {
             "type": "string",
-            "pattern": "^[a-fA-F0-9]{64}$"
+            "enum": ["pending", "verified", "official"]
           },
           "size_bytes": { "type": ["integer", "null"], "minimum": 0 }
         }
       }
     },
     "parameter_count": { "type": ["integer", "null"], "minimum": 1 },
-    "architecture": { "type": "string", "minLength": 1 },
+    "architecture": {
+      "type": "string",
+      "enum": [
+        "transformer-decoder",
+        "transformer-decoder-moe",
+        "unknown"
+      ]
+    },
     "quantization": {
       "type": ["object", "null"],
       "additionalProperties": false,
@@ -54,7 +68,13 @@
       }
     },
     "context_window": { "type": "integer", "minimum": 1 },
-    "acquisition_date": { "type": "string", "format": "date" },
+    "context_window_provenance": { "type": "string", "minLength": 8 },
+    "acquisition_status": {
+      "type": "string",
+      "enum": ["not_acquired", "acquired", "quarantined", "failed"]
+    },
+    "intake_date": { "type": "string", "format": "date" },
+    "acquisition_date": { "type": ["string", "null"], "format": "date" },
     "notes": { "type": ["string", "null"] }
   }
 }

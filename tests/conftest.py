@@ -20,5 +20,5 @@ def cases_dir(repo_root: Path) -> Path:
 
 
 @pytest.fixture
-def example_manifest_path(repo_root: Path) -> Path:
-    return repo_root / "model-cards" / "EXAMPLE_qwen_manifest.json"
+def primary_qwen_manifest_path(repo_root: Path) -> Path:
+    return repo_root / "model-cards" / "qwen" / "qwen3-32b.manifest.json"

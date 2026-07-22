@@ -53,10 +53,12 @@ Interfaces do not assume a specific inference host, API provider, GPU platform, 
   - human
   - llm-as-judge (advisory, never ground truth)
 
-## What Phase 1 does not include
+## What Phase 1 / 2A do not include
 
-- Model weight downloads
+- Model weight downloads (Phase 2A intake is documentation + manifests only)
 - Fine-tuning / LoRA training
 - Live production inference
 - Application UI or auth
 - Cloud resource provisioning
+
+Qwen intake documents live under `docs/QWEN_*.md` and `docs/decisions/ADR-0001-*.md`.

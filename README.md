@@ -57,12 +57,23 @@ Only then is LoRA / adapter work justified.
 
 ## Planned progression
 
-1. **Phase 1** — Model intake and baseline benchmarking *(this milestone)*
-2. **Phase 2** — Comparative evaluation
-3. **Phase 3** — Weakness analysis
-4. **Phase 4** — Dataset design
-5. **Phase 5** — Cobra Core Alpha using LoRA
-6. **Phase 6** — Regression evaluation and release decision
+1. **Phase 1** — Model intake and baseline benchmarking foundation *(complete)*
+2. **Phase 2A** — Qwen candidate intake and selection *(current research milestone; no weights)*
+3. **Phase 2** — Comparative evaluation (after authorized acquisition)
+4. **Phase 3** — Weakness analysis
+5. **Phase 4** — Dataset design
+6. **Phase 5** — Cobra Core Alpha using LoRA
+7. **Phase 6** — Regression evaluation and release decision
+
+### Current Qwen selection (intake only)
+
+| Role | Model | Status |
+| --- | --- | --- |
+| Primary baseline | Qwen3-32B | not acquired |
+| Development / CI | Qwen3-8B | not acquired |
+| Reasoning challenger | Qwen3-30B-A3B-Thinking-2507 | not acquired |
+
+See `docs/decisions/ADR-0001-qwen-baseline-selection.md`. This does **not** designate any model as Cobra Core.
 
 ## Requirements
 

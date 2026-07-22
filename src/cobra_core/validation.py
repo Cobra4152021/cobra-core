@@ -50,21 +50,22 @@ def validate_json_dir[T: BaseModel](
     directory: Path,
     model_type: type[T],
     pattern: str = "*.json",
+    *,
+    recursive: bool = False,
 ) -> tuple[list[T], list[ValidationIssue]]:
-    """Validate all matching JSON files in a directory (non-recursive)."""
+    """Validate matching JSON files in a directory."""
     if not directory.is_dir():
         return [], [ValidationIssue(directory, "directory does not exist")]
 
     models: list[T] = []
     issues: list[ValidationIssue] = []
-    files = sorted(directory.glob(pattern))
+    files = sorted(directory.rglob(pattern) if recursive else directory.glob(pattern))
+    files = [path for path in files if path.is_file() and not path.name.startswith(".")]
     if not files:
         issues.append(ValidationIssue(directory, f"no files matching {pattern}"))
         return models, issues
 
     for path in files:
-        if path.name.startswith("."):
-            continue
         try:
             models.append(load_json_model(path, model_type))
         except (OSError, json.JSONDecodeError, ValidationError) as exc:
