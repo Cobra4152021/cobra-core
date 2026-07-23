@@ -17,3 +17,4 @@ export * from "./jobs/index.js";
 export * from "./observability/index.js";
 export * from "./api/index.js";
 export * from "./storage/types.js";
+export * from "./investigator/index.js";
