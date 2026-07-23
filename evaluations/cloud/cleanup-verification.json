@@ -1,0 +1,12 @@
+{
+  "schema": "cobra.cloud.cleanup_verification.v1",
+  "status": "not_applicable_no_instance",
+  "instance_terminated": true,
+  "volume_deleted_or_retained_by_authorization": "n/a",
+  "temporary_uploads_deleted": true,
+  "credentials_revoked": true,
+  "public_services_absent": true,
+  "remaining_billable_resources": [],
+  "verification_timestamp": null,
+  "notes": "No cloud resources were provisioned in Phase 3F preparation."
+}

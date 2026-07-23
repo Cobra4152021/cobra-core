@@ -154,3 +154,12 @@ Thumbs.db
 
 # Jupyter
 .ipynb_checkpoints/
+
+# Cloud transfer bundles (large; regenerate via scripts)
+artifacts/**/*.bundle
+artifacts/**/*.tar
+artifacts/**/*.tar.gz
+!artifacts/**/README.md
+!artifacts/**/*.json
+!artifacts/**/*.md
+

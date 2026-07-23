@@ -1,0 +1,90 @@
+{
+  "status": "pass",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "artifact_root_sanitized": "D:/cobra-models/qwen/qwen3-8b/b968826d9c46dd6066d109eabc6255188de91218/artifacts",
+  "phase3b_inventory_hash": "8cf07aa84c9e26c9dd4ce71b21bd498232c8dfa5afe5284d375be0c1e9bb3f4f",
+  "config_hash": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30",
+  "shard_count": 5,
+  "index_weight_entries": 399,
+  "files": [
+    {
+      "relpath": "model-00001-of-00005.safetensors",
+      "size_bytes": 3996250744,
+      "phase3b_inventory_sha256": "31d6a825ae35f11fb85b195b4c42c146c051e446433125a215336abdf95cbf5f",
+      "size_matches_inventory": true,
+      "safetensors_open_ok": true,
+      "key_count": 81
+    },
+    {
+      "relpath": "model-00002-of-00005.safetensors",
+      "size_bytes": 3993160032,
+      "phase3b_inventory_sha256": "5991236cea6fe21f3d43cab0f0e84448734fbbe0789816202989f2ddc9d18282",
+      "size_matches_inventory": true,
+      "safetensors_open_ok": true,
+      "key_count": 114
+    },
+    {
+      "relpath": "model-00003-of-00005.safetensors",
+      "size_bytes": 3959604768,
+      "phase3b_inventory_sha256": "c5185c4794be2d8a9784d5753c9922db38df478ce11f9ed0b415b7304d896836",
+      "size_matches_inventory": true,
+      "safetensors_open_ok": true,
+      "key_count": 111
+    },
+    {
+      "relpath": "model-00004-of-00005.safetensors",
+      "size_bytes": 3187841392,
+      "phase3b_inventory_sha256": "b5ee7de71fbf17db3d5704e0c8f2bc7d005ca9e1d7ca2aeb19827b0cfcaa917a",
+      "size_matches_inventory": true,
+      "safetensors_open_ok": true,
+      "key_count": 92
+    },
+    {
+      "relpath": "model-00005-of-00005.safetensors",
+      "size_bytes": 1244659840,
+      "phase3b_inventory_sha256": "20c2d6366ab85c90786ccdd829cd2b9e7d30ef3b2ebbb998280e7e4014b542ff",
+      "size_matches_inventory": true,
+      "safetensors_open_ok": true,
+      "key_count": 1
+    },
+    {
+      "relpath": "config.json",
+      "size_bytes": 728,
+      "phase3b_inventory_sha256": "f7c4eadfbbf522470667b797a3c89be2524832d2d599797248dc304fff447c30",
+      "size_matches_inventory": true
+    },
+    {
+      "relpath": "tokenizer.json",
+      "size_bytes": 11422654,
+      "phase3b_inventory_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "size_matches_inventory": true
+    },
+    {
+      "relpath": "tokenizer_config.json",
+      "size_bytes": 9732,
+      "phase3b_inventory_sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+      "size_matches_inventory": true
+    },
+    {
+      "relpath": "model.safetensors.index.json",
+      "size_bytes": 32878,
+      "phase3b_inventory_sha256": "f9fdbcb91c23971c13ec5d5f2573d2349e8f61f2f049371ec699281748fdb1bc",
+      "size_matches_inventory": true
+    },
+    {
+      "relpath": "vocab.json",
+      "size_bytes": 2776833,
+      "phase3b_inventory_sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "size_matches_inventory": true
+    },
+    {
+      "relpath": "merges.txt",
+      "size_bytes": 1671853,
+      "phase3b_inventory_sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "size_matches_inventory": true
+    }
+  ],
+  "issues": [],
+  "hash_policy": "sizes compared to Phase 3B inventory; full shard rehash skipped when sizes match",
+  "corruption_detected": false
+}

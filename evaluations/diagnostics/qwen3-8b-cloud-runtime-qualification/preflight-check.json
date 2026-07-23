@@ -1,0 +1,28 @@
+{
+  "schema": "cobra.diagnostics.cloud_preflight.v1",
+  "required_commit": "695ea8833229b183e5792c49e3888ec4dde9e5f2",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "model_inventory_hash": "8cf07aa84c9e26c9dd4ce71b21bd498232c8dfa5afe5284d375be0c1e9bb3f4f",
+  "max_full_loads": 6,
+  "qualification_rule": {
+    "required": 3,
+    "mode": "fresh_subprocess_load_and_generate"
+  },
+  "extended_rule": {
+    "prompts": 5,
+    "after_qualification": true
+  },
+  "synthetic_prompt_enforced": true,
+  "benchmark_prompts_prohibited": true,
+  "signal_recording": true,
+  "oom_kill_recording": true,
+  "subprocess_isolation": true,
+  "spending_ceiling_enforced": true,
+  "single_instance_rule": true,
+  "authorized": false,
+  "authorization_reason": "authorized is false",
+  "authorization_status": "ready-for-cloud-authorization",
+  "benchmark_executed": false,
+  "provisioned": false,
+  "cloud_api_contacted": false
+}

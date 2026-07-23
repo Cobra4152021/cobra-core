@@ -1,0 +1,15 @@
+{
+  "schema": "cobra.cloud.export_verification.v1",
+  "status": "preparation_only",
+  "files_expected": [
+    "artifacts/cloud-qwen3-runtime-qualification/cobra-core-phase3e.bundle",
+    "artifacts/cloud-qwen3-runtime-qualification/cloud-transfer-manifest.json",
+    "evaluations/cloud/authorization-record.json",
+    "evaluations/cloud/security-manifest.json"
+  ],
+  "files_received": [],
+  "file_hashes": {},
+  "missing_files": [],
+  "verification_status": "local_preparation_complete",
+  "notes": "Cloud export verification deferred until an authorized instance exists."
+}

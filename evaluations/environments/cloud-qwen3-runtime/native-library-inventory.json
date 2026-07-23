@@ -1,0 +1,6 @@
+{
+  "status": "not_collected",
+  "reason": "no_cloud_host",
+  "libraries": [],
+  "native_library_inventory_hash": null
+}

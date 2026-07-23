@@ -1,0 +1,35 @@
+{
+  "schema": "cobra.cloud.environment_manifest.v1",
+  "status": "prepared-not-provisioned",
+  "preferred_python": "3.11",
+  "acceptable_python": [
+    "3.11",
+    "3.12"
+  ],
+  "prohibited_python": [
+    "3.13"
+  ],
+  "venv_path": "~/cobra-core-cloud/.venv-qwen-cloud/",
+  "requirements_lock": "requirements-cloud-lock.txt",
+  "dependency_lock_sha256": "a2d27fe05aed52f0878462c5b88cbe4be59e42c45ff441a523ad21da65feeb6d",
+  "torch_install_note": "Install exact torch==2.6.0+cu124 (or driver-compatible stable cu12x wheel) from official PyTorch index; no nightlies; no source builds.",
+  "prohibited_packages": [
+    "flash-attn",
+    "xformers",
+    "deepspeed",
+    "vllm",
+    "llama-cpp-python"
+  ],
+  "quantization": {
+    "load_in_4bit": true,
+    "bnb_4bit_quant_type": "nf4",
+    "bnb_4bit_use_double_quant": true,
+    "bnb_4bit_compute_dtype": "float16"
+  },
+  "device_map": {
+    "": 0
+  },
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "model_inventory_hash": "8cf07aa84c9e26c9dd4ce71b21bd498232c8dfa5afe5284d375be0c1e9bb3f4f",
+  "required_repo_commit": "695ea8833229b183e5792c49e3888ec4dde9e5f2"
+}

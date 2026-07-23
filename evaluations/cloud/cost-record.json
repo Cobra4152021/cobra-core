@@ -1,0 +1,18 @@
+{
+  "schema": "cobra.cloud.cost_record.v1",
+  "status": "no_spend",
+  "provider": null,
+  "redacted_instance_class": null,
+  "gpu_model": null,
+  "hourly_rate_at_launch_usd": null,
+  "storage_rate_usd": null,
+  "launch_timestamp": null,
+  "termination_timestamp": null,
+  "billed_or_estimated_duration_hours": 0,
+  "estimated_compute_cost_usd": 0,
+  "estimated_storage_cost_usd": 0,
+  "total_estimated_cost_usd": 0,
+  "approved_spending_ceiling_usd": null,
+  "ceiling_respected": true,
+  "notes": "No instance created; Outcome H."
+}

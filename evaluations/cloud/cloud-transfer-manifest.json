@@ -1,0 +1,62 @@
+{
+  "schema": "cobra.cloud.transfer_manifest.v1",
+  "source_commit": "695ea8833229b183e5792c49e3888ec4dde9e5f2",
+  "status": "ready-for-cloud-authorization",
+  "included": [
+    {
+      "path": "D:/Downloads/cobra-core/artifacts/cloud-qwen3-runtime-qualification/cobra-core-phase3e.bundle",
+      "size_bytes": 643233,
+      "sha256": "a50eee0232ee35cccf55fa69fdde4fd7aacdab5b0d6919f113cf4a199b44ba89"
+    },
+    {
+      "path": "D:/Downloads/cobra-core/artifacts/cloud-qwen3-runtime-qualification/model-inventory.json",
+      "size_bytes": 4479,
+      "sha256": "f3d3cee11a1fa5a8c5b9239511769f6129cec4ad8fd1ae264067fc1e761c0283"
+    },
+    {
+      "path": "D:/Downloads/cobra-core/artifacts/cloud-qwen3-runtime-qualification/model-file-integrity.json",
+      "size_bytes": 3462,
+      "sha256": "5dfc0432addd4de8692ab208e0bcb07593bd0b0e3b06982fe577bc76994b6416"
+    },
+    {
+      "path": "D:/Downloads/cobra-core/artifacts/cloud-qwen3-runtime-qualification/synthetic-smoke-prompts.json",
+      "size_bytes": 478,
+      "sha256": "583f309e3c90e5bda950c00d77ad4dd6c0713cc675b61298d60e62ea8d1c0f83"
+    },
+    {
+      "path": "D:/Downloads/cobra-core/artifacts/cloud-qwen3-runtime-qualification/expected-artifact-schemas.json",
+      "size_bytes": 589,
+      "sha256": "43fdd26967e657b584675f28c5feea8ed6f2e226329ac03aceda7debdeb8307b"
+    },
+    {
+      "path": "D:/Downloads/cobra-core/artifacts/cloud-qwen3-runtime-qualification/EXECUTION.md",
+      "size_bytes": 835,
+      "sha256": "f6d0fe78b086d7ceb9b89a82214a7e0db36f858df0bd68f9987d07f014837583"
+    },
+    {
+      "path": "D:/Downloads/cobra-core/artifacts/cloud-qwen3-runtime-qualification/CLEANUP.md",
+      "size_bytes": 420,
+      "sha256": "a79c8bfbd4482456d4211790f29915aae14bef77507115e937b9539288c15587"
+    },
+    {
+      "path": "D:/Downloads/cobra-core/artifacts/cloud-qwen3-runtime-qualification/README.md",
+      "size_bytes": 419,
+      "sha256": "6525e2dc85e72c370882566e2937f153237ced134e3d321998247165623b1921"
+    }
+  ],
+  "excluded": [
+    ".venv*",
+    "**/__pycache__/",
+    "**/*.safetensors",
+    "D:/cobra-models/**",
+    "secrets/",
+    "*.pem",
+    "*.key",
+    "evaluations/runs/**"
+  ],
+  "total_bundle_size_bytes": 653915,
+  "model_weights_included": false,
+  "model_transfer": "separate_encrypted_copy_of_validated_local_artifacts",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "model_inventory_hash": "8cf07aa84c9e26c9dd4ce71b21bd498232c8dfa5afe5284d375be0c1e9bb3f4f"
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "cobra.cloud.security_manifest.v1",
+  "status": "planned-not-provisioned",
+  "ports_opened": [],
+  "authentication_method": "ssh-key-preferred-when-authorized",
+  "password_authentication": "disabled-when-key-auth-available",
+  "storage_encryption_status": "require-provider-encryption-when-available",
+  "public_ip_status": "not_provisioned",
+  "firewall_or_security_group_summary": "deny-all-inbound-except-ssh-from-authorized-sources",
+  "secrets_used_by_category": [],
+  "cleanup_requirements": [
+    "terminate_gpu_instance",
+    "delete_temporary_volumes",
+    "delete_temporary_object_storage",
+    "revoke_temporary_credentials",
+    "confirm_no_managed_endpoint",
+    "confirm_no_recurring_jobs"
+  ],
+  "prohibited": [
+    "public_jupyter",
+    "tokens_in_source",
+    "commit_secrets",
+    "api_keys_in_artifacts",
+    "private_ssh_keys_in_repo",
+    "billing_identifiers",
+    "access_tokens"
+  ],
+  "contains_secrets": false
+}

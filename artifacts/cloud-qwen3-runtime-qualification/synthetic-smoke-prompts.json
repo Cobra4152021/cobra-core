@@ -1,0 +1,13 @@
+{
+  "benchmark_content": false,
+  "initial_generation": {
+    "evidence": [
+      "[S1] The shipment was logged at 08:40.",
+      "[S2] The inspection form was signed at 09:05.",
+      "[S3] No record identifies who moved the shipment."
+    ],
+    "instruction": "List the supported facts, identify the unresolved uncertainty, cite only S1/S2/S3."
+  },
+  "qualification": "reuse_same_style_fictional_evidence_not_from_CobraBench",
+  "extended_session_prompts": 5
+}
