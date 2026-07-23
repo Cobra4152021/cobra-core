@@ -1,0 +1,14 @@
+{
+  "evaluator_name": "format_compliance",
+  "evaluator_version": "2.0.0",
+  "implementation_version": "semantic-exact-split-v2",
+  "rule_set_version": "finding-risk-next-v2",
+  "parser_version": "strict-tolerant-v2",
+  "scoring_version": "dual-score-v2",
+  "configuration_hash": "a1b2c3d4e5f60718293a4b5c6d7e8f90112233445566778899aabbccddeeff00",
+  "creation_date": "2026-07-22",
+  "compatibility_notes": "Separates semantic_score from exact_format_score. Not used by official v0.1.",
+  "deprecated": false,
+  "replaces": null,
+  "used_by_official_cobrabench_v01": false
+}

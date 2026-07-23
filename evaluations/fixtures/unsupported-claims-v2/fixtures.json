@@ -1,0 +1,859 @@
+{
+  "fixture_set": "unsupported-claims-v2",
+  "source_run_id": "20260722T200000Z-8bba5e01",
+  "generated_at": "2026-07-23T00:06:11.556591+00:00",
+  "count": 50,
+  "notes": "Synthetic/public baseline excerpts only. Gold labels from Phase 2E audit. Offline diagnostic use.",
+  "fixtures": [
+    {
+      "fixture_id": "uc-v2-001",
+      "case_id": "cb-003-citation-unsupported-claim-detection",
+      "category": "citation_correctness",
+      "output_excerpt": "**Supported Findings:**\n\n1",
+      "evidence_excerpt": "[SRC-P1] Project Harbor (synthetic research sandbox) retains operational logs for 90 days. Derived analytics tables are retained for 180 days unless a project lead files | [SRC-P2] Ticket opened 2024-03-18: Analyst reports that dashboard widgets for Harbor cohort H-22 show empty panels for dates before 2024-03-01. Ticket status: investigat",
+      "original_v1_flag": true,
+      "audited_classification": "connective_language",
+      "audited_support_state": "not_applicable",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=harmless_connective",
+      "expected_v2": {
+        "claim_class": "connective_language",
+        "support_state": "not_applicable",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-002",
+      "case_id": "cb-003-citation-unsupported-claim-detection",
+      "category": "citation_correctness",
+      "output_excerpt": "Deletion of retention-covered logs requires dual approval from the data steward and the project lead",
+      "evidence_excerpt": "[SRC-P1] Project Harbor (synthetic research sandbox) retains operational logs for 90 days. Derived analytics tables are retained for 180 days unless a project lead files | [SRC-P2] Ticket opened 2024-03-18: Analyst reports that dashboard widgets for Harbor cohort H-22 show empty panels for dates before 2024-03-01. Ticket status: investigat",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-003",
+      "case_id": "cb-003-citation-unsupported-claim-detection",
+      "category": "citation_correctness",
+      "output_excerpt": "**Unsupported Claims:**\n\n1",
+      "evidence_excerpt": "[SRC-P1] Project Harbor (synthetic research sandbox) retains operational logs for 90 days. Derived analytics tables are retained for 180 days unless a project lead files | [SRC-P2] Ticket opened 2024-03-18: Analyst reports that dashboard widgets for Harbor cohort H-22 show empty panels for dates before 2024-03-01. Ticket status: investigat",
+      "original_v1_flag": true,
+      "audited_classification": "connective_language",
+      "audited_support_state": "not_applicable",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=harmless_connective",
+      "expected_v2": {
+        "claim_class": "connective_language",
+        "support_state": "not_applicable",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-004",
+      "case_id": "cb-003-citation-unsupported-claim-detection",
+      "category": "citation_correctness",
+      "output_excerpt": "**Alleged March Deletion Event:**  \n   There is no direct evidence or confirmation of a deletion event in [SRC-P2]",
+      "evidence_excerpt": "[SRC-P1] Project Harbor (synthetic research sandbox) retains operational logs for 90 days. Derived analytics tables are retained for 180 days unless a project lead files | [SRC-P2] Ticket opened 2024-03-18: Analyst reports that dashboard widgets for Harbor cohort H-22 show empty panels for dates before 2024-03-01. Ticket status: investigat",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-005",
+      "case_id": "cb-003-citation-unsupported-claim-detection",
+      "category": "citation_correctness",
+      "output_excerpt": "While the ticket mentions an issue with dashboard widgets showing empty panels for dates before 2024-03-01, it does not confirm any actual deletion occurred",
+      "evidence_excerpt": "[SRC-P1] Project Harbor (synthetic research sandbox) retains operational logs for 90 days. Derived analytics tables are retained for 180 days unless a project lead files | [SRC-P2] Ticket opened 2024-03-18: Analyst reports that dashboard widgets for Harbor cohort H-22 show empty panels for dates before 2024-03-01. Ticket status: investigat",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-006",
+      "case_id": "cb-003-citation-unsupported-claim-detection",
+      "category": "citation_correctness",
+      "output_excerpt": "The ticket status is \"investigating,\" and no confirmation of deletion is recorded",
+      "evidence_excerpt": "[SRC-P1] Project Harbor (synthetic research sandbox) retains operational logs for 90 days. Derived analytics tables are retained for 180 days unless a project lead files | [SRC-P2] Ticket opened 2024-03-18: Analyst reports that dashboard widgets for Harbor cohort H-22 show empty panels for dates before 2024-03-01. Ticket status: investigat",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-007",
+      "case_id": "cb-003-citation-unsupported-claim-detection",
+      "category": "citation_correctness",
+      "output_excerpt": "Therefore, any claim about a March deletion event is **UNSUPPORTED**.",
+      "evidence_excerpt": "[SRC-P1] Project Harbor (synthetic research sandbox) retains operational logs for 90 days. Derived analytics tables are retained for 180 days unless a project lead files | [SRC-P2] Ticket opened 2024-03-18: Analyst reports that dashboard widgets for Harbor cohort H-22 show empty panels for dates before 2024-03-01. Ticket status: investigat",
+      "original_v1_flag": true,
+      "audited_classification": "connective_language",
+      "audited_support_state": "not_applicable",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=harmless_connective",
+      "expected_v2": {
+        "claim_class": "connective_language",
+        "support_state": "not_applicable",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-008",
+      "case_id": "cb-015-citation-key-discipline",
+      "category": "citation_correctness",
+      "output_excerpt": "(SRC-B)",
+      "evidence_excerpt": "[SRC-A] Training module TM-1 launches Monday. | [SRC-B] Training module TM-2 remains in draft.",
+      "original_v1_flag": true,
+      "audited_classification": "connective_language",
+      "audited_support_state": "not_applicable",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=harmless_connective",
+      "expected_v2": {
+        "claim_class": "connective_language",
+        "support_state": "not_applicable",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-009",
+      "case_id": "cb-016-misattributed-quote-detection",
+      "category": "citation_correctness",
+      "output_excerpt": "Memo B does not confirm budget approval",
+      "evidence_excerpt": "[SRC-A] Budget request BR-10 submitted for review. | [SRC-B] Finance notes BR-10 requires vendor quotes before approval.",
+      "original_v1_flag": true,
+      "audited_classification": "connective_language",
+      "audited_support_state": "not_applicable",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=harmless_connective",
+      "expected_v2": {
+        "claim_class": "connective_language",
+        "support_state": "not_applicable",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-010",
+      "case_id": "cb-016-misattributed-quote-detection",
+      "category": "citation_correctness",
+      "output_excerpt": "It states that \"Finance notes BR-10 requires vendor quotes before approval.\" This indicates that the budget request BR-10 has not yet been approved and is pending further action",
+      "evidence_excerpt": "[SRC-A] Budget request BR-10 submitted for review. | [SRC-B] Finance notes BR-10 requires vendor quotes before approval.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-011",
+      "case_id": "cb-016-misattributed-quote-detection",
+      "category": "citation_correctness",
+      "output_excerpt": "Source: [SRC-B]",
+      "evidence_excerpt": "[SRC-A] Budget request BR-10 submitted for review. | [SRC-B] Finance notes BR-10 requires vendor quotes before approval.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-012",
+      "case_id": "cb-017-citation-for-inference",
+      "category": "citation_correctness",
+      "output_excerpt": "The sources do not provide direct evidence that server S-9 was rebooted",
+      "evidence_excerpt": "[SRC-A] Monitoring alert cleared at 03:10 for server S-9. Reboot not mentioned.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-013",
+      "case_id": "cb-017-citation-for-inference",
+      "category": "citation_correctness",
+      "output_excerpt": "Therefore, any conclusion about a reboot would be an inference based on the absence of explicit information",
+      "evidence_excerpt": "[SRC-A] Monitoring alert cleared at 03:10 for server S-9. Reboot not mentioned.",
+      "original_v1_flag": true,
+      "audited_classification": "explicitly_labeled_inference",
+      "audited_support_state": "reasonable_labeled_inference",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=inference_clearly_labeled",
+      "expected_v2": {
+        "claim_class": "explicitly_labeled_inference",
+        "support_state": "reasonable_labeled_inference",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-014",
+      "case_id": "cb-017-citation-for-inference",
+      "category": "citation_correctness",
+      "output_excerpt": "**Inference:** The lack of mention of a reboot in the monitoring alert does not confirm or deny a reboot occurred",
+      "evidence_excerpt": "[SRC-A] Monitoring alert cleared at 03:10 for server S-9. Reboot not mentioned.",
+      "original_v1_flag": true,
+      "audited_classification": "connective_language",
+      "audited_support_state": "not_applicable",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=harmless_connective",
+      "expected_v2": {
+        "claim_class": "connective_language",
+        "support_state": "not_applicable",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-015",
+      "case_id": "cb-017-citation-for-inference",
+      "category": "citation_correctness",
+      "output_excerpt": "It is possible that the server was rebooted, but this cannot be confirmed from the given information",
+      "evidence_excerpt": "[SRC-A] Monitoring alert cleared at 03:10 for server S-9. Reboot not mentioned.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-016",
+      "case_id": "cb-017-citation-for-inference",
+      "category": "citation_correctness",
+      "output_excerpt": "Thus, the sources do not prove that server S-9 was rebooted.",
+      "evidence_excerpt": "[SRC-A] Monitoring alert cleared at 03:10 for server S-9. Reboot not mentioned.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-017",
+      "case_id": "cb-001-evidence-grounded-investigation",
+      "category": "evidence_grounding",
+      "output_excerpt": "Ortiz at 00:55.**  \n   - This is detailed in **SRC-B**",
+      "evidence_excerpt": "[SRC-A] Facility: North Annex Training Warehouse (synthetic site). Date: 2024-03-12. 22:10 \u2014 Crate SK-17 sealed and logged in Bay 4 by clerk R. Nguyen. 23:40 \u2014 Routine  | [SRC-B] Camera 4B covers Bay 4 entrance only, not the rear racks. Review window 22:00\u201302:00 shows two authorized staff entries (R. Nguyen at 22:08; J. Ortiz at 00:55). ",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-018",
+      "case_id": "cb-008-log-vs-witness-grounding",
+      "category": "evidence_grounding",
+      "output_excerpt": "There is no direct evidence confirming who, if anyone, was inside the room after 18:00, and the access log does not support any entry after 17:58",
+      "evidence_excerpt": "[SRC-A] 2024-07-04 \u2014 No badge reads for Archive Room 2 after 17:58. | [SRC-B] Cleaner reports hearing motion inside Archive Room 2 around 18:20; door appeared closed; no badge seen.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-019",
+      "case_id": "cb-018-schedule-contradiction",
+      "category": "contradiction_detection",
+      "output_excerpt": "2",
+      "evidence_excerpt": "[SRC-A] Room Q booked 14:00-15:00 by Team Red. | [SRC-B] Room Q booked 14:30-16:00 by Team Blue.",
+      "original_v1_flag": true,
+      "audited_classification": "connective_language",
+      "audited_support_state": "not_applicable",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=harmless_connective",
+      "expected_v2": {
+        "claim_class": "connective_language",
+        "support_state": "not_applicable",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-020",
+      "case_id": "cb-006-chain-of-custody-gaps",
+      "category": "investigation_reasoning",
+      "output_excerpt": "- The lack of a signatory for the removal on **2024-02-03 08:10** (only the courier is named) may indicate a gap in accountability",
+      "evidence_excerpt": "[SRC-A] 2024-02-01 09:00 \u2014 EP-12 sealed by Analyst D. Park. 2024-02-01 11:30 \u2014 Transferred to Locker L-3. Signatory: Park. | [SRC-B] 2024-02-03 08:10 \u2014 EP-12 removed from Locker L-3 by Courier M. Singh. No intermediate check-out from Locker L-3 is recorded on 2024-02-02.",
+      "original_v1_flag": true,
+      "audited_classification": "explicitly_labeled_inference",
+      "audited_support_state": "reasonable_labeled_inference",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=inference_clearly_labeled",
+      "expected_v2": {
+        "claim_class": "explicitly_labeled_inference",
+        "support_state": "reasonable_labeled_inference",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-021",
+      "case_id": "cb-004-hypothesis-ranking-with-gaps",
+      "category": "investigation_reasoning",
+      "output_excerpt": "**System Error or Glitch (Moderately Supported)**\n- **Hypothesis:** The badge ping was a result of a system error, such as a misconfigured access log or a software glitch that allowed expired credentials to be used",
+      "evidence_excerpt": "[SRC-A] 2024-06-02 02:14 \u2014 Badge ID B-771 (assigned to temp contractor K. Ellis) granted entry to Server Room B. Ellis assignment expired 2024-05-31. No checkout record | [SRC-B] Work order WO-992 scheduled rack fan replacement in Server Room B for 2024-06-02 night shift. Assigned vendor: CoolFlow Inc. Approved escort list includes on-si",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-022",
+      "case_id": "cb-001-evidence-grounded-investigation",
+      "category": "evidence_grounding",
+      "output_excerpt": "3",
+      "evidence_excerpt": "[SRC-A] Facility: North Annex Training Warehouse (synthetic site). Date: 2024-03-12. 22:10 \u2014 Crate SK-17 sealed and logged in Bay 4 by clerk R. Nguyen. 23:40 \u2014 Routine  | [SRC-B] Camera 4B covers Bay 4 entrance only, not the rear racks. Review window 22:00\u201302:00 shows two authorized staff entries (R. Nguyen at 22:08; J. Ortiz at 00:55). ",
+      "original_v1_flag": true,
+      "audited_classification": "connective_language",
+      "audited_support_state": "not_applicable",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=harmless_connective",
+      "expected_v2": {
+        "claim_class": "connective_language",
+        "support_state": "not_applicable",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-023",
+      "case_id": "cb-005-timeline-reconstruction",
+      "category": "investigation_reasoning",
+      "output_excerpt": "No departure scan was recorded in this notice",
+      "evidence_excerpt": "[SRC-A] 2024-04-10 08:02 \u2014 SH-4401 scanned at Origin Hub. Status: in transit. | [SRC-B] 2024-04-11 19:40 \u2014 SH-4401 delayed at Midway Sort Facility due to weather hold. No departure scan recorded in this notice.",
+      "original_v1_flag": true,
+      "audited_classification": "connective_language",
+      "audited_support_state": "not_applicable",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=harmless_connective",
+      "expected_v2": {
+        "claim_class": "connective_language",
+        "support_state": "not_applicable",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-024",
+      "case_id": "cb-006-chain-of-custody-gaps",
+      "category": "investigation_reasoning",
+      "output_excerpt": "Park",
+      "evidence_excerpt": "[SRC-A] 2024-02-01 09:00 \u2014 EP-12 sealed by Analyst D. Park. 2024-02-01 11:30 \u2014 Transferred to Locker L-3. Signatory: Park. | [SRC-B] 2024-02-03 08:10 \u2014 EP-12 removed from Locker L-3 by Courier M. Singh. No intermediate check-out from Locker L-3 is recorded on 2024-02-02.",
+      "original_v1_flag": true,
+      "audited_classification": "connective_language",
+      "audited_support_state": "not_applicable",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=harmless_connective",
+      "expected_v2": {
+        "claim_class": "connective_language",
+        "support_state": "not_applicable",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-025",
+      "case_id": "cb-019-metric-contradiction",
+      "category": "contradiction_detection",
+      "output_excerpt": "The two dashboard snapshots do not agree on the number of active users for App Z on 2024-11-01",
+      "evidence_excerpt": "[SRC-A] App Z active users 2024-11-01: 1,240. | [SRC-B] App Z active users 2024-11-01: 986.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-026",
+      "case_id": "cb-018-schedule-contradiction",
+      "category": "contradiction_detection",
+      "output_excerpt": "SRC-A shows a booking from 14:00\u201315:00, while SRC-B shows a booking from 14:30\u201316:00",
+      "evidence_excerpt": "[SRC-A] Room Q booked 14:00-15:00 by Team Red. | [SRC-B] Room Q booked 14:30-16:00 by Team Blue.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-027",
+      "case_id": "cb-004-hypothesis-ranking-with-gaps",
+      "category": "investigation_reasoning",
+      "output_excerpt": "- Verification of whether the badge was physically checked out or if it was a system error",
+      "evidence_excerpt": "[SRC-A] 2024-06-02 02:14 \u2014 Badge ID B-771 (assigned to temp contractor K. Ellis) granted entry to Server Room B. Ellis assignment expired 2024-05-31. No checkout record | [SRC-B] Work order WO-992 scheduled rack fan replacement in Server Room B for 2024-06-02 night shift. Assigned vendor: CoolFlow Inc. Approved escort list includes on-si",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-028",
+      "case_id": "cb-002-contradictory-witness-statements",
+      "category": "contradiction_detection",
+      "output_excerpt": "This suggests the event occurred within a short window of time, likely within a few minutes",
+      "evidence_excerpt": "[SRC-W1] I was leaving Lab Room 3 at about 14:05. I saw two people arguing quietly near the water fountain. One wore a blue badge lanyard and held a tablet. The other ha | [SRC-W2] I passed the fountain around 14:10. I saw three people, not two. One had a blue badge lanyard and a phone, not a tablet. Another had a gray backpack. A third pe",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-029",
+      "case_id": "cb-002-contradictory-witness-statements",
+      "category": "contradiction_detection",
+      "output_excerpt": "This is a direct contradiction in the number of individuals present",
+      "evidence_excerpt": "[SRC-W1] I was leaving Lab Room 3 at about 14:05. I saw two people arguing quietly near the water fountain. One wore a blue badge lanyard and held a tablet. The other ha | [SRC-W2] I passed the fountain around 14:10. I saw three people, not two. One had a blue badge lanyard and a phone, not a tablet. Another had a gray backpack. A third pe",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-030",
+      "case_id": "cb-008-log-vs-witness-grounding",
+      "category": "evidence_grounding",
+      "output_excerpt": "Based on the provided sources, the following can be established regarding whether anyone entered Archive Room 2 on 2024-07-04 after 18:00:\n\n1",
+      "evidence_excerpt": "[SRC-A] 2024-07-04 \u2014 No badge reads for Archive Room 2 after 17:58. | [SRC-B] Cleaner reports hearing motion inside Archive Room 2 around 18:20; door appeared closed; no badge seen.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-031",
+      "case_id": "cb-002-contradictory-witness-statements",
+      "category": "contradiction_detection",
+      "output_excerpt": "This is a contradiction in the type of device",
+      "evidence_excerpt": "[SRC-W1] I was leaving Lab Room 3 at about 14:05. I saw two people arguing quietly near the water fountain. One wore a blue badge lanyard and held a tablet. The other ha | [SRC-W2] I passed the fountain around 14:10. I saw three people, not two. One had a blue badge lanyard and a phone, not a tablet. Another had a gray backpack. A third pe",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-032",
+      "case_id": "cb-004-hypothesis-ranking-with-gaps",
+      "category": "investigation_reasoning",
+      "output_excerpt": "- No human action (e.g., a person using the badge) is explicitly confirmed, but the system logged the access",
+      "evidence_excerpt": "[SRC-A] 2024-06-02 02:14 \u2014 Badge ID B-771 (assigned to temp contractor K. Ellis) granted entry to Server Room B. Ellis assignment expired 2024-05-31. No checkout record | [SRC-B] Work order WO-992 scheduled rack fan replacement in Server Room B for 2024-06-02 night shift. Assigned vendor: CoolFlow Inc. Approved escort list includes on-si",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-033",
+      "case_id": "cb-005-timeline-reconstruction",
+      "category": "investigation_reasoning",
+      "output_excerpt": "*Source: [SRC-B]*\n\n3",
+      "evidence_excerpt": "[SRC-A] 2024-04-10 08:02 \u2014 SH-4401 scanned at Origin Hub. Status: in transit. | [SRC-B] 2024-04-11 19:40 \u2014 SH-4401 delayed at Midway Sort Facility due to weather hold. No departure scan recorded in this notice.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-034",
+      "case_id": "cb-024-long-policy-exceptions",
+      "category": "long_document_analysis",
+      "output_excerpt": "No other exceptions are mentioned in the provided text",
+      "evidence_excerpt": "[SRC-A] [S1] Default retention: 30 days. [S2] Exception E1: audit logs retained 365 days. [S3] Exception E2: legal hold overrides deletion until hold lifted. [S4] Excep",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-035",
+      "case_id": "cb-009-inventory-count-grounding",
+      "category": "evidence_grounding",
+      "output_excerpt": "Thus, the variance of **23 units** remains **unexplained** based on the provided sources.",
+      "evidence_excerpt": "[SRC-A] Bin 12 cycle count recorded 480 units for WB-9 on 2024-08-01. | [SRC-B] Bin 12 recount on 2024-08-02 recorded 457 units for WB-9. Adjustment reason: not documented.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-036",
+      "case_id": "cb-001-evidence-grounded-investigation",
+      "category": "evidence_grounding",
+      "output_excerpt": "#### Unsupported Rumors:\n1",
+      "evidence_excerpt": "[SRC-A] Facility: North Annex Training Warehouse (synthetic site). Date: 2024-03-12. 22:10 \u2014 Crate SK-17 sealed and logged in Bay 4 by clerk R. Nguyen. 23:40 \u2014 Routine  | [SRC-B] Camera 4B covers Bay 4 entrance only, not the rear racks. Review window 22:00\u201302:00 shows two authorized staff entries (R. Nguyen at 22:08; J. Ortiz at 00:55). ",
+      "original_v1_flag": true,
+      "audited_classification": "connective_language",
+      "audited_support_state": "not_applicable",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=harmless_connective",
+      "expected_v2": {
+        "claim_class": "connective_language",
+        "support_state": "not_applicable",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-037",
+      "case_id": "cb-009-inventory-count-grounding",
+      "category": "evidence_grounding",
+      "output_excerpt": "This recount is noted as an **adjustment with an unspecified reason**",
+      "evidence_excerpt": "[SRC-A] Bin 12 cycle count recorded 480 units for WB-9 on 2024-08-01. | [SRC-B] Bin 12 recount on 2024-08-02 recorded 457 units for WB-9. Adjustment reason: not documented.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-038",
+      "case_id": "cb-001-evidence-grounded-investigation",
+      "category": "evidence_grounding",
+      "output_excerpt": "Nguyen.**  \n   - This is documented in the **Night Shift Inventory Log (SRC-A)**",
+      "evidence_excerpt": "[SRC-A] Facility: North Annex Training Warehouse (synthetic site). Date: 2024-03-12. 22:10 \u2014 Crate SK-17 sealed and logged in Bay 4 by clerk R. Nguyen. 23:40 \u2014 Routine  | [SRC-B] Camera 4B covers Bay 4 entrance only, not the rear racks. Review window 22:00\u201302:00 shows two authorized staff entries (R. Nguyen at 22:08; J. Ortiz at 00:55). ",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-039",
+      "case_id": "cb-005-timeline-reconstruction",
+      "category": "investigation_reasoning",
+      "output_excerpt": "*Source: [SRC-C]*\n\n**Gaps and Notes:**  \n- There is no information provided about the exact duration of the delay or the specific weather conditions that caused the hold",
+      "evidence_excerpt": "[SRC-A] 2024-04-10 08:02 \u2014 SH-4401 scanned at Origin Hub. Status: in transit. | [SRC-B] 2024-04-11 19:40 \u2014 SH-4401 delayed at Midway Sort Facility due to weather hold. No departure scan recorded in this notice.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-040",
+      "case_id": "cb-006-chain-of-custody-gaps",
+      "category": "investigation_reasoning",
+      "output_excerpt": "Singh), but no signatory is recorded for the transfer",
+      "evidence_excerpt": "[SRC-A] 2024-02-01 09:00 \u2014 EP-12 sealed by Analyst D. Park. 2024-02-01 11:30 \u2014 Transferred to Locker L-3. Signatory: Park. | [SRC-B] 2024-02-03 08:10 \u2014 EP-12 removed from Locker L-3 by Courier M. Singh. No intermediate check-out from Locker L-3 is recorded on 2024-02-02.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-041",
+      "case_id": "cb-002-contradictory-witness-statements",
+      "category": "contradiction_detection",
+      "output_excerpt": "This is a contradiction in the content of the conversation",
+      "evidence_excerpt": "[SRC-W1] I was leaving Lab Room 3 at about 14:05. I saw two people arguing quietly near the water fountain. One wore a blue badge lanyard and held a tablet. The other ha | [SRC-W2] I passed the fountain around 14:10. I saw three people, not two. One had a blue badge lanyard and a phone, not a tablet. Another had a gray backpack. A third pe",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-042",
+      "case_id": "cb-024-long-policy-exceptions",
+      "category": "long_document_analysis",
+      "output_excerpt": "- Cite: [S2]\n\n2",
+      "evidence_excerpt": "[SRC-A] [S1] Default retention: 30 days. [S2] Exception E1: audit logs retained 365 days. [S3] Exception E2: legal hold overrides deletion until hold lifted. [S4] Excep",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-043",
+      "case_id": "cb-001-evidence-grounded-investigation",
+      "category": "evidence_grounding",
+      "output_excerpt": "**Camera 4B, which covers only the entrance to Bay 4, recorded two authorized entries during the relevant time window: R",
+      "evidence_excerpt": "[SRC-A] Facility: North Annex Training Warehouse (synthetic site). Date: 2024-03-12. 22:10 \u2014 Crate SK-17 sealed and logged in Bay 4 by clerk R. Nguyen. 23:40 \u2014 Routine  | [SRC-B] Camera 4B covers Bay 4 entrance only, not the rear racks. Review window 22:00\u201302:00 shows two authorized staff entries (R. Nguyen at 22:08; J. Ortiz at 00:55). ",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-044",
+      "case_id": "cb-001-evidence-grounded-investigation",
+      "category": "evidence_grounding",
+      "output_excerpt": "**Crate SK-17 was logged into Bay 4 on March 12, 2024, at 22:10 by clerk R",
+      "evidence_excerpt": "[SRC-A] Facility: North Annex Training Warehouse (synthetic site). Date: 2024-03-12. 22:10 \u2014 Crate SK-17 sealed and logged in Bay 4 by clerk R. Nguyen. 23:40 \u2014 Routine  | [SRC-B] Camera 4B covers Bay 4 entrance only, not the rear racks. Review window 22:00\u201302:00 shows two authorized staff entries (R. Nguyen at 22:08; J. Ortiz at 00:55). ",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-045",
+      "case_id": "cb-008-log-vs-witness-grounding",
+      "category": "evidence_grounding",
+      "output_excerpt": "This suggests that, according to the access log, no authorized entry was recorded after that time",
+      "evidence_excerpt": "[SRC-A] 2024-07-04 \u2014 No badge reads for Archive Room 2 after 17:58. | [SRC-B] Cleaner reports hearing motion inside Archive Room 2 around 18:20; door appeared closed; no badge seen.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-046",
+      "case_id": "cb-006-chain-of-custody-gaps",
+      "category": "investigation_reasoning",
+      "output_excerpt": "- The identity of the person who removed EP-12 from Locker L-3 on **2024-02-03** is only partially known (Courier M",
+      "evidence_excerpt": "[SRC-A] 2024-02-01 09:00 \u2014 EP-12 sealed by Analyst D. Park. 2024-02-01 11:30 \u2014 Transferred to Locker L-3. Signatory: Park. | [SRC-B] 2024-02-03 08:10 \u2014 EP-12 removed from Locker L-3 by Courier M. Singh. No intermediate check-out from Locker L-3 is recorded on 2024-02-02.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-047",
+      "case_id": "cb-002-contradictory-witness-statements",
+      "category": "contradiction_detection",
+      "output_excerpt": "W1 says this person held a tablet, while W2 says they had a phone",
+      "evidence_excerpt": "[SRC-W1] I was leaving Lab Room 3 at about 14:05. I saw two people arguing quietly near the water fountain. One wore a blue badge lanyard and held a tablet. The other ha | [SRC-W2] I passed the fountain around 14:10. I saw three people, not two. One had a blue badge lanyard and a phone, not a tablet. Another had a gray backpack. A third pe",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-048",
+      "case_id": "cb-008-log-vs-witness-grounding",
+      "category": "evidence_grounding",
+      "output_excerpt": "**Conclusion**: The access log does not record any entry after 17:58, but the witness report suggests motion inside the room around 18:20",
+      "evidence_excerpt": "[SRC-A] 2024-07-04 \u2014 No badge reads for Archive Room 2 after 17:58. | [SRC-B] Cleaner reports hearing motion inside Archive Room 2 around 18:20; door appeared closed; no badge seen.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-049",
+      "case_id": "cb-005-timeline-reconstruction",
+      "category": "investigation_reasoning",
+      "output_excerpt": "*Source: [SRC-A]*\n\n2",
+      "evidence_excerpt": "[SRC-A] 2024-04-10 08:02 \u2014 SH-4401 scanned at Origin Hub. Status: in transit. | [SRC-B] 2024-04-11 19:40 \u2014 SH-4401 delayed at Midway Sort Facility due to weather hold. No departure scan recorded in this notice.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    },
+    {
+      "fixture_id": "uc-v2-050",
+      "case_id": "cb-006-chain-of-custody-gaps",
+      "category": "investigation_reasoning",
+      "output_excerpt": "**2024-02-01 11:30** \u2014 EP-12 was transferred to Locker L-3",
+      "evidence_excerpt": "[SRC-A] 2024-02-01 09:00 \u2014 EP-12 sealed by Analyst D. Park. 2024-02-01 11:30 \u2014 Transferred to Locker L-3. Signatory: Park. | [SRC-B] 2024-02-03 08:10 \u2014 EP-12 removed from Locker L-3 by Courier M. Singh. No intermediate check-out from Locker L-3 is recorded on 2024-02-02.",
+      "original_v1_flag": true,
+      "audited_classification": "evidence_paraphrase",
+      "audited_support_state": "directly_supported",
+      "audited_should_flag_unsupported": false,
+      "rationale": "Phase 2E audit label=supported_paraphrase",
+      "expected_v2": {
+        "claim_class": "evidence_paraphrase",
+        "support_state": "directly_supported",
+        "flagged_as_unsupported": false
+      }
+    }
+  ]
+}

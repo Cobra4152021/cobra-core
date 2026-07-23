@@ -1,0 +1,26 @@
+template_id: contradiction-analysis
+version: "2.0.0"
+task_type: contradiction_detection
+system_prompt: >
+  Detect contradictions carefully. Separate detection, localization, explanation,
+  and recommended resolution evidence. Do not invent reconciliations.
+user_prompt_structure: |
+  {task_instruction}
+
+  {source_blocks}
+
+  Respond with sections:
+  Detection: yes/no
+  Localization: which sources/fields conflict
+  Classification: metric | timeline | qualitative | other
+  Explanation: ...
+  Competing accounts: ...
+  Resolution evidence needed: ...
+  Confidence: ...
+evidence_delimiter_standard: cobra-source-blocks-v1
+output_schema: contradiction-submetrics
+intended_consumer: diagnostic_and_future_cobrabench_v0.2
+strictness_level: high
+compatibility_notes: Prospective; supports contradiction submetrics.
+benchmark_use_restrictions: Not for official v0.1 scoring.
+change_rationale: Separates detection from explanation (W03).

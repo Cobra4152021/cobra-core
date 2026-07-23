@@ -2,6 +2,9 @@
 
 Use this when re-attempting the **bounded** Qwen3-8B diagnostic suite after Phase 2E static closure.
 
+**Phase 2F note:** Prompt templates, runtime profiles, and evaluator v2 exist for offline/diagnostic use.
+They do **not** replace the official CobraBench v0.1 baseline and do **not** authorize skipping this runbook’s hardware checks.
+
 Closing GPU-heavy applications **does not guarantee** a successful model load. Stop after another access violation; do not repeatedly retry.
 
 ## Prerequisites

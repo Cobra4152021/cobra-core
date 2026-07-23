@@ -1,0 +1,58 @@
+{
+  "case_id": "draft-002-metric-contradiction",
+  "version": "0.2.0-draft",
+  "status": "draft",
+  "official_release": false,
+  "scored": false,
+  "frozen": false,
+  "part_of_cobrabench_v01": false,
+  "category": "contradiction_detection",
+  "title": "Metric contradiction submetrics draft",
+  "system_prompt": "Detect numeric conflicts. Do not invent reconciliation.",
+  "user_prompt": "Compare the two reports and explain any numeric contradiction.",
+  "supporting_sources": [
+    {
+      "source_id": "s1",
+      "title": "Report A",
+      "citation_key": "SRC-A",
+      "content": "Warehouse count is 120 units on 2024-03-01."
+    },
+    {
+      "source_id": "s2",
+      "title": "Report B",
+      "citation_key": "SRC-B",
+      "content": "Warehouse count is 95 units on 2024-03-01."
+    }
+  ],
+  "expected_behaviors": [],
+  "prohibited_behaviors": [],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_v0_2_draft",
+    "rubric_version": "0.2.0-draft",
+    "notes": "Submetrics not collapsed."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": ["draft", "contradiction", "metric", "non_official"],
+  "contradiction_expectations": {
+    "expected_conflict_markers": ["120", "95"],
+    "subdimensions": [
+      "detection",
+      "numerical_comparison",
+      "explanation",
+      "resolution_evidence_recommendation"
+    ]
+  },
+  "material_evidence": {
+    "required_evidence_ids": ["SRC-A", "SRC-B"],
+    "contrary_evidence_ids": ["SRC-A", "SRC-B"],
+    "minimum_source_diversity": 2,
+    "claim_level_citation_required": true
+  },
+  "prompt_template_id": "contradiction-analysis",
+  "prompt_template_version": "2.0.0",
+  "evaluator_versions": {
+    "contradictions": "2.0.0",
+    "citations": "2.0.0"
+  },
+  "notes": "Draft only."
+}

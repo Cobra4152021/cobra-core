@@ -1,0 +1,39 @@
+{
+  "case_id": "draft-006-long-document",
+  "version": "0.2.0-draft",
+  "status": "draft",
+  "official_release": false,
+  "scored": false,
+  "frozen": false,
+  "part_of_cobrabench_v01": false,
+  "category": "long_document_analysis",
+  "title": "Long-document completion draft",
+  "system_prompt": "Extract required sections. Cite sources. Do not invent facts.",
+  "user_prompt": "Provide KeyFacts, Exceptions, and OpenQuestions for the memo.",
+  "supporting_sources": [
+    {
+      "source_id": "s1",
+      "title": "Policy memo",
+      "citation_key": "SRC-A",
+      "content": "Policy requires dual approval for deletions. Exception exists for emergency break-glass with post-hoc review within 24 hours. Retention is 90 days."
+    }
+  ],
+  "expected_behaviors": [],
+  "prohibited_behaviors": [],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_v0_2_draft",
+    "rubric_version": "0.2.0-draft",
+    "notes": "Early-stop telemetry expectations."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": ["draft", "long_document", "non_official"],
+  "output_budget": {
+    "runtime_profile_id": "long-document-analysis",
+    "required_sections": ["KeyFacts", "Exceptions", "OpenQuestions"],
+    "early_stop_expectation": "expect_full_sections"
+  },
+  "evaluator_versions": {
+    "citations": "2.0.0"
+  },
+  "notes": "Draft only — short completed answers are not automatically truncated."
+}

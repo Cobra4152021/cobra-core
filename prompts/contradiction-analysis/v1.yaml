@@ -1,0 +1,18 @@
+template_id: contradiction-analysis
+version: "1.0.0"
+task_type: contradiction_detection
+system_prompt: >
+  You are an investigation research assistant. Use only the provided sources.
+  Identify conflicts without inventing reconciliations.
+user_prompt_structure: |
+  {task_instruction}
+
+  Supporting sources:
+  {supporting_sources_legacy}
+evidence_delimiter_standard: legacy-src-key
+output_schema: freeform
+intended_consumer: cobrabench_v0.1_compatibility
+strictness_level: medium
+compatibility_notes: Historical baseline style.
+benchmark_use_restrictions: Do not rewrite frozen cases.
+change_rationale: Baseline reference.

@@ -1,0 +1,38 @@
+{
+  "registry_version": "1.0.0",
+  "description": "Versioned Cobra evaluators. Official CobraBench v0.1 continues to use v1 implementations where listed.",
+  "evaluators": {
+    "unsupported_claims": {
+      "versions": {
+        "1.0.0": "evaluators/unsupported_claims/v1/metadata.json",
+        "2.0.0": "evaluators/unsupported_claims/v2/metadata.json"
+      },
+      "default_diagnostic": "2.0.0",
+      "official_cobrabench_v01": "1.0.0"
+    },
+    "format_compliance": {
+      "versions": {
+        "2.0.0": "evaluators/format_compliance/v2/metadata.json"
+      },
+      "default_diagnostic": "2.0.0"
+    },
+    "citations": {
+      "versions": {
+        "2.0.0": "evaluators/citations/v2/metadata.json"
+      },
+      "default_diagnostic": "2.0.0"
+    },
+    "contradictions": {
+      "versions": {
+        "2.0.0": "evaluators/contradictions/v2/metadata.json"
+      },
+      "default_diagnostic": "2.0.0"
+    },
+    "output_budget_telemetry": {
+      "versions": {
+        "1.0.0": "evaluators/output_budget_telemetry/v1/metadata.json"
+      },
+      "default_diagnostic": "1.0.0"
+    }
+  }
+}

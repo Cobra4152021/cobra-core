@@ -1,0 +1,14 @@
+{
+  "evaluator_name": "citations",
+  "evaluator_version": "2.0.0",
+  "implementation_version": "coverage-precision-v2",
+  "rule_set_version": "material-evidence-v2",
+  "parser_version": "citation-key-v2",
+  "scoring_version": "multi-coverage-v2",
+  "configuration_hash": "11223344556677889900aabbccddeeff00112233445566778899aabbccddeeff",
+  "creation_date": "2026-07-22",
+  "compatibility_notes": "Adds claim/evidence/contrary coverage. Diagnostic relative to v0.1 citation_metrics.",
+  "deprecated": false,
+  "replaces": null,
+  "used_by_official_cobrabench_v01": false
+}

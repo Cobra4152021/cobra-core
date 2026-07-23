@@ -1,0 +1,16 @@
+template_id: exact-format
+version: "1.0.0"
+task_type: instruction_following
+system_prompt: >
+  You are an investigation research assistant. Follow output format instructions exactly.
+user_prompt_structure: |
+  Answer using exactly three bullets labeled FINDING, RISK, NEXT. No other sections.
+
+  {source_blocks_optional}
+evidence_delimiter_standard: legacy-src-key
+output_schema: FINDING/RISK/NEXT
+intended_consumer: cobrabench_v0.1_compatibility
+strictness_level: high
+compatibility_notes: Matches cb-027 style instruction.
+benchmark_use_restrictions: Frozen case text remains authoritative for v0.1.
+change_rationale: Baseline reference.

@@ -1,0 +1,14 @@
+{
+  "evaluator_name": "output_budget_telemetry",
+  "evaluator_version": "1.0.0",
+  "implementation_version": "early-stop-classifier-v1",
+  "rule_set_version": "budget-completion-v1",
+  "parser_version": "none",
+  "scoring_version": "diagnostic-class-v1",
+  "configuration_hash": "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789",
+  "creation_date": "2026-07-22",
+  "compatibility_notes": "Telemetry only; does not alter CobraBench scores.",
+  "deprecated": false,
+  "replaces": null,
+  "used_by_official_cobrabench_v01": false
+}

@@ -56,6 +56,8 @@ evaluations/results/**
 evaluations/analysis/**
 !evaluations/analysis/.gitkeep
 !evaluations/analysis/*.json
+evaluations/fixtures/**
+!evaluations/fixtures/**
 evaluations/baselines/**
 !evaluations/baselines/*.json
 evaluations/reports/**
@@ -72,9 +74,18 @@ evaluations/reports/**
 !evaluations/reports/UNSUPPORTED_CLAIM_HEURISTIC_AUDIT.md
 !evaluations/reports/HUMAN_REVIEW_CONSISTENCY_CHECK.md
 !evaluations/reports/PHASE2E_DIAGNOSTIC_RUN_STATUS.md
+!evaluations/reports/QWEN3_8B_OFFLINE_REEVALUATION_V2.md
 !docs/PHASE_2E_STATUS.md
 !docs/PHASE_2E_DIAGNOSTICS_RUNBOOK.md
 !benchmarks/diagnostics/
+!benchmarks/drafts/
+!benchmarks/drafts/**
+!evaluators/
+!evaluators/**
+!prompts/
+!prompts/**
+!runtime_policies/
+!runtime_policies/**
 !benchmarks/diagnostics/**
 !evaluations/protocols/**
 evaluations/environment/**

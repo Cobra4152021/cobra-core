@@ -1,0 +1,14 @@
+{
+  "evaluator_name": "contradictions",
+  "evaluator_version": "2.0.0",
+  "implementation_version": "submetrics-v2",
+  "rule_set_version": "ten-dimension-v2",
+  "parser_version": "none",
+  "scoring_version": "submetric-vector-v2",
+  "configuration_hash": "99887766554433221100ffeeddccbbaa99887766554433221100ffeeddccbbaa",
+  "creation_date": "2026-07-22",
+  "compatibility_notes": "Does not collapse detection and explanation. Explanation remains human-scored for official use.",
+  "deprecated": false,
+  "replaces": null,
+  "used_by_official_cobrabench_v01": false
+}

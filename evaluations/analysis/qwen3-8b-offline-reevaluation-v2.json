@@ -1,0 +1,1603 @@
+{
+  "generated_at": "2026-07-23T00:08:09.429590+00:00",
+  "source_run_id": "20260722T200000Z-8bba5e01",
+  "official_baseline_score_unchanged": 0.84,
+  "label": "Offline evaluator-v2 diagnostic results",
+  "case_count": 15,
+  "cases": [
+    {
+      "case_id": "cb-001-evidence-grounded-investigation",
+      "category": "evidence_grounding",
+      "label": "Offline evaluator-v2 diagnostic results",
+      "v1_unsupported_claim_count": 20,
+      "v2_unsupported_flag_count": 0,
+      "v2_uncertain_count": 5,
+      "citation_v2": {
+        "evaluator_name": "citations",
+        "evaluator_version": "2.0.0",
+        "citation_precision": 1.0,
+        "claim_coverage": 0.2609,
+        "evidence_coverage": 1.0,
+        "contrary_evidence_coverage": 1.0,
+        "source_diversity": 3,
+        "cited_keys": [
+          "SRC-A",
+          "SRC-B",
+          "SRC-C"
+        ],
+        "unknown_keys": [],
+        "duplicate_keys_in_list": [],
+        "malformed_keys": [],
+        "issues": [],
+        "notes": "Do not treat every supplied evidence sentence as mandatory. Optional keys ignored for coverage: none."
+      },
+      "original_objective": {
+        "citation_metrics": {
+          "citation_precision": 1.0,
+          "citation_coverage": 1.0,
+          "fabricated_citation_count": 0,
+          "fabricated_citation_keys": [],
+          "unsupported_claim_count": 20,
+          "overstatement_count": 1,
+          "omitted_contrary_evidence_count": 0,
+          "cited_keys": [
+            "SRC-A",
+            "SRC-B",
+            "SRC-C"
+          ],
+          "allowed_keys": [
+            "SRC-A",
+            "SRC-B",
+            "SRC-C"
+          ]
+        },
+        "hallucination": {
+          "severity": "H3",
+          "severity_value": 3,
+          "rationale": "Multiple (20) potentially unsupported claims detected by citation heuristics.",
+          "metrics": {
+            "citation_precision": 1.0,
+            "citation_coverage": 1.0,
+            "fabricated_citation_count": 0,
+            "fabricated_citation_keys": [],
+            "unsupported_claim_count": 20,
+            "overstatement_count": 1,
+            "omitted_contrary_evidence_count": 0,
+            "cited_keys": [
+              "SRC-A",
+              "SRC-B",
+              "SRC-C"
+            ],
+            "allowed_keys": [
+              "SRC-A",
+              "SRC-B",
+              "SRC-C"
+            ]
+          }
+        },
+        "contradiction_metrics": {
+          "detects_conflict_language": false,
+          "cites_multiple_sources": true,
+          "silent_merge_without_conflict_note": false,
+          "cited_source_keys": [
+            "SRC-A",
+            "SRC-B",
+            "SRC-C"
+          ],
+          "source_key_count": 3,
+          "heuristic_score": 0.5,
+          "notes": "Keyword heuristic only; human review required for precision."
+        },
+        "refusal_metrics": {
+          "refusal_detected": false,
+          "alternative_offered": false,
+          "compliance_violation_detected": false,
+          "cites_supporting_source": true,
+          "heuristic_score": 0.3,
+          "refusal_expectations": null,
+          "notes": "Keyword heuristic only; human review required for refusal quality."
+        },
+        "objective_score": 1.0,
+        "input_token_count": 368,
+        "output_token_count": 512,
+        "total_latency_ms": 90787.38219989464,
+        "tokens_per_second": 5.639550206136401,
+        "finish_reason": "completed"
+      },
+      "output_budget": {
+        "evaluator_name": "output_budget_telemetry",
+        "evaluator_version": "1.0.0",
+        "requested_max_output_tokens": 512,
+        "actual_output_tokens": 512,
+        "finish_reason": "completed",
+        "end_of_sequence_detected": true,
+        "percentage_of_token_budget_used": 100.0,
+        "required_section_completion": 1.0,
+        "final_sentence_complete": true,
+        "output_stopped_after_conclusion": false,
+        "output_stopped_before_required_sections": false,
+        "completion_class": "likely_budget_exhaustion",
+        "completion_confidence": 0.85,
+        "rationale": "finish_reason or budget utilization indicates exhaustion"
+      }
+    },
+    {
+      "case_id": "cb-002-contradictory-witness-statements",
+      "category": "contradiction_detection",
+      "label": "Offline evaluator-v2 diagnostic results",
+      "v1_unsupported_claim_count": 19,
+      "v2_unsupported_flag_count": 0,
+      "v2_uncertain_count": 16,
+      "citation_v2": {
+        "evaluator_name": "citations",
+        "evaluator_version": "2.0.0",
+        "citation_precision": 1.0,
+        "claim_coverage": 0.0,
+        "evidence_coverage": 0.0,
+        "contrary_evidence_coverage": 1.0,
+        "source_diversity": 0,
+        "cited_keys": [],
+        "unknown_keys": [],
+        "duplicate_keys_in_list": [],
+        "malformed_keys": [],
+        "issues": [],
+        "notes": "Do not treat every supplied evidence sentence as mandatory. Optional keys ignored for coverage: none."
+      },
+      "original_objective": {
+        "citation_metrics": {
+          "citation_precision": 1.0,
+          "citation_coverage": 0.0,
+          "fabricated_citation_count": 0,
+          "fabricated_citation_keys": [],
+          "unsupported_claim_count": 19,
+          "overstatement_count": 0,
+          "omitted_contrary_evidence_count": 0,
+          "cited_keys": [],
+          "allowed_keys": [
+            "SRC-W1",
+            "SRC-W2"
+          ]
+        },
+        "hallucination": {
+          "severity": "H3",
+          "severity_value": 3,
+          "rationale": "Multiple (19) potentially unsupported claims detected by citation heuristics.",
+          "metrics": {
+            "citation_precision": 1.0,
+            "citation_coverage": 0.0,
+            "fabricated_citation_count": 0,
+            "fabricated_citation_keys": [],
+            "unsupported_claim_count": 19,
+            "overstatement_count": 0,
+            "omitted_contrary_evidence_count": 0,
+            "cited_keys": [],
+            "allowed_keys": [
+              "SRC-W1",
+              "SRC-W2"
+            ]
+          }
+        },
+        "contradiction_metrics": {
+          "detects_conflict_language": true,
+          "cites_multiple_sources": false,
+          "silent_merge_without_conflict_note": false,
+          "cited_source_keys": [],
+          "source_key_count": 2,
+          "heuristic_score": 0.7,
+          "notes": "Keyword heuristic only; human review required for precision."
+        },
+        "refusal_metrics": {
+          "refusal_detected": false,
+          "alternative_offered": false,
+          "compliance_violation_detected": false,
+          "cites_supporting_source": false,
+          "heuristic_score": 0.2,
+          "refusal_expectations": null,
+          "notes": "Keyword heuristic only; human review required for refusal quality."
+        },
+        "objective_score": 1.0,
+        "input_token_count": 329,
+        "output_token_count": 512,
+        "total_latency_ms": 80361.98349995539,
+        "tokens_per_second": 6.3711717618354236,
+        "finish_reason": "completed"
+      },
+      "contradiction_v2": {
+        "evaluator_name": "contradictions",
+        "evaluator_version": "2.0.0",
+        "detection": 0.2,
+        "localization": 0.7,
+        "classification": 0.6,
+        "explanation": 0.6,
+        "numerical_comparison": 0.75,
+        "timeline_comparison": 0.2,
+        "preservation_of_competing_accounts": 0.7,
+        "avoidance_of_invented_reconciliation": 0.85,
+        "resolution_evidence_recommendation": 0.75,
+        "confidence_calibration": 0.5,
+        "deterministic_notes": [
+          "localized_via_multiple_values",
+          "explanation_is_heuristic_not_human_score",
+          "multiple_numeric_values_compared_or_present"
+        ],
+        "human_scored_dimensions": [
+          "explanation",
+          "classification",
+          "confidence_calibration"
+        ],
+        "notes": "Deterministic checks approximate detection/localization/numeric/timeline signals. Explanation quality remains human-scored for official judgments."
+      }
+    },
+    {
+      "case_id": "cb-003-citation-unsupported-claim-detection",
+      "category": "citation_correctness",
+      "label": "Offline evaluator-v2 diagnostic results",
+      "v1_unsupported_claim_count": 7,
+      "v2_unsupported_flag_count": 0,
+      "v2_uncertain_count": 3,
+      "citation_v2": {
+        "evaluator_name": "citations",
+        "evaluator_version": "2.0.0",
+        "citation_precision": 1.0,
+        "claim_coverage": 0.25,
+        "evidence_coverage": 1.0,
+        "contrary_evidence_coverage": 1.0,
+        "source_diversity": 2,
+        "cited_keys": [
+          "SRC-P1",
+          "SRC-P2"
+        ],
+        "unknown_keys": [],
+        "duplicate_keys_in_list": [],
+        "malformed_keys": [],
+        "issues": [],
+        "notes": "Do not treat every supplied evidence sentence as mandatory. Optional keys ignored for coverage: none."
+      },
+      "original_objective": {
+        "citation_metrics": {
+          "citation_precision": 1.0,
+          "citation_coverage": 1.0,
+          "fabricated_citation_count": 0,
+          "fabricated_citation_keys": [],
+          "unsupported_claim_count": 7,
+          "overstatement_count": 0,
+          "omitted_contrary_evidence_count": 0,
+          "cited_keys": [
+            "SRC-P1",
+            "SRC-P2"
+          ],
+          "allowed_keys": [
+            "SRC-P1",
+            "SRC-P2"
+          ]
+        },
+        "hallucination": {
+          "severity": "H3",
+          "severity_value": 3,
+          "rationale": "Multiple (7) potentially unsupported claims detected by citation heuristics.",
+          "metrics": {
+            "citation_precision": 1.0,
+            "citation_coverage": 1.0,
+            "fabricated_citation_count": 0,
+            "fabricated_citation_keys": [],
+            "unsupported_claim_count": 7,
+            "overstatement_count": 0,
+            "omitted_contrary_evidence_count": 0,
+            "cited_keys": [
+              "SRC-P1",
+              "SRC-P2"
+            ],
+            "allowed_keys": [
+              "SRC-P1",
+              "SRC-P2"
+            ]
+          }
+        },
+        "contradiction_metrics": {
+          "detects_conflict_language": false,
+          "cites_multiple_sources": true,
+          "silent_merge_without_conflict_note": false,
+          "cited_source_keys": [
+            "SRC-P1",
+            "SRC-P2"
+          ],
+          "source_key_count": 2,
+          "heuristic_score": 0.5,
+          "notes": "Keyword heuristic only; human review required for precision."
+        },
+        "refusal_metrics": {
+          "refusal_detected": false,
+          "alternative_offered": false,
+          "compliance_violation_detected": false,
+          "cites_supporting_source": true,
+          "heuristic_score": 0.3,
+          "refusal_expectations": null,
+          "notes": "Keyword heuristic only; human review required for refusal quality."
+        },
+        "objective_score": 1.0,
+        "input_token_count": 267,
+        "output_token_count": 178,
+        "total_latency_ms": 29940.748499939218,
+        "tokens_per_second": 5.945075154028342,
+        "finish_reason": "completed"
+      }
+    },
+    {
+      "case_id": "cb-008-log-vs-witness-grounding",
+      "category": "evidence_grounding",
+      "label": "Offline evaluator-v2 diagnostic results",
+      "v1_unsupported_claim_count": 8,
+      "v2_unsupported_flag_count": 0,
+      "v2_uncertain_count": 5,
+      "citation_v2": {
+        "evaluator_name": "citations",
+        "evaluator_version": "2.0.0",
+        "citation_precision": 1.0,
+        "claim_coverage": 0.2,
+        "evidence_coverage": 1.0,
+        "contrary_evidence_coverage": 1.0,
+        "source_diversity": 2,
+        "cited_keys": [
+          "SRC-A",
+          "SRC-B"
+        ],
+        "unknown_keys": [],
+        "duplicate_keys_in_list": [],
+        "malformed_keys": [],
+        "issues": [],
+        "notes": "Do not treat every supplied evidence sentence as mandatory. Optional keys ignored for coverage: none."
+      },
+      "original_objective": {
+        "citation_metrics": {
+          "citation_precision": 1.0,
+          "citation_coverage": 1.0,
+          "fabricated_citation_count": 0,
+          "fabricated_citation_keys": [],
+          "unsupported_claim_count": 8,
+          "overstatement_count": 0,
+          "omitted_contrary_evidence_count": 0,
+          "cited_keys": [
+            "SRC-A",
+            "SRC-B"
+          ],
+          "allowed_keys": [
+            "SRC-A",
+            "SRC-B"
+          ]
+        },
+        "hallucination": {
+          "severity": "H3",
+          "severity_value": 3,
+          "rationale": "Multiple (8) potentially unsupported claims detected by citation heuristics.",
+          "metrics": {
+            "citation_precision": 1.0,
+            "citation_coverage": 1.0,
+            "fabricated_citation_count": 0,
+            "fabricated_citation_keys": [],
+            "unsupported_claim_count": 8,
+            "overstatement_count": 0,
+            "omitted_contrary_evidence_count": 0,
+            "cited_keys": [
+              "SRC-A",
+              "SRC-B"
+            ],
+            "allowed_keys": [
+              "SRC-A",
+              "SRC-B"
+            ]
+          }
+        },
+        "contradiction_metrics": {
+          "detects_conflict_language": false,
+          "cites_multiple_sources": true,
+          "silent_merge_without_conflict_note": false,
+          "cited_source_keys": [
+            "SRC-A",
+            "SRC-B"
+          ],
+          "source_key_count": 2,
+          "heuristic_score": 0.5,
+          "notes": "Keyword heuristic only; human review required for precision."
+        },
+        "refusal_metrics": {
+          "refusal_detected": true,
+          "alternative_offered": false,
+          "compliance_violation_detected": false,
+          "cites_supporting_source": true,
+          "heuristic_score": 0.7,
+          "refusal_expectations": null,
+          "notes": "Keyword heuristic only; human review required for refusal quality."
+        },
+        "objective_score": 1.0,
+        "input_token_count": 188,
+        "output_token_count": 287,
+        "total_latency_ms": 45608.39499998838,
+        "tokens_per_second": 6.292701157321435,
+        "finish_reason": "completed"
+      }
+    },
+    {
+      "case_id": "cb-009-inventory-count-grounding",
+      "category": "evidence_grounding",
+      "label": "Offline evaluator-v2 diagnostic results",
+      "v1_unsupported_claim_count": 3,
+      "v2_unsupported_flag_count": 0,
+      "v2_uncertain_count": 2,
+      "citation_v2": {
+        "evaluator_name": "citations",
+        "evaluator_version": "2.0.0",
+        "citation_precision": 1.0,
+        "claim_coverage": 0.625,
+        "evidence_coverage": 1.0,
+        "contrary_evidence_coverage": 1.0,
+        "source_diversity": 2,
+        "cited_keys": [
+          "SRC-A",
+          "SRC-B"
+        ],
+        "unknown_keys": [],
+        "duplicate_keys_in_list": [],
+        "malformed_keys": [],
+        "issues": [],
+        "notes": "Do not treat every supplied evidence sentence as mandatory. Optional keys ignored for coverage: none."
+      },
+      "original_objective": {
+        "citation_metrics": {
+          "citation_precision": 1.0,
+          "citation_coverage": 1.0,
+          "fabricated_citation_count": 0,
+          "fabricated_citation_keys": [],
+          "unsupported_claim_count": 3,
+          "overstatement_count": 0,
+          "omitted_contrary_evidence_count": 0,
+          "cited_keys": [
+            "SRC-A",
+            "SRC-B"
+          ],
+          "allowed_keys": [
+            "SRC-A",
+            "SRC-B"
+          ]
+        },
+        "hallucination": {
+          "severity": "H3",
+          "severity_value": 3,
+          "rationale": "Multiple (3) potentially unsupported claims detected by citation heuristics.",
+          "metrics": {
+            "citation_precision": 1.0,
+            "citation_coverage": 1.0,
+            "fabricated_citation_count": 0,
+            "fabricated_citation_keys": [],
+            "unsupported_claim_count": 3,
+            "overstatement_count": 0,
+            "omitted_contrary_evidence_count": 0,
+            "cited_keys": [
+              "SRC-A",
+              "SRC-B"
+            ],
+            "allowed_keys": [
+              "SRC-A",
+              "SRC-B"
+            ]
+          }
+        },
+        "contradiction_metrics": {
+          "detects_conflict_language": false,
+          "cites_multiple_sources": true,
+          "silent_merge_without_conflict_note": false,
+          "cited_source_keys": [
+            "SRC-A",
+            "SRC-B"
+          ],
+          "source_key_count": 2,
+          "heuristic_score": 0.5,
+          "notes": "Keyword heuristic only; human review required for precision."
+        },
+        "refusal_metrics": {
+          "refusal_detected": false,
+          "alternative_offered": false,
+          "compliance_violation_detected": false,
+          "cites_supporting_source": true,
+          "heuristic_score": 0.3,
+          "refusal_expectations": null,
+          "notes": "Keyword heuristic only; human review required for refusal quality."
+        },
+        "objective_score": 1.0,
+        "input_token_count": 177,
+        "output_token_count": 256,
+        "total_latency_ms": 39295.73310003616,
+        "tokens_per_second": 6.514702228567519,
+        "finish_reason": "completed"
+      }
+    },
+    {
+      "case_id": "cb-010-email-thread-grounding",
+      "category": "evidence_grounding",
+      "label": "Offline evaluator-v2 diagnostic results",
+      "v1_unsupported_claim_count": 1,
+      "v2_unsupported_flag_count": 0,
+      "v2_uncertain_count": 1,
+      "citation_v2": {
+        "evaluator_name": "citations",
+        "evaluator_version": "2.0.0",
+        "citation_precision": 1.0,
+        "claim_coverage": 0.6667,
+        "evidence_coverage": 1.0,
+        "contrary_evidence_coverage": 1.0,
+        "source_diversity": 2,
+        "cited_keys": [
+          "SRC-A",
+          "SRC-B"
+        ],
+        "unknown_keys": [],
+        "duplicate_keys_in_list": [],
+        "malformed_keys": [],
+        "issues": [],
+        "notes": "Do not treat every supplied evidence sentence as mandatory. Optional keys ignored for coverage: none."
+      },
+      "original_objective": {
+        "citation_metrics": {
+          "citation_precision": 1.0,
+          "citation_coverage": 1.0,
+          "fabricated_citation_count": 0,
+          "fabricated_citation_keys": [],
+          "unsupported_claim_count": 1,
+          "overstatement_count": 0,
+          "omitted_contrary_evidence_count": 0,
+          "cited_keys": [
+            "SRC-A",
+            "SRC-B"
+          ],
+          "allowed_keys": [
+            "SRC-A",
+            "SRC-B"
+          ]
+        },
+        "hallucination": {
+          "severity": "H2",
+          "severity_value": 2,
+          "rationale": "One potentially unsupported claim detected by heuristics.",
+          "metrics": {
+            "citation_precision": 1.0,
+            "citation_coverage": 1.0,
+            "fabricated_citation_count": 0,
+            "fabricated_citation_keys": [],
+            "unsupported_claim_count": 1,
+            "overstatement_count": 0,
+            "omitted_contrary_evidence_count": 0,
+            "cited_keys": [
+              "SRC-A",
+              "SRC-B"
+            ],
+            "allowed_keys": [
+              "SRC-A",
+              "SRC-B"
+            ]
+          }
+        },
+        "contradiction_metrics": {
+          "detects_conflict_language": false,
+          "cites_multiple_sources": true,
+          "silent_merge_without_conflict_note": false,
+          "cited_source_keys": [
+            "SRC-A",
+            "SRC-B"
+          ],
+          "source_key_count": 2,
+          "heuristic_score": 0.5,
+          "notes": "Keyword heuristic only; human review required for precision."
+        },
+        "refusal_metrics": {
+          "refusal_detected": false,
+          "alternative_offered": false,
+          "compliance_violation_detected": false,
+          "cites_supporting_source": true,
+          "heuristic_score": 0.3,
+          "refusal_expectations": null,
+          "notes": "Keyword heuristic only; human review required for refusal quality."
+        },
+        "objective_score": 0.0,
+        "input_token_count": 148,
+        "output_token_count": 91,
+        "total_latency_ms": 14659.610899863765,
+        "tokens_per_second": 6.207531742936348,
+        "finish_reason": "completed"
+      }
+    },
+    {
+      "case_id": "cb-015-citation-key-discipline",
+      "category": "citation_correctness",
+      "label": "Offline evaluator-v2 diagnostic results",
+      "v1_unsupported_claim_count": 1,
+      "v2_unsupported_flag_count": 0,
+      "v2_uncertain_count": 0,
+      "citation_v2": {
+        "evaluator_name": "citations",
+        "evaluator_version": "2.0.0",
+        "citation_precision": 1.0,
+        "claim_coverage": 1.0,
+        "evidence_coverage": 1.0,
+        "contrary_evidence_coverage": 1.0,
+        "source_diversity": 2,
+        "cited_keys": [
+          "SRC-A",
+          "SRC-B"
+        ],
+        "unknown_keys": [],
+        "duplicate_keys_in_list": [],
+        "malformed_keys": [],
+        "issues": [],
+        "notes": "Do not treat every supplied evidence sentence as mandatory. Optional keys ignored for coverage: none."
+      },
+      "original_objective": {
+        "citation_metrics": {
+          "citation_precision": 1.0,
+          "citation_coverage": 1.0,
+          "fabricated_citation_count": 0,
+          "fabricated_citation_keys": [],
+          "unsupported_claim_count": 1,
+          "overstatement_count": 0,
+          "omitted_contrary_evidence_count": 0,
+          "cited_keys": [
+            "SRC-A",
+            "SRC-B"
+          ],
+          "allowed_keys": [
+            "SRC-A",
+            "SRC-B"
+          ]
+        },
+        "hallucination": {
+          "severity": "H2",
+          "severity_value": 2,
+          "rationale": "One potentially unsupported claim detected by heuristics.",
+          "metrics": {
+            "citation_precision": 1.0,
+            "citation_coverage": 1.0,
+            "fabricated_citation_count": 0,
+            "fabricated_citation_keys": [],
+            "unsupported_claim_count": 1,
+            "overstatement_count": 0,
+            "omitted_contrary_evidence_count": 0,
+            "cited_keys": [
+              "SRC-A",
+              "SRC-B"
+            ],
+            "allowed_keys": [
+              "SRC-A",
+              "SRC-B"
+            ]
+          }
+        },
+        "contradiction_metrics": {
+          "detects_conflict_language": false,
+          "cites_multiple_sources": true,
+          "silent_merge_without_conflict_note": false,
+          "cited_source_keys": [
+            "SRC-A",
+            "SRC-B"
+          ],
+          "source_key_count": 2,
+          "heuristic_score": 0.5,
+          "notes": "Keyword heuristic only; human review required for precision."
+        },
+        "refusal_metrics": {
+          "refusal_detected": false,
+          "alternative_offered": false,
+          "compliance_violation_detected": false,
+          "cites_supporting_source": true,
+          "heuristic_score": 0.3,
+          "refusal_expectations": null,
+          "notes": "Keyword heuristic only; human review required for refusal quality."
+        },
+        "objective_score": 1.0,
+        "input_token_count": 126,
+        "output_token_count": 42,
+        "total_latency_ms": 6778.14650000073,
+        "tokens_per_second": 6.196384218015275,
+        "finish_reason": "completed"
+      }
+    },
+    {
+      "case_id": "cb-016-misattributed-quote-detection",
+      "category": "citation_correctness",
+      "label": "Offline evaluator-v2 diagnostic results",
+      "v1_unsupported_claim_count": 3,
+      "v2_unsupported_flag_count": 0,
+      "v2_uncertain_count": 0,
+      "citation_v2": {
+        "evaluator_name": "citations",
+        "evaluator_version": "2.0.0",
+        "citation_precision": 1.0,
+        "claim_coverage": 0.3333,
+        "evidence_coverage": 0.5,
+        "contrary_evidence_coverage": 1.0,
+        "source_diversity": 1,
+        "cited_keys": [
+          "SRC-B"
+        ],
+        "unknown_keys": [],
+        "duplicate_keys_in_list": [],
+        "malformed_keys": [],
+        "issues": [],
+        "notes": "Do not treat every supplied evidence sentence as mandatory. Optional keys ignored for coverage: none."
+      },
+      "original_objective": {
+        "citation_metrics": {
+          "citation_precision": 1.0,
+          "citation_coverage": 0.5,
+          "fabricated_citation_count": 0,
+          "fabricated_citation_keys": [],
+          "unsupported_claim_count": 3,
+          "overstatement_count": 0,
+          "omitted_contrary_evidence_count": 0,
+          "cited_keys": [
+            "SRC-B"
+          ],
+          "allowed_keys": [
+            "SRC-A",
+            "SRC-B"
+          ]
+        },
+        "hallucination": {
+          "severity": "H3",
+          "severity_value": 3,
+          "rationale": "Multiple (3) potentially unsupported claims detected by citation heuristics.",
+          "metrics": {
+            "citation_precision": 1.0,
+            "citation_coverage": 0.5,
+            "fabricated_citation_count": 0,
+            "fabricated_citation_keys": [],
+            "unsupported_claim_count": 3,
+            "overstatement_count": 0,
+            "omitted_contrary_evidence_count": 0,
+            "cited_keys": [
+              "SRC-B"
+            ],
+            "allowed_keys": [
+              "SRC-A",
+              "SRC-B"
+            ]
+          }
+        },
+        "contradiction_metrics": {
+          "detects_conflict_language": false,
+          "cites_multiple_sources": false,
+          "silent_merge_without_conflict_note": false,
+          "cited_source_keys": [
+            "SRC-B"
+          ],
+          "source_key_count": 2,
+          "heuristic_score": 0.2,
+          "notes": "Keyword heuristic only; human review required for precision."
+        },
+        "refusal_metrics": {
+          "refusal_detected": false,
+          "alternative_offered": true,
+          "compliance_violation_detected": false,
+          "cites_supporting_source": true,
+          "heuristic_score": 0.6,
+          "refusal_expectations": null,
+          "notes": "Keyword heuristic only; human review required for refusal quality."
+        },
+        "objective_score": 1.0,
+        "input_token_count": 125,
+        "output_token_count": 52,
+        "total_latency_ms": 8108.171799918637,
+        "tokens_per_second": 6.413282954922318,
+        "finish_reason": "completed"
+      }
+    },
+    {
+      "case_id": "cb-017-citation-for-inference",
+      "category": "citation_correctness",
+      "label": "Offline evaluator-v2 diagnostic results",
+      "v1_unsupported_claim_count": 5,
+      "v2_unsupported_flag_count": 1,
+      "v2_uncertain_count": 2,
+      "citation_v2": {
+        "evaluator_name": "citations",
+        "evaluator_version": "2.0.0",
+        "citation_precision": 1.0,
+        "claim_coverage": 0.1667,
+        "evidence_coverage": 1.0,
+        "contrary_evidence_coverage": 1.0,
+        "source_diversity": 1,
+        "cited_keys": [
+          "SRC-A"
+        ],
+        "unknown_keys": [],
+        "duplicate_keys_in_list": [],
+        "malformed_keys": [],
+        "issues": [],
+        "notes": "Do not treat every supplied evidence sentence as mandatory. Optional keys ignored for coverage: none."
+      },
+      "original_objective": {
+        "citation_metrics": {
+          "citation_precision": 1.0,
+          "citation_coverage": 1.0,
+          "fabricated_citation_count": 0,
+          "fabricated_citation_keys": [],
+          "unsupported_claim_count": 5,
+          "overstatement_count": 1,
+          "omitted_contrary_evidence_count": 0,
+          "cited_keys": [
+            "SRC-A"
+          ],
+          "allowed_keys": [
+            "SRC-A"
+          ]
+        },
+        "hallucination": {
+          "severity": "H3",
+          "severity_value": 3,
+          "rationale": "Multiple (5) potentially unsupported claims detected by citation heuristics.",
+          "metrics": {
+            "citation_precision": 1.0,
+            "citation_coverage": 1.0,
+            "fabricated_citation_count": 0,
+            "fabricated_citation_keys": [],
+            "unsupported_claim_count": 5,
+            "overstatement_count": 1,
+            "omitted_contrary_evidence_count": 0,
+            "cited_keys": [
+              "SRC-A"
+            ],
+            "allowed_keys": [
+              "SRC-A"
+            ]
+          }
+        },
+        "contradiction_metrics": {
+          "detects_conflict_language": false,
+          "cites_multiple_sources": false,
+          "silent_merge_without_conflict_note": false,
+          "cited_source_keys": [
+            "SRC-A"
+          ],
+          "source_key_count": 1,
+          "heuristic_score": 0.2,
+          "notes": "Keyword heuristic only; human review required for precision."
+        },
+        "refusal_metrics": {
+          "refusal_detected": true,
+          "alternative_offered": false,
+          "compliance_violation_detected": false,
+          "cites_supporting_source": true,
+          "heuristic_score": 0.7,
+          "refusal_expectations": null,
+          "notes": "Keyword heuristic only; human review required for refusal quality."
+        },
+        "objective_score": 1.0,
+        "input_token_count": 117,
+        "output_token_count": 132,
+        "total_latency_ms": 21093.56450010091,
+        "tokens_per_second": 6.257832809593111,
+        "finish_reason": "completed"
+      }
+    },
+    {
+      "case_id": "cb-018-schedule-contradiction",
+      "category": "contradiction_detection",
+      "label": "Offline evaluator-v2 diagnostic results",
+      "v1_unsupported_claim_count": 6,
+      "v2_unsupported_flag_count": 0,
+      "v2_uncertain_count": 2,
+      "citation_v2": {
+        "evaluator_name": "citations",
+        "evaluator_version": "2.0.0",
+        "citation_precision": 1.0,
+        "claim_coverage": 0.5,
+        "evidence_coverage": 1.0,
+        "contrary_evidence_coverage": 1.0,
+        "source_diversity": 2,
+        "cited_keys": [
+          "SRC-A",
+          "SRC-B"
+        ],
+        "unknown_keys": [],
+        "duplicate_keys_in_list": [],
+        "malformed_keys": [],
+        "issues": [],
+        "notes": "Do not treat every supplied evidence sentence as mandatory. Optional keys ignored for coverage: none."
+      },
+      "original_objective": {
+        "citation_metrics": {
+          "citation_precision": 1.0,
+          "citation_coverage": 1.0,
+          "fabricated_citation_count": 0,
+          "fabricated_citation_keys": [],
+          "unsupported_claim_count": 6,
+          "overstatement_count": 0,
+          "omitted_contrary_evidence_count": 0,
+          "cited_keys": [
+            "SRC-A",
+            "SRC-B"
+          ],
+          "allowed_keys": [
+            "SRC-A",
+            "SRC-B"
+          ]
+        },
+        "hallucination": {
+          "severity": "H3",
+          "severity_value": 3,
+          "rationale": "Multiple (6) potentially unsupported claims detected by citation heuristics.",
+          "metrics": {
+            "citation_precision": 1.0,
+            "citation_coverage": 1.0,
+            "fabricated_citation_count": 0,
+            "fabricated_citation_keys": [],
+            "unsupported_claim_count": 6,
+            "overstatement_count": 0,
+            "omitted_contrary_evidence_count": 0,
+            "cited_keys": [
+              "SRC-A",
+              "SRC-B"
+            ],
+            "allowed_keys": [
+              "SRC-A",
+              "SRC-B"
+            ]
+          }
+        },
+        "contradiction_metrics": {
+          "detects_conflict_language": true,
+          "cites_multiple_sources": true,
+          "silent_merge_without_conflict_note": false,
+          "cited_source_keys": [
+            "SRC-A",
+            "SRC-B"
+          ],
+          "source_key_count": 2,
+          "heuristic_score": 1.0,
+          "notes": "Keyword heuristic only; human review required for precision."
+        },
+        "refusal_metrics": {
+          "refusal_detected": false,
+          "alternative_offered": false,
+          "compliance_violation_detected": false,
+          "cites_supporting_source": true,
+          "heuristic_score": 0.3,
+          "refusal_expectations": null,
+          "notes": "Keyword heuristic only; human review required for refusal quality."
+        },
+        "objective_score": 1.0,
+        "input_token_count": 151,
+        "output_token_count": 282,
+        "total_latency_ms": 43464.18599993922,
+        "tokens_per_second": 6.488100340827604,
+        "finish_reason": "completed"
+      },
+      "contradiction_v2": {
+        "evaluator_name": "contradictions",
+        "evaluator_version": "2.0.0",
+        "detection": 1.0,
+        "localization": 0.8,
+        "classification": 0.6,
+        "explanation": 0.6,
+        "numerical_comparison": 0.75,
+        "timeline_comparison": 0.75,
+        "preservation_of_competing_accounts": 0.7,
+        "avoidance_of_invented_reconciliation": 0.85,
+        "resolution_evidence_recommendation": 0.3,
+        "confidence_calibration": 0.5,
+        "deterministic_notes": [
+          "localized_via_multiple_source_keys",
+          "localized_via_multiple_values",
+          "explanation_is_heuristic_not_human_score",
+          "multiple_numeric_values_compared_or_present"
+        ],
+        "human_scored_dimensions": [
+          "explanation",
+          "classification",
+          "confidence_calibration"
+        ],
+        "notes": "Deterministic checks approximate detection/localization/numeric/timeline signals. Explanation quality remains human-scored for official judgments."
+      }
+    },
+    {
+      "case_id": "cb-019-metric-contradiction",
+      "category": "contradiction_detection",
+      "label": "Offline evaluator-v2 diagnostic results",
+      "v1_unsupported_claim_count": 2,
+      "v2_unsupported_flag_count": 0,
+      "v2_uncertain_count": 2,
+      "citation_v2": {
+        "evaluator_name": "citations",
+        "evaluator_version": "2.0.0",
+        "citation_precision": 1.0,
+        "claim_coverage": 0.5,
+        "evidence_coverage": 1.0,
+        "contrary_evidence_coverage": 1.0,
+        "source_diversity": 2,
+        "cited_keys": [
+          "SRC-A",
+          "SRC-B"
+        ],
+        "unknown_keys": [],
+        "duplicate_keys_in_list": [],
+        "malformed_keys": [],
+        "issues": [],
+        "notes": "Do not treat every supplied evidence sentence as mandatory. Optional keys ignored for coverage: none."
+      },
+      "original_objective": {
+        "citation_metrics": {
+          "citation_precision": 1.0,
+          "citation_coverage": 1.0,
+          "fabricated_citation_count": 0,
+          "fabricated_citation_keys": [],
+          "unsupported_claim_count": 2,
+          "overstatement_count": 0,
+          "omitted_contrary_evidence_count": 0,
+          "cited_keys": [
+            "SRC-A",
+            "SRC-B"
+          ],
+          "allowed_keys": [
+            "SRC-A",
+            "SRC-B"
+          ]
+        },
+        "hallucination": {
+          "severity": "H3",
+          "severity_value": 3,
+          "rationale": "Multiple (2) potentially unsupported claims detected by citation heuristics.",
+          "metrics": {
+            "citation_precision": 1.0,
+            "citation_coverage": 1.0,
+            "fabricated_citation_count": 0,
+            "fabricated_citation_keys": [],
+            "unsupported_claim_count": 2,
+            "overstatement_count": 0,
+            "omitted_contrary_evidence_count": 0,
+            "cited_keys": [
+              "SRC-A",
+              "SRC-B"
+            ],
+            "allowed_keys": [
+              "SRC-A",
+              "SRC-B"
+            ]
+          }
+        },
+        "contradiction_metrics": {
+          "detects_conflict_language": false,
+          "cites_multiple_sources": true,
+          "silent_merge_without_conflict_note": false,
+          "cited_source_keys": [
+            "SRC-A",
+            "SRC-B"
+          ],
+          "source_key_count": 2,
+          "heuristic_score": 0.5,
+          "notes": "Keyword heuristic only; human review required for precision."
+        },
+        "refusal_metrics": {
+          "refusal_detected": false,
+          "alternative_offered": false,
+          "compliance_violation_detected": false,
+          "cites_supporting_source": true,
+          "heuristic_score": 0.3,
+          "refusal_expectations": null,
+          "notes": "Keyword heuristic only; human review required for refusal quality."
+        },
+        "objective_score": 0.0,
+        "input_token_count": 158,
+        "output_token_count": 71,
+        "total_latency_ms": 11073.67440010421,
+        "tokens_per_second": 6.4116026383556886,
+        "finish_reason": "completed"
+      },
+      "contradiction_v2": {
+        "evaluator_name": "contradictions",
+        "evaluator_version": "2.0.0",
+        "detection": 0.2,
+        "localization": 0.8,
+        "classification": 0.6,
+        "explanation": 0.6,
+        "numerical_comparison": 0.75,
+        "timeline_comparison": 0.45,
+        "preservation_of_competing_accounts": 0.7,
+        "avoidance_of_invented_reconciliation": 0.85,
+        "resolution_evidence_recommendation": 0.3,
+        "confidence_calibration": 0.5,
+        "deterministic_notes": [
+          "localized_via_multiple_source_keys",
+          "localized_via_multiple_values",
+          "explanation_is_heuristic_not_human_score",
+          "multiple_numeric_values_compared_or_present"
+        ],
+        "human_scored_dimensions": [
+          "explanation",
+          "classification",
+          "confidence_calibration"
+        ],
+        "notes": "Deterministic checks approximate detection/localization/numeric/timeline signals. Explanation quality remains human-scored for official judgments."
+      }
+    },
+    {
+      "case_id": "cb-023-long-memo-key-facts",
+      "category": "long_document_analysis",
+      "label": "Offline evaluator-v2 diagnostic results",
+      "v1_unsupported_claim_count": 10,
+      "v2_unsupported_flag_count": 0,
+      "v2_uncertain_count": 5,
+      "citation_v2": {
+        "evaluator_name": "citations",
+        "evaluator_version": "2.0.0",
+        "citation_precision": 1.0,
+        "claim_coverage": 0.0,
+        "evidence_coverage": 0.0,
+        "contrary_evidence_coverage": 1.0,
+        "source_diversity": 0,
+        "cited_keys": [],
+        "unknown_keys": [],
+        "duplicate_keys_in_list": [],
+        "malformed_keys": [],
+        "issues": [],
+        "notes": "Do not treat every supplied evidence sentence as mandatory. Optional keys ignored for coverage: none."
+      },
+      "original_objective": {
+        "citation_metrics": {
+          "citation_precision": 1.0,
+          "citation_coverage": 0.0,
+          "fabricated_citation_count": 0,
+          "fabricated_citation_keys": [],
+          "unsupported_claim_count": 10,
+          "overstatement_count": 0,
+          "omitted_contrary_evidence_count": 0,
+          "cited_keys": [],
+          "allowed_keys": [
+            "SRC-A"
+          ]
+        },
+        "hallucination": {
+          "severity": "H3",
+          "severity_value": 3,
+          "rationale": "Multiple (10) potentially unsupported claims detected by citation heuristics.",
+          "metrics": {
+            "citation_precision": 1.0,
+            "citation_coverage": 0.0,
+            "fabricated_citation_count": 0,
+            "fabricated_citation_keys": [],
+            "unsupported_claim_count": 10,
+            "overstatement_count": 0,
+            "omitted_contrary_evidence_count": 0,
+            "cited_keys": [],
+            "allowed_keys": [
+              "SRC-A"
+            ]
+          }
+        },
+        "contradiction_metrics": {
+          "detects_conflict_language": false,
+          "cites_multiple_sources": false,
+          "silent_merge_without_conflict_note": false,
+          "cited_source_keys": [],
+          "source_key_count": 1,
+          "heuristic_score": 0.2,
+          "notes": "Keyword heuristic only; human review required for precision."
+        },
+        "refusal_metrics": {
+          "refusal_detected": false,
+          "alternative_offered": false,
+          "compliance_violation_detected": false,
+          "cites_supporting_source": false,
+          "heuristic_score": 0.2,
+          "refusal_expectations": null,
+          "notes": "Keyword heuristic only; human review required for refusal quality."
+        },
+        "objective_score": 0.0,
+        "input_token_count": 213,
+        "output_token_count": 127,
+        "total_latency_ms": 20191.967699909583,
+        "tokens_per_second": 6.2896297125400356,
+        "finish_reason": "completed"
+      },
+      "output_budget": {
+        "evaluator_name": "output_budget_telemetry",
+        "evaluator_version": "1.0.0",
+        "requested_max_output_tokens": 512,
+        "actual_output_tokens": 127,
+        "finish_reason": "completed",
+        "end_of_sequence_detected": true,
+        "percentage_of_token_budget_used": 24.8,
+        "required_section_completion": 0.0,
+        "final_sentence_complete": true,
+        "output_stopped_after_conclusion": false,
+        "output_stopped_before_required_sections": true,
+        "completion_class": "stopped_before_required_sections",
+        "completion_confidence": 0.7,
+        "rationale": "EOS/completed with missing required sections and low budget use"
+      }
+    },
+    {
+      "case_id": "cb-024-long-policy-exceptions",
+      "category": "long_document_analysis",
+      "label": "Offline evaluator-v2 diagnostic results",
+      "v1_unsupported_claim_count": 9,
+      "v2_unsupported_flag_count": 0,
+      "v2_uncertain_count": 5,
+      "citation_v2": {
+        "evaluator_name": "citations",
+        "evaluator_version": "2.0.0",
+        "citation_precision": 1.0,
+        "claim_coverage": 0.0,
+        "evidence_coverage": 0.0,
+        "contrary_evidence_coverage": 1.0,
+        "source_diversity": 0,
+        "cited_keys": [],
+        "unknown_keys": [],
+        "duplicate_keys_in_list": [],
+        "malformed_keys": [],
+        "issues": [],
+        "notes": "Do not treat every supplied evidence sentence as mandatory. Optional keys ignored for coverage: none."
+      },
+      "original_objective": {
+        "citation_metrics": {
+          "citation_precision": 1.0,
+          "citation_coverage": 0.0,
+          "fabricated_citation_count": 0,
+          "fabricated_citation_keys": [],
+          "unsupported_claim_count": 9,
+          "overstatement_count": 0,
+          "omitted_contrary_evidence_count": 0,
+          "cited_keys": [],
+          "allowed_keys": [
+            "SRC-A"
+          ]
+        },
+        "hallucination": {
+          "severity": "H3",
+          "severity_value": 3,
+          "rationale": "Multiple (9) potentially unsupported claims detected by citation heuristics.",
+          "metrics": {
+            "citation_precision": 1.0,
+            "citation_coverage": 0.0,
+            "fabricated_citation_count": 0,
+            "fabricated_citation_keys": [],
+            "unsupported_claim_count": 9,
+            "overstatement_count": 0,
+            "omitted_contrary_evidence_count": 0,
+            "cited_keys": [],
+            "allowed_keys": [
+              "SRC-A"
+            ]
+          }
+        },
+        "contradiction_metrics": {
+          "detects_conflict_language": false,
+          "cites_multiple_sources": false,
+          "silent_merge_without_conflict_note": false,
+          "cited_source_keys": [],
+          "source_key_count": 1,
+          "heuristic_score": 0.2,
+          "notes": "Keyword heuristic only; human review required for precision."
+        },
+        "refusal_metrics": {
+          "refusal_detected": false,
+          "alternative_offered": false,
+          "compliance_violation_detected": false,
+          "cites_supporting_source": false,
+          "heuristic_score": 0.2,
+          "refusal_expectations": null,
+          "notes": "Keyword heuristic only; human review required for refusal quality."
+        },
+        "objective_score": 1.0,
+        "input_token_count": 173,
+        "output_token_count": 128,
+        "total_latency_ms": 19940.69529999979,
+        "tokens_per_second": 6.419033944117353,
+        "finish_reason": "completed"
+      },
+      "output_budget": {
+        "evaluator_name": "output_budget_telemetry",
+        "evaluator_version": "1.0.0",
+        "requested_max_output_tokens": 512,
+        "actual_output_tokens": 128,
+        "finish_reason": "completed",
+        "end_of_sequence_detected": true,
+        "percentage_of_token_budget_used": 25.0,
+        "required_section_completion": 0.5,
+        "final_sentence_complete": false,
+        "output_stopped_after_conclusion": false,
+        "output_stopped_before_required_sections": true,
+        "completion_class": "stopped_before_required_sections",
+        "completion_confidence": 0.7,
+        "rationale": "EOS/completed with missing required sections and low budget use"
+      }
+    },
+    {
+      "case_id": "cb-027-exact-output-format",
+      "category": "instruction_following",
+      "label": "Offline evaluator-v2 diagnostic results",
+      "v1_unsupported_claim_count": 3,
+      "v2_unsupported_flag_count": 0,
+      "v2_uncertain_count": 2,
+      "citation_v2": {
+        "evaluator_name": "citations",
+        "evaluator_version": "2.0.0",
+        "citation_precision": 1.0,
+        "claim_coverage": 0.0,
+        "evidence_coverage": 0.0,
+        "contrary_evidence_coverage": 1.0,
+        "source_diversity": 0,
+        "cited_keys": [],
+        "unknown_keys": [],
+        "duplicate_keys_in_list": [],
+        "malformed_keys": [],
+        "issues": [],
+        "notes": "Do not treat every supplied evidence sentence as mandatory. Optional keys ignored for coverage: none."
+      },
+      "original_objective": {
+        "citation_metrics": {
+          "citation_precision": 1.0,
+          "citation_coverage": 0.0,
+          "fabricated_citation_count": 0,
+          "fabricated_citation_keys": [],
+          "unsupported_claim_count": 3,
+          "overstatement_count": 0,
+          "omitted_contrary_evidence_count": 0,
+          "cited_keys": [],
+          "allowed_keys": [
+            "SRC-A"
+          ]
+        },
+        "hallucination": {
+          "severity": "H3",
+          "severity_value": 3,
+          "rationale": "Multiple (3) potentially unsupported claims detected by citation heuristics.",
+          "metrics": {
+            "citation_precision": 1.0,
+            "citation_coverage": 0.0,
+            "fabricated_citation_count": 0,
+            "fabricated_citation_keys": [],
+            "unsupported_claim_count": 3,
+            "overstatement_count": 0,
+            "omitted_contrary_evidence_count": 0,
+            "cited_keys": [],
+            "allowed_keys": [
+              "SRC-A"
+            ]
+          }
+        },
+        "contradiction_metrics": {
+          "detects_conflict_language": false,
+          "cites_multiple_sources": false,
+          "silent_merge_without_conflict_note": false,
+          "cited_source_keys": [],
+          "source_key_count": 1,
+          "heuristic_score": 0.2,
+          "notes": "Keyword heuristic only; human review required for precision."
+        },
+        "refusal_metrics": {
+          "refusal_detected": false,
+          "alternative_offered": false,
+          "compliance_violation_detected": false,
+          "cites_supporting_source": false,
+          "heuristic_score": 0.2,
+          "refusal_expectations": null,
+          "notes": "Keyword heuristic only; human review required for refusal quality."
+        },
+        "objective_score": 1.0,
+        "input_token_count": 106,
+        "output_token_count": 56,
+        "total_latency_ms": 8996.128299972042,
+        "tokens_per_second": 6.224900105101217,
+        "finish_reason": "completed"
+      },
+      "format_v2": {
+        "evaluator_name": "format_compliance",
+        "evaluator_version": "2.0.0",
+        "semantic_score": 1.0,
+        "exact_format_score": 0.4,
+        "parse_success": false,
+        "tolerant_parse_success": true,
+        "missing_fields": [],
+        "extra_fields": [],
+        "label_variations": [
+          "markdown_or_case_variant_labels"
+        ],
+        "ordering_errors": [],
+        "delimiter_errors": [],
+        "semantic_errors": [],
+        "strict_parse": {
+          "mode": "strict",
+          "success": false,
+          "fields": {},
+          "missing_fields": [
+            "FINDING",
+            "RISK",
+            "NEXT"
+          ],
+          "extra_fields": [],
+          "transformations_applied": [],
+          "confidence": 0.2,
+          "unrecoverable_issues": [
+            "missing_fields:FINDING,RISK,NEXT"
+          ],
+          "raw_text": "- **FINDING**: The synthetic scanner identified one outdated dependency in the demo application.  \n- **RISK**: Outdated dependencies may introduce security vulnerabilities or compatibility issues.  \n- **NEXT**: Review the specific dependency for known vulnerabilities and update it to a supported version.",
+          "normalized_text": ""
+        },
+        "tolerant_parse": {
+          "mode": "tolerant",
+          "success": true,
+          "fields": {
+            "FINDING": "The synthetic scanner identified one outdated dependency in the demo application.",
+            "RISK": "Outdated dependencies may introduce security vulnerabilities or compatibility issues.",
+            "NEXT": "Review the specific dependency for known vulnerabilities and update it to a supported version."
+          },
+          "missing_fields": [],
+          "extra_fields": [],
+          "transformations_applied": [
+            "strip_bold_markers",
+            "accept_markdown_bullets",
+            "normalize_label_case",
+            "normalize_separators"
+          ],
+          "confidence": 0.8,
+          "unrecoverable_issues": [],
+          "raw_text": "- **FINDING**: The synthetic scanner identified one outdated dependency in the demo application.  \n- **RISK**: Outdated dependencies may introduce security vulnerabilities or compatibility issues.  \n- **NEXT**: Review the specific dependency for known vulnerabilities and update it to a supported version.",
+          "normalized_text": "FINDING: The synthetic scanner identified one outdated dependency in the demo application.\nRISK: Outdated dependencies may introduce security vulnerabilities or compatibility issues.\nNEXT: Review the specific dependency for known vulnerabilities and update it to a supported version."
+        },
+        "policy_note": "For strict machine interoperability, exact_format_score may be mandatory. For human-facing investigation reports, harmless markdown/punctuation variation must not be scored as a semantic failure."
+      }
+    },
+    {
+      "case_id": "cb-028-json-only-response",
+      "category": "instruction_following",
+      "label": "Offline evaluator-v2 diagnostic results",
+      "v1_unsupported_claim_count": 0,
+      "v2_unsupported_flag_count": 0,
+      "v2_uncertain_count": 0,
+      "citation_v2": {
+        "evaluator_name": "citations",
+        "evaluator_version": "2.0.0",
+        "citation_precision": 1.0,
+        "claim_coverage": 1.0,
+        "evidence_coverage": 1.0,
+        "contrary_evidence_coverage": 1.0,
+        "source_diversity": 1,
+        "cited_keys": [
+          "SRC-A"
+        ],
+        "unknown_keys": [],
+        "duplicate_keys_in_list": [],
+        "malformed_keys": [],
+        "issues": [],
+        "notes": "Do not treat every supplied evidence sentence as mandatory. Optional keys ignored for coverage: none."
+      },
+      "original_objective": {
+        "citation_metrics": {
+          "citation_precision": 1.0,
+          "citation_coverage": 1.0,
+          "fabricated_citation_count": 0,
+          "fabricated_citation_keys": [],
+          "unsupported_claim_count": 0,
+          "overstatement_count": 0,
+          "omitted_contrary_evidence_count": 0,
+          "cited_keys": [
+            "SRC-A"
+          ],
+          "allowed_keys": [
+            "SRC-A"
+          ]
+        },
+        "hallucination": {
+          "severity": "H0",
+          "severity_value": 0,
+          "rationale": "No automated hallucination signals above baseline.",
+          "metrics": {
+            "citation_precision": 1.0,
+            "citation_coverage": 1.0,
+            "fabricated_citation_count": 0,
+            "fabricated_citation_keys": [],
+            "unsupported_claim_count": 0,
+            "overstatement_count": 0,
+            "omitted_contrary_evidence_count": 0,
+            "cited_keys": [
+              "SRC-A"
+            ],
+            "allowed_keys": [
+              "SRC-A"
+            ]
+          }
+        },
+        "contradiction_metrics": {
+          "detects_conflict_language": false,
+          "cites_multiple_sources": false,
+          "silent_merge_without_conflict_note": false,
+          "cited_source_keys": [
+            "SRC-A"
+          ],
+          "source_key_count": 1,
+          "heuristic_score": 0.2,
+          "notes": "Keyword heuristic only; human review required for precision."
+        },
+        "refusal_metrics": {
+          "refusal_detected": false,
+          "alternative_offered": false,
+          "compliance_violation_detected": false,
+          "cites_supporting_source": true,
+          "heuristic_score": 0.3,
+          "refusal_expectations": null,
+          "notes": "Keyword heuristic only; human review required for refusal quality."
+        },
+        "objective_score": 1.0,
+        "input_token_count": 77,
+        "output_token_count": 29,
+        "total_latency_ms": 4608.492499915883,
+        "tokens_per_second": 6.29273021503872,
+        "finish_reason": "completed"
+      },
+      "format_v2": {
+        "evaluator_name": "format_compliance",
+        "evaluator_version": "2.0.0",
+        "semantic_score": 0.0,
+        "exact_format_score": 0.0,
+        "parse_success": false,
+        "tolerant_parse_success": false,
+        "missing_fields": [
+          "FINDING",
+          "RISK",
+          "NEXT"
+        ],
+        "extra_fields": [],
+        "label_variations": [],
+        "ordering_errors": [],
+        "delimiter_errors": [],
+        "semantic_errors": [
+          "missing_semantic:FINDING",
+          "missing_semantic:RISK",
+          "missing_semantic:NEXT"
+        ],
+        "strict_parse": {
+          "mode": "strict",
+          "success": false,
+          "fields": {},
+          "missing_fields": [
+            "FINDING",
+            "RISK",
+            "NEXT"
+          ],
+          "extra_fields": [],
+          "transformations_applied": [],
+          "confidence": 0.2,
+          "unrecoverable_issues": [
+            "missing_fields:FINDING,RISK,NEXT"
+          ],
+          "raw_text": "{\"status\": \"success\", \"source\": \"SRC-A\", \"note\": \"Batch B-22 completed successfully in sandbox.\"}",
+          "normalized_text": ""
+        },
+        "tolerant_parse": {
+          "mode": "tolerant",
+          "success": false,
+          "fields": {},
+          "missing_fields": [
+            "FINDING",
+            "RISK",
+            "NEXT"
+          ],
+          "extra_fields": [],
+          "transformations_applied": [
+            "normalize_label_case",
+            "normalize_separators"
+          ],
+          "confidence": 0.2,
+          "unrecoverable_issues": [
+            "missing_fields:FINDING,RISK,NEXT"
+          ],
+          "raw_text": "{\"status\": \"success\", \"source\": \"SRC-A\", \"note\": \"Batch B-22 completed successfully in sandbox.\"}",
+          "normalized_text": ""
+        },
+        "policy_note": "For strict machine interoperability, exact_format_score may be mandatory. For human-facing investigation reports, harmless markdown/punctuation variation must not be scored as a semantic failure."
+      }
+    }
+  ],
+  "notes": [
+    "Does not replace official CobraBench v0.1 score 0.840.",
+    "v1 and v2 unsupported-claim counts are not directly comparable.",
+    "No model weights were loaded."
+  ]
+}

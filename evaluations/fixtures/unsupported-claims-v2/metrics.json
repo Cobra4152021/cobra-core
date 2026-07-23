@@ -1,0 +1,22 @@
+{
+  "fixture_count": 50,
+  "v1_flagged_in_sample": 50,
+  "v1_false_positive_rate_on_audit_sample": 1.0,
+  "v2": {
+    "true_positives": 0,
+    "false_positives": 2,
+    "true_negatives": 48,
+    "false_negatives": 0,
+    "precision": 0.0,
+    "recall": 1.0,
+    "false_positive_rate": 0.04,
+    "classification_match_rate": 0.32,
+    "uncertain_rate": 0.46
+  },
+  "acceptance": {
+    "fpr_below_v1": true,
+    "materially_outperforms_v1": true,
+    "notes": "Gold labels are nearly all non-unsupported (Phase 2E audit). v2 should avoid flagging paraphrases/structural text."
+  },
+  "generated_at": "2026-07-23T00:06:11.574256+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "evaluator_name": "unsupported_claims",
+  "evaluator_version": "2.0.0",
+  "implementation_version": "classify-then-support-v2",
+  "rule_set_version": "claim-class-v2",
+  "parser_version": "span-split-v2",
+  "scoring_version": "support-state-v2",
+  "configuration_hash": "c2e9a41f7b0d35e86a1c94f0d2b7e5a83c6f1d09e4b2a7c5d8f0e1a3b6c9d2e4",
+  "creation_date": "2026-07-22",
+  "compatibility_notes": "Diagnostic only. Not comparable to v1 flag counts. Does not replace official CobraBench v0.1 scores.",
+  "deprecated": false,
+  "replaces": "1.0.0",
+  "used_by_official_cobrabench_v01": false
+}

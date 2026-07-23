@@ -1,0 +1,42 @@
+{
+  "case_id": "draft-001-exact-format",
+  "version": "0.2.0-draft",
+  "status": "draft",
+  "official_release": false,
+  "scored": false,
+  "frozen": false,
+  "part_of_cobrabench_v01": false,
+  "category": "instruction_following",
+  "title": "Exact FINDING/RISK/NEXT with dual scoring",
+  "system_prompt": "Follow the output schema exactly. Do not invent facts.",
+  "user_prompt": "Return exactly FINDING, RISK, and NEXT lines about the scanner result.",
+  "supporting_sources": [
+    {
+      "source_id": "s1",
+      "title": "Scanner note",
+      "citation_key": "SRC-A",
+      "content": "Scanner found one outdated dependency in demo app."
+    }
+  ],
+  "expected_behaviors": [],
+  "prohibited_behaviors": [],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_v0_2_draft",
+    "rubric_version": "0.2.0-draft",
+    "notes": "Dual semantic and exact scores."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": ["draft", "format", "non_official"],
+  "format_expectations": {
+    "semantic_fields": ["FINDING", "RISK", "NEXT"],
+    "exact_fields": ["FINDING", "RISK", "NEXT"],
+    "parser_mode": "both",
+    "machine_interoperability_required": true
+  },
+  "prompt_template_id": "exact-format",
+  "prompt_template_version": "2.0.0",
+  "evaluator_versions": {
+    "format_compliance": "2.0.0"
+  },
+  "notes": "Draft only — validates semantic vs exact scoring."
+}

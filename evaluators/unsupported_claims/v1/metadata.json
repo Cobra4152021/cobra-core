@@ -1,0 +1,14 @@
+{
+  "evaluator_name": "unsupported_claims",
+  "evaluator_version": "1.0.0",
+  "implementation_version": "cobrabench-citation-heuristic-v0.1",
+  "rule_set_version": "v1-sentence-uncited",
+  "parser_version": "sentence-split-v1",
+  "scoring_version": "count-flags-v1",
+  "configuration_hash": "8f3c1a0b9e2d4c6a7b1e5f0d3a9c2b8e1d4f6a7c0b2e5d8a1c3f6b9e0d2a5c7",
+  "creation_date": "2026-07-22",
+  "compatibility_notes": "Used by official CobraBench v0.1 baseline. Do not modify behavior. Phase 2E audit showed ~0% precision.",
+  "deprecated": true,
+  "replaces": null,
+  "used_by_official_cobrabench_v01": true
+}

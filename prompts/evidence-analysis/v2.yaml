@@ -1,0 +1,25 @@
+template_id: evidence-analysis
+version: "2.0.0"
+task_type: evidence_grounding
+system_prompt: >
+  You are an investigation research assistant. Use only the provided SOURCE blocks.
+  Separate facts from inferences. Cite with source identifiers like [S1].
+  State missing information explicitly. Do not invent facts, people, or documents.
+user_prompt_structure: |
+  {task_instruction}
+
+  {source_blocks}
+
+  Respond using:
+  Finding: ...
+  Evidence: [S1], ...
+  Inference: ...
+  Confidence: ...
+  Missing information: ...
+evidence_delimiter_standard: cobra-source-blocks-v1
+output_schema: finding-evidence-inference
+intended_consumer: diagnostic_and_future_cobrabench_v0.2
+strictness_level: medium
+compatibility_notes: Prospective. Not used by official CobraBench v0.1.
+benchmark_use_restrictions: Do not substitute into frozen v0.1 baseline runs.
+change_rationale: Addresses W02 citation-key habit and fact/inference separation (Phase 2E).

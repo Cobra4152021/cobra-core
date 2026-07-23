@@ -12,6 +12,7 @@ authors = [{ name = "Cobra Code" }]
 # No public license yet — repository is private / unlicensed for distribution.
 dependencies = [
   "pydantic>=2.7,<3",
+  "PyYAML>=6.0,<7",
 ]
 
 [project.optional-dependencies]
@@ -20,6 +21,7 @@ dev = [
   "pytest-cov>=5.0,<7",
   "mypy>=1.10,<2",
   "ruff>=0.5,<1",
+  "types-PyYAML>=6.0,<7",
 ]
 acquisition = [
   "huggingface_hub>=0.26",

@@ -1,0 +1,11 @@
+{
+  "registry_version": "1.0.0",
+  "description": "Versioned runtime policy profiles. Not applied retroactively to official CobraBench v0.1 baseline.",
+  "profiles": {
+    "deterministic-short": "runtime_policies/deterministic-short.yaml",
+    "deterministic-investigation": "runtime_policies/deterministic-investigation.yaml",
+    "structured-json": "runtime_policies/structured-json.yaml",
+    "long-document-analysis": "runtime_policies/long-document-analysis.yaml",
+    "thinking-diagnostic": "runtime_policies/thinking-diagnostic.yaml"
+  }
+}

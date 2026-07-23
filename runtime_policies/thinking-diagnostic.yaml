@@ -1,0 +1,19 @@
+profile_id: thinking-diagnostic
+version: "1.0.0"
+max_input_tokens: 8192
+max_output_tokens: 1024
+temperature: 0.0
+top_p: 1.0
+top_k: null
+seed_policy: fixed
+seed: 123
+thinking_policy: enabled
+repetition_controls: none
+timeout_seconds: 900
+retry_policy: none
+output_parser: none
+evidence_prompt_standard: cobra-source-blocks-v1
+resource_guard:
+  require_free_vram_gb: 6
+  abort_on_access_violation: true
+notes: Diagnostic only. Preserve thinking-enabled runs separately from official scores.

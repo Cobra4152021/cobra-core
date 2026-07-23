@@ -1,0 +1,53 @@
+{
+  "case_id": "draft-004-citation-completeness",
+  "version": "0.2.0-draft",
+  "status": "draft",
+  "official_release": false,
+  "scored": false,
+  "frozen": false,
+  "part_of_cobrabench_v01": false,
+  "category": "citation_correctness",
+  "title": "Citation completeness draft",
+  "system_prompt": "Cite material facts. Do not invent sources.",
+  "user_prompt": "Summarize who approved the change and when.",
+  "supporting_sources": [
+    {
+      "source_id": "s1",
+      "title": "Approval memo",
+      "citation_key": "SRC-A",
+      "content": "Alex Chen approved change CHG-44 on 2024-02-02."
+    },
+    {
+      "source_id": "s2",
+      "title": "Optional chat note",
+      "citation_key": "SRC-B",
+      "content": "A chat message jokes about coffee; not material to approval."
+    }
+  ],
+  "expected_behaviors": [],
+  "prohibited_behaviors": [],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_v0_2_draft",
+    "rubric_version": "0.2.0-draft",
+    "notes": "Material vs optional evidence."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": ["draft", "citation", "non_official"],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": ["SRC-A", "SRC-B"],
+    "allow_uncited_inference": false
+  },
+  "material_evidence": {
+    "required_evidence_ids": ["SRC-A"],
+    "optional_evidence_ids": ["SRC-B"],
+    "contrary_evidence_ids": [],
+    "minimum_source_diversity": 1,
+    "claim_level_citation_required": true
+  },
+  "evaluator_versions": {
+    "citations": "2.0.0",
+    "unsupported_claims": "2.0.0"
+  },
+  "notes": "Draft only — optional evidence must not be mandatory."
+}

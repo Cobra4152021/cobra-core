@@ -58,22 +58,27 @@ Only then is LoRA / adapter work justified.
 ## Planned progression
 
 1. **Phase 1** — Model intake and baseline benchmarking foundation *(complete)*
-2. **Phase 2A** — Qwen candidate intake and selection *(current research milestone; no weights)*
-3. **Phase 2** — Comparative evaluation (after authorized acquisition)
-4. **Phase 3** — Weakness analysis
-5. **Phase 4** — Dataset design
-6. **Phase 5** — Cobra Core Alpha using LoRA
-7. **Phase 6** — Regression evaluation and release decision
+2. **Phase 2A–2E** — Qwen intake, 8B baseline, static weakness analysis *(complete; live 2E diagnostics deferred)*
+3. **Phase 2F** — Prompt, runtime, parser, and evaluator improvements *(framework only; no model load)*
+4. **Later** — Live diagnostics / optional CobraBench v0.2 release / dataset design only with separate authorization
 
-### Current Qwen selection (intake only)
+### Phase 2F notes
+
+- Evaluator v2 does **not** replace the official CobraBench v0.1 baseline score (**0.840**).
+- CobraBench v0.2 is **draft schema only** — not released.
+- Live Phase 2E diagnostics remain deferred.
+- No training is authorized.
+- See `docs/decisions/ADR-0005-prompt-runtime-evaluator-improvements.md`.
+
+### Current Qwen status (lab)
 
 | Role | Model | Status |
 | --- | --- | --- |
-| Primary baseline | Qwen3-32B | not acquired |
-| Development / CI | Qwen3-8B | not acquired |
+| Primary baseline candidate | Qwen3-32B | acquired; local load blocked on this host |
+| Development / interim baseline | Qwen3-8B | interim CobraBench v0.1 complete; **not** Cobra Core |
 | Reasoning challenger | Qwen3-30B-A3B-Thinking-2507 | not acquired |
 
-See `docs/decisions/ADR-0001-qwen-baseline-selection.md`. This does **not** designate any model as Cobra Core.
+This does **not** designate any model as Cobra Core.
 
 ## Requirements
 

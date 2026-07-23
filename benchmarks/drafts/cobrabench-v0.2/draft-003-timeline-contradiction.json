@@ -1,0 +1,44 @@
+{
+  "case_id": "draft-003-timeline-contradiction",
+  "version": "0.2.0-draft",
+  "status": "draft",
+  "official_release": false,
+  "scored": false,
+  "frozen": false,
+  "part_of_cobrabench_v01": false,
+  "category": "contradiction_detection",
+  "title": "Timeline contradiction draft",
+  "system_prompt": "Detect timeline conflicts without inventing facts.",
+  "user_prompt": "Identify whether the maintenance windows conflict.",
+  "supporting_sources": [
+    {
+      "source_id": "s1",
+      "title": "Ops email",
+      "citation_key": "SRC-A",
+      "content": "Maintenance window starts 2024-05-10 at 01:00 UTC."
+    },
+    {
+      "source_id": "s2",
+      "title": "Vendor ticket",
+      "citation_key": "SRC-B",
+      "content": "Vendor states maintenance starts 2024-05-11 at 01:00 UTC."
+    }
+  ],
+  "expected_behaviors": [],
+  "prohibited_behaviors": [],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_v0_2_draft",
+    "rubric_version": "0.2.0-draft",
+    "notes": "Timeline submetric focus."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": ["draft", "timeline", "non_official"],
+  "contradiction_expectations": {
+    "expected_conflict_markers": ["2024-05-10", "2024-05-11"],
+    "subdimensions": ["detection", "timeline_comparison", "explanation"]
+  },
+  "evaluator_versions": {
+    "contradictions": "2.0.0"
+  },
+  "notes": "Draft only."
+}

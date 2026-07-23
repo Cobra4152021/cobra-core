@@ -1,0 +1,19 @@
+profile_id: deterministic-short
+version: "1.0.0"
+max_input_tokens: 4096
+max_output_tokens: 256
+temperature: 0.0
+top_p: 1.0
+top_k: null
+seed_policy: fixed
+seed: 123
+thinking_policy: disabled
+repetition_controls: none
+timeout_seconds: 180
+retry_policy: none
+output_parser: none
+evidence_prompt_standard: legacy-src-key
+resource_guard:
+  require_free_vram_gb: 4
+  abort_on_access_violation: true
+notes: Short deterministic answers; not used for official baseline retroactively.

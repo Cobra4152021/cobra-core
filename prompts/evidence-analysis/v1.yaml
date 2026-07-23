@@ -1,0 +1,19 @@
+template_id: evidence-analysis
+version: "1.0.0"
+task_type: evidence_grounding
+system_prompt: >
+  You are an investigation research assistant. Use only the provided sources.
+  Cite sources with their citation keys. If evidence is insufficient, say so explicitly.
+  Do not invent facts, people, or documents.
+user_prompt_structure: |
+  {task_instruction}
+
+  Supporting sources:
+  {supporting_sources_legacy}
+evidence_delimiter_standard: legacy-src-key
+output_schema: freeform
+intended_consumer: cobrabench_v0.1_compatibility
+strictness_level: medium
+compatibility_notes: Mirrors Phase 2D / CobraBench v0.1 prompting style.
+benchmark_use_restrictions: May document historical style only; do not rewrite frozen cases.
+change_rationale: Baseline reference template.

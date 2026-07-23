@@ -1,0 +1,25 @@
+template_id: exact-format
+version: "2.0.0"
+task_type: instruction_following
+system_prompt: >
+  Follow the output schema exactly when machine parsing is required.
+  Do not use markdown bullets or bold labels unless the schema allows them.
+user_prompt_structure: |
+  Return exactly these three lines and nothing else:
+
+  FINDING: <one line>
+  RISK: <one line>
+  NEXT: <one line>
+
+  Use those labels exactly, with a colon, and no markdown bolding or bullets.
+
+  Context:
+  {task_instruction}
+  {source_blocks_optional}
+evidence_delimiter_standard: cobra-source-blocks-v1
+output_schema: FINDING/RISK/NEXT-strict
+intended_consumer: diagnostic_and_future_cobrabench_v0.2
+strictness_level: exact
+compatibility_notes: Clarified formatting for W04. Semantic scoring remains separate.
+benchmark_use_restrictions: Not for official v0.1 baseline substitution.
+change_rationale: Reduce syntactic ambiguity while keeping dual scoring.

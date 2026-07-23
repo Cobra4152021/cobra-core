@@ -1,0 +1,47 @@
+{
+  "case_id": "draft-005-contrary-evidence",
+  "version": "0.2.0-draft",
+  "status": "draft",
+  "official_release": false,
+  "scored": false,
+  "frozen": false,
+  "part_of_cobrabench_v01": false,
+  "category": "evidence_grounding",
+  "title": "Contrary-evidence preservation draft",
+  "system_prompt": "Preserve conflicting accounts. Do not invent facts.",
+  "user_prompt": "State what each source claims about badge access.",
+  "supporting_sources": [
+    {
+      "source_id": "s1",
+      "title": "Badge log",
+      "citation_key": "SRC-A",
+      "content": "Badge log shows entry at 09:01."
+    },
+    {
+      "source_id": "s2",
+      "title": "Witness note",
+      "citation_key": "SRC-B",
+      "content": "Witness says the door stayed closed; however the log may conflict."
+    }
+  ],
+  "expected_behaviors": [],
+  "prohibited_behaviors": [],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_v0_2_draft",
+    "rubric_version": "0.2.0-draft",
+    "notes": "Contrary evidence coverage."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": ["draft", "contrary", "non_official"],
+  "material_evidence": {
+    "required_evidence_ids": ["SRC-A", "SRC-B"],
+    "contrary_evidence_ids": ["SRC-B"],
+    "minimum_source_diversity": 2,
+    "claim_level_citation_required": true
+  },
+  "evaluator_versions": {
+    "citations": "2.0.0"
+  },
+  "uncertainty_requirements": ["Preserve both accounts", "Do not force reconciliation"],
+  "notes": "Draft only."
+}

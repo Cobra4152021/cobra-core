@@ -1,0 +1,21 @@
+{
+  "registry_version": "1.0.0",
+  "description": "Versioned prompt templates. Frozen CobraBench v0.1 case prompts are unchanged.",
+  "templates": {
+    "evidence-analysis": {
+      "1.0.0": "prompts/evidence-analysis/v1.yaml",
+      "2.0.0": "prompts/evidence-analysis/v2.yaml"
+    },
+    "contradiction-analysis": {
+      "1.0.0": "prompts/contradiction-analysis/v1.yaml",
+      "2.0.0": "prompts/contradiction-analysis/v2.yaml"
+    },
+    "exact-format": {
+      "1.0.0": "prompts/exact-format/v1.yaml",
+      "2.0.0": "prompts/exact-format/v2.yaml"
+    }
+  },
+  "benchmark_use_restrictions": {
+    "cobrabench_v0.1": "Must use embedded case prompts only; do not substitute v2 templates into official baseline."
+  }
+}
