@@ -9,6 +9,10 @@ import {
   getGovernmentTemplate,
   isGovernmentTemplateId,
 } from "./domains/government/templates.js";
+import {
+  getLaborTemplate,
+  isLaborTemplateId,
+} from "./domains/labor/templates.js";
 
 export type StrategyId =
   | "budget_audit"
@@ -277,6 +281,13 @@ export function selectStrategy(input: {
     const govTpl = getGovernmentTemplate(input.templateId);
     const govStrategy = getStrategy(govTpl?.strategyId);
     if (govStrategy) return govStrategy;
+  }
+
+  // KC-006 — Labor template IDs map into existing strategies.
+  if (isLaborTemplateId(input.templateId)) {
+    const laborTpl = getLaborTemplate(input.templateId);
+    const laborStrategy = getStrategy(laborTpl?.strategyId);
+    if (laborStrategy) return laborStrategy;
   }
 
   const prompt = `${input.title}\n${input.description ?? ""}`;

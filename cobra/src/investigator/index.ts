@@ -12,3 +12,4 @@ export * from "./review.js";
 export * from "./metrics.js";
 export * from "./report.js";
 export * as government from "./domains/government/index.js";
+export * as labor from "./domains/labor/index.js";

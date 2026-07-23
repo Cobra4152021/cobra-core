@@ -7,6 +7,7 @@ import type { InvestigationPlan, Priority } from "./types.js";
 import { getTemplate } from "./templates.js";
 import { selectStrategy } from "./strategy.js";
 import { getGovernmentTemplate } from "./domains/government/templates.js";
+import { getLaborTemplate } from "./domains/labor/templates.js";
 
 function inferPriority(title: string, description: string, fallback: Priority): Priority {
   const t = `${title} ${description}`.toLowerCase();
@@ -46,15 +47,17 @@ export function planInvestigation(input: {
   });
   const template = getTemplate(input.templateId ?? strategy.templateId);
   const govTemplate = getGovernmentTemplate(input.templateId);
+  const laborTemplate = getLaborTemplate(input.templateId);
+  const domainTemplate = laborTemplate ?? govTemplate;
   const known = input.knownFacts ?? [];
 
   const questions = uniqueStrings([
-    ...(govTemplate?.defaultQuestions ?? template?.defaultQuestions ?? []),
+    ...(domainTemplate?.defaultQuestions ?? template?.defaultQuestions ?? []),
     ...strategy.questions,
   ]).slice(0, 12);
 
   const evidenceNeeded = uniqueStrings([
-    ...(govTemplate?.evidenceNeeded ?? template?.evidenceNeeded ?? []),
+    ...(domainTemplate?.evidenceNeeded ?? template?.evidenceNeeded ?? []),
     ...strategy.evidencePriorities,
     "Knowledge Engine memories and facts",
     "Evidence Vault documents and citations",
@@ -92,30 +95,37 @@ export function planInvestigation(input: {
     priority: inferPriority(
       input.title,
       input.description ?? "",
-      govTemplate?.riskLevel === "critical" || govTemplate?.riskLevel === "high"
+      domainTemplate?.riskLevel === "critical" || domainTemplate?.riskLevel === "high"
         ? "high"
         : strategy.defaultPriority,
     ),
     deliverables: uniqueStrings([
-      ...(govTemplate?.deliverables ?? template?.deliverables ?? []),
+      ...(domainTemplate?.deliverables ?? template?.deliverables ?? []),
       ...strategy.expectedDeliverables,
       "competing hypotheses",
       "missing evidence",
       "confidence summary",
       "review checklist",
     ]),
-    templateId: govTemplate?.id ?? template?.id ?? strategy.templateId,
+    templateId: domainTemplate?.id ?? template?.id ?? strategy.templateId,
     strategyId: strategy.id,
     strategyName: strategy.name,
     confidenceRules: strategy.confidenceRules,
     methodology: [
       `Strategy: ${strategy.name} (${strategy.id})`,
-      "Deterministic planner (no required LLM)",
+      laborTemplate
+        ? "Labor Edition domain pack (KC-006)"
+        : govTemplate
+          ? "Government Edition domain pack (KC-005)"
+          : "Deterministic planner (no required LLM)",
       "CKE/Evidence Vault retrieval with citation allowlist",
       "Evidence quality scoring across seven dimensions",
       "Competing hypotheses retained",
       "Missing evidence detection",
       "Separated confidence + readiness review gate",
+      ...(laborTemplate
+        ? ["Not legal advice; no liability, ULP, or breach determination"]
+        : []),
     ],
   };
 }
