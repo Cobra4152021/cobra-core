@@ -1,0 +1,31 @@
+{
+  "schema": "cobra.diagnostics.load_attempt.v1",
+  "attempt_id": "attempt-01-E",
+  "configuration_id": "E",
+  "process_id": 37484,
+  "started_at": "2026-07-23T05:54:58.136775+00:00",
+  "ended_at": "2026-07-23T05:55:03.708226+00:00",
+  "exit_code": 0,
+  "windows_status_code": "0x00000000",
+  "access_violation": false,
+  "load_stage_reached": "metadata_complete",
+  "success": true,
+  "benchmark_prompt_used": false,
+  "benchmark_run_created": false,
+  "live_load": false,
+  "metadata_only": true,
+  "host_before": {
+    "vram_used_mib": 2253.0,
+    "vram_free_mib": 9759.0,
+    "available_ram_bytes": 12474023936,
+    "page_file": {
+      "total_page_file_bytes": 86932234240,
+      "available_page_file_bytes": 17202569216,
+      "commit_charge_approx_bytes": 69729665024
+    }
+  },
+  "worker_success": true,
+  "generation": null,
+  "error": null,
+  "attempt_dir": "evaluations/diagnostics/qwen3-8b-windows-load-isolation/attempts/attempt-01-E"
+}

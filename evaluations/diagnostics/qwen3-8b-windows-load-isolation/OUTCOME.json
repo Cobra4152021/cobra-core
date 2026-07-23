@@ -1,0 +1,17 @@
+{
+  "phase": "3C",
+  "outcome": "C",
+  "outcome_label": "Root cause narrowed but no stable load",
+  "smoke_qualification": "failed",
+  "live_load_attempts": 6,
+  "live_load_ceiling": 6,
+  "access_violations": 5,
+  "successful_loads": 1,
+  "successful_generations": 0,
+  "best_configuration": "B_explicit_gpu_load_only_intermittent",
+  "faulting_modules_observed": ["torch_cpu.dll", "c10.dll"],
+  "benchmark_executed": false,
+  "prepared_protocol_status": "prepared-not-run",
+  "official_v01_score_unchanged": 0.84,
+  "runtime_candidate_created": false
+}

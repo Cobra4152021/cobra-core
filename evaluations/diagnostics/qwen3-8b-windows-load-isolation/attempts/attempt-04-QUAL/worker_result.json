@@ -1,0 +1,34 @@
+{
+  "configuration_id": "QUAL",
+  "config": {
+    "name": "smoke_qualification_generation",
+    "quantization": "4bit-nf4-double",
+    "device_map": {
+      "": 0
+    },
+    "max_memory": null,
+    "low_cpu_mem_usage": true,
+    "offload_state_dict": false,
+    "generate": true,
+    "live_load": true,
+    "max_new_tokens": 64
+  },
+  "started_at": "2026-07-23T06:05:35.110046+00:00",
+  "success": false,
+  "load_stage": "loading",
+  "error": null,
+  "generation": null,
+  "memory_before": {
+    "total_ram_bytes": 34290569216,
+    "available_ram_bytes": 15276003328,
+    "page_file_or_swap": {
+      "total_page_file_bytes": 85969698816,
+      "available_page_file_bytes": 16988049408,
+      "commit_charge_approx_bytes": 68981649408
+    }
+  },
+  "prompt_is_benchmark": false,
+  "smoke_prompt_fingerprint": "synthetic-src-abc-v1",
+  "artifact_root": "D:\\cobra-models\\qwen\\qwen3-8b\\b968826d9c46dd6066d109eabc6255188de91218\\artifacts",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218"
+}

@@ -1,0 +1,9 @@
+{
+  "configuration_id": "E",
+  "name": "cpu_metadata_and_safetensors_scan",
+  "quantization": "none",
+  "device_map": null,
+  "generate": false,
+  "live_load": false,
+  "metadata_only": true
+}

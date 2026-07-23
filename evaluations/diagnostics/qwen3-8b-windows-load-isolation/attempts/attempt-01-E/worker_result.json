@@ -1,0 +1,87 @@
+{
+  "configuration_id": "E",
+  "config": {
+    "name": "cpu_metadata_and_safetensors_scan",
+    "quantization": "none",
+    "device_map": null,
+    "generate": false,
+    "live_load": false,
+    "metadata_only": true
+  },
+  "started_at": "2026-07-23T05:54:59.035260+00:00",
+  "success": true,
+  "load_stage": "metadata_complete",
+  "error": null,
+  "generation": null,
+  "memory_before": {
+    "total_ram_bytes": 34290569216,
+    "available_ram_bytes": 12394213376,
+    "page_file_or_swap": {
+      "total_page_file_bytes": 86932234240,
+      "available_page_file_bytes": 17124605952,
+      "commit_charge_approx_bytes": 69807628288
+    }
+  },
+  "prompt_is_benchmark": false,
+  "smoke_prompt_fingerprint": "synthetic-src-abc-v1",
+  "artifact_root": "D:\\cobra-models\\qwen\\qwen3-8b\\b968826d9c46dd6066d109eabc6255188de91218\\artifacts",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "metadata": {
+    "shards_opened": [
+      {
+        "shard": "model-00001-of-00005.safetensors",
+        "size_bytes": 3996250744,
+        "sample_keys": [
+          "model.embed_tokens.weight",
+          "model.layers.0.input_layernorm.weight",
+          "model.layers.0.mlp.down_proj.weight"
+        ]
+      },
+      {
+        "shard": "model-00002-of-00005.safetensors",
+        "size_bytes": 3993160032,
+        "sample_keys": [
+          "model.layers.10.input_layernorm.weight",
+          "model.layers.10.mlp.down_proj.weight",
+          "model.layers.10.mlp.gate_proj.weight"
+        ]
+      },
+      {
+        "shard": "model-00003-of-00005.safetensors",
+        "size_bytes": 3959604768,
+        "sample_keys": [
+          "model.layers.17.input_layernorm.weight",
+          "model.layers.17.mlp.down_proj.weight",
+          "model.layers.17.mlp.up_proj.weight"
+        ]
+      },
+      {
+        "shard": "model-00004-of-00005.safetensors",
+        "size_bytes": 3187841392,
+        "sample_keys": [
+          "model.layers.27.input_layernorm.weight",
+          "model.layers.27.mlp.down_proj.weight",
+          "model.layers.27.post_attention_layernorm.weight"
+        ]
+      },
+      {
+        "shard": "model-00005-of-00005.safetensors",
+        "size_bytes": 1244659840,
+        "sample_keys": [
+          "lm_head.weight"
+        ]
+      }
+    ],
+    "index_weight_entries": 399
+  },
+  "ended_at": "2026-07-23T05:55:01.934071+00:00",
+  "memory_after": {
+    "total_ram_bytes": 34290569216,
+    "available_ram_bytes": 11982848000,
+    "page_file_or_swap": {
+      "total_page_file_bytes": 86932234240,
+      "available_page_file_bytes": 15964372992,
+      "commit_charge_approx_bytes": 70967861248
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "available": true,
+  "events": [
+    {
+      "time": "2026-07-22T23:11:07.2186189-07:00",
+      "id": 1000,
+      "provider": "Application Error",
+      "message": "Faulting application name: python.exe, version: 3.13.5150.1013, time stamp: 0x6849acf5\r\nFaulting module name: torch_cpu.dll, version: 0.0.0.0, time stamp: 0x67943d0d\r\nException code: 0xc0000005\r\nFault offset: 0x0000000006046edb\r\nFaulting process id: 0x0x5178\r\nFaulting application start time: 0x0x1DD1A6945A1F393\r\nFaulting application path: C:\\Python313\\python.exe\r\nFaulting module path: D:\\Downloads\\cobra-core\\.venv\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\r\nReport Id: 1b1040dc-9ce4-4b41-a74a-dbc621528847\r\nFaulting package full name: \r\nFaulting package-relative application ID: "
+    },
+    {
+      "time": "2026-07-22T22:58:14.8201942-07:00",
+      "id": 1000,
+      "provider": "Application Error",
+      "message": "Faulting application name: python.exe, version: 3.13.5150.1013, time stamp: 0x6849acf5\r\nFaulting module name: torch_cpu.dll, version: 0.0.0.0, time stamp: 0x67943d0d\r\nException code: 0xc0000005\r\nFault offset: 0x0000000006046edb\r\nFaulting process id: 0x0x4CD4\r\nFaulting application start time: 0x0x1DD1A67CED40E5A\r\nFaulting application path: C:\\Python313\\python.exe\r\nFaulting module path: D:\\Downloads\\cobra-core\\.venv\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\r\nReport Id: d7582bea-32ba-4d95-b23a-24ceeb151c0a\r\nFaulting package full name: \r\nFaulting package-relative application ID: "
+    },
+    {
+      "time": "2026-07-22T22:32:57.4172583-07:00",
+      "id": 1000,
+      "provider": "Application Error",
+      "message": "Faulting application name: python.exe, version: 3.13.5150.1013, time stamp: 0x6849acf5\r\nFaulting module name: torch_cpu.dll, version: 0.0.0.0, time stamp: 0x67943d0d\r\nException code: 0xc0000005\r\nFault offset: 0x0000000006046edb\r\nFaulting process id: 0x0x53C0\r\nFaulting application start time: 0x0x1DD1A63EC2FB3D7\r\nFaulting application path: C:\\Python313\\python.exe\r\nFaulting module path: D:\\Downloads\\cobra-core\\.venv\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\r\nReport Id: b9b4fad8-7673-40aa-88ae-39c3390d9487\r\nFaulting package full name: \r\nFaulting package-relative application ID: "
+    },
+    {
+      "time": "2026-07-22T22:26:11.5520173-07:00",
+      "id": 1000,
+      "provider": "Application Error",
+      "message": "Faulting application name: python.exe, version: 3.13.5150.1013, time stamp: 0x6849acf5\r\nFaulting module name: torch_cpu.dll, version: 0.0.0.0, time stamp: 0x67943d0d\r\nException code: 0xc0000005\r\nFault offset: 0x0000000006046edb\r\nFaulting process id: 0x0xC2D0\r\nFaulting application start time: 0x0x1DD1A6303595FC6\r\nFaulting application path: C:\\Python313\\python.exe\r\nFaulting module path: D:\\Downloads\\cobra-core\\.venv\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\r\nReport Id: fec0fada-70df-49de-bccb-376fcdb8afe7\r\nFaulting package full name: \r\nFaulting package-relative application ID: "
+    },
+    {
+      "time": "2026-07-22T14:49:36.5693948-07:00",
+      "id": 1000,
+      "provider": "Application Error",
+      "message": "Faulting application name: python.exe, version: 3.13.5150.1013, time stamp: 0x6849acf5\r\nFaulting module name: torch_cpu.dll, version: 0.0.0.0, time stamp: 0x67943d0d\r\nException code: 0xc0000005\r\nFault offset: 0x0000000006046edb\r\nFaulting process id: 0x0x1674\r\nFaulting application start time: 0x0x1DD1A2352F0F627\r\nFaulting application path: C:\\Python313\\python.exe\r\nFaulting module path: D:\\Downloads\\cobra-core\\.venv\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\r\nReport Id: 06c255f4-3982-4725-acad-3fe50261b26b\r\nFaulting package full name: \r\nFaulting package-relative application ID: "
+    },
+    {
+      "time": "2026-07-22T12:45:36.4702077-07:00",
+      "id": 1000,
+      "provider": "Application Error",
+      "message": "Faulting application name: python.exe, version: 3.13.5150.1013, time stamp: 0x6849acf5\r\nFaulting module name: c10.dll, version: 0.0.0.0, time stamp: 0x67942fa5\r\nException code: 0xc0000005\r\nFault offset: 0x000000000007f804\r\nFaulting process id: 0x0xDB70\r\nFaulting application start time: 0x0x1DD1A11C3A7FF09\r\nFaulting application path: C:\\Python313\\python.exe\r\nFaulting module path: D:\\Downloads\\cobra-core\\.venv\\Lib\\site-packages\\torch\\lib\\c10.dll\r\nReport Id: 2f58a82c-a873-4293-9cd2-6f285d19acf0\r\nFaulting package full name: \r\nFaulting package-relative application ID: "
+    },
+    {
+      "time": "2026-07-22T12:38:13.1206580-07:00",
+      "id": 1000,
+      "provider": "Application Error",
+      "message": "Faulting application name: python.exe, version: 3.13.5150.1013, time stamp: 0x6849acf5\r\nFaulting module name: c10.dll, version: 0.0.0.0, time stamp: 0x67942fa5\r\nException code: 0xc0000005\r\nFault offset: 0x000000000007f804\r\nFaulting process id: 0x0x7610\r\nFaulting application start time: 0x0x1DD1A1097F1AFBC\r\nFaulting application path: C:\\Python313\\python.exe\r\nFaulting module path: D:\\Downloads\\cobra-core\\.venv\\Lib\\site-packages\\torch\\lib\\c10.dll\r\nReport Id: d54a24b8-c145-4a17-9c32-9b5e3efde329\r\nFaulting package full name: \r\nFaulting package-relative application ID: "
+    }
+  ]
+}

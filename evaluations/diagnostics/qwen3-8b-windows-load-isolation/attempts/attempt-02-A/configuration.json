@@ -1,0 +1,14 @@
+{
+  "configuration_id": "A",
+  "name": "reproduce_known_failure",
+  "quantization": "4bit-nf4-double",
+  "device_map": "auto",
+  "max_memory": {
+    "0": "8GiB",
+    "cpu": "14GiB"
+  },
+  "low_cpu_mem_usage": true,
+  "offload_state_dict": true,
+  "generate": false,
+  "live_load": true
+}

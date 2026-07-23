@@ -1,0 +1,7 @@
+{"ts": "2026-07-23T05:54:59.049006+00:00", "stage": "metadata_begin", "detail": ""}
+{"ts": "2026-07-23T05:54:59.053559+00:00", "stage": "safetensors_open", "detail": "model-00001-of-00005.safetensors"}
+{"ts": "2026-07-23T05:55:01.910471+00:00", "stage": "safetensors_open", "detail": "model-00002-of-00005.safetensors"}
+{"ts": "2026-07-23T05:55:01.914944+00:00", "stage": "safetensors_open", "detail": "model-00003-of-00005.safetensors"}
+{"ts": "2026-07-23T05:55:01.919980+00:00", "stage": "safetensors_open", "detail": "model-00004-of-00005.safetensors"}
+{"ts": "2026-07-23T05:55:01.924480+00:00", "stage": "safetensors_open", "detail": "model-00005-of-00005.safetensors"}
+{"ts": "2026-07-23T05:55:01.929687+00:00", "stage": "metadata_complete", "detail": "shards=5"}

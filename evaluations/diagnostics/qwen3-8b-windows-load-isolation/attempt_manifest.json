@@ -1,0 +1,222 @@
+{
+  "attempts": [
+    {
+      "schema": "cobra.diagnostics.load_attempt.v1",
+      "attempt_id": "attempt-01-E",
+      "configuration_id": "E",
+      "process_id": 37484,
+      "started_at": "2026-07-23T05:54:58.136775+00:00",
+      "ended_at": "2026-07-23T05:55:03.708226+00:00",
+      "exit_code": 0,
+      "windows_status_code": "0x00000000",
+      "access_violation": false,
+      "load_stage_reached": "metadata_complete",
+      "success": true,
+      "benchmark_prompt_used": false,
+      "benchmark_run_created": false,
+      "live_load": false,
+      "metadata_only": true,
+      "host_before": {
+        "vram_used_mib": 2253.0,
+        "vram_free_mib": 9759.0,
+        "available_ram_bytes": 12474023936,
+        "page_file": {
+          "total_page_file_bytes": 86932234240,
+          "available_page_file_bytes": 17202569216,
+          "commit_charge_approx_bytes": 69729665024
+        }
+      },
+      "worker_success": true,
+      "generation": null,
+      "error": null,
+      "attempt_dir": "evaluations/diagnostics/qwen3-8b-windows-load-isolation/attempts/attempt-01-E"
+    },
+    {
+      "schema": "cobra.diagnostics.load_attempt.v1",
+      "attempt_id": "attempt-02-A",
+      "configuration_id": "A",
+      "process_id": 35580,
+      "started_at": "2026-07-23T05:55:03.968226+00:00",
+      "ended_at": "2026-07-23T05:58:29.940161+00:00",
+      "exit_code": 3221225477,
+      "windows_status_code": "0xC0000005",
+      "access_violation": true,
+      "load_stage_reached": "loading",
+      "success": false,
+      "benchmark_prompt_used": false,
+      "benchmark_run_created": false,
+      "live_load": true,
+      "metadata_only": false,
+      "host_before": {
+        "vram_used_mib": 2240.0,
+        "vram_free_mib": 9772.0,
+        "available_ram_bytes": 12424204288,
+        "page_file": {
+          "total_page_file_bytes": 87426011136,
+          "available_page_file_bytes": 17594765312,
+          "commit_charge_approx_bytes": 69831245824
+        }
+      },
+      "worker_success": false,
+      "generation": null,
+      "error": null,
+      "attempt_dir": "evaluations/diagnostics/qwen3-8b-windows-load-isolation/attempts/attempt-02-A"
+    },
+    {
+      "schema": "cobra.diagnostics.load_attempt.v1",
+      "attempt_id": "attempt-03-B",
+      "configuration_id": "B",
+      "process_id": 35752,
+      "started_at": "2026-07-23T05:58:30.280593+00:00",
+      "ended_at": "2026-07-23T06:05:12.919087+00:00",
+      "exit_code": 0,
+      "windows_status_code": "0x00000000",
+      "access_violation": false,
+      "load_stage_reached": "loaded",
+      "success": true,
+      "benchmark_prompt_used": false,
+      "benchmark_run_created": false,
+      "live_load": true,
+      "metadata_only": false,
+      "host_before": {
+        "vram_used_mib": 2210.0,
+        "vram_free_mib": 9802.0,
+        "available_ram_bytes": 14828158976,
+        "page_file": {
+          "total_page_file_bytes": 86130053120,
+          "available_page_file_bytes": 17414983680,
+          "commit_charge_approx_bytes": 68715069440
+        }
+      },
+      "worker_success": true,
+      "generation": null,
+      "error": null,
+      "attempt_dir": "evaluations/diagnostics/qwen3-8b-windows-load-isolation/attempts/attempt-03-B"
+    },
+    {
+      "schema": "cobra.diagnostics.load_attempt.v1",
+      "attempt_id": "attempt-04-QUAL",
+      "configuration_id": "QUAL",
+      "process_id": 4160,
+      "started_at": "2026-07-23T06:05:32.631372+00:00",
+      "ended_at": "2026-07-23T06:11:20.181569+00:00",
+      "exit_code": 3221225477,
+      "windows_status_code": "0xC0000005",
+      "access_violation": true,
+      "load_stage_reached": "loading",
+      "success": false,
+      "benchmark_prompt_used": false,
+      "benchmark_run_created": false,
+      "live_load": true,
+      "metadata_only": false,
+      "host_before": {
+        "vram_used_mib": 2211.0,
+        "vram_free_mib": 9801.0,
+        "available_ram_bytes": 15314505728,
+        "page_file": {
+          "total_page_file_bytes": 85969698816,
+          "available_page_file_bytes": 17028784128,
+          "commit_charge_approx_bytes": 68940914688
+        }
+      },
+      "worker_success": false,
+      "generation": null,
+      "error": null,
+      "attempt_dir": "evaluations/diagnostics/qwen3-8b-windows-load-isolation/attempts/attempt-04-QUAL"
+    },
+    {
+      "schema": "cobra.diagnostics.load_attempt.v1",
+      "attempt_id": "attempt-05-QUAL",
+      "configuration_id": "QUAL",
+      "process_id": 2196,
+      "started_at": "2026-07-23T06:12:00.854727+00:00",
+      "ended_at": "2026-07-23T06:17:43.384416+00:00",
+      "exit_code": 3221225477,
+      "windows_status_code": "0xC0000005",
+      "access_violation": true,
+      "load_stage_reached": "loading",
+      "success": false,
+      "benchmark_prompt_used": false,
+      "benchmark_run_created": false,
+      "live_load": true,
+      "metadata_only": false,
+      "host_before": {
+        "vram_used_mib": 2271.0,
+        "vram_free_mib": 9741.0,
+        "available_ram_bytes": 15498604544,
+        "page_file": {
+          "total_page_file_bytes": 86496485376,
+          "available_page_file_bytes": 17395724288,
+          "commit_charge_approx_bytes": 69100761088
+        }
+      },
+      "worker_success": false,
+      "generation": null,
+      "error": null,
+      "attempt_dir": "evaluations/diagnostics/qwen3-8b-windows-load-isolation/attempts/attempt-05-QUAL"
+    },
+    {
+      "schema": "cobra.diagnostics.load_attempt.v1",
+      "attempt_id": "attempt-06-QUAL",
+      "configuration_id": "QUAL",
+      "process_id": 9684,
+      "started_at": "2026-07-23T06:17:43.742294+00:00",
+      "ended_at": "2026-07-23T06:23:10.782899+00:00",
+      "exit_code": 3221225477,
+      "windows_status_code": "0xC0000005",
+      "access_violation": true,
+      "load_stage_reached": "loading",
+      "success": false,
+      "benchmark_prompt_used": false,
+      "benchmark_run_created": false,
+      "live_load": true,
+      "metadata_only": false,
+      "host_before": {
+        "vram_used_mib": 2242.0,
+        "vram_free_mib": 9770.0,
+        "available_ram_bytes": 15639851008,
+        "page_file": {
+          "total_page_file_bytes": 86632378368,
+          "available_page_file_bytes": 17527799808,
+          "commit_charge_approx_bytes": 69104578560
+        }
+      },
+      "worker_success": false,
+      "generation": null,
+      "error": null,
+      "attempt_dir": "evaluations/diagnostics/qwen3-8b-windows-load-isolation/attempts/attempt-06-QUAL"
+    },
+    {
+      "schema": "cobra.diagnostics.load_attempt.v1",
+      "attempt_id": "attempt-07-QUAL",
+      "configuration_id": "QUAL",
+      "process_id": 38976,
+      "started_at": "2026-07-23T06:23:11.202476+00:00",
+      "ended_at": "2026-07-23T06:28:48.314080+00:00",
+      "exit_code": 3221225477,
+      "windows_status_code": "0xC0000005",
+      "access_violation": true,
+      "load_stage_reached": "loading",
+      "success": false,
+      "benchmark_prompt_used": false,
+      "benchmark_run_created": false,
+      "live_load": true,
+      "metadata_only": false,
+      "host_before": {
+        "vram_used_mib": 2254.0,
+        "vram_free_mib": 9758.0,
+        "available_ram_bytes": 15863894016,
+        "page_file": {
+          "total_page_file_bytes": 85745577984,
+          "available_page_file_bytes": 17339215872,
+          "commit_charge_approx_bytes": 68406362112
+        }
+      },
+      "worker_success": false,
+      "generation": null,
+      "error": null,
+      "attempt_dir": "evaluations/diagnostics/qwen3-8b-windows-load-isolation/attempts/attempt-07-QUAL"
+    }
+  ],
+  "live_loads": 6
+}

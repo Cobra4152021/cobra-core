@@ -1,0 +1,13 @@
+{
+  "configuration_id": "B",
+  "name": "explicit_gpu_placement",
+  "quantization": "4bit-nf4-double",
+  "device_map": {
+    "": 0
+  },
+  "max_memory": null,
+  "low_cpu_mem_usage": true,
+  "offload_state_dict": false,
+  "generate": false,
+  "live_load": true
+}

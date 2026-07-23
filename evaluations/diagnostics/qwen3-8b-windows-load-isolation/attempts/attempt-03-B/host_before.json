@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-07-23T05:58:30.100658+00:00",
+  "nvidia_smi": {
+    "raw": "610.74, NVIDIA GeForce RTX 4070, 12282, 2210, 9802, 1",
+    "driver_version": "610.74",
+    "gpu_name": "NVIDIA GeForce RTX 4070",
+    "memory_total_mib": 12282.0,
+    "memory_used_mib": 2210.0,
+    "memory_free_mib": 9802.0
+  },
+  "memory": {
+    "total_ram_bytes": 34290569216,
+    "available_ram_bytes": 14828158976,
+    "page_file_or_swap": {
+      "total_page_file_bytes": 86130053120,
+      "available_page_file_bytes": 17414983680,
+      "commit_charge_approx_bytes": 68715069440
+    }
+  },
+  "disk": {
+    "total_bytes": 2000300277760,
+    "free_bytes": 567120363520
+  },
+  "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+  "executable": "D:\\Downloads\\cobra-core\\.venv\\Scripts\\python.exe",
+  "compute_apps": [
+    "35908, [Insufficient Permissions], [N/A]",
+    "22980, C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\CEF\\NVIDIA Overlay.exe, [N/A]",
+    "36608, C:\\Program Files\\WindowsApps\\Microsoft.Edge.GameAssist_1.0.3456.0_x64__8wekyb3d8bbwe\\EdgeGameAssist.exe, [N/A]",
+    "19352, C:\\Program Files\\NVIDIA Corporation\\NvContainer\\nvcontainer.exe, [N/A]",
+    "3888, C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\150.0.4078.48\\msedgewebview2.exe, [N/A]",
+    "30260, C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe, [N/A]",
+    "48920, C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.707.9981.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe, [N/A]",
+    "45440, C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.707.9981.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe, [N/A]",
+    "14748, C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe, [N/A]",
+    "8640, C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe, [N/A]",
+    "4440, C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe, [N/A]",
+    "55072, C:\\WINDOWS\\SystemApps\\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\\StartMenuExperienceHost.exe, [N/A]",
+    "46496, C:\\WINDOWS\\explorer.exe, [N/A]",
+    "36064, C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\SearchHost.exe, [N/A]",
+    "18604, C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\TextInputHost.exe, [N/A]",
+    "34720, C:\\WINDOWS\\SystemApps\\ShellExperienceHost_cw5n1h2txyewy\\ShellExperienceHost.exe, [N/A]",
+    "8500, C:\\Users\\Dynamic Mining Inc\\AppData\\Local\\Programs\\cursor\\Cursor.exe, [N/A]",
+    "14456, C:\\Users\\Dynamic Mining Inc\\AppData\\Local\\AnthropicClaude\\app-1.22209.0\\claude.exe, [N/A]",
+    "56548, C:\\Users\\Dynamic Mining Inc\\AppData\\Local\\AnthropicClaude\\app-1.22209.0\\claude.exe, [N/A]",
+    "5628, C:\\Program Files\\Malwarebytes\\Anti-Malware\\Malwarebytes.exe, [N/A]",
+    "54956, C:\\Program Files (x86)\\Epic Games\\Launcher\\Portal\\Binaries\\Win64\\EpicGamesLauncher.exe, [N/A]",
+    "28020, C:\\Program Files (x86)\\Epic Games\\Launcher\\Engine\\Binaries\\Win64\\EpicWebHelper.exe, [N/A]",
+    "32800, C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\CEF\\NVIDIA Overlay.exe, [N/A]"
+  ]
+}

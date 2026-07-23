@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-07-23T05:54:19.046968+00:00",
+  "import_status": "pass",
+  "warnings": [],
+  "errors": [],
+  "bitsandbytes_version": "0.49.2",
+  "torch_version": "2.6.0+cu124",
+  "cuda_available": true,
+  "torch_cuda": "12.4",
+  "device_name": "NVIDIA GeForce RTX 4070",
+  "compute_capability": "8.9",
+  "bnb_file": "D:\\Downloads\\cobra-core\\.venv\\Lib\\site-packages\\bitsandbytes\\__init__.py",
+  "compiled_with_cuda": null,
+  "linear4bit_smoke": {
+    "ok": true,
+    "out_shape": [
+      2,
+      64
+    ],
+    "out_dtype": "torch.float16"
+  }
+}

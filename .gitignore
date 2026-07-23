@@ -104,6 +104,11 @@ evaluations/environment/**
 !evaluations/model-inventory/**
 !evaluations/smoke/
 !evaluations/smoke/**
+!evaluations/diagnostics/
+!evaluations/diagnostics/**
+!evaluations/runtime-candidates/
+!evaluations/runtime-candidates/**
+!evaluations/reports/BITSANDBYTES_WINDOWS_DIAGNOSTIC.md
 evaluations/runs/**
 !evaluations/runs/
 !evaluations/runs/**/

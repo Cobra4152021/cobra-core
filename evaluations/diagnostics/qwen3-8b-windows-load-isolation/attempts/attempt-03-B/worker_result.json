@@ -1,0 +1,43 @@
+{
+  "configuration_id": "B",
+  "config": {
+    "name": "explicit_gpu_placement",
+    "quantization": "4bit-nf4-double",
+    "device_map": {
+      "": 0
+    },
+    "max_memory": null,
+    "low_cpu_mem_usage": true,
+    "offload_state_dict": false,
+    "generate": false,
+    "live_load": true
+  },
+  "started_at": "2026-07-23T05:58:33.053173+00:00",
+  "success": true,
+  "load_stage": "loaded",
+  "error": null,
+  "generation": null,
+  "memory_before": {
+    "total_ram_bytes": 34290569216,
+    "available_ram_bytes": 14816739328,
+    "page_file_or_swap": {
+      "total_page_file_bytes": 86130053120,
+      "available_page_file_bytes": 17376555008,
+      "commit_charge_approx_bytes": 68753498112
+    }
+  },
+  "prompt_is_benchmark": false,
+  "smoke_prompt_fingerprint": "synthetic-src-abc-v1",
+  "artifact_root": "D:\\cobra-models\\qwen\\qwen3-8b\\b968826d9c46dd6066d109eabc6255188de91218\\artifacts",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "ended_at": "2026-07-23T06:05:07.300222+00:00",
+  "memory_after": {
+    "total_ram_bytes": 34290569216,
+    "available_ram_bytes": 15002353664,
+    "page_file_or_swap": {
+      "total_page_file_bytes": 94713688064,
+      "available_page_file_bytes": 24157507584,
+      "commit_charge_approx_bytes": 70556180480
+    }
+  }
+}

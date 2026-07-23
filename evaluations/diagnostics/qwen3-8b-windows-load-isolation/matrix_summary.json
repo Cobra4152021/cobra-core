@@ -1,0 +1,10 @@
+{
+  "live_loads": 2,
+  "max_live_loads": 6,
+  "successful_live": [
+    "B"
+  ],
+  "failed_live": [
+    "A"
+  ]
+}

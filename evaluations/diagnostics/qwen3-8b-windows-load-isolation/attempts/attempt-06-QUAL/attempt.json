@@ -1,0 +1,31 @@
+{
+  "schema": "cobra.diagnostics.load_attempt.v1",
+  "attempt_id": "attempt-06-QUAL",
+  "configuration_id": "QUAL",
+  "process_id": 9684,
+  "started_at": "2026-07-23T06:17:43.742294+00:00",
+  "ended_at": "2026-07-23T06:23:10.782899+00:00",
+  "exit_code": 3221225477,
+  "windows_status_code": "0xC0000005",
+  "access_violation": true,
+  "load_stage_reached": "loading",
+  "success": false,
+  "benchmark_prompt_used": false,
+  "benchmark_run_created": false,
+  "live_load": true,
+  "metadata_only": false,
+  "host_before": {
+    "vram_used_mib": 2242.0,
+    "vram_free_mib": 9770.0,
+    "available_ram_bytes": 15639851008,
+    "page_file": {
+      "total_page_file_bytes": 86632378368,
+      "available_page_file_bytes": 17527799808,
+      "commit_charge_approx_bytes": 69104578560
+    }
+  },
+  "worker_success": false,
+  "generation": null,
+  "error": null,
+  "attempt_dir": "evaluations/diagnostics/qwen3-8b-windows-load-isolation/attempts/attempt-06-QUAL"
+}

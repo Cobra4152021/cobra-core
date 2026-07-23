@@ -1,0 +1,14 @@
+{
+  "configuration_id": "QUAL",
+  "name": "smoke_qualification_generation",
+  "quantization": "4bit-nf4-double",
+  "device_map": {
+    "": 0
+  },
+  "max_memory": null,
+  "low_cpu_mem_usage": true,
+  "offload_state_dict": false,
+  "generate": true,
+  "live_load": true,
+  "max_new_tokens": 64
+}
