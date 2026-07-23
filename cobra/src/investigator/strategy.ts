@@ -5,6 +5,10 @@
 
 import type { Priority } from "./types.js";
 import { getTemplate, type TemplateId } from "./templates.js";
+import {
+  getGovernmentTemplate,
+  isGovernmentTemplateId,
+} from "./domains/government/templates.js";
 
 export type StrategyId =
   | "budget_audit"
@@ -266,6 +270,13 @@ export function selectStrategy(input: {
     if (byTemplate) return byTemplate;
     // Map remaining templates
     if (template.id === "government_audit") return getStrategy("compliance_investigation")!;
+  }
+
+  // KC-005 — explicit Government template IDs map into existing strategies.
+  if (isGovernmentTemplateId(input.templateId)) {
+    const govTpl = getGovernmentTemplate(input.templateId);
+    const govStrategy = getStrategy(govTpl?.strategyId);
+    if (govStrategy) return govStrategy;
   }
 
   const prompt = `${input.title}\n${input.description ?? ""}`;

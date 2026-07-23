@@ -11,3 +11,4 @@ export * from "./confidence.js";
 export * from "./review.js";
 export * from "./metrics.js";
 export * from "./report.js";
+export * as government from "./domains/government/index.js";

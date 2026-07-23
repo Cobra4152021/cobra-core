@@ -6,6 +6,7 @@
 import type { InvestigationPlan, Priority } from "./types.js";
 import { getTemplate } from "./templates.js";
 import { selectStrategy } from "./strategy.js";
+import { getGovernmentTemplate } from "./domains/government/templates.js";
 
 function inferPriority(title: string, description: string, fallback: Priority): Priority {
   const t = `${title} ${description}`.toLowerCase();
@@ -44,15 +45,16 @@ export function planInvestigation(input: {
     strategyId: input.strategyId,
   });
   const template = getTemplate(input.templateId ?? strategy.templateId);
+  const govTemplate = getGovernmentTemplate(input.templateId);
   const known = input.knownFacts ?? [];
 
   const questions = uniqueStrings([
-    ...(template?.defaultQuestions ?? []),
+    ...(govTemplate?.defaultQuestions ?? template?.defaultQuestions ?? []),
     ...strategy.questions,
   ]).slice(0, 12);
 
   const evidenceNeeded = uniqueStrings([
-    ...(template?.evidenceNeeded ?? []),
+    ...(govTemplate?.evidenceNeeded ?? template?.evidenceNeeded ?? []),
     ...strategy.evidencePriorities,
     "Knowledge Engine memories and facts",
     "Evidence Vault documents and citations",
@@ -87,16 +89,22 @@ export function planInvestigation(input: {
       "Generate citation-backed report",
       "Review and publish or archive",
     ],
-    priority: inferPriority(input.title, input.description ?? "", strategy.defaultPriority),
+    priority: inferPriority(
+      input.title,
+      input.description ?? "",
+      govTemplate?.riskLevel === "critical" || govTemplate?.riskLevel === "high"
+        ? "high"
+        : strategy.defaultPriority,
+    ),
     deliverables: uniqueStrings([
-      ...(template?.deliverables ?? []),
+      ...(govTemplate?.deliverables ?? template?.deliverables ?? []),
       ...strategy.expectedDeliverables,
       "competing hypotheses",
       "missing evidence",
       "confidence summary",
       "review checklist",
     ]),
-    templateId: template?.id ?? strategy.templateId,
+    templateId: govTemplate?.id ?? template?.id ?? strategy.templateId,
     strategyId: strategy.id,
     strategyName: strategy.name,
     confidenceRules: strategy.confidenceRules,
