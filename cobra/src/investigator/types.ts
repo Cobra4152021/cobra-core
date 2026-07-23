@@ -1,4 +1,4 @@
-/** Cobra Investigator domain types (KC-004). Storage-independent. */
+/** Cobra Investigator domain types (KC-004 / KC-004B). Storage-independent. */
 
 export type InvestigationStatus =
   | "draft"
@@ -24,6 +24,11 @@ export interface InvestigationPlan {
   priority: Priority;
   deliverables: string[];
   templateId: string | null;
+  /** KC-004B strategy selection */
+  strategyId?: string | null;
+  strategyName?: string | null;
+  confidenceRules?: string[];
+  methodology?: string[];
 }
 
 export interface FindingDraft {
@@ -50,12 +55,17 @@ export interface RecommendationDraft {
 export interface ReportSections {
   executiveSummary: string;
   scope: string;
+  methodology: string[];
+  knownLimitations: string[];
   questions: string[];
   evidenceReviewed: string[];
+  missingEvidence: string[];
+  competingHypotheses: string[];
   timeline: string[];
   findings: string[];
   conflicts: string[];
   recommendations: string[];
+  confidenceSummary: string[];
   appendix: string[];
   citations: string[];
 }
