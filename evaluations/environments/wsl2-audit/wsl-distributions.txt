@@ -1,0 +1,9 @@
+wsl -l -v:
+The service cannot be started, either because it is disabled or because it has no enabled devices associated with it.
+Error code: Wsl/0x80070422
+
+Installed distributions: UNAVAILABLE (service disabled)
+Default distribution: UNAVAILABLE
+Preferred target if installable: Ubuntu 24.04 LTS
+Fallback: Ubuntu 22.04 LTS
+Selected distribution: none (WSL runtime unavailable)

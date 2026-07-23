@@ -1,0 +1,15 @@
+wsl --status:
+The service cannot be started, either because it is disabled or because it has no enabled devices associated with it.
+Error code: Wsl/0x80070422
+
+WSLService:
+  Status: Stopped
+  StartType: Disabled
+  Binary: C:\Program Files\WSL\wslservice.exe
+
+Set-Service WSLService -StartupType Manual:
+  FAILED: Access is denied (non-elevated session)
+
+LxssManager: not installed (modern WSL uses WSLService)
+vmcompute: Running
+HvHost: Running

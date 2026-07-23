@@ -1,0 +1,4 @@
+NO_WSLCONFIG
+Path checked: C:\Users\Dynamic Mining Inc\.wslconfig
+File did not exist at audit time.
+No .wslconfig modifications performed.

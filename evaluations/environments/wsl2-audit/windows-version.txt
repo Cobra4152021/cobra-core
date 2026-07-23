@@ -1,0 +1,5 @@
+Caption: Microsoft Windows 11 Pro N
+Version: 10.0.22621.6199
+BuildLab-ish: 10.0.22621
+ProductName(ComputerInfo): Windows 10 Pro N (legacy field)
+OsHardwareAbstractionLayer: 10.0.22621.2506

@@ -1,0 +1,23 @@
+{
+  "schema": "cobra.diagnostics.wsl2_preflight.v1",
+  "required_commit": "9ea6874f3edb71fb2734c427079dd454c5d75b59",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "model_inventory_hash": "8cf07aa84c9e26c9dd4ce71b21bd498232c8dfa5afe5284d375be0c1e9bb3f4f",
+  "max_full_loads": 6,
+  "qualification_rule": {
+    "required": 3,
+    "mode": "fresh_subprocess_load_and_generate"
+  },
+  "extended_rule": {
+    "prompts": 5,
+    "after_qualification": true
+  },
+  "synthetic_prompt_enforced": true,
+  "benchmark_prompts_prohibited": true,
+  "signal_recording": true,
+  "oom_kill_recording": true,
+  "subprocess_isolation": true,
+  "wsl_available": false,
+  "wsl_detail": "T\u0000h\u0000e\u0000 \u0000s\u0000e\u0000r\u0000v\u0000i\u0000c\u0000e\u0000 \u0000c\u0000a\u0000n\u0000n\u0000o\u0000t\u0000 \u0000b\u0000e\u0000 \u0000s\u0000t\u0000a\u0000r\u0000t\u0000e\u0000d\u0000,\u0000 \u0000e\u0000i\u0000t\u0000h\u0000e\u0000r\u0000 \u0000b\u0000e\u0000c\u0000a\u0000u\u0000s\u0000e\u0000 \u0000i\u0000t\u0000 \u0000i\u0000s\u0000 \u0000d\u0000i\u0000s\u0000a\u0000b\u0000l\u0000e\u0000d\u0000 \u0000o\u0000r\u0000 \u0000b\u0000e\u0000c\u0000a\u0000u\u0000s\u0000e\u0000 \u0000i\u0000t\u0000 \u0000h\u0000a\u0000s\u0000 \u0000n\u0000o\u0000 \u0000e\u0000n\u0000a\u0000b\u0000l\u0000e\u0000d\u0000 \u0000d\u0000e\u0000v\u0000i\u0000c\u0000e\u0000s\u0000 \u0000a\u0000s\u0000s\u0000o\u0000c\u0000i\u0000a\u0000t\u0000e\u0000d\u0000 \u0000w\u0000i\u0000t\u0000h\u0000 \u0000i\u0000t\u0000.\u0000 \u0000\n\u0000\n\u0000E\u0000r\u0000r\u0000o\u0000r\u0000 \u0000c\u0000o\u0000d\u0000e\u0000:\u0000 \u0000W\u0000s\u0000l\u0000/\u00000\u0000x\u00008\u00000\u00000\u00007\u00000\u00004\u00002\u00002\u0000\n\u0000\n\u0000",
+  "benchmark_executed": false
+}

@@ -1,0 +1,9 @@
+{
+  "host_vram_mib": 12282,
+  "host_driver": "610.74",
+  "nvidia_smi_in_wsl": "not_attempted_service_disabled",
+  "host_vram_free_mib": 9619,
+  "wsl_gpu_passthrough": "unavailable",
+  "host_gpu": "NVIDIA GeForce RTX 4070",
+  "reason": "WSLService StartType=Disabled; wsl commands fail with Wsl/0x80070422; enabling service requires elevation (Access denied)"
+}

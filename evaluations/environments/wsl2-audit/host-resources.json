@@ -1,0 +1,27 @@
+{
+  "total_ram_mib": 32702,
+  "active_gpu_related_processes": [
+    "NVIDIA Overlay"
+  ],
+  "wsl_vhd_free": "unavailable",
+  "free_ram_mib": 12314,
+  "pagefile": [
+    {
+      "current_usage_mb": 3099,
+      "path": "C:\\pagefile.sys",
+      "allocated_mb": 16522
+    },
+    {
+      "current_usage_mb": 3835,
+      "path": "H:\\pagefile.sys",
+      "allocated_mb": 30000
+    }
+  ],
+  "disk_free_bytes": {
+    "C": 5887426560,
+    "D": 549097308160,
+    "G": 41985052672
+  },
+  "wsl_swap_limit": "not_configured_no_wslconfig",
+  "wsl_memory_limit": "not_configured_no_wslconfig"
+}
