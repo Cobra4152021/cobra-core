@@ -8,9 +8,11 @@
 
 ## FINAL STATUS
 
-# B. KC-003 PARTIAL
+# B. KC-003 PARTIAL → superseded integration track KC-003A
 
-Core engine works; advanced LLM-backed reasoning and live Evidence Vault / D1 production mounting remain pending.
+KC-003 library criteria remain partial at package level. **KC-003A** mounts CKE on Cobra Computer (`/api/cke/*`, D1 `0046`, session `use_cke`). See `docs/KC003A_FINAL_REPORT.md` and cobracomputer `docs/KC003A_*.md`.
+
+**KC-003A status: B PARTIAL** (live core code ready; staging/production enablement pending).
 
 ---
 
