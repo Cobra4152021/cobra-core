@@ -1,9 +1,9 @@
 {
   "name": "@cobra-core/knowledge-engine",
-  "version": "0.3.0",
+  "version": "0.4.1",
   "private": true,
   "type": "module",
-  "description": "Cobra Knowledge Engine (CKE) — KC-003",
+  "description": "Cobra Knowledge Engine + Investigator Intelligence (KC-003 / KC-004B)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
