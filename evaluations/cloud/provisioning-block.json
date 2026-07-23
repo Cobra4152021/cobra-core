@@ -3,12 +3,11 @@
   "blocked": true,
   "block_class": "authentication",
   "provider": "RunPod",
-  "detail": "Resume from f7c1ab53f47eb0cc112b3c10a5f18e72624ed373: RUNPOD_API_KEY still absent from process/user/machine environments. Authorization limits unchanged. No pod created.",
+  "detail": "Resume from 3b6c706fc1760d79dadc11b2d766343ddcf7699a: RUNPOD_API_KEY still absent from process/user/machine environments. Authorization limits unchanged. No pod created.",
   "resume_attempt": {
-    "expected_commit": "f7c1ab53f47eb0cc112b3c10a5f18e72624ed373",
+    "expected_commit": "3b6c706fc1760d79dadc11b2d766343ddcf7699a",
     "repository_clean": true,
-    "quality_suite": "green",
-    "tests": "228 passed, 2 skipped, 6 deselected",
+    "quality_suite": "green_after_block_fix",
     "frozen_hashes_ok": true,
     "protocol_status": "prepared-not-run",
     "authorization_ok": true,
@@ -24,17 +23,19 @@
     "primary_gpu": "NVIDIA L4",
     "authorized_displayed_rate_usd": 0.44,
     "approved_hourly_ceiling_usd": 0.5,
+    "within_limit": true,
     "fallback_gpu": "NVIDIA RTX A5000",
     "fallback_authorized_reference_rate_usd": 0.16,
     "fallback_approved_hourly_ceiling_usd": 0.35,
+    "fallback_within_limit": true,
     "live_availability_queried": false
   },
   "instance_created": false,
   "spend_incurred_usd": 0,
   "required_to_proceed": [
-    "Set RUNPOD_API_KEY where the Cursor Agent shell inherits it, then start a new Agent chat or restart the agent.",
-    "Verify with a local check that prints only credential_present=true (never the value).",
-    "Do not paste the key into chat."
+    "Inject RUNPOD_API_KEY into the Cursor Agent process environment so child shells inherit it.",
+    "Open a new Agent chat after setting the variable.",
+    "Do not paste the key into chat or the repository."
   ],
-  "timestamp": "2026-07-23T19:32:00+00:00"
+  "timestamp": "2026-07-23T19:41:00+00:00"
 }
