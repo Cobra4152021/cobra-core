@@ -3,17 +3,19 @@
   "blocked": true,
   "block_class": "authentication",
   "provider": "RunPod",
-  "detail": "Resume attempt at commit 79c0ccaa2d76e3e25ea2e399dfee7284c6b7ec7f: RUNPOD_API_KEY absent from process, user, and machine environments. No RunPod authentication attempted. No pod created.",
+  "detail": "Resume from f7c1ab53f47eb0cc112b3c10a5f18e72624ed373: RUNPOD_API_KEY still absent from process/user/machine environments. Authorization limits unchanged. No pod created.",
   "resume_attempt": {
-    "expected_commit": "79c0ccaa2d76e3e25ea2e399dfee7284c6b7ec7f",
+    "expected_commit": "f7c1ab53f47eb0cc112b3c10a5f18e72624ed373",
     "repository_clean": true,
     "quality_suite": "green",
     "tests": "228 passed, 2 skipped, 6 deselected",
     "frozen_hashes_ok": true,
+    "protocol_status": "prepared-not-run",
     "authorization_ok": true,
     "credential_present": false,
     "authentication_succeeded": false,
     "credential_source": "none",
+    "live_availability_queried": false,
     "cloud_api_contacted": false,
     "instances_created": 0,
     "spend_usd": 0
@@ -22,19 +24,17 @@
     "primary_gpu": "NVIDIA L4",
     "authorized_displayed_rate_usd": 0.44,
     "approved_hourly_ceiling_usd": 0.5,
-    "within_limit": true,
     "fallback_gpu": "NVIDIA RTX A5000",
     "fallback_authorized_reference_rate_usd": 0.16,
     "fallback_approved_hourly_ceiling_usd": 0.35,
-    "fallback_within_limit": true,
     "live_availability_queried": false
   },
   "instance_created": false,
   "spend_incurred_usd": 0,
   "required_to_proceed": [
-    "Inject RUNPOD_API_KEY into the Cursor agent process environment (Settings/Secrets or a new shell that inherits the variable).",
-    "Do not paste the key into chat or commit it.",
-    "Re-run resume; orchestrator will authenticate, query live prices, and launch at most one pod."
+    "Set RUNPOD_API_KEY where the Cursor Agent shell inherits it, then start a new Agent chat or restart the agent.",
+    "Verify with a local check that prints only credential_present=true (never the value).",
+    "Do not paste the key into chat."
   ],
-  "timestamp": "2026-07-23T18:39:00+00:00"
+  "timestamp": "2026-07-23T19:32:00+00:00"
 }
