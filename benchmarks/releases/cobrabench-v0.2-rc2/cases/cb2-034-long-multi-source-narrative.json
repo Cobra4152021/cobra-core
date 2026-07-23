@@ -1,0 +1,175 @@
+{
+  "case_id": "cb2-034-long-multi-source-narrative",
+  "version": "0.2.0-rc2",
+  "status": "release_candidate",
+  "official_release": false,
+  "scored": false,
+  "frozen": true,
+  "part_of_cobrabench_v01": false,
+  "category": "long_document_analysis",
+  "title": "Multi-source narrative synthesis",
+  "difficulty_level": 3,
+  "system_prompt": "You are an investigation research assistant. Use only the provided SOURCE blocks. Cite with source identifiers like [S1]. Separate facts from inferences. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "Synthesize material events about pallet P-4; omit cafeteria noise.",
+  "supporting_sources": [
+    {
+      "source_id": "s1",
+      "title": "Narrative A",
+      "content": "Date: 2026-05-01. Pallet P-4 moved from Zone 1 to Zone 2 at 10:00 by team lead.",
+      "citation_key": "S1"
+    },
+    {
+      "source_id": "s2",
+      "title": "Narrative B",
+      "content": "Date: 2026-05-01. Scanner missed P-4 in Zone 2 until 12:15.",
+      "citation_key": "S2"
+    },
+    {
+      "source_id": "s3",
+      "title": "Noise",
+      "content": "Date: 2026-05-01. Break room microwave broken.",
+      "citation_key": "S3"
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-1",
+      "description": "States move and scan gap",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-2",
+      "description": "Ignores microwave as immaterial",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-1",
+      "description": "Treats microwave as material cause"
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v2_rc2",
+    "rubric_version": "0.2.0-rc2",
+    "notes": "Behavior-based scoring; wording similarity not required. Phase 2H rc2."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "long",
+    "narrative"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-has-content",
+      "description": "Response is non-empty. Keywords: the,and,evidence,source,finding,cannot,refuse",
+      "check_type": "contains_any"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-material-findings",
+      "description": "Material findings completeness"
+    },
+    {
+      "dimension_id": "hum-verbosity",
+      "description": "Avoidance of unnecessary restatement"
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "allow_uncited_inference": true
+  },
+  "material_evidence": {
+    "required_evidence_ids": [
+      "S1",
+      "S2"
+    ],
+    "optional_evidence_ids": [
+      "S3"
+    ],
+    "contrary_evidence_ids": [],
+    "minimum_source_diversity": 2,
+    "claim_level_citation_required": true
+  },
+  "format_expectations": null,
+  "contradiction_expectations": null,
+  "output_budget": {
+    "runtime_profile_id": "long-document-analysis",
+    "required_sections": [
+      "Events",
+      "Gaps"
+    ],
+    "early_stop_expectation": "expect_full_sections"
+  },
+  "prompt_template_id": "evidence-analysis",
+  "prompt_template_version": "2.0.0",
+  "evaluator_versions": {
+    "unsupported_claims": "2.0.0",
+    "format_compliance": null,
+    "citations": "2.0.0",
+    "contradictions": null,
+    "output_budget_telemetry": null
+  },
+  "uncertainty_requirements": [],
+  "refusal_expectations": null,
+  "reference_behavior": {
+    "required_findings": [
+      "States move and scan gap",
+      "Ignores microwave as immaterial"
+    ],
+    "acceptable_alternatives": [],
+    "material_omissions": [],
+    "prohibited_claims": [
+      "Treats microwave as material cause"
+    ],
+    "evidence_dependencies": [
+      "S1",
+      "S2"
+    ],
+    "acceptable_uncertainty": [],
+    "unacceptable_certainty": [
+      "definitely proven beyond all doubt without evidence"
+    ],
+    "required_citations": [
+      "S1"
+    ],
+    "optional_citations": [
+      "S3"
+    ]
+  },
+  "human_review": {
+    "reviewer_status": "approved",
+    "single_reviewer": true,
+    "issues_found": [
+      "D2H-001"
+    ],
+    "corrections_made": [
+      "objective_checks+human_dimensions:strengthened"
+    ],
+    "unresolved_ambiguity": [],
+    "approval_status": "approved",
+    "clarity": 4,
+    "sufficiency_of_evidence": 4,
+    "fairness": 4,
+    "scoring_clarity": 4,
+    "investigation_relevance": 4
+  },
+  "contamination": {
+    "source_origin": "internally authored synthetic evidence",
+    "authoring_method": "synthetic_authored",
+    "licensing_status": "original_synthetic_cobra",
+    "synthetic": true,
+    "transformed_from_public_material": false,
+    "pretraining_exposure_risk": "low",
+    "answer_leakage_risk": "low",
+    "training_set_exclusion_status": "exclude_from_future_training_corpora"
+  },
+  "known_ambiguity_notes": "None material after single-reviewer approval.",
+  "notes": "Phase 2H independent review applied; see evaluations/reviews/cobrabench-v0.2-rc1-independent-review/."
+}

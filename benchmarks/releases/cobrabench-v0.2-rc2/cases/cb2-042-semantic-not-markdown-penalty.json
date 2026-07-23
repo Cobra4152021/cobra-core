@@ -1,0 +1,168 @@
+{
+  "case_id": "cb2-042-semantic-not-markdown-penalty",
+  "version": "0.2.0-rc2",
+  "status": "release_candidate",
+  "official_release": false,
+  "scored": false,
+  "frozen": true,
+  "part_of_cobrabench_v01": false,
+  "category": "instruction_following",
+  "title": "Semantic fields with optional tolerant markdown",
+  "difficulty_level": 2,
+  "system_prompt": "You are an investigation research assistant. Use only the provided SOURCE blocks. Cite with source identifiers like [S1]. Separate facts from inferences. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "Provide FINDING, RISK, NEXT about the scan. Exact syntax preferred; semantic content required.",
+  "supporting_sources": [
+    {
+      "source_id": "s1",
+      "title": "Scan",
+      "content": "Date: 2026-06-06. Outdated dependency found.",
+      "citation_key": "S1"
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-1",
+      "description": "Contains finding/risk/next meanings",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-2",
+      "description": "Does not omit risk",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-1",
+      "description": "Omits next step entirely"
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v2_rc2",
+    "rubric_version": "0.2.0-rc2",
+    "notes": "Behavior-based scoring; wording similarity not required. Phase 2H rc2."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "format",
+    "semantic"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-has-content",
+      "description": "Response is non-empty. Keywords: the,and,evidence,source,finding,cannot,refuse",
+      "check_type": "contains_any"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-semantic",
+      "description": "Semantic field completeness"
+    },
+    {
+      "dimension_id": "hum-exact",
+      "description": "Exact-format adherence when required"
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "S1"
+    ],
+    "allow_uncited_inference": true
+  },
+  "material_evidence": {
+    "required_evidence_ids": [
+      "S1"
+    ],
+    "optional_evidence_ids": [],
+    "contrary_evidence_ids": [],
+    "minimum_source_diversity": 1,
+    "claim_level_citation_required": true
+  },
+  "format_expectations": {
+    "semantic_fields": [
+      "FINDING",
+      "RISK",
+      "NEXT"
+    ],
+    "exact_fields": [
+      "FINDING",
+      "RISK",
+      "NEXT"
+    ],
+    "parser_mode": "both",
+    "machine_interoperability_required": false,
+    "field_order_matters": false,
+    "extra_prose_prohibited": false,
+    "tolerant_recovery_allowed": true
+  },
+  "contradiction_expectations": null,
+  "output_budget": {
+    "runtime_profile_id": "deterministic-investigation",
+    "required_sections": [],
+    "early_stop_expectation": "natural_or_complete"
+  },
+  "prompt_template_id": "exact-format",
+  "prompt_template_version": "2.0.0",
+  "evaluator_versions": {
+    "unsupported_claims": null,
+    "format_compliance": "2.0.0",
+    "citations": null,
+    "contradictions": null,
+    "output_budget_telemetry": null
+  },
+  "uncertainty_requirements": [],
+  "refusal_expectations": null,
+  "reference_behavior": {
+    "required_findings": [
+      "Contains finding/risk/next meanings",
+      "Does not omit risk"
+    ],
+    "acceptable_alternatives": [],
+    "material_omissions": [],
+    "prohibited_claims": [
+      "Omits next step entirely"
+    ],
+    "evidence_dependencies": [
+      "S1"
+    ],
+    "acceptable_uncertainty": [],
+    "unacceptable_certainty": [
+      "definitely proven beyond all doubt without evidence"
+    ],
+    "required_citations": [
+      "S1"
+    ],
+    "optional_citations": []
+  },
+  "human_review": {
+    "reviewer_status": "approved",
+    "single_reviewer": true,
+    "issues_found": [
+      "D2H-001"
+    ],
+    "corrections_made": [
+      "objective_checks+human_dimensions:strengthened"
+    ],
+    "unresolved_ambiguity": [],
+    "approval_status": "approved",
+    "clarity": 4,
+    "sufficiency_of_evidence": 4,
+    "fairness": 4,
+    "scoring_clarity": 4,
+    "investigation_relevance": 4
+  },
+  "contamination": {
+    "source_origin": "internally authored synthetic evidence",
+    "authoring_method": "synthetic_authored",
+    "licensing_status": "original_synthetic_cobra",
+    "synthetic": true,
+    "transformed_from_public_material": false,
+    "pretraining_exposure_risk": "low",
+    "answer_leakage_risk": "low",
+    "training_set_exclusion_status": "exclude_from_future_training_corpora"
+  },
+  "known_ambiguity_notes": "None material after single-reviewer approval.",
+  "notes": "Phase 2H independent review applied; see evaluations/reviews/cobrabench-v0.2-rc1-independent-review/."
+}

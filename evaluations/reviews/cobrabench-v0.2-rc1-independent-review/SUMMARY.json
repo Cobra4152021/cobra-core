@@ -1,0 +1,1442 @@
+{
+  "review_id": "cobrabench-v0.2-rc1-independent-review",
+  "reviewer_id": "phase2h-static-reviewer-1",
+  "review_date": "2026-07-22",
+  "method": "static-human-criteria-checklist",
+  "assistance": "hybrid-tooling-with-human-judgment",
+  "multi_rater": false,
+  "saw_original_approval_notes": false,
+  "rc1_tree_hash": "3c8cdc467183cf10567bcfe6f398258e894e5f979a54293d17ab2cb2c9e52b10",
+  "case_count": 46,
+  "status_counts": {
+    "approve_with_documentation_note": 29,
+    "revise_before_final": 17
+  },
+  "release_outcome": "B_create_rc2",
+  "reviews": [
+    {
+      "case_id": "cb2-001-badge-access-timeline",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-002-finance-approval-gap",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-003-equipment-failure-hypotheses",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-004-witness-vs-log",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-005-procedural-compliance-check",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-006-multi-hypothesis-priority",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-007-complete-support",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "revise_before_final",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 3,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "notes": [
+        "title:All evidence supports one conclusion->Warehouse departure record review",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-008-incomplete-evidence",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-009-multiple-explanations",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "revise_before_final",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 3,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "notes": [
+        "title:Multiple explanations supported->Server offline evidence review",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-010-one-vs-many-conflict",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "revise_before_final",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 3,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001",
+        "D2H-002",
+        "D2H-006"
+      ],
+      "notes": [
+        "title:One source conflicts with others->Bin B12 inventory count review",
+        "evaluator:add-contradictions-2.0.0",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-011-irrelevant-detail",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-012-plausible-distractor",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-013-unknown-identity",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "revise_before_final",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 3,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001",
+        "D2H-002",
+        "D2H-008"
+      ],
+      "notes": [
+        "title:Identity cannot be determined->Visitor badge photo request",
+        "difficulty:2->1",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-014-unknown-motive",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "revise_before_final",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 3,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001",
+        "D2H-002",
+        "D2H-008"
+      ],
+      "notes": [
+        "title:Motive remains unknown->Badge loan note review",
+        "difficulty:2->1",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-015-missing-calculation",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "revise_before_final",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 3,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001",
+        "D2H-008"
+      ],
+      "notes": [
+        "difficulty:2->1",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-016-no-legal-conclusion",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-017-no-fabricated-citation",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-018-single-source-cite",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-019-multi-source-synthesis",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-020-contrary-citation",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-021-uncitable-recommendation",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-022-labeled-inference-cite",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-023-direct-fact-conflict",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "revise_before_final",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 3,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "notes": [
+        "title:Direct factual contradiction->Vault door status records",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-024-numeric-conflict",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "revise_before_final",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 3,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "notes": [
+        "title:Numeric contradiction with shallow-explanation trap->Shipment unit totals",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-025-timeline-conflict",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "revise_before_final",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 3,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "notes": [
+        "title:Timeline contradiction->Shipment date records",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-026-identity-mismatch",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "revise_before_final",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 3,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "notes": [
+        "title:Identity mismatch->Courier name records",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-027-apparent-not-real",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "revise_before_final",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 3,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001",
+        "D2H-002",
+        "D2H-003",
+        "D2H-008"
+      ],
+      "notes": [
+        "title:Apparent contradiction resolved by context->Room 12 occupancy timestamps",
+        "difficulty:4->3",
+        "source_title:UTC log->Occupancy log B",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-028-uncertainty-not-contradiction",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "revise_before_final",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 3,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "notes": [
+        "title:Uncertainty is not contradiction->Suspect vehicle color notes",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-029-parse-source-ids",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-030-detect-duplicate-case-ids",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-031-timeline-delta",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-032-json-conflict-report",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-033-long-chrono-record",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-034-long-multi-source-narrative",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-035-long-table-plus-narrative",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "revise_before_final",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 3,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001",
+        "D2H-006"
+      ],
+      "notes": [
+        "evaluator:add-contradictions-2.0.0",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-036-long-repeated-with-discrepancy",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-037-refuse-credential-harvest",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "revise_before_final",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 3,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001",
+        "D2H-005"
+      ],
+      "notes": [
+        "refusal:drop-mandatory-citation-evaluator",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-038-refuse-destructive",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "revise_before_final",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 3,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001",
+        "D2H-005"
+      ],
+      "notes": [
+        "refusal:drop-mandatory-citation-evaluator",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-039-assist-benign-portion",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "revise_before_final",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 3,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001",
+        "D2H-005"
+      ],
+      "notes": [
+        "refusal:drop-mandatory-citation-evaluator",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-040-exact-finding-risk-next",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-041-json-only",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "revise_before_final",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 3,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001",
+        "D2H-007"
+      ],
+      "notes": [
+        "template:evidence-analysis->exact-format;tolerant=false",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-042-semantic-not-markdown-penalty",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-043-field-order-flexible",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-044-confidence-bands",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-045-avoid-empty-hedging",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    },
+    {
+      "case_id": "cb2-046-rank-hypotheses",
+      "reviewer_id": "phase2h-static-reviewer-1",
+      "reviewer_role": "independent-static-reviewer",
+      "review_date": "2026-07-22",
+      "review_method": "static-human-criteria-checklist",
+      "review_assistance": "hybrid-tooling-with-human-judgment",
+      "saw_original_approval_notes": false,
+      "original_approval_hidden": true,
+      "independence_limitations": [
+        "Same organization as Phase 2G authoring.",
+        "Not a second human rater; single independent pass.",
+        "Tooling assisted distribution/leakage scans; judgments are human-owned."
+      ],
+      "status": "approve_with_documentation_note",
+      "clarity": 4,
+      "answerability": 4,
+      "fairness": 4,
+      "evidence_design": 4,
+      "scoring_design": 3,
+      "investigation_relevance": 4,
+      "output_budget_suitability": 4,
+      "defects": [
+        "D2H-001"
+      ],
+      "notes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "unresolved_ambiguity": []
+    }
+  ]
+}

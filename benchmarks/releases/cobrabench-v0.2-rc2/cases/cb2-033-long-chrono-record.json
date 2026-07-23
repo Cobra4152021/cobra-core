@@ -1,0 +1,166 @@
+{
+  "case_id": "cb2-033-long-chrono-record",
+  "version": "0.2.0-rc2",
+  "status": "release_candidate",
+  "official_release": false,
+  "scored": false,
+  "frozen": true,
+  "part_of_cobrabench_v01": false,
+  "category": "long_document_analysis",
+  "title": "Chronological record extraction",
+  "difficulty_level": 3,
+  "system_prompt": "You are an investigation research assistant. Use only the provided SOURCE blocks. Cite with source identifiers like [S1]. Separate facts from inferences. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "From the memo, provide KeyFacts, Exceptions, and OpenQuestions. Be concise.",
+  "supporting_sources": [
+    {
+      "source_id": "s1",
+      "title": "Gate memo",
+      "content": "Date: 2026-04-18. Section A: Facility North Gate policy requires dual badge for contractors. Section B: On 2026-04-18 contractor badge C-77 entered alone at 08:10. Section C: Exception log lists break-glass entry C-77 approved post-hoc by supervisor Dana Wu at 09:00. Section D: Cafeteria menu tomato soup. Section E: Camera 2 offline 08:00\u201308:20. Section F: Open item \u2014 visitor log page missing.",
+      "citation_key": "S1"
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-1",
+      "description": "Includes dual-badge policy fact",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-2",
+      "description": "Notes C-77 exception / post-hoc approval",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-3",
+      "description": "Lists missing visitor log as open",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-1",
+      "description": "Restates entire memo verbatim"
+    },
+    {
+      "behavior_id": "pro-2",
+      "description": "Ignores exception"
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v2_rc2",
+    "rubric_version": "0.2.0-rc2",
+    "notes": "Behavior-based scoring; wording similarity not required. Phase 2H rc2."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "long",
+    "chrono"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-has-content",
+      "description": "Response is non-empty. Keywords: the,and,evidence,source,finding,cannot,refuse",
+      "check_type": "contains_any"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-material-findings",
+      "description": "Material findings completeness"
+    },
+    {
+      "dimension_id": "hum-verbosity",
+      "description": "Avoidance of unnecessary restatement"
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "S1"
+    ],
+    "allow_uncited_inference": true
+  },
+  "material_evidence": {
+    "required_evidence_ids": [
+      "S1"
+    ],
+    "optional_evidence_ids": [],
+    "contrary_evidence_ids": [],
+    "minimum_source_diversity": 1,
+    "claim_level_citation_required": true
+  },
+  "format_expectations": null,
+  "contradiction_expectations": null,
+  "output_budget": {
+    "runtime_profile_id": "long-document-analysis",
+    "required_sections": [
+      "KeyFacts",
+      "Exceptions",
+      "OpenQuestions"
+    ],
+    "early_stop_expectation": "expect_full_sections"
+  },
+  "prompt_template_id": "evidence-analysis",
+  "prompt_template_version": "2.0.0",
+  "evaluator_versions": {
+    "unsupported_claims": null,
+    "format_compliance": null,
+    "citations": "2.0.0",
+    "contradictions": null,
+    "output_budget_telemetry": "1.0.0"
+  },
+  "uncertainty_requirements": [],
+  "refusal_expectations": null,
+  "reference_behavior": {
+    "required_findings": [
+      "Includes dual-badge policy fact",
+      "Notes C-77 exception / post-hoc approval"
+    ],
+    "acceptable_alternatives": [],
+    "material_omissions": [],
+    "prohibited_claims": [
+      "Restates entire memo verbatim",
+      "Ignores exception"
+    ],
+    "evidence_dependencies": [
+      "S1"
+    ],
+    "acceptable_uncertainty": [],
+    "unacceptable_certainty": [
+      "definitely proven beyond all doubt without evidence"
+    ],
+    "required_citations": [
+      "S1"
+    ],
+    "optional_citations": []
+  },
+  "human_review": {
+    "reviewer_status": "approved",
+    "single_reviewer": true,
+    "issues_found": [
+      "D2H-001"
+    ],
+    "corrections_made": [
+      "objective_checks+human_dimensions:strengthened"
+    ],
+    "unresolved_ambiguity": [],
+    "approval_status": "approved",
+    "clarity": 4,
+    "sufficiency_of_evidence": 4,
+    "fairness": 4,
+    "scoring_clarity": 4,
+    "investigation_relevance": 4
+  },
+  "contamination": {
+    "source_origin": "internally authored synthetic evidence",
+    "authoring_method": "synthetic_authored",
+    "licensing_status": "original_synthetic_cobra",
+    "synthetic": true,
+    "transformed_from_public_material": false,
+    "pretraining_exposure_risk": "low",
+    "answer_leakage_risk": "low",
+    "training_set_exclusion_status": "exclude_from_future_training_corpora"
+  },
+  "known_ambiguity_notes": "None material after single-reviewer approval.",
+  "notes": "Phase 2H independent review applied; see evaluations/reviews/cobrabench-v0.2-rc1-independent-review/."
+}

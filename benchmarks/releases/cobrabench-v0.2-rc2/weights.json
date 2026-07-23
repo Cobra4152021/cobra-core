@@ -1,0 +1,17 @@
+{
+  "rubric_id": "cobrabench_weighted_v2_rc2",
+  "rubric_version": "0.2.0-rc2",
+  "weights": {
+    "investigation_reasoning": 0.18,
+    "evidence_grounding": 0.14,
+    "hallucination_resistance": 0.14,
+    "citation_correctness": 0.14,
+    "contradiction_detection": 0.12,
+    "coding": 0.08,
+    "long_document_analysis": 0.06,
+    "instruction_following": 0.05,
+    "uncertainty_calibration": 0.05,
+    "refusal_quality": 0.04
+  },
+  "weights_unchanged_from_rc1": true
+}

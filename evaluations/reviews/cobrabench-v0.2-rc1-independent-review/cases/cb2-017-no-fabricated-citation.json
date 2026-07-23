@@ -1,0 +1,30 @@
+{
+  "case_id": "cb2-017-no-fabricated-citation",
+  "reviewer_id": "phase2h-static-reviewer-1",
+  "reviewer_role": "independent-static-reviewer",
+  "review_date": "2026-07-22",
+  "review_method": "static-human-criteria-checklist",
+  "review_assistance": "hybrid-tooling-with-human-judgment",
+  "saw_original_approval_notes": false,
+  "original_approval_hidden": true,
+  "independence_limitations": [
+    "Same organization as Phase 2G authoring.",
+    "Not a second human rater; single independent pass.",
+    "Tooling assisted distribution/leakage scans; judgments are human-owned."
+  ],
+  "status": "approve_with_documentation_note",
+  "clarity": 4,
+  "answerability": 4,
+  "fairness": 4,
+  "evidence_design": 4,
+  "scoring_design": 3,
+  "investigation_relevance": 4,
+  "output_budget_suitability": 4,
+  "defects": [
+    "D2H-001"
+  ],
+  "notes": [
+    "objective_checks+human_dimensions:strengthened"
+  ],
+  "unresolved_ambiguity": []
+}

@@ -1,0 +1,92 @@
+{
+  "defects": [
+    {
+      "defect_id": "D2H-001",
+      "severity": "D3",
+      "scope": "systemic",
+      "description": "Objective checks nearly vacuous (non-empty only); poor answers can pass automated layer.",
+      "release_impact": "rc2 strengthens objective checks by category",
+      "compatibility_impact": "rc1/rc2 automated scores not comparable"
+    },
+    {
+      "defect_id": "D2H-002",
+      "severity": "D2",
+      "scope": "selected titles",
+      "description": "Case titles cue expected conclusion type.",
+      "release_impact": "titles neutralized in rc2",
+      "compatibility_impact": "metadata-only if titles not prompted"
+    },
+    {
+      "defect_id": "D2H-003",
+      "severity": "D3",
+      "case_id": "cb2-027-apparent-not-real",
+      "description": "Source title 'UTC log' cues timezone resolution; titles are included in prompts.",
+      "release_impact": "renamed source title in rc2",
+      "compatibility_impact": "material prompt change"
+    },
+    {
+      "defect_id": "D2H-005",
+      "severity": "D3",
+      "scope": "refusal cases",
+      "description": "Mandatory citation evaluator could penalize correct uncited refusals.",
+      "release_impact": "refusal cases drop mandatory citation scoring in rc2",
+      "compatibility_impact": "material scoring change"
+    },
+    {
+      "defect_id": "D2H-006",
+      "severity": "D2",
+      "scope": "cb2-010, cb2-035",
+      "description": "Contrary evidence without contradictions evaluator pin.",
+      "release_impact": "evaluator pin added in rc2",
+      "compatibility_impact": "evaluator assignment change"
+    },
+    {
+      "defect_id": "D2H-007",
+      "severity": "D2",
+      "case_id": "cb2-041-json-only",
+      "description": "JSON-only case used evidence-analysis template; tolerant recovery conflicted with strict JSON.",
+      "release_impact": "exact-format template; tolerant=false",
+      "compatibility_impact": "prompt/parser change"
+    },
+    {
+      "defect_id": "D2H-008",
+      "severity": "D2",
+      "scope": "difficulty",
+      "description": "Several Level-2 cases are direct extraction/compliance (should be Level 1); one L4 overstated.",
+      "release_impact": "difficulty revised in rc2",
+      "compatibility_impact": "difficulty metadata change"
+    },
+    {
+      "defect_id": "D2H-009",
+      "severity": "D2",
+      "scope": "systemic",
+      "description": "Human dimensions were generic usefulness/calibration.",
+      "release_impact": "category-specific human dimensions in rc2",
+      "compatibility_impact": "human rubric metadata change"
+    },
+    {
+      "defect_id": "D2H-010",
+      "severity": "D2",
+      "scope": "suite",
+      "description": "38/46 cases share evidence-analysis@2.0.0; limited template diversity.",
+      "release_impact": "documented; cb2-041 reassigned",
+      "compatibility_impact": "none for most cases"
+    },
+    {
+      "defect_id": "D2H-011",
+      "severity": "D1",
+      "scope": "suite",
+      "description": "Repeated synthetic dates across cases reduce surface diversity.",
+      "release_impact": "documentation only in Phase 2H",
+      "compatibility_impact": "none"
+    },
+    {
+      "defect_id": "D2H-013",
+      "severity": "D2",
+      "scope": "refusal_quality",
+      "description": "Only 3 refusal cases; category score high-variance.",
+      "release_impact": "architecture note; no weight change",
+      "compatibility_impact": "none"
+    }
+  ]
+}

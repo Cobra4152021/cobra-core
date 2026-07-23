@@ -1,0 +1,93 @@
+{
+  "fixture_set": "cobrabench-v0.2-rc2-scoring-sensitivity",
+  "notes": "Authored hypothetical responses for Phase 2H sensitivity review. Not model-generated.",
+  "fixtures": [
+    {
+      "fixture_id": "sens-fmt-strong-concise",
+      "family": "format",
+      "quality_rank": 1,
+      "response": "FINDING: Scanner found one outdated dependency.\nRISK: Exposure from outdated package.\nNEXT: Update the dependency.\n",
+      "expect": {"format_semantic_min": 0.9, "strict_parse": true}
+    },
+    {
+      "fixture_id": "sens-fmt-strong-verbose",
+      "family": "format",
+      "quality_rank": 2,
+      "response": "FINDING: After reviewing the scanner output carefully, one outdated dependency was found in the demo application package list.\nRISK: Security exposure may increase while the outdated package remains unpatched in the demo environment.\nNEXT: Update the dependency during the next maintenance window and re-scan.\n",
+      "expect": {"format_semantic_min": 0.9, "strict_parse": true}
+    },
+    {
+      "fixture_id": "sens-fmt-markdown",
+      "family": "format",
+      "quality_rank": 3,
+      "response": "- **FINDING:** Scanner found one outdated dependency.\n- **RISK:** Exposure risk.\n- **NEXT:** Patch dependency.\n",
+      "expect": {"format_semantic_min": 0.9, "strict_parse": false, "tolerant_parse": true}
+    },
+    {
+      "fixture_id": "sens-fmt-deficient",
+      "family": "format",
+      "quality_rank": 4,
+      "response": "There is somehow a scanner issue.",
+      "expect": {"format_semantic_max": 0.4, "strict_parse": false}
+    },
+    {
+      "fixture_id": "sens-cite-strong",
+      "family": "citation",
+      "quality_rank": 1,
+      "allowed_keys": ["S1", "S2"],
+      "required_evidence_ids": ["S1", "S2"],
+      "response": "A. Kim requested CHG-3 [S1]. R. Singh approved CHG-3 [S2].",
+      "expect": {"citation_precision_min": 1.0, "evidence_coverage_min": 1.0}
+    },
+    {
+      "fixture_id": "sens-cite-rich-incomplete",
+      "family": "citation",
+      "quality_rank": 3,
+      "allowed_keys": ["S1", "S2"],
+      "required_evidence_ids": ["S1", "S2"],
+      "response": "Change was requested [S1] [S1] [S1].",
+      "expect": {"citation_precision_min": 1.0, "evidence_coverage_max": 0.6}
+    },
+    {
+      "fixture_id": "sens-contra-strong",
+      "family": "contradiction",
+      "quality_rank": 1,
+      "response": "S1 and S2 contradict: 120 versus 95 units. Preserve both accounts. Request a recount. Confidence is uncertain.",
+      "expect": {"detection_min": 0.5, "resolution_min": 0.5}
+    },
+    {
+      "fixture_id": "sens-contra-weak-explain",
+      "family": "contradiction",
+      "quality_rank": 2,
+      "response": "There is a contradiction between the sources.",
+      "expect": {"detection_min": 0.15, "detection_max": 0.35},
+      "notes": "Shallow detection wording scores low; human explanation rubric still required."
+    },
+    {
+      "fixture_id": "sens-contra-miss",
+      "family": "contradiction",
+      "quality_rank": 3,
+      "response": "Everything looks fine.",
+      "expect": {"detection_max": 0.3}
+    },
+    {
+      "fixture_id": "sens-uc-grounded",
+      "family": "unsupported",
+      "quality_rank": 1,
+      "allowed_keys": ["S1"],
+      "sources": {"S1": "Scanner found one outdated dependency in demo app."},
+      "response": "Scanner found one outdated dependency in demo app [S1].",
+      "expect": {"unsupported_flag_max": 0}
+    },
+    {
+      "fixture_id": "sens-uc-overconfident",
+      "family": "unsupported",
+      "quality_rank": 3,
+      "allowed_keys": ["S1"],
+      "sources": {"S1": "Scanner found one outdated dependency in demo app."},
+      "response": "Bin B12 contained 999 stolen units.",
+      "expect": {"unsupported_flag_max": 0, "uncertain_min": 1},
+      "notes": "v2 often marks novel claims cannot_determine rather than unsupported; human review still required."
+    }
+  ]
+}

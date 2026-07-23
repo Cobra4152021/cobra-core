@@ -1,0 +1,137 @@
+{
+  "ok": true,
+  "failures": [],
+  "ordering_ok": true,
+  "ordering_notes": [],
+  "results": [
+    {
+      "fixture_id": "sens-fmt-strong-concise",
+      "family": "format",
+      "quality_rank": 1,
+      "format": {
+        "semantic": 1.0,
+        "exact": 1.0,
+        "strict": true,
+        "tolerant": true
+      },
+      "status": "ok",
+      "score": 1.0
+    },
+    {
+      "fixture_id": "sens-fmt-strong-verbose",
+      "family": "format",
+      "quality_rank": 2,
+      "format": {
+        "semantic": 1.0,
+        "exact": 1.0,
+        "strict": true,
+        "tolerant": true
+      },
+      "status": "ok",
+      "score": 1.0
+    },
+    {
+      "fixture_id": "sens-fmt-markdown",
+      "family": "format",
+      "quality_rank": 3,
+      "format": {
+        "semantic": 1.0,
+        "exact": 0.4,
+        "strict": false,
+        "tolerant": true
+      },
+      "status": "ok",
+      "score": 1.0
+    },
+    {
+      "fixture_id": "sens-fmt-deficient",
+      "family": "format",
+      "quality_rank": 4,
+      "format": {
+        "semantic": 0.3333,
+        "exact": 0.0,
+        "strict": false,
+        "tolerant": false
+      },
+      "status": "ok",
+      "score": 0.3333
+    },
+    {
+      "fixture_id": "sens-cite-strong",
+      "family": "citation",
+      "quality_rank": 1,
+      "citation": {
+        "precision": 1.0,
+        "evidence_coverage": 1.0
+      },
+      "status": "ok",
+      "score": 1.0
+    },
+    {
+      "fixture_id": "sens-cite-rich-incomplete",
+      "family": "citation",
+      "quality_rank": 3,
+      "citation": {
+        "precision": 1.0,
+        "evidence_coverage": 0.5
+      },
+      "status": "ok",
+      "score": 0.75
+    },
+    {
+      "fixture_id": "sens-contra-strong",
+      "family": "contradiction",
+      "quality_rank": 1,
+      "contradiction": {
+        "detection": 1.0,
+        "resolution": 0.75
+      },
+      "status": "ok",
+      "score": 1.0
+    },
+    {
+      "fixture_id": "sens-contra-weak-explain",
+      "family": "contradiction",
+      "quality_rank": 2,
+      "contradiction": {
+        "detection": 0.2,
+        "resolution": 0.3
+      },
+      "status": "ok",
+      "score": 0.2
+    },
+    {
+      "fixture_id": "sens-contra-miss",
+      "family": "contradiction",
+      "quality_rank": 3,
+      "contradiction": {
+        "detection": 0.2,
+        "resolution": 0.3
+      },
+      "status": "ok",
+      "score": 0.2
+    },
+    {
+      "fixture_id": "sens-uc-grounded",
+      "family": "unsupported",
+      "quality_rank": 1,
+      "unsupported": {
+        "flags": 0,
+        "uncertain": 0
+      },
+      "status": "ok",
+      "score": 1.0
+    },
+    {
+      "fixture_id": "sens-uc-overconfident",
+      "family": "unsupported",
+      "quality_rank": 3,
+      "unsupported": {
+        "flags": 0,
+        "uncertain": 1
+      },
+      "status": "ok",
+      "score": 0.5
+    }
+  ]
+}

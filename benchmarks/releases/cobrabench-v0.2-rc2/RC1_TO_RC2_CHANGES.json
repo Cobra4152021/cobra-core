@@ -1,0 +1,1708 @@
+{
+  "changes": [
+    {
+      "case_id": "cb2-001-badge-access-timeline",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Badge access timeline reconstruction",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Badge access timeline reconstruction",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-002-finance-approval-gap",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Missing dual approval for payment",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Missing dual approval for payment",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-003-equipment-failure-hypotheses",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Preserve alternative equipment failure hypotheses",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Preserve alternative equipment failure hypotheses",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-004-witness-vs-log",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Witness account versus door log",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Witness account versus door log",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-005-procedural-compliance-check",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Chain-of-custody gap identification",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Chain-of-custody gap identification",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-006-multi-hypothesis-priority",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Prioritize next investigative steps",
+        "difficulty_level": 4,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Prioritize next investigative steps",
+        "difficulty_level": 4,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-007-complete-support",
+      "defect_ids": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "All evidence supports one conclusion",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Warehouse departure record review",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "title:All evidence supports one conclusion->Warehouse departure record review",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-008-incomplete-evidence",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Incomplete evidence acknowledgment",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Incomplete evidence acknowledgment",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-009-multiple-explanations",
+      "defect_ids": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Multiple explanations supported",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Server offline evidence review",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "title:Multiple explanations supported->Server offline evidence review",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-010-one-vs-many-conflict",
+      "defect_ids": [
+        "D2H-001",
+        "D2H-002",
+        "D2H-006"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "One source conflicts with others",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Bin B12 inventory count review",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "title:One source conflicts with others->Bin B12 inventory count review",
+        "evaluator:add-contradictions-2.0.0",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-011-irrelevant-detail",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Ignore irrelevant cafeteria detail",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Ignore irrelevant cafeteria detail",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-012-plausible-distractor",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Plausible distractor source",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Plausible distractor source",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-013-unknown-identity",
+      "defect_ids": [
+        "D2H-001",
+        "D2H-002",
+        "D2H-008"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Identity cannot be determined",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Visitor badge photo request",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "title:Identity cannot be determined->Visitor badge photo request",
+        "difficulty:2->1",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-014-unknown-motive",
+      "defect_ids": [
+        "D2H-001",
+        "D2H-002",
+        "D2H-008"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Motive remains unknown",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Badge loan note review",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "title:Motive remains unknown->Badge loan note review",
+        "difficulty:2->1",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-015-missing-calculation",
+      "defect_ids": [
+        "D2H-001",
+        "D2H-008"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Calculation cannot be completed",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Calculation cannot be completed",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "difficulty:2->1",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-016-no-legal-conclusion",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "No legal conclusion from thin evidence",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "No legal conclusion from thin evidence",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-017-no-fabricated-citation",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Do not fabricate citation keys",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Do not fabricate citation keys",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-018-single-source-cite",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Single-source claim citation",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Single-source claim citation",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-019-multi-source-synthesis",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Multi-source synthesis citations",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Multi-source synthesis citations",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-020-contrary-citation",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Contrary-evidence must be cited",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Contrary-evidence must be cited",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-021-uncitable-recommendation",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Recommendations need not be cited as facts",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Recommendations need not be cited as facts",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-022-labeled-inference-cite",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Labeled inference vs cited fact",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Labeled inference vs cited fact",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-023-direct-fact-conflict",
+      "defect_ids": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Direct factual contradiction",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Vault door status records",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "changes": [
+        "title:Direct factual contradiction->Vault door status records",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-024-numeric-conflict",
+      "defect_ids": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Numeric contradiction with shallow-explanation trap",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Shipment unit totals",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "changes": [
+        "title:Numeric contradiction with shallow-explanation trap->Shipment unit totals",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-025-timeline-conflict",
+      "defect_ids": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Timeline contradiction",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Shipment date records",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "changes": [
+        "title:Timeline contradiction->Shipment date records",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-026-identity-mismatch",
+      "defect_ids": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Identity mismatch",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Courier name records",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "changes": [
+        "title:Identity mismatch->Courier name records",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-027-apparent-not-real",
+      "defect_ids": [
+        "D2H-001",
+        "D2H-002",
+        "D2H-003",
+        "D2H-008"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Apparent contradiction resolved by context",
+        "difficulty_level": 4,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Room 12 occupancy timestamps",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "changes": [
+        "title:Apparent contradiction resolved by context->Room 12 occupancy timestamps",
+        "difficulty:4->3",
+        "source_title:UTC log->Occupancy log B",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-028-uncertainty-not-contradiction",
+      "defect_ids": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Uncertainty is not contradiction",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Suspect vehicle color notes",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "changes": [
+        "title:Uncertainty is not contradiction->Suspect vehicle color notes",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-029-parse-source-ids",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Parse source identifiers from text",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Parse source identifiers from text",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-030-detect-duplicate-case-ids",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Detect duplicate case IDs",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Detect duplicate case IDs",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-031-timeline-delta",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Calculate timeline difference minutes",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Calculate timeline difference minutes",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-032-json-conflict-report",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Emit typed conflict report JSON",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Emit typed conflict report JSON",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-033-long-chrono-record",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Chronological record extraction",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": "1.0.0"
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Chronological record extraction",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": "1.0.0"
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-034-long-multi-source-narrative",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Multi-source narrative synthesis",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Multi-source narrative synthesis",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-035-long-table-plus-narrative",
+      "defect_ids": [
+        "D2H-001",
+        "D2H-006"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Tabular counts plus narrative",
+        "difficulty_level": 4,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Tabular counts plus narrative",
+        "difficulty_level": 4,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "evaluator:add-contradictions-2.0.0",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-036-long-repeated-with-discrepancy",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Repeated details with one discrepancy",
+        "difficulty_level": 4,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Repeated details with one discrepancy",
+        "difficulty_level": 4,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-037-refuse-credential-harvest",
+      "defect_ids": [
+        "D2H-001",
+        "D2H-005"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Refuse credential exfiltration request",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Refuse credential exfiltration request",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "refusal:drop-mandatory-citation-evaluator",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-038-refuse-destructive",
+      "defect_ids": [
+        "D2H-001",
+        "D2H-005"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Refuse destructive wipe instruction",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Refuse destructive wipe instruction",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "refusal:drop-mandatory-citation-evaluator",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-039-assist-benign-portion",
+      "defect_ids": [
+        "D2H-001",
+        "D2H-005"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Assist benign summary while refusing doxxing",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Assist benign summary while refusing doxxing",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "refusal:drop-mandatory-citation-evaluator",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-040-exact-finding-risk-next",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Exact FINDING/RISK/NEXT lines",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "exact-format"
+      },
+      "corrected_behavior": {
+        "title": "Exact FINDING/RISK/NEXT lines",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "exact-format"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-041-json-only",
+      "defect_ids": [
+        "D2H-001",
+        "D2H-007"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "JSON-only structured response",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "JSON-only structured response",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "exact-format"
+      },
+      "changes": [
+        "template:evidence-analysis->exact-format;tolerant=false",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-042-semantic-not-markdown-penalty",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Semantic fields with optional tolerant markdown",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "exact-format"
+      },
+      "corrected_behavior": {
+        "title": "Semantic fields with optional tolerant markdown",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "exact-format"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-043-field-order-flexible",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Field order not required",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Field order not required",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-044-confidence-bands",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Match confidence to thin evidence",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Match confidence to thin evidence",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-045-avoid-empty-hedging",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "State well-supported fact without empty hedging",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "State well-supported fact without empty hedging",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    },
+    {
+      "case_id": "cb2-046-rank-hypotheses",
+      "defect_ids": [
+        "D2H-001"
+      ],
+      "severity_max": "D3",
+      "original_behavior": {
+        "title": "Do not treat unequal hypotheses as equal",
+        "difficulty_level": 4,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "corrected_behavior": {
+        "title": "Do not treat unequal hypotheses as equal",
+        "difficulty_level": 4,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "reviewer_approval": "phase2h-static-reviewer-1"
+    }
+  ],
+  "status_counts": {
+    "approve_with_documentation_note": 29,
+    "revise_before_final": 17
+  }
+}

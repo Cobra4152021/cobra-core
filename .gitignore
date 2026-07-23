@@ -75,6 +75,9 @@ evaluations/reports/**
 !evaluations/reports/HUMAN_REVIEW_CONSISTENCY_CHECK.md
 !evaluations/reports/PHASE2E_DIAGNOSTIC_RUN_STATUS.md
 !evaluations/reports/QWEN3_8B_OFFLINE_REEVALUATION_V2.md
+!evaluations/reports/COBRABENCH_V0_2_*.md
+!evaluations/reviews/
+!evaluations/reviews/**
 !docs/PHASE_2E_STATUS.md
 !docs/PHASE_2E_DIAGNOSTICS_RUNBOOK.md
 !benchmarks/diagnostics/

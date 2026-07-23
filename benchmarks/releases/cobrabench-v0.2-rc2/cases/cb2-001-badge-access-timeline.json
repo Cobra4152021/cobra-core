@@ -1,0 +1,190 @@
+{
+  "case_id": "cb2-001-badge-access-timeline",
+  "version": "0.2.0-rc2",
+  "status": "release_candidate",
+  "official_release": false,
+  "scored": false,
+  "frozen": true,
+  "part_of_cobrabench_v01": false,
+  "category": "investigation_reasoning",
+  "title": "Badge access timeline reconstruction",
+  "difficulty_level": 2,
+  "system_prompt": "You are an investigation research assistant. Use only the provided SOURCE blocks. Cite with source identifiers like [S1]. Separate facts from inferences. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "Reconstruct the access timeline and list open questions. Cite sources.",
+  "supporting_sources": [
+    {
+      "source_id": "s1",
+      "title": "Badge log",
+      "content": "Date: 2026-04-18. User R. Hale badge-in at south door 08:41.",
+      "citation_key": "S1"
+    },
+    {
+      "source_id": "s2",
+      "title": "Camera note",
+      "content": "Date: 2026-04-18. Camera 3 offline 08:35\u201308:50.",
+      "citation_key": "S2"
+    },
+    {
+      "source_id": "s3",
+      "title": "Chat",
+      "content": "Date: 2026-04-18. Hale says coffee run; not material to badge time.",
+      "citation_key": "S3"
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-1",
+      "description": "States Hale badge-in at 08:41 from S1",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-2",
+      "description": "Notes camera gap from S2 as open limitation",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-3",
+      "description": "Lists at least one open question",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-1",
+      "description": "Names a second person as present without evidence"
+    },
+    {
+      "behavior_id": "pro-2",
+      "description": "Claims camera confirms face"
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v2_rc2",
+    "rubric_version": "0.2.0-rc2",
+    "notes": "Behavior-based scoring; wording similarity not required. Phase 2H rc2."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "timeline",
+    "access"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-has-content",
+      "description": "Response is non-empty. Keywords: the,and,evidence,source,finding,cannot,refuse",
+      "check_type": "contains_any"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-hypothesis",
+      "description": "Hypothesis quality and alternatives"
+    },
+    {
+      "dimension_id": "hum-accusation",
+      "description": "Avoidance of premature accusation"
+    },
+    {
+      "dimension_id": "hum-usefulness",
+      "description": "Investigative usefulness"
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "allow_uncited_inference": true
+  },
+  "material_evidence": {
+    "required_evidence_ids": [
+      "S1",
+      "S2"
+    ],
+    "optional_evidence_ids": [
+      "S3"
+    ],
+    "contrary_evidence_ids": [],
+    "minimum_source_diversity": 2,
+    "claim_level_citation_required": true
+  },
+  "format_expectations": null,
+  "contradiction_expectations": null,
+  "output_budget": {
+    "runtime_profile_id": "deterministic-investigation",
+    "required_sections": [],
+    "early_stop_expectation": "natural_or_complete"
+  },
+  "prompt_template_id": "evidence-analysis",
+  "prompt_template_version": "2.0.0",
+  "evaluator_versions": {
+    "unsupported_claims": "2.0.0",
+    "format_compliance": null,
+    "citations": "2.0.0",
+    "contradictions": null,
+    "output_budget_telemetry": null
+  },
+  "uncertainty_requirements": [
+    "Camera gap prevents visual confirmation"
+  ],
+  "refusal_expectations": null,
+  "reference_behavior": {
+    "required_findings": [
+      "States Hale badge-in at 08:41 from S1",
+      "Notes camera gap from S2 as open limitation"
+    ],
+    "acceptable_alternatives": [],
+    "material_omissions": [],
+    "prohibited_claims": [
+      "Names a second person as present without evidence",
+      "Claims camera confirms face"
+    ],
+    "evidence_dependencies": [
+      "S1",
+      "S2"
+    ],
+    "acceptable_uncertainty": [
+      "Camera gap prevents visual confirmation"
+    ],
+    "unacceptable_certainty": [
+      "definitely proven beyond all doubt without evidence"
+    ],
+    "required_citations": [
+      "S1"
+    ],
+    "optional_citations": [
+      "S3"
+    ]
+  },
+  "human_review": {
+    "reviewer_status": "approved",
+    "single_reviewer": true,
+    "issues_found": [
+      "D2H-001"
+    ],
+    "corrections_made": [
+      "objective_checks+human_dimensions:strengthened"
+    ],
+    "unresolved_ambiguity": [],
+    "approval_status": "approved",
+    "clarity": 4,
+    "sufficiency_of_evidence": 4,
+    "fairness": 4,
+    "scoring_clarity": 4,
+    "investigation_relevance": 4
+  },
+  "contamination": {
+    "source_origin": "internally authored synthetic evidence",
+    "authoring_method": "synthetic_authored",
+    "licensing_status": "original_synthetic_cobra",
+    "synthetic": true,
+    "transformed_from_public_material": false,
+    "pretraining_exposure_risk": "low",
+    "answer_leakage_risk": "low",
+    "training_set_exclusion_status": "exclude_from_future_training_corpora"
+  },
+  "known_ambiguity_notes": "None material after single-reviewer approval.",
+  "notes": "Phase 2H independent review applied; see evaluations/reviews/cobrabench-v0.2-rc1-independent-review/."
+}

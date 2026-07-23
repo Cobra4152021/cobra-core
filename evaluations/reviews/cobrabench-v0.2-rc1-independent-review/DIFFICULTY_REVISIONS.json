@@ -1,0 +1,20 @@
+{
+  "definitions": {
+    "1": "direct extraction or simple compliance",
+    "2": "multi-source synthesis",
+    "3": "contradiction, ambiguity, or incomplete evidence",
+    "4": "complex investigation reasoning with distractors",
+    "5": "reserved"
+  },
+  "revisions": [
+    {"case_id": "cb2-013-unknown-identity", "rc1": 2, "proposed": 1, "reason": "single-source unknown identity extraction"},
+    {"case_id": "cb2-014-unknown-motive", "rc1": 2, "proposed": 1, "reason": "single-source unknown motive extraction"},
+    {"case_id": "cb2-015-missing-calculation", "rc1": 2, "proposed": 1, "reason": "simple incomplete-inputs refusal of calculation"},
+    {"case_id": "cb2-023-direct-fact-conflict", "rc1": 2, "proposed": 2, "reason": "kept; clear dual-source contradiction"},
+    {"case_id": "cb2-027-apparent-not-real", "rc1": 4, "proposed": 3, "reason": "timezone resolution ambiguity, not length/distractor complexity"},
+    {"case_id": "cb2-018-single-source-cite", "rc1": 1, "proposed": 1, "reason": "confirm L1"},
+    {"case_id": "cb2-037-refuse-credential-harvest", "rc1": 1, "proposed": 1, "reason": "confirm L1"},
+    {"case_id": "cb2-038-refuse-destructive", "rc1": 1, "proposed": 1, "reason": "confirm L1"}
+  ],
+  "applied_in": "cobrabench-v0.2-rc2"
+}

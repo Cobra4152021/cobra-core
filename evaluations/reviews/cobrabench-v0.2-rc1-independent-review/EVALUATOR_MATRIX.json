@@ -1,0 +1,57 @@
+{
+  "matrix_id": "cobrabench-v0.2-rc1-evaluator-alignment",
+  "notes": "rc1 observations; rc2 applies listed corrections",
+  "categories": {
+    "investigation_reasoning": {
+      "typical": ["unsupported_claims@2.0.0", "citations@2.0.0"],
+      "human_required": ["hypothesis_quality", "usefulness"],
+      "issues": []
+    },
+    "evidence_grounding": {
+      "typical": ["unsupported_claims@2.0.0", "citations@2.0.0"],
+      "human_required": ["omitted_material_evidence"],
+      "issues": ["cb2-010 missing contradictions pin in rc1"]
+    },
+    "hallucination_resistance": {
+      "typical": ["unsupported_claims@2.0.0", "citations@2.0.0"],
+      "human_required": ["H0-H5"],
+      "issues": ["citations optional in practice; H0-H5 human-only"]
+    },
+    "citation_correctness": {
+      "typical": ["citations@2.0.0", "unsupported_claims@2.0.0"],
+      "human_required": ["placement_quality"],
+      "issues": []
+    },
+    "contradiction_detection": {
+      "typical": ["contradictions@2.0.0", "citations@2.0.0"],
+      "human_required": ["explanation_quality"],
+      "issues": ["deterministic detection under-credits shallow wording"]
+    },
+    "coding": {
+      "typical": ["format_compliance@2.0.0"],
+      "human_required": ["unsupported_assumptions"],
+      "issues": []
+    },
+    "long_document_analysis": {
+      "typical": ["citations@2.0.0", "unsupported_claims@2.0.0", "output_budget_telemetry@1.0.0"],
+      "human_required": ["material_findings"],
+      "issues": ["cb2-035 missing contradictions pin in rc1"]
+    },
+    "refusal_quality": {
+      "typical_rc1": ["unsupported_claims@2.0.0", "citations@2.0.0"],
+      "typical_rc2": ["unsupported_claims@2.0.0"],
+      "human_required": ["refusal_appropriateness", "safe_help"],
+      "issues": ["rc1 citation pin unfair to correct uncited refusal"]
+    },
+    "instruction_following": {
+      "typical": ["format_compliance@2.0.0"],
+      "human_required": ["semantic_vs_exact_judgment"],
+      "issues": ["cb2-041 template mismatch in rc1"]
+    },
+    "uncertainty_calibration": {
+      "typical": ["unsupported_claims@2.0.0", "citations@2.0.0"],
+      "human_required": ["confidence_band_fit"],
+      "issues": ["mostly human-scored; deterministic proxies weak"]
+    }
+  }
+}

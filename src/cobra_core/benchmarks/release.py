@@ -16,9 +16,11 @@ _RELEASE_VERSION_DIRS: dict[str, str] = {
     "0.1": "cobrabench-v0.1",
     "0.2.0-rc1": "cobrabench-v0.2-rc1",
     "0.2-rc1": "cobrabench-v0.2-rc1",
+    "0.2.0-rc2": "cobrabench-v0.2-rc2",
+    "0.2-rc2": "cobrabench-v0.2-rc2",
 }
 
-_V02_RELEASE_VERSIONS = frozenset({"0.2.0-rc1", "0.2-rc1"})
+_V02_RELEASE_VERSIONS = frozenset({"0.2.0-rc1", "0.2-rc1", "0.2.0-rc2", "0.2-rc2"})
 
 
 def _repo_root() -> Path:
