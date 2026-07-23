@@ -1,0 +1,122 @@
+{
+  "ordering_ok": true,
+  "results": [
+    {
+      "fixture_id": "full",
+      "quality_rank": 1,
+      "detection": 1.0,
+      "localization": 0.7,
+      "explanation": 0.3,
+      "numerical_comparison": 0.75,
+      "preservation": 0.7,
+      "avoid_invented": 0.85,
+      "resolution": 0.75,
+      "confidence": 0.75,
+      "composite": 0.7214
+    },
+    {
+      "fixture_id": "vague",
+      "quality_rank": 2,
+      "detection": 0.2,
+      "localization": 0.3,
+      "explanation": 0.3,
+      "numerical_comparison": 0.2,
+      "preservation": 0.4,
+      "avoid_invented": 0.85,
+      "resolution": 0.3,
+      "confidence": 0.5,
+      "composite": 0.3643
+    },
+    {
+      "fixture_id": "wrong_values",
+      "quality_rank": 3,
+      "detection": 1.0,
+      "localization": 0.7,
+      "explanation": 0.3,
+      "numerical_comparison": 0.75,
+      "preservation": 0.4,
+      "avoid_invented": 0.85,
+      "resolution": 0.3,
+      "confidence": 0.5,
+      "composite": 0.6143
+    },
+    {
+      "fixture_id": "localized_no_interp",
+      "quality_rank": 4,
+      "detection": 0.2,
+      "localization": 0.7,
+      "explanation": 0.6,
+      "numerical_comparison": 0.75,
+      "preservation": 0.4,
+      "avoid_invented": 0.85,
+      "resolution": 0.3,
+      "confidence": 0.5,
+      "composite": 0.5429
+    },
+    {
+      "fixture_id": "forced_reconcile",
+      "quality_rank": 5,
+      "detection": 1.0,
+      "localization": 0.7,
+      "explanation": 0.3,
+      "numerical_comparison": 0.75,
+      "preservation": 0.4,
+      "avoid_invented": 0.85,
+      "resolution": 0.3,
+      "confidence": 0.5,
+      "composite": 0.6143
+    },
+    {
+      "fixture_id": "apparent_ok",
+      "quality_rank": 6,
+      "detection": 1.0,
+      "localization": 0.3,
+      "explanation": 0.3,
+      "numerical_comparison": 0.2,
+      "preservation": 0.4,
+      "avoid_invented": 0.85,
+      "resolution": 0.3,
+      "confidence": 0.5,
+      "composite": 0.4786
+    },
+    {
+      "fixture_id": "miss",
+      "quality_rank": 7,
+      "detection": 0.2,
+      "localization": 0.3,
+      "explanation": 0.3,
+      "numerical_comparison": 0.2,
+      "preservation": 0.4,
+      "avoid_invented": 0.85,
+      "resolution": 0.3,
+      "confidence": 0.5,
+      "composite": 0.3643
+    },
+    {
+      "fixture_id": "preserve",
+      "quality_rank": 8,
+      "detection": 0.2,
+      "localization": 0.7,
+      "explanation": 0.3,
+      "numerical_comparison": 0.75,
+      "preservation": 0.7,
+      "avoid_invented": 0.85,
+      "resolution": 0.75,
+      "confidence": 0.5,
+      "composite": 0.6071
+    },
+    {
+      "fixture_id": "unsupported_reconcile",
+      "quality_rank": 9,
+      "detection": 0.2,
+      "localization": 0.3,
+      "explanation": 0.3,
+      "numerical_comparison": 0.2,
+      "preservation": 0.4,
+      "avoid_invented": 0.85,
+      "resolution": 0.3,
+      "confidence": 0.35,
+      "composite": 0.3643
+    }
+  ]
+}

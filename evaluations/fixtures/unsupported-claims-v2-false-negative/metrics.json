@@ -1,0 +1,12 @@
+{
+  "adversarial_n": 10,
+  "true_positive_rate": 0.0,
+  "false_negative_rate": 1.0,
+  "false_positive_rate": 0.0,
+  "cannot_determine_rate_on_adversarial": 0.7,
+  "tp": 0,
+  "fn": 10,
+  "fp": 0,
+  "tn": 5,
+  "cannot_determine_count": 7
+}

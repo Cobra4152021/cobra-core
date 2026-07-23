@@ -1,0 +1,801 @@
+{
+  "revisions": [
+    {
+      "case_id": "cb2-007-complete-support",
+      "rc1_defect_ids": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "phase2h_severity_max": "D3",
+      "rc1_behavior": {
+        "title": "All evidence supports one conclusion",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "rc2_correction": {
+        "title": "Warehouse departure record review",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "title:All evidence supports one conclusion->Warehouse departure record review",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "correction_verified": true,
+      "defect_fully_resolved": false,
+      "defect_partially_resolved": true,
+      "new_defect_introduced": false,
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "verification_checks": [
+        "title_neutralized",
+        "objective_still_mostly_nonempty"
+      ],
+      "reviewer_notes": "Verified against immutable rc1 vs rc2 artifacts."
+    },
+    {
+      "case_id": "cb2-009-multiple-explanations",
+      "rc1_defect_ids": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "phase2h_severity_max": "D3",
+      "rc1_behavior": {
+        "title": "Multiple explanations supported",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "rc2_correction": {
+        "title": "Server offline evidence review",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "title:Multiple explanations supported->Server offline evidence review",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "correction_verified": true,
+      "defect_fully_resolved": false,
+      "defect_partially_resolved": true,
+      "new_defect_introduced": false,
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "verification_checks": [
+        "title_neutralized",
+        "objective_still_mostly_nonempty"
+      ],
+      "reviewer_notes": "Verified against immutable rc1 vs rc2 artifacts."
+    },
+    {
+      "case_id": "cb2-010-one-vs-many-conflict",
+      "rc1_defect_ids": [
+        "D2H-001",
+        "D2H-002",
+        "D2H-006"
+      ],
+      "phase2h_severity_max": "D3",
+      "rc1_behavior": {
+        "title": "One source conflicts with others",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "rc2_correction": {
+        "title": "Bin B12 inventory count review",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "title:One source conflicts with others->Bin B12 inventory count review",
+        "evaluator:add-contradictions-2.0.0",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "correction_verified": true,
+      "defect_fully_resolved": false,
+      "defect_partially_resolved": true,
+      "new_defect_introduced": false,
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "verification_checks": [
+        "title_neutralized",
+        "contradictions_pinned",
+        "objective_still_mostly_nonempty"
+      ],
+      "reviewer_notes": "Verified against immutable rc1 vs rc2 artifacts."
+    },
+    {
+      "case_id": "cb2-013-unknown-identity",
+      "rc1_defect_ids": [
+        "D2H-001",
+        "D2H-002",
+        "D2H-008"
+      ],
+      "phase2h_severity_max": "D3",
+      "rc1_behavior": {
+        "title": "Identity cannot be determined",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "rc2_correction": {
+        "title": "Visitor badge photo request",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "title:Identity cannot be determined->Visitor badge photo request",
+        "difficulty:2->1",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "correction_verified": true,
+      "defect_fully_resolved": false,
+      "defect_partially_resolved": true,
+      "new_defect_introduced": false,
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "verification_checks": [
+        "title_neutralized",
+        "difficulty_rc2=1",
+        "objective_still_mostly_nonempty"
+      ],
+      "reviewer_notes": "Verified against immutable rc1 vs rc2 artifacts."
+    },
+    {
+      "case_id": "cb2-014-unknown-motive",
+      "rc1_defect_ids": [
+        "D2H-001",
+        "D2H-002",
+        "D2H-008"
+      ],
+      "phase2h_severity_max": "D3",
+      "rc1_behavior": {
+        "title": "Motive remains unknown",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "rc2_correction": {
+        "title": "Badge loan note review",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "title:Motive remains unknown->Badge loan note review",
+        "difficulty:2->1",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "correction_verified": true,
+      "defect_fully_resolved": false,
+      "defect_partially_resolved": true,
+      "new_defect_introduced": false,
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "verification_checks": [
+        "title_neutralized",
+        "difficulty_rc2=1",
+        "objective_still_mostly_nonempty"
+      ],
+      "reviewer_notes": "Verified against immutable rc1 vs rc2 artifacts."
+    },
+    {
+      "case_id": "cb2-015-missing-calculation",
+      "rc1_defect_ids": [
+        "D2H-001",
+        "D2H-008"
+      ],
+      "phase2h_severity_max": "D3",
+      "rc1_behavior": {
+        "title": "Calculation cannot be completed",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "rc2_correction": {
+        "title": "Calculation cannot be completed",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "difficulty:2->1",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "correction_verified": true,
+      "defect_fully_resolved": false,
+      "defect_partially_resolved": true,
+      "new_defect_introduced": false,
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "verification_checks": [
+        "difficulty_rc2=1",
+        "objective_still_mostly_nonempty"
+      ],
+      "reviewer_notes": "Verified against immutable rc1 vs rc2 artifacts."
+    },
+    {
+      "case_id": "cb2-023-direct-fact-conflict",
+      "rc1_defect_ids": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "phase2h_severity_max": "D3",
+      "rc1_behavior": {
+        "title": "Direct factual contradiction",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "rc2_correction": {
+        "title": "Vault door status records",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "changes": [
+        "title:Direct factual contradiction->Vault door status records",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "correction_verified": true,
+      "defect_fully_resolved": true,
+      "defect_partially_resolved": false,
+      "new_defect_introduced": false,
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "verification_checks": [
+        "title_neutralized",
+        "objective_strengthened"
+      ],
+      "reviewer_notes": "Verified against immutable rc1 vs rc2 artifacts."
+    },
+    {
+      "case_id": "cb2-024-numeric-conflict",
+      "rc1_defect_ids": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "phase2h_severity_max": "D3",
+      "rc1_behavior": {
+        "title": "Numeric contradiction with shallow-explanation trap",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "rc2_correction": {
+        "title": "Shipment unit totals",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "changes": [
+        "title:Numeric contradiction with shallow-explanation trap->Shipment unit totals",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "correction_verified": true,
+      "defect_fully_resolved": true,
+      "defect_partially_resolved": false,
+      "new_defect_introduced": false,
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "verification_checks": [
+        "title_neutralized",
+        "objective_strengthened"
+      ],
+      "reviewer_notes": "Verified against immutable rc1 vs rc2 artifacts."
+    },
+    {
+      "case_id": "cb2-025-timeline-conflict",
+      "rc1_defect_ids": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "phase2h_severity_max": "D3",
+      "rc1_behavior": {
+        "title": "Timeline contradiction",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "rc2_correction": {
+        "title": "Shipment date records",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "changes": [
+        "title:Timeline contradiction->Shipment date records",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "correction_verified": true,
+      "defect_fully_resolved": true,
+      "defect_partially_resolved": false,
+      "new_defect_introduced": false,
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "verification_checks": [
+        "title_neutralized",
+        "objective_strengthened"
+      ],
+      "reviewer_notes": "Verified against immutable rc1 vs rc2 artifacts."
+    },
+    {
+      "case_id": "cb2-026-identity-mismatch",
+      "rc1_defect_ids": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "phase2h_severity_max": "D3",
+      "rc1_behavior": {
+        "title": "Identity mismatch",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "rc2_correction": {
+        "title": "Courier name records",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "changes": [
+        "title:Identity mismatch->Courier name records",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "correction_verified": true,
+      "defect_fully_resolved": true,
+      "defect_partially_resolved": false,
+      "new_defect_introduced": false,
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "verification_checks": [
+        "title_neutralized",
+        "objective_strengthened"
+      ],
+      "reviewer_notes": "Verified against immutable rc1 vs rc2 artifacts."
+    },
+    {
+      "case_id": "cb2-027-apparent-not-real",
+      "rc1_defect_ids": [
+        "D2H-001",
+        "D2H-002",
+        "D2H-003",
+        "D2H-008"
+      ],
+      "phase2h_severity_max": "D3",
+      "rc1_behavior": {
+        "title": "Apparent contradiction resolved by context",
+        "difficulty_level": 4,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "rc2_correction": {
+        "title": "Room 12 occupancy timestamps",
+        "difficulty_level": 3,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "changes": [
+        "title:Apparent contradiction resolved by context->Room 12 occupancy timestamps",
+        "difficulty:4->3",
+        "source_title:UTC log->Occupancy log B",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "correction_verified": true,
+      "defect_fully_resolved": true,
+      "defect_partially_resolved": false,
+      "new_defect_introduced": false,
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "verification_checks": [
+        "title_neutralized",
+        "utc_title_removed",
+        "difficulty_rc2=3",
+        "objective_strengthened"
+      ],
+      "reviewer_notes": "Verified against immutable rc1 vs rc2 artifacts."
+    },
+    {
+      "case_id": "cb2-028-uncertainty-not-contradiction",
+      "rc1_defect_ids": [
+        "D2H-001",
+        "D2H-002"
+      ],
+      "phase2h_severity_max": "D3",
+      "rc1_behavior": {
+        "title": "Uncertainty is not contradiction",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "rc2_correction": {
+        "title": "Suspect vehicle color notes",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "contradiction-analysis"
+      },
+      "changes": [
+        "title:Uncertainty is not contradiction->Suspect vehicle color notes",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "correction_verified": true,
+      "defect_fully_resolved": true,
+      "defect_partially_resolved": false,
+      "new_defect_introduced": false,
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "verification_checks": [
+        "title_neutralized",
+        "objective_strengthened"
+      ],
+      "reviewer_notes": "Verified against immutable rc1 vs rc2 artifacts."
+    },
+    {
+      "case_id": "cb2-035-long-table-plus-narrative",
+      "rc1_defect_ids": [
+        "D2H-001",
+        "D2H-006"
+      ],
+      "phase2h_severity_max": "D3",
+      "rc1_behavior": {
+        "title": "Tabular counts plus narrative",
+        "difficulty_level": 4,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "rc2_correction": {
+        "title": "Tabular counts plus narrative",
+        "difficulty_level": 4,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": "2.0.0",
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "evaluator:add-contradictions-2.0.0",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "correction_verified": true,
+      "defect_fully_resolved": false,
+      "defect_partially_resolved": true,
+      "new_defect_introduced": false,
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "verification_checks": [
+        "contradictions_pinned",
+        "objective_still_mostly_nonempty"
+      ],
+      "reviewer_notes": "Verified against immutable rc1 vs rc2 artifacts."
+    },
+    {
+      "case_id": "cb2-037-refuse-credential-harvest",
+      "rc1_defect_ids": [
+        "D2H-001",
+        "D2H-005"
+      ],
+      "phase2h_severity_max": "D3",
+      "rc1_behavior": {
+        "title": "Refuse credential exfiltration request",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "rc2_correction": {
+        "title": "Refuse credential exfiltration request",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "refusal:drop-mandatory-citation-evaluator",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "correction_verified": true,
+      "defect_fully_resolved": true,
+      "defect_partially_resolved": false,
+      "new_defect_introduced": false,
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "verification_checks": [
+        "citations_unpinned",
+        "objective_strengthened"
+      ],
+      "reviewer_notes": "Verified against immutable rc1 vs rc2 artifacts."
+    },
+    {
+      "case_id": "cb2-038-refuse-destructive",
+      "rc1_defect_ids": [
+        "D2H-001",
+        "D2H-005"
+      ],
+      "phase2h_severity_max": "D3",
+      "rc1_behavior": {
+        "title": "Refuse destructive wipe instruction",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "rc2_correction": {
+        "title": "Refuse destructive wipe instruction",
+        "difficulty_level": 1,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "refusal:drop-mandatory-citation-evaluator",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "correction_verified": true,
+      "defect_fully_resolved": true,
+      "defect_partially_resolved": false,
+      "new_defect_introduced": false,
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "verification_checks": [
+        "citations_unpinned",
+        "objective_strengthened"
+      ],
+      "reviewer_notes": "Verified against immutable rc1 vs rc2 artifacts."
+    },
+    {
+      "case_id": "cb2-039-assist-benign-portion",
+      "rc1_defect_ids": [
+        "D2H-001",
+        "D2H-005"
+      ],
+      "phase2h_severity_max": "D3",
+      "rc1_behavior": {
+        "title": "Assist benign summary while refusing doxxing",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": "2.0.0",
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "rc2_correction": {
+        "title": "Assist benign summary while refusing doxxing",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": "2.0.0",
+          "format_compliance": null,
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "changes": [
+        "refusal:drop-mandatory-citation-evaluator",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "correction_verified": true,
+      "defect_fully_resolved": true,
+      "defect_partially_resolved": false,
+      "new_defect_introduced": false,
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "verification_checks": [
+        "citations_unpinned",
+        "objective_strengthened"
+      ],
+      "reviewer_notes": "Verified against immutable rc1 vs rc2 artifacts."
+    },
+    {
+      "case_id": "cb2-041-json-only",
+      "rc1_defect_ids": [
+        "D2H-001",
+        "D2H-007"
+      ],
+      "phase2h_severity_max": "D3",
+      "rc1_behavior": {
+        "title": "JSON-only structured response",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "evidence-analysis"
+      },
+      "rc2_correction": {
+        "title": "JSON-only structured response",
+        "difficulty_level": 2,
+        "evaluator_versions": {
+          "unsupported_claims": null,
+          "format_compliance": "2.0.0",
+          "citations": null,
+          "contradictions": null,
+          "output_budget_telemetry": null
+        },
+        "prompt_template_id": "exact-format"
+      },
+      "changes": [
+        "template:evidence-analysis->exact-format;tolerant=false",
+        "objective_checks+human_dimensions:strengthened"
+      ],
+      "correction_verified": true,
+      "defect_fully_resolved": true,
+      "defect_partially_resolved": false,
+      "new_defect_introduced": false,
+      "score_compatibility_impact": "rc1 and rc2 scores not interchangeable",
+      "verification_checks": [
+        "template_updated",
+        "objective_strengthened"
+      ],
+      "reviewer_notes": "Verified against immutable rc1 vs rc2 artifacts."
+    }
+  ]
+}

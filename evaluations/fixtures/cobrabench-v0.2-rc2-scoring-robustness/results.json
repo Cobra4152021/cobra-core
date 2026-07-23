@@ -1,0 +1,9 @@
+{
+  "format_good_semantic": 1.0,
+  "format_bad_semantic": 0.0,
+  "ordering_format_ok": true,
+  "notes": [
+    "Representative static fixtures only; no model generations.",
+    "Citation-heavy incomplete and contradiction orderings covered in Phase 2H/2I fixture suites."
+  ]
+}

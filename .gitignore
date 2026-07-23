@@ -76,6 +76,8 @@ evaluations/reports/**
 !evaluations/reports/PHASE2E_DIAGNOSTIC_RUN_STATUS.md
 !evaluations/reports/QWEN3_8B_OFFLINE_REEVALUATION_V2.md
 !evaluations/reports/COBRABENCH_V0_2_*.md
+!evaluations/reports/UNSUPPORTED_CLAIM_V2_FALSE_NEGATIVE_AUDIT.md
+!evaluations/reports/CONTRADICTION_V2_SENSITIVITY_AUDIT.md
 !evaluations/reviews/
 !evaluations/reviews/**
 !docs/PHASE_2E_STATUS.md

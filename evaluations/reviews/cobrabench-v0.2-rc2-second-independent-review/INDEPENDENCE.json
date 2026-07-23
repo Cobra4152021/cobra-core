@@ -1,0 +1,29 @@
+{
+  "review_id": "cobrabench-v0.2-rc2-second-independent-review",
+  "reviewer_id": "phase2i-second-static-reviewer-1",
+  "reviewer_role": "second-static-reviewer",
+  "review_date": "2026-07-23",
+  "relationship_to_authoring": "Same Cursor agent workflow as Phase 2G case construction and Phase 2H first review. Not a separate human rater.",
+  "participated_in_phase_2g": true,
+  "participated_in_phase_2h": true,
+  "prior_defect_conclusions_visible": true,
+  "expected_answers_hidden_initially": true,
+  "blind_pass_before_rubrics": true,
+  "review_method": "blind-answerability-then-rubric-comparison",
+  "tools_used": [
+    "load_release_cases_v02",
+    "unsupported_claims v2 fixtures",
+    "contradictions v2 fixtures",
+    "static hash verification"
+  ],
+  "human_versus_automated": "hybrid-tooling-with-agent-judgment",
+  "multi_rater": false,
+  "genuine_separation_achieved": false,
+  "independence_limitations": [
+    "Reviewer is not organizationally independent of authoring.",
+    "Reviewer participated in Phase 2G and Phase 2H.",
+    "Prior defect register was visible after blind pass freeze.",
+    "Cannot claim independent multi-rater human review."
+  ],
+  "implication": "Preferred independence conditions were NOT achieved. Per Phase 2I Part 2, Outcome A is blocked; Outcome D is required unless a separate content-driven Outcome B/C is justified."
+}

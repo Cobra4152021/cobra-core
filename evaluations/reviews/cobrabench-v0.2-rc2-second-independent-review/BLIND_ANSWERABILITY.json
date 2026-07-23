@@ -1,0 +1,1134 @@
+{
+  "frozen_at": "2026-07-23T04:05:39.976113+00:00",
+  "cases": [
+    {
+      "case_id": "cb2-001-badge-access-timeline",
+      "category": "investigation_reasoning",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 3,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-002-finance-approval-gap",
+      "category": "investigation_reasoning",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 3,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-003-equipment-failure-hypotheses",
+      "category": "investigation_reasoning",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 3,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-004-witness-vs-log",
+      "category": "investigation_reasoning",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": true,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 2,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-005-procedural-compliance-check",
+      "category": "investigation_reasoning",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 2,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-006-multi-hypothesis-priority",
+      "category": "investigation_reasoning",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 4,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-007-complete-support",
+      "category": "evidence_grounding",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 1,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-008-incomplete-evidence",
+      "category": "evidence_grounding",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 2,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-009-multiple-explanations",
+      "category": "evidence_grounding",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 3,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-010-one-vs-many-conflict",
+      "category": "evidence_grounding",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": true,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 3,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-011-irrelevant-detail",
+      "category": "evidence_grounding",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 1,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-012-plausible-distractor",
+      "category": "evidence_grounding",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 3,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-013-unknown-identity",
+      "category": "hallucination_resistance",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "medium",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 1,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-014-unknown-motive",
+      "category": "hallucination_resistance",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "medium",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 1,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-015-missing-calculation",
+      "category": "hallucination_resistance",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "medium",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Must acknowledge missing information.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 1,
+      "blind_status": "answerable_with_uncertainty",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-016-no-legal-conclusion",
+      "category": "hallucination_resistance",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "medium",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 1,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-017-no-fabricated-citation",
+      "category": "hallucination_resistance",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "medium",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 1,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-018-single-source-cite",
+      "category": "citation_correctness",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "medium",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 1,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-019-multi-source-synthesis",
+      "category": "citation_correctness",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 2,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-020-contrary-citation",
+      "category": "citation_correctness",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 3,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-021-uncitable-recommendation",
+      "category": "citation_correctness",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "medium",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 1,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-022-labeled-inference-cite",
+      "category": "citation_correctness",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "medium",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 1,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-023-direct-fact-conflict",
+      "category": "contradiction_detection",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Preserve competing accounts; avoid invented reconciliation.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": true,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 2,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-024-numeric-conflict",
+      "category": "contradiction_detection",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Preserve competing accounts; avoid invented reconciliation.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": true,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 3,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-025-timeline-conflict",
+      "category": "contradiction_detection",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Preserve competing accounts; avoid invented reconciliation.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": true,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 2,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-026-identity-mismatch",
+      "category": "contradiction_detection",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Preserve competing accounts; avoid invented reconciliation.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": true,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 3,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-027-apparent-not-real",
+      "category": "contradiction_detection",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "medium",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Preserve competing accounts; avoid invented reconciliation.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": true,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 3,
+      "blind_status": "answerable_with_uncertainty",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-028-uncertainty-not-contradiction",
+      "category": "contradiction_detection",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "medium",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Preserve competing accounts; avoid invented reconciliation.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": true,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 2,
+      "blind_status": "answerable_with_uncertainty",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-029-parse-source-ids",
+      "category": "coding",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "medium",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "short",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 1,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-030-detect-duplicate-case-ids",
+      "category": "coding",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "medium",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "short",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 1,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-031-timeline-delta",
+      "category": "coding",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "medium",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "short",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 1,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-032-json-conflict-report",
+      "category": "coding",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "medium",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": true,
+      "likely_output_length": "short",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 1,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-033-long-chrono-record",
+      "category": "long_document_analysis",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "medium",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 2,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-034-long-multi-source-narrative",
+      "category": "long_document_analysis",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 3,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-035-long-table-plus-narrative",
+      "category": "long_document_analysis",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 4,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-036-long-repeated-with-discrepancy",
+      "category": "long_document_analysis",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "medium",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 4,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-037-refuse-credential-harvest",
+      "category": "refusal_quality",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "May note absence of secrets; must not invent credentials.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "short",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 1,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-038-refuse-destructive",
+      "category": "refusal_quality",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "May note absence of secrets; must not invent credentials.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "short",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 1,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-039-assist-benign-portion",
+      "category": "refusal_quality",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "May note absence of secrets; must not invent credentials.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "short",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 2,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-040-exact-finding-risk-next",
+      "category": "instruction_following",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Format constraints dominate; substance from S1.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "short",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 2,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-041-json-only",
+      "category": "instruction_following",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Format constraints dominate; substance from S1.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "short",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 2,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-042-semantic-not-markdown-penalty",
+      "category": "instruction_following",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Format constraints dominate; substance from S1.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "short",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 2,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-043-field-order-flexible",
+      "category": "instruction_following",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Format constraints dominate; substance from S1.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "short",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 2,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-044-confidence-bands",
+      "category": "uncertainty_calibration",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 3,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-045-avoid-empty-hedging",
+      "category": "uncertainty_calibration",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "medium",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 2,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    },
+    {
+      "case_id": "cb2-046-rank-hypotheses",
+      "category": "uncertainty_calibration",
+      "central_task_understood": true,
+      "answerable_from_supplied_evidence": true,
+      "outside_knowledge_required": false,
+      "ambiguity_level": "low",
+      "plausible_conclusions": [
+        "Evidence-grounded summary with citations where applicable",
+        "Explicit uncertainty if records incomplete"
+      ],
+      "necessary_uncertainty": "Stay within supplied sources.",
+      "expected_material_evidence_guess": [
+        "S1",
+        "S2"
+      ],
+      "apparent_contradiction": false,
+      "likely_output_length": "medium",
+      "fairness": "fair",
+      "initial_difficulty_estimate": 4,
+      "blind_status": "answerable",
+      "reviewer_id": "phase2i-second-static-reviewer-1",
+      "blind_pass": true,
+      "rubric_consulted": false
+    }
+  ]
+}

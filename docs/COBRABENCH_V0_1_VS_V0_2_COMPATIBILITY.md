@@ -2,51 +2,42 @@
 
 ## Summary
 
-Historical **0.840** remains valid only under CobraBench **v0.1** and its original evaluator versions.
-A v0.2-rc1 or v0.2-rc2 score must **not** be presented as direct improvement or decline versus 0.840 without qualification.
+Historical **0.840** remains valid only under CobraBench **v0.1**.
+v0.2-rc1 / v0.2-rc2 scores must **not** be presented as direct improvement or decline versus 0.840 without qualification.
 
-## Phase 2H independent-review findings
+**Final CobraBench v0.2 has not been released** (Phase 2I Outcome D).
 
-* Outcome **B**: rc1 not finalized; **rc2** created with targeted corrections.
-* Category **definitions** unchanged.
-* Category **weights** unchanged between rc1 and rc2.
-* Evaluator **versions** unchanged (still 2.0.0 / telemetry 1.0.0).
-* Evaluator **assignments** changed for some cases (refusal citation pins removed; contradiction pins added; JSON template reassigned).
-* Objective checks and human dimensions strengthened in rc2.
-* Some titles, one source title, and some difficulty levels changed in rc2.
+## Phase 2I second-review findings
+
+* Outcome **D**: keep rc2 non-final — genuine second-reviewer separation was not achieved.
+* No rc3 created.
+* No final `cobrabench-v0.2/` created.
+* Category definitions and weights unchanged.
+* Evaluator versions unchanged (unsupported_claims/citations/contradictions/format **2.0.0**; telemetry **1.0.0**).
+* Unsupported-claim v2 adversarial audit: high false-negative / cannot_determine rates; do not treat flag_count=0 as factual support.
+* Refusal and uncertainty remain small-sample categories (n=3); variance warning required if ever finalized.
+* Partial residual: some rc2 objective checks remain thin outside refusal/citation/contradiction/JSON categories.
 
 ## Why scores are not interchangeable
 
-| Dimension | v0.1 | v0.2-rc1 | v0.2-rc2 |
-| --- | --- | --- | --- |
-| Categories | 9 | 10 | 10 (same) |
-| Weights | v0.1 table | v0.2 table | same as rc1 |
-| Unsupported-claim evaluator | v1 | v2 | v2 |
-| Citation metrics | basic | v2 coverage suite | v2 (assignment differs on refusal) |
-| Contradiction | collapsed | 10 submetrics | 10 submetrics (+pins on selected grounding/long-doc) |
-| Evidence keys | SRC-* | S# | S# |
-| Format scoring | mixed | semantic vs exact | semantic vs exact |
-| Case prompts / titles | n/a | rc1 text | some metadata/prompt-visible titles revised |
+| Dimension | v0.1 | v0.2-rc1 | v0.2-rc2 | final v0.2 |
+| --- | --- | --- | --- | --- |
+| Status | frozen official baseline | immutable RC | immutable RC | **not released** |
+| Categories | 9 | 10 | 10 | — |
+| Weights | v0.1 table | v0.2 table | same as rc1 | — |
+| Unsupported-claim | v1 | v2 | v2 (known FN risk) | — |
 
-## rc1 → rc2 differences (score impact)
+Actual v0.2 weights (frozen): investigation 18%, grounding 14%, hallucination 14%, citation 14%, contradiction 12%, coding 8%, long-document 6%, instruction 5%, uncertainty 5%, refusal 4%.
 
-Material compatibility breaks:
+## Score-comparison restrictions
 
-* Refusal cases no longer require citation evaluator success for a correct refusal.
-* cb2-027 source title no longer cues timezone (`UTC log` removed).
-* Stronger objective checks change automated pass/fail surface.
-* Difficulty labels revised (metadata; may affect stratified reporting).
+* Do not convert among v0.1 / rc1 / rc2.
+* Do not invent a conversion formula.
+* Always display release ID and evaluator versions.
+* Official Phase 2D baseline artifacts must not be overwritten.
 
-Do **not** compare rc1 and rc2 overall scores as a pure model delta.
+## Official score
 
-## No conversion formula
+The official Qwen3-8B score remains:
 
-No statistically supported conversion among v0.1, v0.2-rc1, and v0.2-rc2 overall scores is provided.
-Do not invent one.
-
-## Reporting rules
-
-* Always display benchmark release ID and evaluator versions.
-* Keep v0.1 leaderboards separate from v0.2-rc* diagnostics.
-* Official Phase 2D baseline artifacts must not be overwritten by v0.2 runs.
-* Final v0.2 does not yet exist (Phase 2H).
+**0.840 under CobraBench v0.1**

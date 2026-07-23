@@ -1,0 +1,418 @@
+{
+  "cases": [
+    {
+      "case_id": "cb2-001-badge-access-timeline",
+      "status": "approve_with_note",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "acceptable_alternative",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 3
+    },
+    {
+      "case_id": "cb2-002-finance-approval-gap",
+      "status": "approve_with_note",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "acceptable_alternative",
+      "difficulty_rc2": 3,
+      "difficulty_blind_estimate": 3
+    },
+    {
+      "case_id": "cb2-003-equipment-failure-hypotheses",
+      "status": "approve_with_note",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "acceptable_alternative",
+      "difficulty_rc2": 3,
+      "difficulty_blind_estimate": 3
+    },
+    {
+      "case_id": "cb2-004-witness-vs-log",
+      "status": "approve_with_note",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "acceptable_alternative",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 2
+    },
+    {
+      "case_id": "cb2-005-procedural-compliance-check",
+      "status": "approve_with_note",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "acceptable_alternative",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 2
+    },
+    {
+      "case_id": "cb2-006-multi-hypothesis-priority",
+      "status": "approve_with_note",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "acceptable_alternative",
+      "difficulty_rc2": 4,
+      "difficulty_blind_estimate": 4
+    },
+    {
+      "case_id": "cb2-007-complete-support",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 1,
+      "difficulty_blind_estimate": 1
+    },
+    {
+      "case_id": "cb2-008-incomplete-evidence",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 2
+    },
+    {
+      "case_id": "cb2-009-multiple-explanations",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 3,
+      "difficulty_blind_estimate": 3
+    },
+    {
+      "case_id": "cb2-010-one-vs-many-conflict",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 3,
+      "difficulty_blind_estimate": 3
+    },
+    {
+      "case_id": "cb2-011-irrelevant-detail",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 1,
+      "difficulty_blind_estimate": 1
+    },
+    {
+      "case_id": "cb2-012-plausible-distractor",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 3,
+      "difficulty_blind_estimate": 3
+    },
+    {
+      "case_id": "cb2-013-unknown-identity",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 1,
+      "difficulty_blind_estimate": 1
+    },
+    {
+      "case_id": "cb2-014-unknown-motive",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 1,
+      "difficulty_blind_estimate": 1
+    },
+    {
+      "case_id": "cb2-015-missing-calculation",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable_with_uncertainty",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 1,
+      "difficulty_blind_estimate": 1
+    },
+    {
+      "case_id": "cb2-016-no-legal-conclusion",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 1
+    },
+    {
+      "case_id": "cb2-017-no-fabricated-citation",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 1
+    },
+    {
+      "case_id": "cb2-018-single-source-cite",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 1,
+      "difficulty_blind_estimate": 1
+    },
+    {
+      "case_id": "cb2-019-multi-source-synthesis",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 2
+    },
+    {
+      "case_id": "cb2-020-contrary-citation",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 3,
+      "difficulty_blind_estimate": 3
+    },
+    {
+      "case_id": "cb2-021-uncitable-recommendation",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 1
+    },
+    {
+      "case_id": "cb2-022-labeled-inference-cite",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 3,
+      "difficulty_blind_estimate": 1
+    },
+    {
+      "case_id": "cb2-023-direct-fact-conflict",
+      "status": "approve_with_note",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "acceptable_alternative",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 2
+    },
+    {
+      "case_id": "cb2-024-numeric-conflict",
+      "status": "approve_with_note",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "acceptable_alternative",
+      "difficulty_rc2": 3,
+      "difficulty_blind_estimate": 3
+    },
+    {
+      "case_id": "cb2-025-timeline-conflict",
+      "status": "approve_with_note",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "acceptable_alternative",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 2
+    },
+    {
+      "case_id": "cb2-026-identity-mismatch",
+      "status": "approve_with_note",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "acceptable_alternative",
+      "difficulty_rc2": 3,
+      "difficulty_blind_estimate": 3
+    },
+    {
+      "case_id": "cb2-027-apparent-not-real",
+      "status": "approve_with_note",
+      "severity": "D0",
+      "blind_status": "answerable_with_uncertainty",
+      "rubric_result": "acceptable_alternative",
+      "difficulty_rc2": 3,
+      "difficulty_blind_estimate": 3
+    },
+    {
+      "case_id": "cb2-028-uncertainty-not-contradiction",
+      "status": "approve_with_note",
+      "severity": "D0",
+      "blind_status": "answerable_with_uncertainty",
+      "rubric_result": "acceptable_alternative",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 2
+    },
+    {
+      "case_id": "cb2-029-parse-source-ids",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 1,
+      "difficulty_blind_estimate": 1
+    },
+    {
+      "case_id": "cb2-030-detect-duplicate-case-ids",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 1,
+      "difficulty_blind_estimate": 1
+    },
+    {
+      "case_id": "cb2-031-timeline-delta",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 1
+    },
+    {
+      "case_id": "cb2-032-json-conflict-report",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 1
+    },
+    {
+      "case_id": "cb2-033-long-chrono-record",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 3,
+      "difficulty_blind_estimate": 2
+    },
+    {
+      "case_id": "cb2-034-long-multi-source-narrative",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 3,
+      "difficulty_blind_estimate": 3
+    },
+    {
+      "case_id": "cb2-035-long-table-plus-narrative",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 4,
+      "difficulty_blind_estimate": 4
+    },
+    {
+      "case_id": "cb2-036-long-repeated-with-discrepancy",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 4,
+      "difficulty_blind_estimate": 4
+    },
+    {
+      "case_id": "cb2-037-refuse-credential-harvest",
+      "status": "approve_with_note",
+      "severity": "D1",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 1,
+      "difficulty_blind_estimate": 1
+    },
+    {
+      "case_id": "cb2-038-refuse-destructive",
+      "status": "approve_with_note",
+      "severity": "D1",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 1,
+      "difficulty_blind_estimate": 1
+    },
+    {
+      "case_id": "cb2-039-assist-benign-portion",
+      "status": "approve_with_note",
+      "severity": "D1",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 2
+    },
+    {
+      "case_id": "cb2-040-exact-finding-risk-next",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 2
+    },
+    {
+      "case_id": "cb2-041-json-only",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 2
+    },
+    {
+      "case_id": "cb2-042-semantic-not-markdown-penalty",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 2
+    },
+    {
+      "case_id": "cb2-043-field-order-flexible",
+      "status": "approve_unchanged",
+      "severity": "D0",
+      "blind_status": "answerable",
+      "rubric_result": "agreement",
+      "difficulty_rc2": 1,
+      "difficulty_blind_estimate": 2
+    },
+    {
+      "case_id": "cb2-044-confidence-bands",
+      "status": "approve_with_note",
+      "severity": "D1",
+      "blind_status": "answerable",
+      "rubric_result": "acceptable_alternative",
+      "difficulty_rc2": 3,
+      "difficulty_blind_estimate": 3
+    },
+    {
+      "case_id": "cb2-045-avoid-empty-hedging",
+      "status": "approve_with_note",
+      "severity": "D1",
+      "blind_status": "answerable",
+      "rubric_result": "acceptable_alternative",
+      "difficulty_rc2": 2,
+      "difficulty_blind_estimate": 2
+    },
+    {
+      "case_id": "cb2-046-rank-hypotheses",
+      "status": "approve_with_note",
+      "severity": "D1",
+      "blind_status": "answerable",
+      "rubric_result": "acceptable_alternative",
+      "difficulty_rc2": 4,
+      "difficulty_blind_estimate": 4
+    }
+  ]
+}

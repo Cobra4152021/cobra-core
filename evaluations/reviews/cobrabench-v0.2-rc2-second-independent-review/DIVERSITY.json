@@ -1,0 +1,66 @@
+{
+  "top_name_like": [
+    [
+      "Facility North Gate",
+      1
+    ],
+    [
+      "Dana Wu",
+      1
+    ]
+  ],
+  "top_dates": [
+    [
+      "2026-01-01",
+      6
+    ],
+    [
+      "2026-04-18",
+      5
+    ],
+    [
+      "2026-05-01",
+      5
+    ],
+    [
+      "2026-03-03",
+      3
+    ],
+    [
+      "2026-04-01",
+      3
+    ],
+    [
+      "2026-06-01",
+      3
+    ],
+    [
+      "2026-02-01",
+      3
+    ],
+    [
+      "2026-06-10",
+      3
+    ],
+    [
+      "2026-03-02",
+      2
+    ],
+    [
+      "2026-06-11",
+      2
+    ]
+  ],
+  "source_count_dist": {
+    "1": 21,
+    "2": 17,
+    "3": 8
+  },
+  "repeated_prompt_openings": [],
+  "shared_system_prompt": true,
+  "notes": [
+    "Shared system prompt is intentional consistency, not leakage.",
+    "Date clustering and S1/S2/S3 key scheme reduce surface diversity.",
+    "No gold-answer phrases found in prompts during Phase 2H/2I scans."
+  ]
+}

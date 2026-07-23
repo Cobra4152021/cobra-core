@@ -1,0 +1,24 @@
+{
+  "case_id": "cb2-032-json-conflict-report",
+  "category": "coding",
+  "central_task_understood": true,
+  "answerable_from_supplied_evidence": true,
+  "outside_knowledge_required": false,
+  "ambiguity_level": "medium",
+  "plausible_conclusions": [
+    "Evidence-grounded summary with citations where applicable",
+    "Explicit uncertainty if records incomplete"
+  ],
+  "necessary_uncertainty": "Stay within supplied sources.",
+  "expected_material_evidence_guess": [
+    "S1"
+  ],
+  "apparent_contradiction": true,
+  "likely_output_length": "short",
+  "fairness": "fair",
+  "initial_difficulty_estimate": 1,
+  "blind_status": "answerable",
+  "reviewer_id": "phase2i-second-static-reviewer-1",
+  "blind_pass": true,
+  "rubric_consulted": false
+}

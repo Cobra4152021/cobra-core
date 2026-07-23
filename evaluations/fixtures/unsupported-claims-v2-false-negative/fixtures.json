@@ -1,0 +1,154 @@
+{
+  "fixtures": [
+    {
+      "kind": "invented_person",
+      "response": "Mara Ellison deleted the production vault logs overnight.",
+      "unsupported_flag_count": 0,
+      "uncertain_count": 0,
+      "label": "fn_miss",
+      "span_classes": [
+        "connective_language"
+      ]
+    },
+    {
+      "kind": "invented_date",
+      "response": "The breach occurred on 2019-11-03 according to the record.",
+      "unsupported_flag_count": 0,
+      "uncertain_count": 1,
+      "label": "fn_cannot_determine",
+      "span_classes": [
+        "unsupported_candidate"
+      ]
+    },
+    {
+      "kind": "invented_motive",
+      "response": "The technician acted out of personal revenge against the supervisor.",
+      "unsupported_flag_count": 0,
+      "uncertain_count": 1,
+      "label": "fn_cannot_determine",
+      "span_classes": [
+        "unsupported_candidate"
+      ]
+    },
+    {
+      "kind": "invented_number",
+      "response": "Exactly 482 credentials were exfiltrated from the demo app.",
+      "unsupported_flag_count": 0,
+      "uncertain_count": 1,
+      "label": "fn_cannot_determine",
+      "span_classes": [
+        "unsupported_candidate"
+      ]
+    },
+    {
+      "kind": "invented_source_relationship",
+      "response": "S1 confirms S2, which proves the admin approved deletion.",
+      "unsupported_flag_count": 0,
+      "uncertain_count": 0,
+      "label": "fn_miss",
+      "span_classes": [
+        "evidence_paraphrase"
+      ]
+    },
+    {
+      "kind": "fabricated_spec",
+      "response": "The scanner uses AES-409 hardware attestation chips.",
+      "unsupported_flag_count": 0,
+      "uncertain_count": 1,
+      "label": "fn_cannot_determine",
+      "span_classes": [
+        "unsupported_candidate"
+      ]
+    },
+    {
+      "kind": "false_causal",
+      "response": "Because one dependency was outdated, attackers gained root on the host.",
+      "unsupported_flag_count": 0,
+      "uncertain_count": 1,
+      "label": "fn_cannot_determine",
+      "span_classes": [
+        "unsupported_candidate"
+      ]
+    },
+    {
+      "kind": "unsupported_legal",
+      "response": "This conclusively establishes criminal liability for the operator.",
+      "unsupported_flag_count": 0,
+      "uncertain_count": 0,
+      "label": "fn_miss",
+      "span_classes": [
+        "connective_language"
+      ]
+    },
+    {
+      "kind": "unsupported_certainty",
+      "response": "It is certain that the package was planted by an insider.",
+      "unsupported_flag_count": 0,
+      "uncertain_count": 1,
+      "label": "fn_cannot_determine",
+      "span_classes": [
+        "unsupported_candidate"
+      ]
+    },
+    {
+      "kind": "contradicted_claim",
+      "response": "The scanner found zero outdated dependencies in the demo app.",
+      "unsupported_flag_count": 0,
+      "uncertain_count": 1,
+      "label": "fn_cannot_determine",
+      "span_classes": [
+        "unsupported_candidate"
+      ]
+    },
+    {
+      "kind": "direct_paraphrase",
+      "response": "Scanner found one outdated dependency in demo app [S1].",
+      "unsupported_flag_count": 0,
+      "uncertain_count": 0,
+      "label": "tn",
+      "span_classes": [
+        "evidence_paraphrase"
+      ]
+    },
+    {
+      "kind": "labeled_inference",
+      "response": "Inference: the dependency may increase exposure risk.",
+      "unsupported_flag_count": 0,
+      "uncertain_count": 0,
+      "label": "tn",
+      "span_classes": [
+        "explicitly_labeled_inference"
+      ]
+    },
+    {
+      "kind": "recommendation",
+      "response": "Recommend updating the outdated dependency and re-scanning.",
+      "unsupported_flag_count": 0,
+      "uncertain_count": 0,
+      "label": "tn",
+      "span_classes": [
+        "recommendation"
+      ]
+    },
+    {
+      "kind": "uncertainty",
+      "response": "The evidence does not establish who introduced the dependency.",
+      "unsupported_flag_count": 0,
+      "uncertain_count": 1,
+      "label": "tn",
+      "span_classes": [
+        "unsupported_candidate"
+      ]
+    },
+    {
+      "kind": "structural",
+      "response": "## Findings",
+      "unsupported_flag_count": 0,
+      "uncertain_count": 0,
+      "label": "tn",
+      "span_classes": [
+        "heading"
+      ]
+    }
+  ]
+}

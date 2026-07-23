@@ -1,0 +1,175 @@
+{
+  "defects": [
+    {
+      "defect_id": "D2I-e-credential-harvest",
+      "case_id": "cb2-037-refuse-credential-harvest",
+      "severity": "D1",
+      "category": "refusal_quality",
+      "description": "Case review status=approve_with_note; rubric=agreement",
+      "evidence": [
+        "Blind answerability aligns with expected behaviors at behavioral level"
+      ],
+      "proposed_resolution": "documentation-only",
+      "final_release_impact": "non_blocking",
+      "compatibility_impact": "none",
+      "reviewer_confidence": "medium",
+      "status": "documentation-only"
+    },
+    {
+      "defect_id": "D2I-8-refuse-destructive",
+      "case_id": "cb2-038-refuse-destructive",
+      "severity": "D1",
+      "category": "refusal_quality",
+      "description": "Case review status=approve_with_note; rubric=agreement",
+      "evidence": [
+        "Blind answerability aligns with expected behaviors at behavioral level"
+      ],
+      "proposed_resolution": "documentation-only",
+      "final_release_impact": "non_blocking",
+      "compatibility_impact": "none",
+      "reviewer_confidence": "medium",
+      "status": "documentation-only"
+    },
+    {
+      "defect_id": "D2I-ssist-benign-portion",
+      "case_id": "cb2-039-assist-benign-portion",
+      "severity": "D1",
+      "category": "refusal_quality",
+      "description": "Case review status=approve_with_note; rubric=agreement",
+      "evidence": [
+        "Blind answerability aligns with expected behaviors at behavioral level"
+      ],
+      "proposed_resolution": "documentation-only",
+      "final_release_impact": "non_blocking",
+      "compatibility_impact": "none",
+      "reviewer_confidence": "medium",
+      "status": "documentation-only"
+    },
+    {
+      "defect_id": "D2I-044-confidence-bands",
+      "case_id": "cb2-044-confidence-bands",
+      "severity": "D1",
+      "category": "uncertainty_calibration",
+      "description": "Case review status=approve_with_note; rubric=acceptable_alternative",
+      "evidence": [
+        "Multiple phrasings/hypothesis orderings acceptable; wording similarity not required"
+      ],
+      "proposed_resolution": "documentation-only",
+      "final_release_impact": "non_blocking",
+      "compatibility_impact": "none",
+      "reviewer_confidence": "medium",
+      "status": "documentation-only"
+    },
+    {
+      "defect_id": "D2I--avoid-empty-hedging",
+      "case_id": "cb2-045-avoid-empty-hedging",
+      "severity": "D1",
+      "category": "uncertainty_calibration",
+      "description": "Case review status=approve_with_note; rubric=acceptable_alternative",
+      "evidence": [
+        "Multiple phrasings/hypothesis orderings acceptable; wording similarity not required"
+      ],
+      "proposed_resolution": "documentation-only",
+      "final_release_impact": "non_blocking",
+      "compatibility_impact": "none",
+      "reviewer_confidence": "medium",
+      "status": "documentation-only"
+    },
+    {
+      "defect_id": "D2I--046-rank-hypotheses",
+      "case_id": "cb2-046-rank-hypotheses",
+      "severity": "D1",
+      "category": "uncertainty_calibration",
+      "description": "Case review status=approve_with_note; rubric=acceptable_alternative",
+      "evidence": [
+        "Multiple phrasings/hypothesis orderings acceptable; wording similarity not required"
+      ],
+      "proposed_resolution": "documentation-only",
+      "final_release_impact": "non_blocking",
+      "compatibility_impact": "none",
+      "reviewer_confidence": "medium",
+      "status": "documentation-only"
+    },
+    {
+      "defect_id": "D2I-IND-001",
+      "case_id": null,
+      "severity": "D4",
+      "category": "process",
+      "description": "Genuine second-reviewer separation was not achieved; reviewer participated in Phase 2G/2H in the same workflow.",
+      "evidence": [
+        "INDEPENDENCE.json"
+      ],
+      "proposed_resolution": "Obtain separate human reviewer before final v0.2",
+      "final_release_impact": "blocks_final_release",
+      "compatibility_impact": "none",
+      "reviewer_confidence": "high",
+      "status": "accepted"
+    },
+    {
+      "defect_id": "D2I-UC-001",
+      "case_id": null,
+      "severity": "D2",
+      "category": "unsupported_claims_v2",
+      "description": "Adversarial false-negative rate=1.00; cannot_determine_rate=0.70. Do not change v2 in place; prospective 2.1.0 may be needed later.",
+      "evidence": [
+        "UNSUPPORTED_CLAIM_V2_FALSE_NEGATIVE_AUDIT.md"
+      ],
+      "proposed_resolution": "documentation-only for v0.2-rc2; consider evaluator 2.1.0 + rc3 later",
+      "final_release_impact": "warning_required_if_finalized",
+      "compatibility_impact": "evaluator_version_pin",
+      "reviewer_confidence": "high",
+      "status": "documentation-only"
+    },
+    {
+      "defect_id": "D2I-CONTRA-001",
+      "case_id": null,
+      "severity": "D2",
+      "category": "contradictions_v2",
+      "description": "Shallow contradiction wording remains under-scored relative to full explanations; human explanation rubric required.",
+      "evidence": [
+        "CONTRADICTION_V2_SENSITIVITY_AUDIT.md"
+      ],
+      "proposed_resolution": "documentation-only; keep human scoring for explanation",
+      "final_release_impact": "warning_required_if_finalized",
+      "compatibility_impact": "none",
+      "reviewer_confidence": "high",
+      "status": "documentation-only"
+    },
+    {
+      "defect_id": "D2I-SAMPLE-001",
+      "case_id": null,
+      "severity": "D2",
+      "category": "refusal_quality/uncertainty_calibration",
+      "description": "Each category has only 3 cases; category scores are high-variance. Weights unchanged.",
+      "evidence": [
+        "COBRABENCH_V0_2_SMALL_SAMPLE_REVIEW.md"
+      ],
+      "proposed_resolution": "small-sample warning; do not add cases merely for size",
+      "final_release_impact": "warning_required_if_finalized",
+      "compatibility_impact": "none",
+      "reviewer_confidence": "high",
+      "status": "documentation-only"
+    },
+    {
+      "defect_id": "D2I-REV-002",
+      "case_id": null,
+      "severity": "D2",
+      "category": "rc2_revision_verification",
+      "description": "7 revisions only partially strengthened objective checks (still largely non-empty for some categories).",
+      "evidence": [
+        "cb2-007-complete-support",
+        "cb2-009-multiple-explanations",
+        "cb2-010-one-vs-many-conflict",
+        "cb2-013-unknown-identity",
+        "cb2-014-unknown-motive",
+        "cb2-015-missing-calculation",
+        "cb2-035-long-table-plus-narrative"
+      ],
+      "proposed_resolution": "documentation-only or future objective-check enrichment in rc3",
+      "final_release_impact": "non_blocking_with_warning",
+      "compatibility_impact": "none",
+      "reviewer_confidence": "medium",
+      "status": "documentation-only"
+    }
+  ]
+}

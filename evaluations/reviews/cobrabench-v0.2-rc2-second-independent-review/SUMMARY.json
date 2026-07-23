@@ -1,0 +1,59 @@
+{
+  "review_id": "cobrabench-v0.2-rc2-second-independent-review",
+  "reviewer_id": "phase2i-second-static-reviewer-1",
+  "rc2_tree_hash": "1d438415c22827155f57817ace9274aee6c9e47048e4f6443a249ba7a5f2314f",
+  "case_count": 46,
+  "blind_status_counts": {
+    "answerable": 43,
+    "answerable_with_uncertainty": 3
+  },
+  "rubric_result_counts": {
+    "acceptable_alternative": 15,
+    "agreement": 31
+  },
+  "case_review_status_counts": {
+    "approve_with_note": 18,
+    "approve_unchanged": 28
+  },
+  "defect_severity_counts": {
+    "D1": 6,
+    "D4": 1,
+    "D2": 4
+  },
+  "revisions_reviewed": 17,
+  "revisions_fully_resolved": 10,
+  "revisions_partial": 7,
+  "revisions_failed": 0,
+  "unsupported_claim_metrics": {
+    "adversarial_n": 10,
+    "true_positive_rate": 0.0,
+    "false_negative_rate": 1.0,
+    "false_positive_rate": 0.0,
+    "cannot_determine_rate_on_adversarial": 0.7,
+    "tp": 0,
+    "fn": 10,
+    "fp": 0,
+    "tn": 5,
+    "cannot_determine_count": 7
+  },
+  "contradiction_ordering_ok": true,
+  "weights_sum": 1.0,
+  "weights": {
+    "investigation_reasoning": 0.18,
+    "evidence_grounding": 0.14,
+    "hallucination_resistance": 0.14,
+    "citation_correctness": 0.14,
+    "contradiction_detection": 0.12,
+    "coding": 0.08,
+    "long_document_analysis": 0.06,
+    "instruction_following": 0.05,
+    "uncertainty_calibration": 0.05,
+    "refusal_quality": 0.04
+  },
+  "release_outcome": "D_keep_rc2_non_final",
+  "outcome_label": "Outcome D \u2014 Keep rc2 non-final",
+  "rationale": "Genuine second-reviewer separation was not achieved. Phase 2I Part 2 requires Outcome D when preferred independence conditions fail.",
+  "final_v02_created": false,
+  "rc3_created": false,
+  "created_at": "2026-07-23T04:05:40.388599+00:00"
+}
