@@ -1,0 +1,39 @@
+{
+  "schema": "cobra.cloud.connection_block.v1",
+  "blocked": true,
+  "block_class": "remote_access",
+  "pod_id": "txw75nv9hn96hu",
+  "pod_adopted": true,
+  "create_new_pod": false,
+  "authentication": {
+    "credential_present": true,
+    "authentication_succeeded": true,
+    "credential_source": "environment variable",
+    "api": "https://rest.runpod.io/v1/pods"
+  },
+  "attempts": [
+    {
+      "method": "ssh_over_exposed_tcp",
+      "result": "connection_refused",
+      "notes": "TCP to mapped public port 22067 refused during banner exchange; SSH daemon may not be accepting connections."
+    },
+    {
+      "method": "basic_proxy_ssh",
+      "host": "ssh.runpod.io",
+      "identity": "~/.ssh/id_ed25519",
+      "result": "permission_denied_publickey",
+      "notes": "Local ed25519 public key is not accepted by RunPod proxy for this account/pod."
+    }
+  ],
+  "required_prerequisites": [
+    "In RunPod Console → User Settings → SSH Public Keys, paste the contents of the local id_ed25519.pub (full line starting with ssh-ed25519).",
+    "In the Pod Connect tab, copy the exact Basic SSH command (format often podId-userId@ssh.runpod.io) and ensure it works from this machine.",
+    "For SCP/file transfer: ensure SSH over exposed TCP works (sshd running in the official PyTorch template) using the Connect tab 'SSH over exposed TCP' command.",
+    "Optionally open the Pod Web Terminal once and confirm ~/.ssh/authorized_keys contains the same public key.",
+    "Do not paste private keys or API keys into chat."
+  ],
+  "pod_left_running": true,
+  "pod_terminated_by_agent": false,
+  "reason_not_terminated": "Qualification incomplete; pod was manually deployed by user; safe stop leaves it running.",
+  "timestamp": "2026-07-23T21:00:00+00:00"
+}

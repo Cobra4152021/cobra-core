@@ -1,0 +1,56 @@
+{
+  "schema": "cobra.cloud.pod_adoption.v1",
+  "timestamp": "2026-07-23T20:58:00+00:00",
+  "adopted": true,
+  "create_new_pod": false,
+  "reason": "single_running_pod_discovered_via_rest_api",
+  "authentication": {
+    "credential_present": true,
+    "authentication_succeeded": true,
+    "credential_source": "environment variable",
+    "api": "https://rest.runpod.io/v1/pods"
+  },
+  "pod": {
+    "pod_id": "txw75nv9hn96hu",
+    "desired_status": "RUNNING",
+    "image_name": "runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404",
+    "cost_per_hr_usd": 0.44,
+    "gpu_count": 1,
+    "memory_gb": 50,
+    "volume_gb": 50,
+    "container_disk_gb": 30,
+    "vcpu_count": null,
+    "created_at": "2026-07-23 20:46:05.929 +0000 UTC",
+    "last_started_at": "2026-07-23 20:46:05.924 +0000 UTC",
+    "ports": ["8888/http", "22/tcp"],
+    "ssh_port_mapping_private_to_public": {"22": 22067},
+    "user_reported_gpu": "NVIDIA A40 48GB",
+    "api_gpu_display_name": null
+  },
+  "authorization": {
+    "original_primary_gpu": "NVIDIA L4",
+    "original_fallback_gpu": "NVIDIA RTX A5000",
+    "user_authorized_adopt_existing_manual_pod": true,
+    "adopted_gpu_class": "NVIDIA A40",
+    "spending_ceiling_usd": 10.0,
+    "runtime_ceiling_hours": 8,
+    "storage_ceiling_gb": 100,
+    "max_instances": 1
+  },
+  "price_gate": {
+    "displayed_hourly_usd": 0.44,
+    "projected_8h_cost_usd": 3.52,
+    "within_10_usd_at_8h": true,
+    "under_primary_l4_cap_note": "A40 at 0.44/hr is within total ceiling; user authorized adoption of this existing pod"
+  },
+  "resource_gate": {
+    "gpu_count_ok": true,
+    "memory_gb": 50,
+    "memory_at_least_32gb": true,
+    "memory_at_least_50gb": true,
+    "storage_gb_volume_plus_container": 80,
+    "storage_within_100gb": true,
+    "vram_user_reported_gb": 48,
+    "vram_at_least_16gb": true
+  }
+}

@@ -163,3 +163,7 @@ artifacts/**/*.tar.gz
 !artifacts/**/*.json
 !artifacts/**/*.md
 
+
+evaluations/cloud/.pod-connection.local.json
+evaluations/cloud/.pod-ssh*
+

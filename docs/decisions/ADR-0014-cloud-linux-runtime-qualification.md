@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted — **Outcome F** after authorization (credentials missing). Prior preparation state was Outcome H.
+Accepted — **Outcome F** (remote access blocked after pod adoption). Prior states: H (no spend auth) → F (no API key) → F (SSH blocked on adopted pod).
 
 ## Context
 
@@ -44,15 +44,15 @@ $0 spend. No billable resources.
 
 ## Outcome
 
-**F — Cloud provisioning blocked** due to missing `RUNPOD_API_KEY`.
+**F — Cloud transfer/access blocked** after successful API auth and adoption of existing pod `txw75nv9hn96hu` (A40, $0.44/hr). SSH public-key registration / TCP SSH acceptance is required. No second pod was created.
 
 ## Remaining uncertainty
 
-Whether Linux on L4/A5000 avoids the Windows native crash.
+Whether Linux on the adopted A40 avoids the Windows native crash (qualification not yet run).
 
 ## Next authorized phase
 
-Supply RunPod API credentials to the environment and resume single-pod qualification under the recorded ceilings. CobraBench remains unauthorized.
+Register local SSH public key with RunPod, verify Connect-tab SSH, resume Gate 4 on the **same** pod. Terminate the pod after qualification or if abandoned. CobraBench remains unauthorized.
 
 ## Required statement
 

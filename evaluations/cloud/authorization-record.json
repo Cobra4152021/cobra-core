@@ -1,6 +1,6 @@
 {
   "schema": "cobra.cloud.authorization.v1",
-  "status": "authorized-pending-credentials",
+  "status": "authorized-pod-adopted-access-blocked",
   "authorized": true,
   "provider": "RunPod",
   "service": "Community Cloud GPU Pod",
@@ -70,8 +70,14 @@
     "delete_temporary_storage_and_uploads",
     "confirm_no_billable_resources_remain"
   ],
-  "notes": "Spending authorized. Resume blocked: RUNPOD_API_KEY not present in agent environment. Do not commit secrets.",
+  "notes": "RunPod authorized. Existing pod txw75nv9hn96hu adopted via REST. SSH access blocked pending public key registration. Do not commit secrets.",
   "payment_information_recorded": false,
-  "credentials_present": false,
-  "provisioning_attempted": false
+  "credentials_present": true,
+  "provisioning_attempted": false,
+  "adopted_existing_pod": {
+    "pod_id": "txw75nv9hn96hu",
+    "user_reported_gpu": "NVIDIA A40",
+    "displayed_hourly_usd": 0.44,
+    "create_new_pod": false
+  }
 }

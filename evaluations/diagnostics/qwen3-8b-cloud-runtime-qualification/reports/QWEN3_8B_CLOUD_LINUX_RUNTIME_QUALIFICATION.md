@@ -27,11 +27,23 @@ Phase 3E Outcome E: `WSLService` Disabled (`Wsl/0x80070422`).
 | Pricing mode | On-demand only (spot not authorized) |
 | Instances | Max 1 |
 
-## Provisioning status
+## Provisioning / adoption status
 
-**Blocked — authentication.** `RUNPOD_API_KEY` is not present in the agent environment. No pod was created. **Spend: $0.**
+**Authentication succeeded** (`credential_present=true`, REST `https://rest.runpod.io/v1/pods`).
 
-Price precheck (public RunPod pricing page) would allow launch of L4 Community at $0.44/hr; launch still requires live displayed-price verification at create time.
+**Existing pod adopted (no new launch):**
+
+| Field | Value |
+| --- | --- |
+| Pod ID | `txw75nv9hn96hu` |
+| Status | RUNNING |
+| Displayed rate | **$0.44/hr** |
+| Memory | 50 GB |
+| Storage | 50 GB volume + 30 GB container (80 GB ≤ 100) |
+| Image | `runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404` |
+| User-reported GPU | NVIDIA A40 48 GB |
+
+**Remote access blocked:** proxy SSH `Permission denied (publickey)`; direct TCP SSH connection refused. Local `id_ed25519.pub` must be added to RunPod account SSH keys; Connect-tab SSH must work before transfer/qualification. **Pod left running** (not terminated by agent).
 
 ## Security / transfer / qualification
 

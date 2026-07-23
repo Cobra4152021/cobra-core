@@ -1,24 +1,13 @@
 {
   "schema": "cobra.cloud.provisioning_block.v1",
-  "blocked": true,
-  "block_class": "authentication",
+  "blocked": false,
+  "block_class": "none",
   "provider": "RunPod",
-  "detail": "Resume from 3b6c706fc1760d79dadc11b2d766343ddcf7699a: RUNPOD_API_KEY still absent from process/user/machine environments. Authorization limits unchanged. No pod created.",
-  "resume_attempt": {
-    "expected_commit": "3b6c706fc1760d79dadc11b2d766343ddcf7699a",
-    "repository_clean": true,
-    "quality_suite": "green_after_block_fix",
-    "frozen_hashes_ok": true,
-    "protocol_status": "prepared-not-run",
-    "authorization_ok": true,
-    "credential_present": false,
-    "authentication_succeeded": false,
-    "credential_source": "none",
-    "live_availability_queried": false,
-    "cloud_api_contacted": false,
-    "instances_created": 0,
-    "spend_usd": 0
-  },
+  "detail": "Authentication succeeded via REST. Pod adoption succeeded. Remote access blocked separately (see connection-block.json).",
+  "superseded_by": "evaluations/cloud/connection-block.json",
+  "instance_created": false,
+  "instance_adopted": true,
+  "spend_incurred_usd": null,
   "price_precheck": {
     "primary_gpu": "NVIDIA L4",
     "authorized_displayed_rate_usd": 0.44,
@@ -28,14 +17,8 @@
     "fallback_authorized_reference_rate_usd": 0.16,
     "fallback_approved_hourly_ceiling_usd": 0.35,
     "fallback_within_limit": true,
-    "live_availability_queried": false
+    "adopted_pod_displayed_hourly_usd": 0.44,
+    "live_availability_queried": true
   },
-  "instance_created": false,
-  "spend_incurred_usd": 0,
-  "required_to_proceed": [
-    "Inject RUNPOD_API_KEY into the Cursor Agent process environment so child shells inherit it.",
-    "Open a new Agent chat after setting the variable.",
-    "Do not paste the key into chat or the repository."
-  ],
-  "timestamp": "2026-07-23T19:41:00+00:00"
+  "timestamp": "2026-07-23T21:00:00+00:00"
 }

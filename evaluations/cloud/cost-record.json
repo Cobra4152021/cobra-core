@@ -1,18 +1,18 @@
 {
   "schema": "cobra.cloud.cost_record.v1",
-  "status": "no_spend",
+  "status": "pod_running_user_owned",
   "provider": "RunPod",
-  "redacted_instance_class": null,
-  "gpu_model": null,
-  "hourly_rate_at_launch_usd": null,
+  "redacted_instance_class": "community-cloud-gpu-pod",
+  "gpu_model": "NVIDIA A40 (user-reported; API gpu display null)",
+  "hourly_rate_at_launch_usd": 0.44,
   "storage_rate_usd": null,
-  "launch_timestamp": null,
+  "launch_timestamp": "2026-07-23T20:46:05Z",
   "termination_timestamp": null,
-  "billed_or_estimated_duration_hours": 0,
-  "estimated_compute_cost_usd": 0,
+  "billed_or_estimated_duration_hours": null,
+  "estimated_compute_cost_usd": null,
   "estimated_storage_cost_usd": 0,
-  "total_estimated_cost_usd": 0,
+  "total_estimated_cost_usd": null,
   "approved_spending_ceiling_usd": 10.0,
   "ceiling_respected": true,
-  "notes": "Authorization recorded; no pod launched (missing API credentials)."
+  "notes": "Adopted existing pod. Agent stopped before remote access; did not terminate. User should stop pod when finished."
 }
