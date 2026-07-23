@@ -35,6 +35,10 @@ def _load_auth() -> dict:
     return json.loads(AUTH.read_text(encoding="utf-8"))
 
 
+def _credentials_present() -> bool:
+    return bool(os.environ.get("RUNPOD_API_KEY") or os.environ.get("RUNPOD_API"))
+
+
 def _authorization_complete(auth: dict) -> tuple[bool, str]:
     if not auth.get("authorized"):
         return False, "authorized is false"
@@ -61,6 +65,8 @@ def _authorization_complete(auth: dict) -> tuple[bool, str]:
                 return False, "spending ceiling must be positive"
         except (TypeError, ValueError):
             return False, "invalid spending ceiling"
+    if not _credentials_present():
+        return False, "RUNPOD_API_KEY missing from environment"
     return True, "ok"
 
 
@@ -98,7 +104,9 @@ def main() -> int:
         "subprocess_isolation": True,
         "spending_ceiling_enforced": True,
         "single_instance_rule": True,
-        "authorized": ok,
+        "authorized": bool(auth.get("authorized")),
+        "credentials_present": _credentials_present(),
+        "authorization_complete": ok,
         "authorization_reason": reason,
         "authorization_status": auth.get("status"),
         "benchmark_executed": False,
@@ -112,7 +120,7 @@ def main() -> int:
     if args.require_authorization and not ok:
         print("Cloud authorization incomplete; refusing provision/load.", file=sys.stderr)
         print(reason, file=sys.stderr)
-        print("status=ready-for-cloud-authorization", file=sys.stderr)
+        print(f"status={auth.get('status', 'unknown')}", file=sys.stderr)
         return 2
 
     if args.dry_check:

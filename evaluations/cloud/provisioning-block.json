@@ -1,0 +1,24 @@
+{
+  "schema": "cobra.cloud.provisioning_block.v1",
+  "blocked": true,
+  "block_class": "authentication",
+  "provider": "RunPod",
+  "detail": "RUNPOD_API_KEY (and related RunPod tokens) unset in process/user/machine environment; no runpodctl config; no MCP RunPod server; no .env credentials file.",
+  "price_precheck": {
+    "primary_gpu": "NVIDIA L4",
+    "published_community_hourly_usd": 0.44,
+    "approved_hourly_ceiling_usd": 0.5,
+    "within_limit": true,
+    "fallback_gpu": "NVIDIA RTX A5000",
+    "fallback_published_community_hourly_usd": 0.16,
+    "fallback_approved_hourly_ceiling_usd": 0.35,
+    "fallback_within_limit": true
+  },
+  "instance_created": false,
+  "spend_incurred_usd": 0,
+  "required_to_proceed": [
+    "Export RUNPOD_API_KEY into the agent shell environment (do not commit).",
+    "Re-run Phase 3F provisioning with the same authorization limits."
+  ],
+  "timestamp": "2026-07-23T09:11:00+00:00"
+}

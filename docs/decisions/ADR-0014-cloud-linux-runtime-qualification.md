@@ -2,43 +2,57 @@
 
 ## Status
 
-Accepted — **Outcome H** (`ready-for-cloud-authorization`).
+Accepted — **Outcome F** after authorization (credentials missing). Prior preparation state was Outcome H.
 
 ## Context
 
-Windows Qwen3-8B 4-bit loads access-violate; WSL2 cannot start in-session. Cloud Linux is the next authorized path. Official CobraBench v0.1 score **0.840** remains authoritative for v0.1 only.
+Windows Qwen3-8B loads access-violate; WSL2 unavailable. Cloud Linux on RunPod was authorized for qualification only.
 
 ## Windows access-violation history
 
-Identical `torch_cpu.dll` fault offset on Python 3.11/3.12/3.13 with torch 2.6.0+cu124.
+Identical `torch_cpu.dll` fault across Python 3.11/3.12/3.13.
 
 ## WSL2 service blocker
 
-`WSLService` Disabled; `Wsl/0x80070422`; enable Access denied without elevation (Phase 3E Outcome E).
+Phase 3E Outcome E.
 
 ## Why cloud Linux was selected
 
-Reuse a clean Linux CUDA stack without depending on local WSL service enablement; avoid further Windows retries.
+Clean Linux CUDA path without local WSL enablement.
 
 ## Authorization boundary
 
-No provider/GPU/spend/runtime/disk/region authorization was provided. Phase 3F **must not** incur charges. Preparation stopped at Gate 2.
+User authorized RunPod Community Cloud: NVIDIA L4 (≤ $0.50/hr) with RTX A5000 fallback (≤ $0.35/hr), $10 total, 8 hours, ≤ 100 GB, US region preferred, on-demand only, one instance, no spot/public endpoint/Jupyter/autoscaling/multi-GPU/persistent volume beyond session.
 
-## Host selection / security / transfers / dependencies / findings
+Recorded in `evaluations/cloud/authorization-record.json`.
 
-Deferred until authorization. Transfer package and proposed pin lock prepared locally. No model load, generation, qualification, cost, or cleanup of live resources.
+## Host selection
+
+Not completed. Public price precheck: L4 Community **$0.44/hr** within limit. Live displayed price must be re-checked at launch.
+
+## Security posture
+
+No API key committed. No ports opened. No instance created.
+
+## Repository / model transfer / dependencies / load / generation / qualification
+
+Not executed (blocked before provision).
+
+## Cost / cleanup
+
+$0 spend. No billable resources.
 
 ## Outcome
 
-**H — Qualification prepared but no cloud spending authorized.**
+**F — Cloud provisioning blocked** due to missing `RUNPOD_API_KEY`.
 
 ## Remaining uncertainty
 
-Whether Linux avoids the Windows native crash; which provider/SKU will be authorized.
+Whether Linux on L4/A5000 avoids the Windows native crash.
 
 ## Next authorized phase
 
-Explicit cloud authorization → single-instance provision → Gates 4–16. CobraBench remains unauthorized until a later phase after qualification.
+Supply RunPod API credentials to the environment and resume single-pod qualification under the recorded ceilings. CobraBench remains unauthorized.
 
 ## Required statement
 

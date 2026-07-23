@@ -4,11 +4,14 @@
   "max_full_loads": 6,
   "full_loads_executed": 0,
   "attempts": [],
-  "blocked_at_gate": 2,
-  "block_reason": "no_cloud_authorization",
+  "blocked_at_gate": 4,
+  "block_reason": "authentication_missing_runpod_api_key",
   "benchmark_executed": false,
   "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
   "model_inventory_hash": "8cf07aa84c9e26c9dd4ce71b21bd498232c8dfa5afe5284d375be0c1e9bb3f4f",
   "required_repo_commit": "695ea8833229b183e5792c49e3888ec4dde9e5f2",
-  "outcome": "H"
+  "outcome": "F",
+  "authorized": true,
+  "provider": "RunPod"
 }
+

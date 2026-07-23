@@ -7,6 +7,6 @@
   "credentials_revoked": true,
   "public_services_absent": true,
   "remaining_billable_resources": [],
-  "verification_timestamp": null,
-  "notes": "No cloud resources were provisioned in Phase 3F preparation."
+  "verification_timestamp": "2026-07-23T09:11:00+00:00",
+  "notes": "No RunPod resources were created after authorization because credentials were unavailable."
 }

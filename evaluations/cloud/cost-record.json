@@ -1,7 +1,7 @@
 {
   "schema": "cobra.cloud.cost_record.v1",
   "status": "no_spend",
-  "provider": null,
+  "provider": "RunPod",
   "redacted_instance_class": null,
   "gpu_model": null,
   "hourly_rate_at_launch_usd": null,
@@ -12,7 +12,7 @@
   "estimated_compute_cost_usd": 0,
   "estimated_storage_cost_usd": 0,
   "total_estimated_cost_usd": 0,
-  "approved_spending_ceiling_usd": null,
+  "approved_spending_ceiling_usd": 10.0,
   "ceiling_respected": true,
-  "notes": "No instance created; Outcome H."
+  "notes": "Authorization recorded; no pod launched (missing API credentials)."
 }

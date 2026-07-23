@@ -1,15 +1,16 @@
 {
   "schema": "cobra.cloud.export_verification.v1",
-  "status": "preparation_only",
+  "status": "authorization_recorded_no_remote_export",
   "files_expected": [
-    "artifacts/cloud-qwen3-runtime-qualification/cobra-core-phase3e.bundle",
-    "artifacts/cloud-qwen3-runtime-qualification/cloud-transfer-manifest.json",
     "evaluations/cloud/authorization-record.json",
-    "evaluations/cloud/security-manifest.json"
+    "evaluations/cloud/provisioning-block.json",
+    "evaluations/cloud/security-manifest.json",
+    "evaluations/cloud/cost-record.json",
+    "evaluations/cloud/cleanup-verification.json"
   ],
   "files_received": [],
   "file_hashes": {},
   "missing_files": [],
-  "verification_status": "local_preparation_complete",
-  "notes": "Cloud export verification deferred until an authorized instance exists."
+  "verification_status": "local_authorization_and_block_recorded",
+  "notes": "No remote cloud artifacts to export; instance was never created."
 }

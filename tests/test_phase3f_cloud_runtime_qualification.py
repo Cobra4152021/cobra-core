@@ -44,11 +44,20 @@ def test_frozen_immutability_and_score() -> None:
 def test_authorization_schema_and_single_instance_rule() -> None:
     auth = json.loads((CLOUD / "authorization-record.json").read_text(encoding="utf-8"))
     assert auth["schema"] == "cobra.cloud.authorization.v1"
-    assert auth["authorized"] is False
-    assert auth["status"] == "ready-for-cloud-authorization"
+    assert auth["authorized"] is True
+    assert auth["provider"] == "RunPod"
+    assert auth["gpu"] == "NVIDIA L4"
+    assert float(auth["approved_spending_ceiling_usd"]) == 10.0
+    assert float(auth["approved_runtime_ceiling_hours"]) == 8
+    assert float(auth["quoted_hourly_rate_usd"]) <= 0.5
     assert auth["rules"]["max_active_gpu_instances"] == 1
+    assert auth["spot_or_interruptible"] is False
     assert auth["payment_information_recorded"] is False
-    assert auth["provider"] is None
+    assert auth.get("credentials_present") is False
+    block = json.loads((CLOUD / "provisioning-block.json").read_text(encoding="utf-8"))
+    assert block["blocked"] is True
+    assert block["block_class"] == "authentication"
+    assert block["price_precheck"]["within_limit"] is True
 
 
 def test_transfer_manifest_schema() -> None:
@@ -106,20 +115,20 @@ def test_script_enforces_commit_model_budget_and_gates() -> None:
     assert "COBRA_CLOUD_PROVISION" in text
 
 
-def test_outcome_h_cost_cleanup_export() -> None:
+def test_outcome_f_authorized_but_blocked_cost_cleanup() -> None:
     outcome = json.loads((DIAG / "OUTCOME.json").read_text(encoding="utf-8"))
-    assert outcome["outcome"] == "H"
-    assert outcome["status"] == "ready-for-cloud-authorization"
+    assert outcome["outcome"] == "F"
+    assert outcome["authorized"] is True
     assert outcome["instance_count"] == 0
     assert outcome["benchmark_executed"] is False
     assert outcome["total_estimated_cost_usd"] == 0
+    assert outcome["block_reason"] == "authentication"
     cost = json.loads((CLOUD / "cost-record.json").read_text(encoding="utf-8"))
     assert cost["ceiling_respected"] is True
     assert cost["total_estimated_cost_usd"] == 0
+    assert float(cost["approved_spending_ceiling_usd"]) == 10.0
     cleanup = json.loads((CLOUD / "cleanup-verification.json").read_text(encoding="utf-8"))
     assert cleanup["remaining_billable_resources"] == []
-    export = json.loads((CLOUD / "export-verification.json").read_text(encoding="utf-8"))
-    assert export["verification_status"] == "local_preparation_complete"
     cand = ROOT / "evaluations/runtime-candidates/qwen3-8b-cloud-linux-qualified.json"
     assert not cand.exists()
 
@@ -142,14 +151,16 @@ def test_reports_and_adr() -> None:
     report = (ROOT / "evaluations/reports/QWEN3_8B_CLOUD_LINUX_RUNTIME_QUALIFICATION.md").read_text(
         encoding="utf-8"
     )
-    assert "Outcome" in report and "H" in report
+    assert "Outcome" in report
+    assert "RunPod" in report
     assert "0.840" in report
+    assert "F" in report
     cmp = (ROOT / "evaluations/reports/QWEN3_8B_PLATFORM_COMPARISON.md").read_text(encoding="utf-8")
     assert "WSL2" in cmp
     adr = (ROOT / "docs/decisions/ADR-0014-cloud-linux-runtime-qualification.md").read_text(
         encoding="utf-8"
     )
-    assert "Outcome H" in adr
+    assert "Outcome F" in adr
     assert "does not execute CobraBench" in adr
 
 
