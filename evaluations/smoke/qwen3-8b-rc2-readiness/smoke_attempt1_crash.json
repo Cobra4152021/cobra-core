@@ -1,0 +1,17 @@
+{
+  "attempt": 1,
+  "status": "fail",
+  "failure_class": "process_crash",
+  "windows_exit_code": 3221225477,
+  "windows_exit_code_hex": "0xC0000005",
+  "stage": "weight_load",
+  "progress_observed": "approx_75_percent_of_399_modules",
+  "authorization_for_retry": "Phase 3B allows one controlled retry only for clearly environmental failure; ACCESS_VIOLATION during load is classified environmental/runtime instability, matching prior Phase 2E diagnostic blocks on this host.",
+  "cleanup_planned": [
+    "ensure no leftover python inference processes",
+    "confirm free VRAM via nvidia-smi",
+    "retry once with max_memory={0:8GiB,cpu:14GiB} matching adapter defaults used in prior successful v0.1 path"
+  ],
+  "benchmark_execution": "blocked_until_smoke_pass",
+  "notes": "No benchmark case was executed. No quality-based retry."
+}

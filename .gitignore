@@ -96,6 +96,31 @@ evaluations/reports/**
 evaluations/environment/**
 !evaluations/environment/.gitkeep
 !evaluations/environment/README.md
+!evaluations/policies/
+!evaluations/policies/**
+!evaluations/preflight/
+!evaluations/preflight/**
+!evaluations/model-inventory/
+!evaluations/model-inventory/**
+!evaluations/smoke/
+!evaluations/smoke/**
+evaluations/runs/**
+!evaluations/runs/
+!evaluations/runs/**/
+!evaluations/runs/**/protocol.json
+!evaluations/runs/**/environment.json
+!evaluations/runs/**/model_inventory.json
+!evaluations/runs/**/case_manifest.json
+!evaluations/runs/**/RUN.md
+!evaluations/runs/**/SHA256SUMS
+!evaluations/runs/**/reports/**
+!evaluations/runs/**/human_review/**
+!evaluations/runs/**/errors/**
+!evaluations/runs/**/telemetry/**
+!evaluations/runs/**/scores/**
+!evaluations/runs/**/parsed/**
+!evaluations/runs/**/raw/**
+!evaluations/runs/**/logs/**
 
 # External model homes (never commit)
 D:/cobra-models/

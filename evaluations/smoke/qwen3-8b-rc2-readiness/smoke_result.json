@@ -1,0 +1,30 @@
+{
+  "status": "fail",
+  "attempts": 2,
+  "failure_class": "process_crash",
+  "windows_exit_code": 3221225477,
+  "windows_exit_code_hex": "0xC0000005",
+  "stage": "weight_load",
+  "progress_observed_both_attempts": "approx_75_percent_of_399_modules",
+  "attempt_1": {
+    "max_memory": {"0": "9GiB", "cpu": "18GiB"},
+    "exit_code_hex": "0xC0000005",
+    "artifact": "smoke_attempt1_crash.json"
+  },
+  "attempt_2": {
+    "max_memory": {"0": "8GiB", "cpu": "14GiB"},
+    "exit_code_hex": "0xC0000005",
+    "authorization": "single environmental retry after attempt 1",
+    "cleanup": "confirmed no leftover python inference processes; GPU free ~10GiB before retry",
+    "log": "smoke_attempt2.log"
+  },
+  "further_retries": "prohibited without separate authorization",
+  "benchmark_execution": "blocked",
+  "gate_failed": "Gate 3 — Smoke test",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "notes": [
+    "Matches prior Phase 2E diagnostic ACCESS_VIOLATION pattern on this host during Qwen3-8B 4-bit load.",
+    "No CobraBench v0.2-rc2 case was executed.",
+    "No quality-based retry was performed."
+  ]
+}
