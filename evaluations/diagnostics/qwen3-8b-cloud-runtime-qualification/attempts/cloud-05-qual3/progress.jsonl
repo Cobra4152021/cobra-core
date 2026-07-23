@@ -1,0 +1,6 @@
+{"ts": "2026-07-23T23:47:41.282652+00:00", "stage": "tokenizer_begin", "detail": ""}
+{"ts": "2026-07-23T23:47:42.431529+00:00", "stage": "tokenizer_complete", "detail": ""}
+{"ts": "2026-07-23T23:47:42.438553+00:00", "stage": "model_load_begin", "detail": "{\"device_map\": {\"\": 0}}"}
+{"ts": "2026-07-23T23:48:08.741822+00:00", "stage": "model_load_complete", "detail": "seconds=26.29"}
+{"ts": "2026-07-23T23:48:08.748664+00:00", "stage": "generate_begin:main", "detail": ""}
+{"ts": "2026-07-23T23:48:14.596205+00:00", "stage": "generate_complete:main", "detail": "chars=208"}

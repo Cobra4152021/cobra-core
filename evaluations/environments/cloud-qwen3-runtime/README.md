@@ -1,8 +1,7 @@
 # Cloud Qwen3-8B runtime (Phase 3F)
 
-Status: **prepared-not-provisioned** (Outcome H — awaiting cloud authorization).
+Status: **qualified** (Outcome A — RunPod A40 Linux CUDA runtime).
 
-Do not create an instance until `evaluations/cloud/authorization-record.json` has
-`authorized: true` with provider, GPU, spending ceiling, runtime ceiling, disk size, and region.
+Pinned lock: `requirements-cloud-lock.txt` (+ `torch==2.6.0+cu124` from the official cu124 index).
 
-See `creation-commands.md` and `selection-rationale.md`.
+Do not treat this as CobraBench authorization. Protocol remains `prepared-not-run`.

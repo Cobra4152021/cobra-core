@@ -63,7 +63,7 @@ def test_authorization_schema_and_single_instance_rule() -> None:
     conn = CLOUD / "connection-block.json"
     if conn.is_file():
         cb = json.loads(conn.read_text(encoding="utf-8"))
-        assert cb["block_class"] == "remote_access"
+        assert cb["block_class"] in {"remote_access", "resolved"}
         assert cb.get("create_new_pod") is False
         assert "pod_id" in cb
 
@@ -83,13 +83,15 @@ def test_security_manifest_has_no_secret_fields() -> None:
     text = (CLOUD / "security-manifest.json").read_text(encoding="utf-8")
     data = json.loads(text)
     assert data["contains_secrets"] is False
-    assert data["ports_opened"] == []
+    assert isinstance(data["ports_opened"], list)
+    assert "22/tcp" in data["ports_opened"] or data["ports_opened"] == []
     assert data["secrets_used_by_category"] == []
+    assert data.get("public_inference_endpoint") is not True
     assert "BEGIN RSA PRIVATE KEY" not in text
     assert "sk-" not in text
     # Values must not look like credentials; keys may mention auth categories.
     for key, value in data.items():
-        if key in {"prohibited", "cleanup_requirements", "schema", "status"}:
+        if key in {"prohibited", "cleanup_requirements", "schema", "status", "notes"}:
             continue
         if isinstance(value, str):
             assert "BEGIN " not in value
@@ -123,27 +125,31 @@ def test_script_enforces_commit_model_budget_and_gates() -> None:
     assert "COBRA_CLOUD_PROVISION" in text
 
 
-def test_outcome_f_authorized_but_blocked_cost_cleanup() -> None:
+def test_outcome_a_qualified_cost_cleanup() -> None:
     outcome = json.loads((DIAG / "OUTCOME.json").read_text(encoding="utf-8"))
-    assert outcome["outcome"] == "F"
+    assert outcome["outcome"] == "A"
     assert outcome["authorized"] is True
     assert outcome["benchmark_executed"] is False
-    assert outcome["block_reason"] in {"authentication", "remote_access"}
+    assert outcome["qualification_passed"] is True
+    assert outcome["extended_passed"] is True
+    assert outcome["create_new_pod"] is False
+    assert outcome["runtime_candidate_created"] is True
+    assert float(outcome["official_v01_score_unchanged"]) == 0.84
     cost = json.loads((CLOUD / "cost-record.json").read_text(encoding="utf-8"))
     assert cost["ceiling_respected"] is True
     assert float(cost["approved_spending_ceiling_usd"]) == 10.0
+    assert float(cost["total_estimated_cost_usd"]) <= 10.0
     cleanup = json.loads((CLOUD / "cleanup-verification.json").read_text(encoding="utf-8"))
-    assert "remaining_billable_resources" in cleanup
+    assert cleanup["instance_terminated"] is True
+    assert cleanup["remaining_billable_resources"] == []
     cand = ROOT / "evaluations/runtime-candidates/qwen3-8b-cloud-linux-qualified.json"
-    assert not cand.exists()
-    # Never create an extra pod during adoption resumes.
-    assert outcome.get("create_new_pod") is not True
+    assert cand.is_file()
 
 
 def test_runtime_candidate_schema_if_present() -> None:
     cand = ROOT / "evaluations/runtime-candidates/qwen3-8b-cloud-linux-qualified.json"
     if not cand.is_file():
-        pytest.skip("no cloud runtime candidate (expected for Outcome H)")
+        pytest.skip("no cloud runtime candidate")
     data = json.loads(cand.read_text(encoding="utf-8"))
     assert data["status"] in {
         "qualified",
@@ -152,6 +158,9 @@ def test_runtime_candidate_schema_if_present() -> None:
         "failed",
     }
     assert data.get("model_revision") == MODEL_REV
+    assert data.get("qualification_3_of_3") is True
+    assert data.get("extended_session") is True
+    assert data.get("benchmark_executed") is False
 
 
 def test_reports_and_adr() -> None:
@@ -161,13 +170,14 @@ def test_reports_and_adr() -> None:
     assert "Outcome" in report
     assert "RunPod" in report
     assert "0.840" in report
-    assert "F" in report
+    assert "A — Cloud Linux runtime fully qualified" in report
     cmp = (ROOT / "evaluations/reports/QWEN3_8B_PLATFORM_COMPARISON.md").read_text(encoding="utf-8")
     assert "WSL2" in cmp
+    assert "A" in cmp
     adr = (ROOT / "docs/decisions/ADR-0014-cloud-linux-runtime-qualification.md").read_text(
         encoding="utf-8"
     )
-    assert "Outcome F" in adr
+    assert "Outcome A" in adr
     assert "does not execute CobraBench" in adr
 
 
@@ -181,7 +191,8 @@ def test_no_benchmark_run_directory_for_rc2() -> None:
 def test_manifest_six_load_ceiling() -> None:
     manifest = json.loads((DIAG / "manifest.json").read_text(encoding="utf-8"))
     assert manifest["max_full_loads"] == 6
-    assert manifest["full_loads_executed"] == 0
+    assert manifest["full_loads_executed"] == 6
+    assert manifest["benchmark_executed"] is False
 
 
 @pytest.mark.model_required

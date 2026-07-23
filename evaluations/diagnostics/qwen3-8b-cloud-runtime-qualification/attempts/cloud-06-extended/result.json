@@ -1,0 +1,107 @@
+{
+  "mode": "extended",
+  "started_at": "2026-07-23T23:48:34.045635+00:00",
+  "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+  "executable": "/workspace/cobra-core-cloud/.venv-qwen-cloud/bin/python",
+  "success": true,
+  "load_stage": "extended_complete",
+  "offload_used": false,
+  "error": null,
+  "benchmark_content": false,
+  "platform": "linux",
+  "memory_before": {
+    "available_ram_bytes": 491127783424,
+    "total_ram_bytes": 540649254912
+  },
+  "vram_before": {
+    "free": 47428993024,
+    "total": 47708110848
+  },
+  "gpu_name": "NVIDIA A40",
+  "configuration": {
+    "device_map": {
+      "": 0
+    },
+    "quantization": "4bit-nf4-double",
+    "compute_dtype": "float16",
+    "offload": false,
+    "trust_remote_code": false
+  },
+  "param_device": "cuda:0",
+  "load_seconds": 25.396,
+  "generation": {
+    "text": "**Supported Facts:**\n\n1. The shipment was logged at 08:40. (S1)  \n2. The inspection form was signed at 09:05. (S2)  \n\n**Unresolved Uncertainty:**\n\n- There is no record identifying who moved the shipment. (S3)",
+    "non_empty": true,
+    "output_tokens": 67,
+    "latency_s": 6.008,
+    "peak_vram_bytes": 6318342144
+  },
+  "extended": [
+    {
+      "index": 1,
+      "text": "**Supported Facts:**\n\n1. The shipment was logged at 08:40. (S1)  \n2. The inspection form was signed at 09:05. (S2)  \n\n**Unresolved Uncertainty:**\n\n- There is no record identifying who moved the shipment. (S3)",
+      "non_empty": true,
+      "output_tokens": 67,
+      "latency_s": 6.449,
+      "peak_vram_bytes": 6318342144,
+      "memory": {
+        "available_ram_bytes": 489236221952,
+        "total_ram_bytes": 540649254912
+      }
+    },
+    {
+      "index": 2,
+      "text": "The meter read **3.1** at noon.  \n\nCite: [S1]",
+      "non_empty": true,
+      "output_tokens": 20,
+      "latency_s": 2.053,
+      "peak_vram_bytes": 6310064128,
+      "memory": {
+        "available_ram_bytes": 489280520192,
+        "total_ram_bytes": 540649254912
+      }
+    },
+    {
+      "index": 3,
+      "text": "Rain began at 16:00 (S2).",
+      "non_empty": true,
+      "output_tokens": 14,
+      "latency_s": 1.393,
+      "peak_vram_bytes": 6309144576,
+      "memory": {
+        "available_ram_bytes": 489313394688,
+        "total_ram_bytes": 540649254912
+      }
+    },
+    {
+      "index": 4,
+      "text": "The uncertainty mentioned in the log is the omission of humidity data. This is cited from [S3].",
+      "non_empty": true,
+      "output_tokens": 22,
+      "latency_s": 2.104,
+      "peak_vram_bytes": 6309144576,
+      "memory": {
+        "available_ram_bytes": 489330843648,
+        "total_ram_bytes": 540649254912
+      }
+    },
+    {
+      "index": 5,
+      "text": "- A crate arrived on Monday (S1).  \n- Inspection took place on Tuesday (S2).  \n- Uncertainty: It is unclear whether the inspection was conducted immediately after the crate arrived or if there was a delay between the arrival and the inspection (S1, S2).",
+      "non_empty": true,
+      "output_tokens": 59,
+      "latency_s": 5.656,
+      "peak_vram_bytes": 6310754304,
+      "memory": {
+        "available_ram_bytes": 489631420416,
+        "total_ram_bytes": 540649254912
+      }
+    }
+  ],
+  "memory_after": {
+    "available_ram_bytes": 489631420416,
+    "total_ram_bytes": 540649254912
+  },
+  "peak_vram_bytes": 6310754304,
+  "ended_at": "2026-07-23T23:50:36.153963+00:00"
+}

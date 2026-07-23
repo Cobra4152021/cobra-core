@@ -1,16 +1,10 @@
 {
   "schema": "cobra.cloud.export_verification.v1",
-  "status": "authorization_recorded_no_remote_export",
-  "files_expected": [
-    "evaluations/cloud/authorization-record.json",
-    "evaluations/cloud/provisioning-block.json",
-    "evaluations/cloud/security-manifest.json",
-    "evaluations/cloud/cost-record.json",
-    "evaluations/cloud/cleanup-verification.json"
-  ],
-  "files_received": [],
-  "file_hashes": {},
-  "missing_files": [],
-  "verification_status": "local_authorization_and_block_recorded",
-  "notes": "No remote cloud artifacts to export; instance was never created."
+  "status": "verified",
+  "qualification_summary_present": true,
+  "outcome_present": true,
+  "runtime_candidate_present": true,
+  "reports_present": true,
+  "benchmark_executed": false,
+  "verified_at": "2026-07-23T23:54:26.626056+00:00"
 }

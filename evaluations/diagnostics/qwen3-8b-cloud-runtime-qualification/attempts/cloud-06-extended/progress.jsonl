@@ -1,0 +1,16 @@
+{"ts": "2026-07-23T23:49:45.864539+00:00", "stage": "tokenizer_begin", "detail": ""}
+{"ts": "2026-07-23T23:49:46.728158+00:00", "stage": "tokenizer_complete", "detail": ""}
+{"ts": "2026-07-23T23:49:46.738527+00:00", "stage": "model_load_begin", "detail": "{\"device_map\": {\"\": 0}}"}
+{"ts": "2026-07-23T23:50:12.144545+00:00", "stage": "model_load_complete", "detail": "seconds=25.40"}
+{"ts": "2026-07-23T23:50:12.150124+00:00", "stage": "generate_begin:main", "detail": ""}
+{"ts": "2026-07-23T23:50:18.231513+00:00", "stage": "generate_complete:main", "detail": "chars=208"}
+{"ts": "2026-07-23T23:50:18.257802+00:00", "stage": "generate_begin:ext1", "detail": ""}
+{"ts": "2026-07-23T23:50:24.694392+00:00", "stage": "generate_complete:ext1", "detail": "chars=208"}
+{"ts": "2026-07-23T23:50:24.729900+00:00", "stage": "generate_begin:ext2", "detail": ""}
+{"ts": "2026-07-23T23:50:26.791546+00:00", "stage": "generate_complete:ext2", "detail": "chars=45"}
+{"ts": "2026-07-23T23:50:26.825116+00:00", "stage": "generate_begin:ext3", "detail": ""}
+{"ts": "2026-07-23T23:50:28.228706+00:00", "stage": "generate_complete:ext3", "detail": "chars=25"}
+{"ts": "2026-07-23T23:50:28.237346+00:00", "stage": "generate_begin:ext4", "detail": ""}
+{"ts": "2026-07-23T23:50:30.348652+00:00", "stage": "generate_complete:ext4", "detail": "chars=95"}
+{"ts": "2026-07-23T23:50:30.360083+00:00", "stage": "generate_begin:ext5", "detail": ""}
+{"ts": "2026-07-23T23:50:36.028450+00:00", "stage": "generate_complete:ext5", "detail": "chars=253"}

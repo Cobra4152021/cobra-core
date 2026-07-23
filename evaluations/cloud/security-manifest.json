@@ -1,31 +1,13 @@
 {
   "schema": "cobra.cloud.security_manifest.v1",
-  "status": "authorized-not-provisioned",
-  "ports_opened": [],
-  "authentication_method": "runpod-api-key-required-not-present",
-  "password_authentication": "n/a",
-  "storage_encryption_status": "deferred-until-provision",
-  "public_ip_status": "not_provisioned",
-  "firewall_or_security_group_summary": "no_resources_created",
-  "secrets_used_by_category": [],
-  "cleanup_requirements": [
-    "terminate_gpu_instance",
-    "delete_temporary_volumes",
-    "delete_temporary_object_storage",
-    "revoke_temporary_credentials",
-    "confirm_no_managed_endpoint",
-    "confirm_no_recurring_jobs"
-  ],
-  "prohibited": [
-    "public_jupyter",
-    "tokens_in_source",
-    "commit_secrets",
-    "api_keys_in_artifacts",
-    "private_ssh_keys_in_repo",
-    "billing_identifiers",
-    "access_tokens",
-    "public_inference_endpoint"
-  ],
+  "status": "qualified-session-complete",
   "contains_secrets": false,
-  "notes": "API key must be supplied via environment only; never commit."
+  "ports_opened": [
+    "22/tcp"
+  ],
+  "secrets_used_by_category": [],
+  "public_inference_endpoint": false,
+  "public_jupyter_used": false,
+  "notes": "Adopted pod retained template port list; agent used SSH over exposed TCP only. No API keys written to remote disk by agent scripts.",
+  "timestamp": "2026-07-23T23:53:21.872680+00:00"
 }

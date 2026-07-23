@@ -1,18 +1,17 @@
 {
   "schema": "cobra.cloud.cost_record.v1",
-  "status": "pod_running_user_owned",
+  "status": "terminated",
   "provider": "RunPod",
   "redacted_instance_class": "community-cloud-gpu-pod",
-  "gpu_model": "NVIDIA A40 (user-reported; API gpu display null)",
+  "gpu_model": "NVIDIA A40",
   "hourly_rate_at_launch_usd": 0.44,
-  "storage_rate_usd": null,
   "launch_timestamp": "2026-07-23T20:46:05Z",
-  "termination_timestamp": null,
-  "billed_or_estimated_duration_hours": null,
-  "estimated_compute_cost_usd": null,
+  "termination_timestamp": "2026-07-23T23:54:26.626056+00:00",
+  "billed_or_estimated_duration_hours": 3.139,
+  "estimated_compute_cost_usd": 1.3813,
   "estimated_storage_cost_usd": 0,
-  "total_estimated_cost_usd": null,
+  "total_estimated_cost_usd": 1.3813,
   "approved_spending_ceiling_usd": 10.0,
   "ceiling_respected": true,
-  "notes": "Adopted existing pod. Agent stopped before remote access; did not terminate. User should stop pod when finished."
+  "notes": "Adopted existing pod; terminated after Outcome A qualification export."
 }

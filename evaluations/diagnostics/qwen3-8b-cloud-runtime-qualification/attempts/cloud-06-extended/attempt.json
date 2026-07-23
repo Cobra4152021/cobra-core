@@ -1,0 +1,119 @@
+{
+  "attempt_id": "cloud-06-extended",
+  "label": "extended",
+  "mode": "extended",
+  "full_load_index": 6,
+  "exit_code": 0,
+  "elapsed_s": 126.529,
+  "success": true,
+  "stdout_tail": "",
+  "stderr_tail": "     | 38/399 [00:01<00:05, 65.42it/s]\nLoading weights:  12%|\u2588\u258f        | 49/399 [00:01<00:04, 76.00it/s]\nLoading weights:  15%|\u2588\u258c        | 60/399 [00:01<00:04, 83.59it/s]\nLoading weights:  18%|\u2588\u258a        | 71/399 [00:01<00:03, 87.13it/s]\nLoading weights:  21%|\u2588\u2588        | 82/399 [00:01<00:03, 91.61it/s]\nLoading weights:  23%|\u2588\u2588\u258e       | 93/399 [00:01<00:03, 96.65it/s]\nLoading weights:  26%|\u2588\u2588\u258b       | 105/399 [00:01<00:03, 97.35it/s]\nLoading weights:  30%|\u2588\u2588\u2589       | 119/399 [00:01<00:02, 108.88it/s]\nLoading weights:  33%|\u2588\u2588\u2588\u258e      | 131/399 [00:01<00:02, 110.03it/s]\nLoading weights:  36%|\u2588\u2588\u2588\u258c      | 144/399 [00:02<00:02, 115.37it/s]\nLoading weights:  39%|\u2588\u2588\u2588\u2589      | 156/399 [00:02<00:02, 103.34it/s]\nLoading weights:  42%|\u2588\u2588\u2588\u2588\u258f     | 169/399 [00:02<00:02, 105.71it/s]\nLoading weights:  45%|\u2588\u2588\u2588\u2588\u258c     | 181/399 [00:02<00:02, 103.95it/s]\nLoading weights:  48%|\u2588\u2588\u2588\u2588\u258a     | 193/399 [00:02<00:01, 103.39it/s]\nLoading weights:  52%|\u2588\u2588\u2588\u2588\u2588\u258f    | 207/399 [00:02<00:01, 110.38it/s]\nLoading weights:  55%|\u2588\u2588\u2588\u2588\u2588\u258d    | 219/399 [00:02<00:01, 111.48it/s]\nLoading weights:  58%|\u2588\u2588\u2588\u2588\u2588\u258a    | 233/399 [00:02<00:01, 118.94it/s]\nLoading weights:  62%|\u2588\u2588\u2588\u2588\u2588\u2588\u258f   | 246/399 [00:02<00:01, 117.34it/s]\nLoading weights:  65%|\u2588\u2588\u2588\u2588\u2588\u2588\u258d   | 258/399 [00:03<00:01, 113.85it/s]\nLoading weights:  68%|\u2588\u2588\u2588\u2588\u2588\u2588\u258a   | 270/399 [00:03<00:01, 110.84it/s]\nLoading weights:  71%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f  | 285/399 [00:03<00:00, 119.32it/s]\nLoading weights:  75%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c  | 301/399 [00:03<00:00, 116.58it/s]\nLoading weights:  78%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a  | 313/399 [00:03<00:00, 113.22it/s]\nLoading weights:  81%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f | 325/399 [00:03<00:00, 112.65it/s]\nLoading weights:  85%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c | 340/399 [00:03<00:00, 122.33it/s]\nLoading weights:  88%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a | 353/399 [00:03<00:00, 123.65it/s]\nLoading weights:  92%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f| 367/399 [00:03<00:00, 125.95it/s]\nLoading weights:  95%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c| 380/399 [00:04<00:00, 118.37it/s]\nLoading weights:  99%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 397/399 [00:04<00:00, 130.20it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 399/399 [00:04<00:00, 94.94it/s] \n",
+  "result": {
+    "mode": "extended",
+    "started_at": "2026-07-23T23:48:34.045635+00:00",
+    "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+    "executable": "/workspace/cobra-core-cloud/.venv-qwen-cloud/bin/python",
+    "success": true,
+    "load_stage": "extended_complete",
+    "offload_used": false,
+    "error": null,
+    "benchmark_content": false,
+    "platform": "linux",
+    "memory_before": {
+      "available_ram_bytes": 491127783424,
+      "total_ram_bytes": 540649254912
+    },
+    "vram_before": {
+      "free": 47428993024,
+      "total": 47708110848
+    },
+    "gpu_name": "NVIDIA A40",
+    "configuration": {
+      "device_map": {
+        "": 0
+      },
+      "quantization": "4bit-nf4-double",
+      "compute_dtype": "float16",
+      "offload": false,
+      "trust_remote_code": false
+    },
+    "param_device": "cuda:0",
+    "load_seconds": 25.396,
+    "generation": {
+      "text": "**Supported Facts:**\n\n1. The shipment was logged at 08:40. (S1)  \n2. The inspection form was signed at 09:05. (S2)  \n\n**Unresolved Uncertainty:**\n\n- There is no record identifying who moved the shipment. (S3)",
+      "non_empty": true,
+      "output_tokens": 67,
+      "latency_s": 6.008,
+      "peak_vram_bytes": 6318342144
+    },
+    "extended": [
+      {
+        "index": 1,
+        "text": "**Supported Facts:**\n\n1. The shipment was logged at 08:40. (S1)  \n2. The inspection form was signed at 09:05. (S2)  \n\n**Unresolved Uncertainty:**\n\n- There is no record identifying who moved the shipment. (S3)",
+        "non_empty": true,
+        "output_tokens": 67,
+        "latency_s": 6.449,
+        "peak_vram_bytes": 6318342144,
+        "memory": {
+          "available_ram_bytes": 489236221952,
+          "total_ram_bytes": 540649254912
+        }
+      },
+      {
+        "index": 2,
+        "text": "The meter read **3.1** at noon.  \n\nCite: [S1]",
+        "non_empty": true,
+        "output_tokens": 20,
+        "latency_s": 2.053,
+        "peak_vram_bytes": 6310064128,
+        "memory": {
+          "available_ram_bytes": 489280520192,
+          "total_ram_bytes": 540649254912
+        }
+      },
+      {
+        "index": 3,
+        "text": "Rain began at 16:00 (S2).",
+        "non_empty": true,
+        "output_tokens": 14,
+        "latency_s": 1.393,
+        "peak_vram_bytes": 6309144576,
+        "memory": {
+          "available_ram_bytes": 489313394688,
+          "total_ram_bytes": 540649254912
+        }
+      },
+      {
+        "index": 4,
+        "text": "The uncertainty mentioned in the log is the omission of humidity data. This is cited from [S3].",
+        "non_empty": true,
+        "output_tokens": 22,
+        "latency_s": 2.104,
+        "peak_vram_bytes": 6309144576,
+        "memory": {
+          "available_ram_bytes": 489330843648,
+          "total_ram_bytes": 540649254912
+        }
+      },
+      {
+        "index": 5,
+        "text": "- A crate arrived on Monday (S1).  \n- Inspection took place on Tuesday (S2).  \n- Uncertainty: It is unclear whether the inspection was conducted immediately after the crate arrived or if there was a delay between the arrival and the inspection (S1, S2).",
+        "non_empty": true,
+        "output_tokens": 59,
+        "latency_s": 5.656,
+        "peak_vram_bytes": 6310754304,
+        "memory": {
+          "available_ram_bytes": 489631420416,
+          "total_ram_bytes": 540649254912
+        }
+      }
+    ],
+    "memory_after": {
+      "available_ram_bytes": 489631420416,
+      "total_ram_bytes": 540649254912
+    },
+    "peak_vram_bytes": 6310754304,
+    "ended_at": "2026-07-23T23:50:36.153963+00:00"
+  },
+  "benchmark_executed": false
+}

@@ -1,0 +1,4 @@
+{"ts": "2026-07-23T23:38:23.137480+00:00", "stage": "tokenizer_begin", "detail": ""}
+{"ts": "2026-07-23T23:38:24.074312+00:00", "stage": "tokenizer_complete", "detail": ""}
+{"ts": "2026-07-23T23:38:24.080010+00:00", "stage": "model_load_begin", "detail": "{\"device_map\": {\"\": 0}}"}
+{"ts": "2026-07-23T23:39:38.868385+00:00", "stage": "model_load_complete", "detail": "seconds=74.78"}

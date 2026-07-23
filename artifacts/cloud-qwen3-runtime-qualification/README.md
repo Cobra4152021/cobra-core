@@ -1,6 +1,6 @@
 # Cloud Qwen3-8B runtime qualification transfer package
 
-Phase 3F preparation package. **No cloud spend authorized yet.**
+Phase 3F transfer package used for RunPod Linux qualification (Outcome A).
 
 Contents include the Git bundle at Phase 3E commit, model inventory checksums (not weights),
 synthetic prompts, and execution/cleanup instructions.

@@ -1,0 +1,6 @@
+{
+  "success": true,
+  "stdout": "native_ok 2.6.0+cu124 NVIDIA A40\n",
+  "stderr": "",
+  "timestamp": "2026-07-23T23:37:08.666891+00:00"
+}

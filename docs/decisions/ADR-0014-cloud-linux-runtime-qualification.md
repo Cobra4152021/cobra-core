@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted — **Outcome F** (remote access blocked after pod adoption). Prior states: H (no spend auth) → F (no API key) → F (SSH blocked on adopted pod).
+Accepted — **Outcome A** (cloud Linux runtime fully qualified). Prior states: H → F (credentials/SSH) → A.
 
 ## Context
 
@@ -22,37 +22,38 @@ Clean Linux CUDA path without local WSL enablement.
 
 ## Authorization boundary
 
-User authorized RunPod Community Cloud: NVIDIA L4 (≤ $0.50/hr) with RTX A5000 fallback (≤ $0.35/hr), $10 total, 8 hours, ≤ 100 GB, US region preferred, on-demand only, one instance, no spot/public endpoint/Jupyter/autoscaling/multi-GPU/persistent volume beyond session.
-
-Recorded in `evaluations/cloud/authorization-record.json`.
+User authorized RunPod Community Cloud with $10 / 8h ceilings. Existing manual pod `txw75nv9hn96hu` (A40 @ $0.44/hr) was adopted; no second pod created.
 
 ## Host selection
 
-Not completed. Public price precheck: L4 Community **$0.44/hr** within limit. Live displayed price must be re-checked at launch.
+Adopted running A40 pod within spending ceiling after L4 primary was unavailable in the live session.
 
 ## Security posture
 
-No API key committed. No ports opened. No instance created.
+SSH over exposed TCP with account-registered keys after `PUBLIC_KEY` injection. No public inference endpoint created. No secrets committed.
 
 ## Repository / model transfer / dependencies / load / generation / qualification
 
-Not executed (blocked before provision).
+* Bundle restored at `695ea8833229b183e5792c49e3888ec4dde9e5f2`
+* Model inventory `8cf07aa84c9e26c9dd4ce71b21bd498232c8dfa5afe5284d375be0c1e9bb3f4f` verified on-host
+* Pinned torch `2.6.0+cu124` + transformers `5.14.1`
+* 6/6 full-load subprocesses succeeded (load, generate, 3× qual, extended)
 
 ## Cost / cleanup
 
-$0 spend. No billable resources.
+Estimated ~$1.38 over ~3.14 h. Pod terminated after export. Remaining billable resources: none.
 
 ## Outcome
 
-**F — Cloud transfer/access blocked** after successful API auth and adoption of existing pod `txw75nv9hn96hu` (A40, $0.44/hr). SSH public-key registration / TCP SSH acceptance is required. No second pod was created.
+**A — Cloud Linux runtime fully qualified.**
 
 ## Remaining uncertainty
 
-Whether Linux on the adopted A40 avoids the Windows native crash (qualification not yet run).
+CobraBench behavior on this runtime is not yet measured (Phase 3G).
 
 ## Next authorized phase
 
-Register local SSH public key with RunPod, verify Connect-tab SSH, resume Gate 4 on the **same** pod. Terminate the pod after qualification or if abandoned. CobraBench remains unauthorized.
+Phase 3G — controlled CobraBench v0.2-rc2 on the locked cloud runtime. CobraBench remains unauthorized until that phase.
 
 ## Required statement
 

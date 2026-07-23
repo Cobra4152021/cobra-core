@@ -1,0 +1,8 @@
+**Supported Facts:**
+
+1. The shipment was logged at 08:40. (S1)  
+2. The inspection form was signed at 09:05. (S2)  
+
+**Unresolved Uncertainty:**
+
+- There is no record identifying who moved the shipment. (S3)

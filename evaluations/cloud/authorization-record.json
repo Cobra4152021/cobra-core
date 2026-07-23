@@ -1,6 +1,6 @@
 {
   "schema": "cobra.cloud.authorization.v1",
-  "status": "authorized-pod-adopted-access-blocked",
+  "status": "authorized-qualification-complete",
   "authorized": true,
   "provider": "RunPod",
   "service": "Community Cloud GPU Pod",
@@ -70,7 +70,7 @@
     "delete_temporary_storage_and_uploads",
     "confirm_no_billable_resources_remain"
   ],
-  "notes": "RunPod authorized. Existing pod txw75nv9hn96hu adopted via REST. SSH access blocked pending public key registration. Do not commit secrets.",
+  "notes": "RunPod authorized. Adopted pod txw75nv9hn96hu (A40 @ $0.44/hr). SSH restored; Linux qualification Outcome A; pod terminated after export.",
   "payment_information_recorded": false,
   "credentials_present": true,
   "provisioning_attempted": false,

@@ -10,58 +10,51 @@ Phase 3E Outcome E: `WSLService` Disabled (`Wsl/0x80070422`).
 
 ## Cloud authorization
 
-**Authorized** (user chat, 2026-07-23):
+Authorized RunPod Community Cloud with $10 / 8h ceilings. Existing pod adopted (no new launch).
 
 | Field | Value |
 | --- | --- |
 | Provider | RunPod Community Cloud GPU Pod |
-| Primary GPU | NVIDIA L4 (1×, 24 GB VRAM) |
-| Fallback GPU | NVIDIA RTX A5000 (1×) if L4 unavailable |
-| System RAM | ≥ 50 GB |
-| Hourly ceiling | $0.50 (L4) / $0.35 (A5000) |
-| Published ref. L4 Community | **$0.44/hr** (≤ $0.50) |
-| Spending ceiling | **$10.00** |
-| Runtime ceiling | **8 hours** |
-| Storage | ≤ 100 GB; no persistent volume beyond session |
-| Region | United States preferred |
-| Pricing mode | On-demand only (spot not authorized) |
-| Instances | Max 1 |
-
-## Provisioning / adoption status
-
-**Authentication succeeded** (`credential_present=true`, REST `https://rest.runpod.io/v1/pods`).
-
-**Existing pod adopted (no new launch):**
-
-| Field | Value |
-| --- | --- |
 | Pod ID | `txw75nv9hn96hu` |
-| Status | RUNNING |
+| GPU | NVIDIA A40 48 GB |
 | Displayed rate | **$0.44/hr** |
-| Memory | 50 GB |
-| Storage | 50 GB volume + 30 GB container (80 GB ≤ 100) |
-| Image | `runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404` |
-| User-reported GPU | NVIDIA A40 48 GB |
+| System RAM | 50 GB |
+| Python | 3.12.3 |
+| PyTorch | 2.6.0+cu124 |
+| Transformers | 5.14.1 |
+| CUDA available | True |
 
-**Remote access blocked:** proxy SSH `Permission denied (publickey)`; direct TCP SSH connection refused. Local `id_ed25519.pub` must be added to RunPod account SSH keys; Connect-tab SSH must work before transfer/qualification. **Pod left running** (not terminated by agent).
+## Qualification results
 
-## Security / transfer / qualification
+| Gate | Result |
+| --- | --- |
+| Native backend | pass |
+| Initial load | pass (74.777s) |
+| Initial generation | pass |
+| 3/3 fresh-process qualification | pass |
+| Extended session (5 prompts) | pass |
+| Full loads used | 6 / 6 |
+| Peak VRAM | 6318342144 bytes (~5.88 GiB) |
+| CobraBench | **not executed** (`prepared-not-run`) |
+| Official v0.1 score | **0.840** unchanged |
 
-* Security manifest: authorized-not-provisioned; no ports opened; no secrets stored in repo.
-* Transfer package remains ready under `artifacts/cloud-qwen3-runtime-qualification/`.
-* Full-load attempts: **0**. No CobraBench.
+## Dependency lock correction
+
+Draft lock pinned `huggingface-hub==0.34.4`, which conflicts with `transformers==5.14.1` (`huggingface-hub>=1.5.0`). Lock corrected to `huggingface-hub==1.24.0` to match the validated Python 3.12 freeze before install.
 
 ## Cost / cleanup
 
-* Cost record: `$0`, ceiling respected.
-* Cleanup: N/A (no resources). Remaining billable resources: **none**.
+* Estimated runtime: **3.14 h**
+* Estimated compute cost: **$1.38** (ceiling $10.00 respected)
+* Pod terminated: **True**
+* Remaining billable resources: `[]`
 
 ## Outcome
 
-**F — Cloud provisioning or transfer blocked** (missing RunPod API credentials).
+**A — Cloud Linux runtime fully qualified**
 
-## Next authorized phase
+Runtime candidate: `evaluations/runtime-candidates/qwen3-8b-cloud-linux-qualified.json`
 
-Provide `RUNPOD_API_KEY` to the agent environment (do not commit). Resume under the same ceilings: verify displayed hourly price → one pod → qualify only → export → terminate → confirm zero billable resources.
+Next authorized phase: Phase 3G controlled CobraBench v0.2-rc2 on the locked cloud runtime (not executed here).
 
-Official v0.1 score **0.840** unchanged. Protocol remains `prepared-not-run`.
+> Phase 3F performs cloud Linux runtime qualification only. It does not execute CobraBench, change the official CobraBench v0.1 score of 0.840, finalize CobraBench v0.2, authorize training, deploy an inference service, or designate Qwen3-8B as Cobra Core.

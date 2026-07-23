@@ -1,0 +1,50 @@
+{
+  "schema": "cobra.diagnostics.cloud_qualification_summary.v1",
+  "started_at": "2026-07-23T23:37:08.673882+00:00",
+  "required_commit": "695ea8833229b183e5792c49e3888ec4dde9e5f2",
+  "git_head": "695ea8833229b183e5792c49e3888ec4dde9e5f2",
+  "commit_match": true,
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "model_inventory_hash": "8cf07aa84c9e26c9dd4ce71b21bd498232c8dfa5afe5284d375be0c1e9bb3f4f",
+  "max_full_loads": 6,
+  "benchmark_executed": false,
+  "official_v01_score_unchanged": 0.84,
+  "attempts": [
+    {
+      "id": "cloud-01-load",
+      "success": true,
+      "mode": "load"
+    },
+    {
+      "id": "cloud-02-gen",
+      "success": true,
+      "mode": "generate"
+    },
+    {
+      "id": "cloud-03-qual1",
+      "success": true,
+      "mode": "qualification"
+    },
+    {
+      "id": "cloud-04-qual2",
+      "success": true,
+      "mode": "qualification"
+    },
+    {
+      "id": "cloud-05-qual3",
+      "success": true,
+      "mode": "qualification"
+    },
+    {
+      "id": "cloud-06-extended",
+      "success": true,
+      "mode": "extended"
+    }
+  ],
+  "full_loads_used": 6,
+  "qualification_passed": true,
+  "extended_passed": true,
+  "ended_at": "2026-07-23T23:50:40.344890+00:00",
+  "outcome_hint": "A_fully_qualified",
+  "status": "smoke-qualified"
+}

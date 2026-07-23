@@ -1,14 +1,13 @@
 {
   "schema": "cobra.cloud.cleanup_verification.v1",
-  "status": "cleanup-incomplete",
-  "instance_terminated": false,
-  "volume_deleted_or_retained_by_authorization": "retained_user_manual_pod",
+  "status": "cleanup-complete",
+  "instance_terminated": true,
+  "volume_deleted_or_retained_by_authorization": "session_workspace_destroyed_with_pod",
   "temporary_uploads_deleted": true,
   "credentials_revoked": false,
-  "public_services_absent": false,
-  "remaining_billable_resources": [
-    "pod:txw75nv9hn96hu"
-  ],
-  "verification_timestamp": "2026-07-23T21:00:54.021688+00:00",
-  "notes": "Safe stop after SSH failure; pod left running for user. cleanup-incomplete until pod is terminated."
+  "public_services_absent": true,
+  "remaining_billable_resources": [],
+  "verification_timestamp": "2026-07-23T23:54:26.626056+00:00",
+  "delete_http_status": 204,
+  "notes": "DELETE issued for adopted pod txw75nv9hn96hu; no second pod created."
 }
