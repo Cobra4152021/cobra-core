@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cobra-kc002"
+version = "0.2.0"
+description = "King Cobra KC-002 — real GPT-OSS + SigLIP native vision validation"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = { text = "Apache-2.0" }
+dependencies = [
+  "cobra-kc001 @ file:../kc001",
+  "torch>=2.4.0",
+  "transformers>=4.55.0",
+  "accelerate>=1.0.0",
+  "peft>=0.13.0",
+  "bitsandbytes>=0.43.0",
+  "safetensors>=0.4.0",
+  "Pillow>=10.0.0",
+  "numpy>=1.26.0",
+  "tqdm>=4.66.0",
+  "pyyaml>=6.0",
+  "einops>=0.8.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0", "pytest-timeout>=2.3.0", "ruff>=0.6.0"]
+
+[project.scripts]
+kc002 = "cobra_kc002.cli:main_entry"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+timeout = 180
+markers = [
+  "gpu: requires CUDA and >=20GB VRAM",
+  "real_weights: downloads/loads GPT-OSS and SigLIP",
+]
