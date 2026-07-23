@@ -6,6 +6,7 @@ import argparse
 import sys
 from pathlib import Path
 
+from cobra_core.benchmarks.v02_validate import validate_v02_suite
 from cobra_core.evaluation.report_template import write_empty_report_template
 from cobra_core.schemas.benchmark import BenchmarkCase
 from cobra_core.schemas.manifest import ModelManifest
@@ -30,6 +31,12 @@ def validate_cases_main(argv: list[str] | None = None) -> int:
         default=True,
         help="Also validate the frozen cobrabench-v0.1 release cases directory",
     )
+    parser.add_argument(
+        "--also-validate-v02-rc1",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Also validate cobrabench-v0.2-rc1 release candidate cases",
+    )
     args = parser.parse_args(argv)
     cases, issues = validate_json_dir(args.cases_dir, BenchmarkCase)
     if args.also_validate_release:
@@ -37,12 +44,25 @@ def validate_cases_main(argv: list[str] | None = None) -> int:
         release_cases, release_issues = validate_json_dir(release_dir, BenchmarkCase)
         cases.extend(release_cases)
         issues.extend(release_issues)
+    v02_count = 0
+    if args.also_validate_v02_rc1:
+        rc_dir = _repo_root() / "benchmarks" / "releases" / "cobrabench-v0.2-rc1" / "cases"
+        if rc_dir.is_dir():
+            v02_errors = validate_v02_suite(rc_dir, repo_root=_repo_root())
+            for err in v02_errors:
+                print(f"ERROR: {err}", file=sys.stderr)
+            if v02_errors:
+                return 1
+            v02_count = len(list(rc_dir.glob("*.json")))
     if issues:
         for issue in issues:
             print(f"ERROR: {issue}", file=sys.stderr)
         print(f"Failed: {len(issues)} issue(s); {len(cases)} valid case(s).", file=sys.stderr)
         return 1
-    print(f"OK: validated {len(cases)} benchmark case(s) in {args.cases_dir}")
+    print(
+        f"OK: validated {len(cases)} v0.1/bench case(s)"
+        + (f" and {v02_count} v0.2-rc1 case(s)" if v02_count else "")
+    )
     return 0
 
 

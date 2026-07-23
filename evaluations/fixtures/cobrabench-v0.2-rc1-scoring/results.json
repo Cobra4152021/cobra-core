@@ -1,0 +1,181 @@
+{
+  "ok": true,
+  "failures": [],
+  "results": [
+    {
+      "fixture_id": "fmt-strong",
+      "format": {
+        "semantic": 1.0,
+        "exact": 1.0,
+        "strict": true,
+        "tolerant": true
+      },
+      "status": "ok"
+    },
+    {
+      "fixture_id": "fmt-partial-markdown",
+      "format": {
+        "semantic": 1.0,
+        "exact": 0.4,
+        "strict": false,
+        "tolerant": true
+      },
+      "status": "ok"
+    },
+    {
+      "fixture_id": "fmt-deficient",
+      "format": {
+        "semantic": 0.3333,
+        "exact": 0.0,
+        "strict": false,
+        "tolerant": false
+      },
+      "status": "ok"
+    },
+    {
+      "fixture_id": "cite-strong",
+      "citation": {
+        "evaluator_name": "citations",
+        "evaluator_version": "2.0.0",
+        "citation_precision": 1.0,
+        "claim_coverage": 0.5,
+        "evidence_coverage": 1.0,
+        "contrary_evidence_coverage": 1.0,
+        "source_diversity": 2,
+        "cited_keys": [
+          "S1",
+          "S2"
+        ],
+        "unknown_keys": [],
+        "duplicate_keys_in_list": [],
+        "malformed_keys": [],
+        "issues": [],
+        "notes": "Do not treat every supplied evidence sentence as mandatory. Optional keys ignored for coverage: none."
+      },
+      "status": "ok"
+    },
+    {
+      "fixture_id": "cite-deficient",
+      "citation": {
+        "evaluator_name": "citations",
+        "evaluator_version": "2.0.0",
+        "citation_precision": 1.0,
+        "claim_coverage": 0.0,
+        "evidence_coverage": 0.0,
+        "contrary_evidence_coverage": 1.0,
+        "source_diversity": 0,
+        "cited_keys": [],
+        "unknown_keys": [],
+        "duplicate_keys_in_list": [],
+        "malformed_keys": [],
+        "issues": [],
+        "notes": "Do not treat every supplied evidence sentence as mandatory. Optional keys ignored for coverage: none."
+      },
+      "status": "ok"
+    },
+    {
+      "fixture_id": "contra-strong",
+      "contradiction": {
+        "evaluator_name": "contradictions",
+        "evaluator_version": "2.0.0",
+        "detection": 1.0,
+        "localization": 0.7,
+        "classification": 0.6,
+        "explanation": 0.3,
+        "numerical_comparison": 0.75,
+        "timeline_comparison": 0.2,
+        "preservation_of_competing_accounts": 0.7,
+        "avoidance_of_invented_reconciliation": 0.85,
+        "resolution_evidence_recommendation": 0.75,
+        "confidence_calibration": 0.75,
+        "deterministic_notes": [
+          "localized_via_multiple_values",
+          "explanation_is_heuristic_not_human_score",
+          "multiple_numeric_values_compared_or_present"
+        ],
+        "human_scored_dimensions": [
+          "explanation",
+          "classification",
+          "confidence_calibration"
+        ],
+        "notes": "Deterministic checks approximate detection/localization/numeric/timeline signals. Explanation quality remains human-scored for official judgments."
+      },
+      "status": "ok"
+    },
+    {
+      "fixture_id": "contra-deficient",
+      "contradiction": {
+        "evaluator_name": "contradictions",
+        "evaluator_version": "2.0.0",
+        "detection": 0.2,
+        "localization": 0.3,
+        "classification": 0.2,
+        "explanation": 0.3,
+        "numerical_comparison": 0.2,
+        "timeline_comparison": 0.2,
+        "preservation_of_competing_accounts": 0.4,
+        "avoidance_of_invented_reconciliation": 0.85,
+        "resolution_evidence_recommendation": 0.3,
+        "confidence_calibration": 0.5,
+        "deterministic_notes": [
+          "explanation_is_heuristic_not_human_score"
+        ],
+        "human_scored_dimensions": [
+          "explanation",
+          "classification",
+          "confidence_calibration"
+        ],
+        "notes": "Deterministic checks approximate detection/localization/numeric/timeline signals. Explanation quality remains human-scored for official judgments."
+      },
+      "status": "ok"
+    },
+    {
+      "fixture_id": "uc-paraphrase",
+      "unsupported": {
+        "flags": 0,
+        "uncertain": 0
+      },
+      "status": "ok"
+    },
+    {
+      "fixture_id": "budget-natural",
+      "budget": {
+        "evaluator_name": "output_budget_telemetry",
+        "evaluator_version": "1.0.0",
+        "requested_max_output_tokens": 512,
+        "actual_output_tokens": 40,
+        "finish_reason": "completed",
+        "end_of_sequence_detected": true,
+        "percentage_of_token_budget_used": 7.81,
+        "required_section_completion": 1.0,
+        "final_sentence_complete": true,
+        "output_stopped_after_conclusion": false,
+        "output_stopped_before_required_sections": false,
+        "completion_class": "likely_natural_completion",
+        "completion_confidence": 0.7,
+        "rationale": "EOS/completed with substantial unused budget"
+      },
+      "status": "ok"
+    },
+    {
+      "fixture_id": "budget-truncated",
+      "budget": {
+        "evaluator_name": "output_budget_telemetry",
+        "evaluator_version": "1.0.0",
+        "requested_max_output_tokens": 512,
+        "actual_output_tokens": 512,
+        "finish_reason": "length",
+        "end_of_sequence_detected": false,
+        "percentage_of_token_budget_used": 100.0,
+        "required_section_completion": 0.0,
+        "final_sentence_complete": false,
+        "output_stopped_after_conclusion": false,
+        "output_stopped_before_required_sections": true,
+        "completion_class": "likely_budget_exhaustion",
+        "completion_confidence": 0.85,
+        "rationale": "finish_reason or budget utilization indicates exhaustion"
+      },
+      "status": "ok"
+    }
+  ]
+}

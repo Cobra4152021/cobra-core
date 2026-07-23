@@ -1,0 +1,109 @@
+{
+  "fixture_set": "cobrabench-v0.2-rc1-scoring",
+  "notes": "Authored synthetic responses for offline evaluator direction checks. Not model-generated.",
+  "fixtures": [
+    {
+      "fixture_id": "fmt-strong",
+      "category": "instruction_following",
+      "response": "FINDING: Scanner found one outdated dependency.\nRISK: Security exposure from outdated package.\nNEXT: Update the dependency.\n",
+      "expect": {
+        "format_semantic_min": 0.9,
+        "format_exact_min": 0.9,
+        "strict_parse": true,
+        "tolerant_parse": true
+      }
+    },
+    {
+      "fixture_id": "fmt-partial-markdown",
+      "category": "instruction_following",
+      "response": "- **FINDING:** Scanner found one outdated dependency.\n- **RISK:** Exposure risk.\n- **NEXT:** Patch dependency.\n",
+      "expect": {
+        "format_semantic_min": 0.9,
+        "format_exact_max": 0.5,
+        "strict_parse": false,
+        "tolerant_parse": true
+      }
+    },
+    {
+      "fixture_id": "fmt-deficient",
+      "category": "instruction_following",
+      "response": "There is a scanner issue somehow.",
+      "expect": {
+        "format_semantic_max": 0.4,
+        "strict_parse": false,
+        "tolerant_parse": false
+      }
+    },
+    {
+      "fixture_id": "cite-strong",
+      "category": "citation_correctness",
+      "allowed_keys": ["S1", "S2"],
+      "required_evidence_ids": ["S1", "S2"],
+      "response": "A. Kim requested CHG-3 [S1]. R. Singh approved CHG-3 [S2].",
+      "expect": {
+        "citation_precision_min": 1.0,
+        "evidence_coverage_min": 1.0
+      }
+    },
+    {
+      "fixture_id": "cite-deficient",
+      "category": "citation_correctness",
+      "allowed_keys": ["S1", "S2"],
+      "required_evidence_ids": ["S1", "S2"],
+      "response": "Someone approved the change without sources.",
+      "expect": {
+        "evidence_coverage_max": 0.0
+      }
+    },
+    {
+      "fixture_id": "contra-strong",
+      "category": "contradiction_detection",
+      "response": "S1 and S2 contradict: 120 versus 95 units. Preserve both accounts. Request a recount. Confidence is uncertain.",
+      "expect": {
+        "detection_min": 0.5,
+        "numerical_min": 0.5,
+        "resolution_min": 0.5
+      }
+    },
+    {
+      "fixture_id": "contra-deficient",
+      "category": "contradiction_detection",
+      "response": "Everything looks fine.",
+      "expect": {
+        "detection_max": 0.3
+      }
+    },
+    {
+      "fixture_id": "uc-paraphrase",
+      "category": "evidence_grounding",
+      "allowed_keys": ["S1"],
+      "sources": {"S1": "Scanner found one outdated dependency in demo app."},
+      "response": "Scanner found one outdated dependency in demo app [S1].",
+      "expect": {
+        "unsupported_flag_max": 0
+      }
+    },
+    {
+      "fixture_id": "budget-natural",
+      "category": "long_document_analysis",
+      "response": "KeyFacts: dual badge required. Exceptions: post-hoc approval. OpenQuestions: missing visitor log.",
+      "requested_max_output_tokens": 512,
+      "actual_output_tokens": 40,
+      "finish_reason": "completed",
+      "expect": {
+        "not_budget_exhaustion": true
+      }
+    },
+    {
+      "fixture_id": "budget-truncated",
+      "category": "long_document_analysis",
+      "response": "Still listing facts without finishing required",
+      "requested_max_output_tokens": 512,
+      "actual_output_tokens": 512,
+      "finish_reason": "length",
+      "expect": {
+        "budget_exhaustion": true
+      }
+    }
+  ]
+}

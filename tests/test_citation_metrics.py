@@ -10,6 +10,11 @@ def test_extract_citation_keys_order_and_unique() -> None:
     assert extract_citation_keys(text) == ["SRC-A", "SRC-B"]
 
 
+def test_extract_citation_keys_supports_v02_s_keys() -> None:
+    text = "Finding one [S1]. Later S2 and S1 again."
+    assert extract_citation_keys(text) == ["S1", "S2"]
+
+
 def test_citation_metrics_precision_and_fabrication() -> None:
     response = "Claim A SRC-A. Claim B SRC-Z."
     metrics = citation_metrics(response, ["SRC-A", "SRC-B"], {"SRC-A": "alpha content"})

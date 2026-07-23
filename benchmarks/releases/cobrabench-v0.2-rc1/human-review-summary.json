@@ -1,0 +1,9 @@
+{
+  "single_reviewer": true,
+  "approved": 46,
+  "case_count": 46,
+  "unresolved_ambiguity_count": 0,
+  "cases_removed_during_review": 0,
+  "cases_revised_during_review": 0,
+  "notes": "Single-reviewer static approval embedded per case. Not multi-rater."
+}

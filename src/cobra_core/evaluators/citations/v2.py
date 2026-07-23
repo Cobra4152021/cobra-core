@@ -51,7 +51,7 @@ def validate_citation_keys(
 ) -> list[CitationValidationIssue]:
     issues: list[CitationValidationIssue] = []
     allowed = set(_normalize_keys(allowed_keys))
-    found = extract_citation_keys(response)
+    found = [k.upper() if k.startswith("SRC-") else k for k in extract_citation_keys(response)]
     # malformed candidates
     for match in re.finditer(r"\bSRC-[^A-Z0-9\s][\w-]*\b", response):
         issues.append(
@@ -106,7 +106,9 @@ def evaluate_citations_v2(
     Contrary-evidence coverage = contrary IDs cited / contrary IDs (1.0 if none).
     """
     allowed = _normalize_keys(allowed_keys)
-    cited = extract_citation_keys(response)
+    # Preserve S# case; normalize SRC-* to uppercase for comparison.
+    cited_raw = extract_citation_keys(response)
+    cited = [k.upper() if k.startswith("SRC-") else k for k in cited_raw]
     allowed_set = set(allowed)
     valid = [k for k in cited if k in allowed_set]
     unknown = [k for k in cited if k not in allowed_set]

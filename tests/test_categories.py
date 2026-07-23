@@ -2,10 +2,16 @@
 
 from __future__ import annotations
 
-from cobra_core.schemas.categories import CATEGORY_WEIGHTS, BenchmarkCategory, weights_sum
+from cobra_core.schemas.categories import (
+    CATEGORY_WEIGHTS,
+    CATEGORY_WEIGHTS_V02,
+    BenchmarkCategory,
+    weights_sum,
+    weights_sum_v02,
+)
 
 
-def test_all_required_categories_present() -> None:
+def test_all_required_v01_categories_present() -> None:
     expected = {
         BenchmarkCategory.INVESTIGATION_REASONING,
         BenchmarkCategory.EVIDENCE_GROUNDING,
@@ -34,3 +40,9 @@ def test_initial_weight_values() -> None:
     assert CATEGORY_WEIGHTS[BenchmarkCategory.LONG_DOCUMENT_ANALYSIS] == 0.05
     assert CATEGORY_WEIGHTS[BenchmarkCategory.REFUSAL_QUALITY] == 0.05
     assert CATEGORY_WEIGHTS[BenchmarkCategory.INSTRUCTION_FOLLOWING] == 0.05
+
+
+def test_v02_weights_include_uncertainty_and_sum_to_one() -> None:
+    assert BenchmarkCategory.UNCERTAINTY_CALIBRATION in CATEGORY_WEIGHTS_V02
+    assert abs(weights_sum_v02() - 1.0) < 1e-9
+    assert len(CATEGORY_WEIGHTS_V02) == 10

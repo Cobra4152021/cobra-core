@@ -1,0 +1,44 @@
+{
+  "protocol_id": "qwen3-8b-cobrabench-v0.2-rc1",
+  "status": "prepared-not-run",
+  "benchmark_release": "cobrabench-v0.2-rc1",
+  "benchmark_version": "0.2.0-rc1",
+  "model_slug": "qwen3-8b",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "runtime": {
+    "backend": "transformers",
+    "quantization": "bitsandbytes-4bit-nf4",
+    "thinking_policy": "disabled",
+    "temperature": 0.0,
+    "seed": 123,
+    "default_max_new_tokens_profile": "deterministic-investigation"
+  },
+  "prompt_templates": {
+    "default": {"id": "evidence-analysis", "version": "2.0.0"},
+    "contradiction": {"id": "contradiction-analysis", "version": "2.0.0"},
+    "exact_format": {"id": "exact-format", "version": "2.0.0"}
+  },
+  "evaluators": {
+    "unsupported_claims": "2.0.0",
+    "citations": "2.0.0",
+    "contradictions": "2.0.0",
+    "format_compliance": "2.0.0",
+    "output_budget_telemetry": "1.0.0"
+  },
+  "human_review_requirements": {
+    "coverage": "100%",
+    "llm_judge": "not_used",
+    "single_reviewer_allowed": true,
+    "label": "single-reviewer if used"
+  },
+  "failure_rules": {
+    "abort_on_access_violation": true,
+    "do_not_overwrite_v01_baseline": true,
+    "write_results_under": "evaluations/results/cobrabench-v0.2-rc1/"
+  },
+  "notes": [
+    "Prepared in Phase 2G. Do not execute in this phase.",
+    "Do not infer expected scores.",
+    "Not an official Cobra Core designation path by itself."
+  ]
+}

@@ -5,8 +5,8 @@ from __future__ import annotations
 import re
 from typing import Any
 
-# Stable citation keys like SRC-A, SRC-P1, SRC-B12.
-_CITATION_KEY_PATTERN = re.compile(r"\bSRC-[A-Z0-9]+\b")
+# Stable citation keys: SRC-* (v0.1) and S# (v0.2 evidence standard).
+_CITATION_KEY_PATTERN = re.compile(r"\b(?:SRC-[A-Z0-9]+|S\d+)\b")
 
 # Sentences split on punctuation (conservative heuristic).
 _SENTENCE_SPLIT = re.compile(r"[.!?]+\s+")

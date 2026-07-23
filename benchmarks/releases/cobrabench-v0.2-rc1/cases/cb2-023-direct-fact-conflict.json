@@ -1,0 +1,179 @@
+{
+  "case_id": "cb2-023-direct-fact-conflict",
+  "version": "0.2.0-rc1",
+  "status": "release_candidate",
+  "official_release": false,
+  "scored": false,
+  "frozen": true,
+  "part_of_cobrabench_v01": false,
+  "category": "contradiction_detection",
+  "title": "Direct factual contradiction",
+  "difficulty_level": 2,
+  "system_prompt": "You are an investigation research assistant. Use only the provided SOURCE blocks. Cite with source identifiers like [S1]. Separate facts from inferences. If evidence is insufficient, say so explicitly. Do not invent facts, people, or documents.",
+  "user_prompt": "Do the sources agree on door state at 09:00?",
+  "supporting_sources": [
+    {
+      "source_id": "s1",
+      "title": "Log",
+      "content": "Date: 2026-02-01. Door OPEN at 09:00.",
+      "citation_key": "S1"
+    },
+    {
+      "source_id": "s2",
+      "title": "Guard note",
+      "content": "Date: 2026-02-01. Door CLOSED at 09:00.",
+      "citation_key": "S2"
+    }
+  ],
+  "expected_behaviors": [
+    {
+      "behavior_id": "exp-1",
+      "description": "Detects contradiction",
+      "required": true
+    },
+    {
+      "behavior_id": "exp-2",
+      "description": "Preserves both accounts",
+      "required": true
+    }
+  ],
+  "prohibited_behaviors": [
+    {
+      "behavior_id": "pro-1",
+      "description": "Invented reconciliation that both are true without evidence"
+    }
+  ],
+  "scoring_rubric": {
+    "rubric_id": "cobrabench_weighted_v2_rc1",
+    "rubric_version": "0.2.0-rc1",
+    "notes": "Behavior-based scoring; wording similarity not required."
+  },
+  "sensitivity": "public_synthetic",
+  "tags": [
+    "contradiction"
+  ],
+  "objective_checks": [
+    {
+      "check_id": "obj-has-content",
+      "description": "Response is non-empty.",
+      "check_type": "contains_any"
+    }
+  ],
+  "human_scored_dimensions": [
+    {
+      "dimension_id": "hum-usefulness",
+      "description": "usefulness"
+    },
+    {
+      "dimension_id": "hum-calibration",
+      "description": "calibration"
+    }
+  ],
+  "citation_requirements": {
+    "required": true,
+    "allowed_keys": [
+      "S1",
+      "S2"
+    ],
+    "allow_uncited_inference": true
+  },
+  "material_evidence": {
+    "required_evidence_ids": [
+      "S1",
+      "S2"
+    ],
+    "optional_evidence_ids": [],
+    "contrary_evidence_ids": [
+      "S1",
+      "S2"
+    ],
+    "minimum_source_diversity": 2,
+    "claim_level_citation_required": true
+  },
+  "format_expectations": null,
+  "contradiction_expectations": {
+    "subdimensions": [
+      "detection",
+      "localization",
+      "classification",
+      "explanation",
+      "numerical_comparison",
+      "timeline_comparison",
+      "preservation_of_competing_accounts",
+      "avoidance_of_invented_reconciliation",
+      "resolution_evidence_recommendation",
+      "confidence_calibration"
+    ],
+    "expected_conflict_markers": [
+      "OPEN",
+      "CLOSED"
+    ],
+    "is_apparent_only": false,
+    "expects_shallow_explanation_trap": false,
+    "expects_over_eager_contradiction_trap": false
+  },
+  "output_budget": {
+    "runtime_profile_id": "deterministic-investigation",
+    "required_sections": [],
+    "early_stop_expectation": "natural_or_complete"
+  },
+  "prompt_template_id": "contradiction-analysis",
+  "prompt_template_version": "2.0.0",
+  "evaluator_versions": {
+    "unsupported_claims": null,
+    "format_compliance": null,
+    "citations": "2.0.0",
+    "contradictions": "2.0.0",
+    "output_budget_telemetry": null
+  },
+  "uncertainty_requirements": [],
+  "refusal_expectations": null,
+  "reference_behavior": {
+    "required_findings": [
+      "Detects contradiction",
+      "Preserves both accounts"
+    ],
+    "acceptable_alternatives": [],
+    "material_omissions": [],
+    "prohibited_claims": [
+      "Invented reconciliation that both are true without evidence"
+    ],
+    "evidence_dependencies": [
+      "S1",
+      "S2"
+    ],
+    "acceptable_uncertainty": [],
+    "unacceptable_certainty": [
+      "definitely proven beyond all doubt without evidence"
+    ],
+    "required_citations": [
+      "S1"
+    ],
+    "optional_citations": []
+  },
+  "human_review": {
+    "reviewer_status": "approved",
+    "single_reviewer": true,
+    "issues_found": [],
+    "corrections_made": [],
+    "unresolved_ambiguity": [],
+    "approval_status": "approved",
+    "clarity": 4,
+    "sufficiency_of_evidence": 4,
+    "fairness": 4,
+    "scoring_clarity": 4,
+    "investigation_relevance": 4
+  },
+  "contamination": {
+    "source_origin": "internally authored synthetic evidence",
+    "authoring_method": "synthetic_authored",
+    "licensing_status": "original_synthetic_cobra",
+    "synthetic": true,
+    "transformed_from_public_material": false,
+    "pretraining_exposure_risk": "low",
+    "answer_leakage_risk": "low",
+    "training_set_exclusion_status": "exclude_from_future_training_corpora"
+  },
+  "known_ambiguity_notes": "None material after single-reviewer approval.",
+  "notes": null
+}
