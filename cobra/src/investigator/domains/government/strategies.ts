@@ -5,7 +5,7 @@ import { getGovernmentTemplate, isGovernmentTemplateId } from "./templates.js";
 
 export function strategyForGovernmentTemplate(templateId: string | null | undefined): StrategyId | null {
   const t = getGovernmentTemplate(templateId);
-  return t?.strategyId ?? null;
+  return (t?.strategyId as StrategyId | undefined) ?? null;
 }
 
 export function selectGovernmentStrategyHint(input: {
