@@ -18,6 +18,12 @@ On the available **RTX 4070 12GB** host, full `openai/gpt-oss-20b` weights could
 Not C: no hard license veto for research path; Apache GPT-OSS + SigLIP usable with conditions.  
 Not D: GPT-OSS foundation remains preferred over abandoning for a different base.)
 
+### Supersession note (KC-002)
+
+Deferred real-weight items from KC-001 are tracked under branch `kc-002-real-weight-validation`.  
+As of 2026-07-23, KC-002 is **C. BLOCKED** on CUDA/VRAM/disk/cloud credentials — see `docs/KC002_FINAL_REPORT.md`.  
+KC-001 surrogate results remain valid for architecture/contract proofs only; they do **not** satisfy KC-002.
+
 ---
 
 ## Exact upstream sources
