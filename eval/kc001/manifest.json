@@ -1,0 +1,55 @@
+{
+  "name": "kc001-vision-eval",
+  "version": "0.1.0",
+  "version_hash": "kc001-eval-0.1.0-synthetic",
+  "policy": "No copyrighted images committed. Use procedural or explicitly licensed assets only.",
+  "scoring": {
+    "default": "exact_match_or_listed_variants",
+    "logprob_optional": true
+  },
+  "categories": [
+    "object_recognition",
+    "counting",
+    "color",
+    "spatial_relation",
+    "ocr",
+    "chart_reading",
+    "document_reading",
+    "diagram_interpretation",
+    "visual_anomaly",
+    "image_grounded_reasoning",
+    "refusal_safety"
+  ],
+  "items": [
+    {
+      "id": "color-red-001",
+      "category": "color",
+      "image_provenance": "procedural:solid_red",
+      "question": "What is the main color?",
+      "expected_answer": "red",
+      "acceptable_variants": ["Red", "red.", "the color is red"],
+      "scoring_rule": "normalized_string_match",
+      "train_leakage": false
+    },
+    {
+      "id": "color-blue-001",
+      "category": "color",
+      "image_provenance": "procedural:solid_blue",
+      "question": "What is the main color?",
+      "expected_answer": "blue",
+      "acceptable_variants": ["Blue", "blue."],
+      "scoring_rule": "normalized_string_match",
+      "train_leakage": false
+    },
+    {
+      "id": "blank-001",
+      "category": "visual_anomaly",
+      "image_provenance": "procedural:blank",
+      "question": "What is the main color?",
+      "expected_answer": "unknown",
+      "acceptable_variants": ["black", "blank", "cannot tell", "unknown"],
+      "scoring_rule": "listed_variants",
+      "train_leakage": false
+    }
+  ]
+}
