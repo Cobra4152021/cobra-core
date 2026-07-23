@@ -70,7 +70,7 @@
     "delete_temporary_storage_and_uploads",
     "confirm_no_billable_resources_remain"
   ],
-  "notes": "Spending authorized. Provisioning blocked until RUNPOD_API_KEY (or equivalent short-lived credential) is available in the agent environment. Do not commit secrets.",
+  "notes": "Spending authorized. Resume blocked: RUNPOD_API_KEY not present in agent environment. Do not commit secrets.",
   "payment_information_recorded": false,
   "credentials_present": false,
   "provisioning_attempted": false
