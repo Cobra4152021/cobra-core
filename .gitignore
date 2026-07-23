@@ -44,6 +44,8 @@ datasets/private/
 *.webp
 *.gif
 !docs/**/*.png
+!data/kc002/**/*.png
+!data/kc002/**/*.jsonl
 
 # OS / IDE
 .DS_Store
