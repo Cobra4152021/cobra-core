@@ -16,6 +16,11 @@ build/
 *.egg
 .venv/
 venv/
+
+# Node (CKE)
+node_modules/
+cobra/dist/
+cobra/node_modules/
 .env
 .env.*
 !.env.example

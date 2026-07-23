@@ -8,6 +8,15 @@ Proprietary model track for Project **King Cobra**.
 |-------|--------|--------|
 | KC-001 GPT-OSS Vision Audit | `kc-001-gpt-oss-vision-audit` | B PARTIAL (surrogate) |
 | KC-002 Real-Weight Validation | `kc-002-real-weight-validation` | C BLOCKED (need ≥24GB CUDA host) |
+| KC-003 Knowledge Engine | `kc-003-knowledge-engine` | B PARTIAL (core engine + tests) |
+
+### KC-003
+
+```bash
+cd cobra && npm install && npm test
+```
+
+Docs: `docs/KC003_*.md`
 
 ### KC-001
 
