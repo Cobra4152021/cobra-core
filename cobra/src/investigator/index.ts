@@ -14,4 +14,5 @@ export * from "./report.js";
 export * as government from "./domains/government/index.js";
 export * as labor from "./domains/labor/index.js";
 export * as studio from "./domains/studio/index.js";
+export * as research from "./domains/research/index.js";
 export * as sdk from "./sdk/index.js";

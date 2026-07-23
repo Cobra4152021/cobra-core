@@ -20,6 +20,7 @@ export const PERMISSION_ALLOWLIST: readonly string[] = [
   "marketplace.view",
   "government.*",
   "labor.*",
+  "research.*",
   "studio.*",
   "use_investigator.plan",
   "use_investigator.report",

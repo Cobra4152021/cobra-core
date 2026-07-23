@@ -77,11 +77,12 @@ describe("KC-008 Domain SDK & Marketplace", () => {
   });
 
   describe("builtin packs and registry", () => {
-    it("registers government and labor built-in packs with templates from domains", () => {
+    it("registers government, labor, and research built-in packs with templates from domains", () => {
       const registry = createDefaultRegistry();
       const packs = registry.listPacks();
       assert.ok(packs.some((p) => p.packId === "cobra.government"));
       assert.ok(packs.some((p) => p.packId === "cobra.labor"));
+      assert.ok(packs.some((p) => p.packId === "cobra.research"));
 
       const gov = registry.getPack("cobra.government")!;
       assert.equal(gov.templates.length, 15);
@@ -92,8 +93,12 @@ describe("KC-008 Domain SDK & Marketplace", () => {
       assert.equal(labor.templates.length, 14);
       assert.ok(labor.templates.every((t) => t.id.startsWith("labor_")));
 
+      const research = registry.getPack("cobra.research")!;
+      assert.equal(research.templates.length, 9);
+      assert.ok(research.templates.every((t) => t.id.startsWith("research_")));
+
       const allTemplates = registry.listTemplates();
-      assert.equal(allTemplates.length, 15 + 14);
+      assert.equal(allTemplates.length, 15 + 14 + 9);
     });
 
     it("lists report layouts and metrics from built-ins", () => {
