@@ -1,0 +1,53 @@
+{
+  "available": true,
+  "events": [
+    {
+      "time": "2026-07-23T00:54:52.5254846-07:00",
+      "id": 1000,
+      "provider": "Application Error",
+      "message": "Faulting application name: python.exe, version: 3.12.10150.1013, time stamp: 0x67f515a7\r\nFaulting module name: torch_cpu.dll, version: 0.0.0.0, time stamp: 0x67943944\r\nException code: 0xc0000005\r\nFault offset: 0x0000000006046edb\r\nFaulting process id: 0x0x7E38\r\nFaulting application start time: 0x0x1DD1A7852814F26\r\nFaulting application path: C:\\Users\\Dynamic Mining Inc\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\r\nFaulting module path: D:\\Downloads\\cobra-core\\.venv-qwen312\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\r\nReport Id: 0b4e15a5-dcb0-44dc-87c2-ba706f4e49ad\r\nFaulting package full name: \r\nFaulting package-relative application ID: "
+    },
+    {
+      "time": "2026-07-22T23:28:15.5570349-07:00",
+      "id": 1000,
+      "provider": "Application Error",
+      "message": "Faulting application name: python.exe, version: 3.13.5150.1013, time stamp: 0x6849acf5\r\nFaulting module name: torch_cpu.dll, version: 0.0.0.0, time stamp: 0x67943d0d\r\nException code: 0xc0000005\r\nFault offset: 0x0000000006046edb\r\nFaulting process id: 0x0x9F4\r\nFaulting application start time: 0x0x1DD1A6BBCA60919\r\nFaulting application path: C:\\Python313\\python.exe\r\nFaulting module path: D:\\Downloads\\cobra-core\\.venv\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\r\nReport Id: 82cd230b-14cc-4d2c-a2a8-fb83c58b58b8\r\nFaulting package full name: \r\nFaulting package-relative application ID: "
+    },
+    {
+      "time": "2026-07-22T23:22:59.8849419-07:00",
+      "id": 1000,
+      "provider": "Application Error",
+      "message": "Faulting application name: python.exe, version: 3.13.5150.1013, time stamp: 0x6849acf5\r\nFaulting module name: torch_cpu.dll, version: 0.0.0.0, time stamp: 0x67943d0d\r\nException code: 0xc0000005\r\nFault offset: 0x0000000006046edb\r\nFaulting process id: 0x0x66BC\r\nFaulting application start time: 0x0x1DD1A6AF9837A71\r\nFaulting application path: C:\\Python313\\python.exe\r\nFaulting module path: D:\\Downloads\\cobra-core\\.venv\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\r\nReport Id: 415f92e5-ee19-4b0f-bb40-8ae29b1a51ed\r\nFaulting package full name: \r\nFaulting package-relative application ID: "
+    },
+    {
+      "time": "2026-07-22T23:17:30.4723067-07:00",
+      "id": 1000,
+      "provider": "Application Error",
+      "message": "Faulting application name: python.exe, version: 3.13.5150.1013, time stamp: 0x6849acf5\r\nFaulting module name: torch_cpu.dll, version: 0.0.0.0, time stamp: 0x67943d0d\r\nException code: 0xc0000005\r\nFault offset: 0x0000000006046edb\r\nFaulting process id: 0x0xE0EC\r\nFaulting application start time: 0x0x1DD1A6A2D306B77\r\nFaulting application path: C:\\Python313\\python.exe\r\nFaulting module path: D:\\Downloads\\cobra-core\\.venv\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\r\nReport Id: 05dcb122-13fa-4c77-a3d8-1f6d166f5ae1\r\nFaulting package full name: \r\nFaulting package-relative application ID: "
+    },
+    {
+      "time": "2026-07-22T23:11:07.2186189-07:00",
+      "id": 1000,
+      "provider": "Application Error",
+      "message": "Faulting application name: python.exe, version: 3.13.5150.1013, time stamp: 0x6849acf5\r\nFaulting module name: torch_cpu.dll, version: 0.0.0.0, time stamp: 0x67943d0d\r\nException code: 0xc0000005\r\nFault offset: 0x0000000006046edb\r\nFaulting process id: 0x0x5178\r\nFaulting application start time: 0x0x1DD1A6945A1F393\r\nFaulting application path: C:\\Python313\\python.exe\r\nFaulting module path: D:\\Downloads\\cobra-core\\.venv\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\r\nReport Id: 1b1040dc-9ce4-4b41-a74a-dbc621528847\r\nFaulting package full name: \r\nFaulting package-relative application ID: "
+    },
+    {
+      "time": "2026-07-22T22:58:14.8201942-07:00",
+      "id": 1000,
+      "provider": "Application Error",
+      "message": "Faulting application name: python.exe, version: 3.13.5150.1013, time stamp: 0x6849acf5\r\nFaulting module name: torch_cpu.dll, version: 0.0.0.0, time stamp: 0x67943d0d\r\nException code: 0xc0000005\r\nFault offset: 0x0000000006046edb\r\nFaulting process id: 0x0x4CD4\r\nFaulting application start time: 0x0x1DD1A67CED40E5A\r\nFaulting application path: C:\\Python313\\python.exe\r\nFaulting module path: D:\\Downloads\\cobra-core\\.venv\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\r\nReport Id: d7582bea-32ba-4d95-b23a-24ceeb151c0a\r\nFaulting package full name: \r\nFaulting package-relative application ID: "
+    },
+    {
+      "time": "2026-07-22T22:32:57.4172583-07:00",
+      "id": 1000,
+      "provider": "Application Error",
+      "message": "Faulting application name: python.exe, version: 3.13.5150.1013, time stamp: 0x6849acf5\r\nFaulting module name: torch_cpu.dll, version: 0.0.0.0, time stamp: 0x67943d0d\r\nException code: 0xc0000005\r\nFault offset: 0x0000000006046edb\r\nFaulting process id: 0x0x53C0\r\nFaulting application start time: 0x0x1DD1A63EC2FB3D7\r\nFaulting application path: C:\\Python313\\python.exe\r\nFaulting module path: D:\\Downloads\\cobra-core\\.venv\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\r\nReport Id: b9b4fad8-7673-40aa-88ae-39c3390d9487\r\nFaulting package full name: \r\nFaulting package-relative application ID: "
+    },
+    {
+      "time": "2026-07-22T22:26:11.5520173-07:00",
+      "id": 1000,
+      "provider": "Application Error",
+      "message": "Faulting application name: python.exe, version: 3.13.5150.1013, time stamp: 0x6849acf5\r\nFaulting module name: torch_cpu.dll, version: 0.0.0.0, time stamp: 0x67943d0d\r\nException code: 0xc0000005\r\nFault offset: 0x0000000006046edb\r\nFaulting process id: 0x0xC2D0\r\nFaulting application start time: 0x0x1DD1A6303595FC6\r\nFaulting application path: C:\\Python313\\python.exe\r\nFaulting module path: D:\\Downloads\\cobra-core\\.venv\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\r\nReport Id: fec0fada-70df-49de-bccb-376fcdb8afe7\r\nFaulting package full name: \r\nFaulting package-relative application ID: "
+    }
+  ]
+}

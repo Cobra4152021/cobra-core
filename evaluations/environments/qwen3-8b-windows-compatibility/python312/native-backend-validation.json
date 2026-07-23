@@ -1,0 +1,13 @@
+{
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "executable": "D:\\Downloads\\cobra-core\\.venv-qwen312\\Scripts\\python.exe",
+  "torch": "2.6.0+cu124",
+  "bnb": "0.49.2",
+  "linear4bit": {
+    "ok": true,
+    "shape": [
+      2,
+      64
+    ]
+  }
+}

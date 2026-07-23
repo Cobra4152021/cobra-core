@@ -14,6 +14,9 @@ __pycache__/
 *.so
 .Python
 .venv/
+.venv-qwen312/
+.venv-qwen311/
+.venv-load-diagnostic/
 venv/
 D:/temp/
 ENV/
@@ -108,6 +111,8 @@ evaluations/environment/**
 !evaluations/diagnostics/**
 !evaluations/runtime-candidates/
 !evaluations/runtime-candidates/**
+!evaluations/environments/
+!evaluations/environments/**
 !evaluations/reports/BITSANDBYTES_WINDOWS_DIAGNOSTIC.md
 evaluations/runs/**
 !evaluations/runs/

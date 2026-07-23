@@ -1,0 +1,33 @@
+# Exact pins for .venv-qwen311 (Python 3.11.9 / Windows / CUDA 12.4)
+# Same inference stack as python312 for cross-interpreter comparison.
+#
+#   py -3.11 -m venv .venv-qwen311
+#   .\.venv-qwen311\Scripts\python.exe -m pip install --upgrade pip==25.0.1 setuptools==78.1.0 wheel==0.45.1
+#   .\.venv-qwen311\Scripts\python.exe -m pip install torch==2.6.0+cu124 --index-url https://download.pytorch.org/whl/cu124
+#   .\.venv-qwen311\Scripts\python.exe -m pip install -r requirements-qwen311-lock.txt
+#
+pip==25.0.1
+setuptools==78.1.0
+wheel==0.45.1
+# numpy 2.5.x has no cp311 wheels; pin latest available 2.2.x for 3.11.
+numpy==2.2.6
+psutil==7.2.2
+pytest==8.4.2
+safetensors==0.8.0
+tokenizers==0.22.2
+huggingface-hub==1.24.0
+regex==2026.7.19
+PyYAML==6.0.3
+tqdm==4.69.0
+requests==2.34.2
+packaging==26.2
+filelock==3.32.0
+fsspec==2026.6.0
+Jinja2==3.1.6
+sympy==1.13.1
+# torch already installed networkx; keep compatible pin for 3.11.
+networkx==3.4.2
+typing_extensions==4.16.0
+accelerate==1.14.0
+transformers==5.14.1
+bitsandbytes==0.49.2

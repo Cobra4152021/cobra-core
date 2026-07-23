@@ -1,0 +1,21 @@
+{
+  "phase": "3D",
+  "outcome": "D",
+  "outcome_label": "Both isolated environments fail with native access violations",
+  "python312_initial_load": "failed_0xC0000005",
+  "python311_initial_load": "failed_0xC0000005",
+  "python312_qualification": "not_run",
+  "python311_qualification": "not_run",
+  "faulting_module": "torch_cpu.dll",
+  "fault_offset_observed": "0x0000000006046edb",
+  "full_load_attempts_total": 2,
+  "access_violations": 2,
+  "successful_loads": 0,
+  "successful_generations": 0,
+  "benchmark_executed": false,
+  "prepared_protocol_status": "prepared-not-run",
+  "official_v01_score_unchanged": 0.84,
+  "primary_environment_modified": false,
+  "runtime_candidate_created": false,
+  "next_authorized_phase": "Linux, WSL2, or cloud-GPU runtime migration"
+}

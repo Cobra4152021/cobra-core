@@ -1,0 +1,33 @@
+# Exact pins for .venv-qwen312 (Python 3.12.10 / Windows amd64 / CUDA 12.4 wheels)
+# Intent: keep the inference stack comparable to primary Python 3.13 so the
+# interpreter version is the primary experimental variable.
+#
+# Install torch FIRST from the PyTorch cu124 index:
+#   python -m pip install --upgrade pip==25.0.1 setuptools==78.1.0 wheel==0.45.1
+#   python -m pip install torch==2.6.0+cu124 --index-url https://download.pytorch.org/whl/cu124
+# Then:
+#   python -m pip install -r requirements-qwen312-lock.txt
+#
+pip==25.0.1
+setuptools==78.1.0
+wheel==0.45.1
+numpy==2.5.1
+psutil==7.2.2
+pytest==8.4.2
+safetensors==0.8.0
+tokenizers==0.22.2
+huggingface-hub==1.24.0
+regex==2026.7.19
+PyYAML==6.0.3
+tqdm==4.69.0
+requests==2.34.2
+packaging==26.2
+filelock==3.32.0
+fsspec==2026.6.0
+Jinja2==3.1.6
+sympy==1.13.1
+networkx==3.6.1
+typing_extensions==4.16.0
+accelerate==1.14.0
+transformers==5.14.1
+bitsandbytes==0.49.2

@@ -1,0 +1,40 @@
+{
+  "phase": "3D",
+  "primary": {
+    "label": "python313-primary",
+    "venv": ".venv",
+    "python": "3.13.5",
+    "torch": "2.6.0+cu124",
+    "transformers": "5.14.1",
+    "accelerate": "1.14.0",
+    "bitsandbytes": "0.49.2",
+    "modified_in_phase_3d": false
+  },
+  "python312": {
+    "label": "python312-isolated",
+    "venv": ".venv-qwen312",
+    "python": "3.12.10",
+    "torch": "2.6.0+cu124",
+    "transformers": "5.14.1",
+    "accelerate": "1.14.0",
+    "bitsandbytes": "0.49.2",
+    "requirements_lock": "requirements-qwen312-lock.txt",
+    "requirements_lock_sha256": "72978e5d6b20d5f0e31cd7c1589d964f55b89712a070e4b7b8f4f78fe5236e65",
+    "native_library_inventory_hash": "13c57034a6a1ff70f8bd749951cd3d90ef05efb902eafb310ace08b6155dbef0",
+    "initial_load": "failed_0xC0000005"
+  },
+  "python311": {
+    "label": "python311-isolated",
+    "venv": ".venv-qwen311",
+    "python": "3.11.9",
+    "torch": "2.6.0+cu124",
+    "transformers": "5.14.1",
+    "accelerate": "1.14.0",
+    "bitsandbytes": "0.49.2",
+    "requirements_lock": "requirements-qwen311-lock.txt",
+    "requirements_lock_sha256": "099078e605ca32f30444311da96d2dc71866f6ac4270da333d0d2a0aa91edc4b",
+    "native_library_inventory_hash": "73306e943fb1132292c41e37bb880a7b611ec7129160ad7af9f32cf08ff8283b",
+    "numpy_note": "numpy==2.2.6 (2.5.1 has no cp311 wheel)",
+    "initial_load": "failed_0xC0000005"
+  }
+}

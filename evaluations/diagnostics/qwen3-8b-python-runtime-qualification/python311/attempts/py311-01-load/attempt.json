@@ -1,0 +1,12 @@
+{
+    "mode":  "load",
+    "faulting_module":  "torch_cpu.dll",
+    "load_stage":  "model_load_begin",
+    "windows_status_code":  "0xC0000005",
+    "success":  false,
+    "access_violation":  true,
+    "attempt_id":  "py311-01-load",
+    "schema":  "cobra.diagnostics.py311_runtime_attempt.v1",
+    "exit_code":  3221225477,
+    "notes":  "Process terminated during from_pretrained; same stage as py312/py313 failures"
+}

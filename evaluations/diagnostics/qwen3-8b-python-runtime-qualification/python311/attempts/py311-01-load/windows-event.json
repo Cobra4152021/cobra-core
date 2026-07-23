@@ -1,0 +1,11 @@
+﻿{
+    "events":  [
+                   {
+                       "provider":  "Application Error",
+                       "time":  "2026-07-23T01:09:27.1058777-07:00",
+                       "message":  "Faulting application name: python.exe, version: 3.11.9150.1013, time stamp: 0x660bda91\r\nFaulting module name: torch_cpu.dll, version: 0.0.0.0, time stamp: 0x679452a4\r\nException code: 0xc0000005\r\nFault offset: 0x0000000006046edb\r\nFaulting process id: 0x0xD988\r\nFaulting application start time: 0x0x1DD1A7A5E6D7236\r\nFaulting application path: C:\\Users\\Dynamic Mining Inc\\AppData\\Local\\Programs\\Python\\Python311\\python.exe\r\nFaulting module path: D:\\Downloads\\cobra-core\\.venv-qwen311\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\r\nReport Id: a8f3b49e-cab0-4687-91e8-7834cb22a988\r\nFaulting package full name: \r\nFaulting package-relative application ID: ",
+                       "id":  1000
+                   }
+               ],
+    "available":  true
+}

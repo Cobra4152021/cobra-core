@@ -1,0 +1,11 @@
+{
+  "mode": "load",
+  "started_at": "2026-07-23T08:07:56.478111+00:00",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "executable": "D:\\Downloads\\cobra-core\\.venv-qwen311\\Scripts\\python.exe",
+  "success": false,
+  "load_stage": "init",
+  "offload_used": false,
+  "error": null,
+  "benchmark_content": false
+}

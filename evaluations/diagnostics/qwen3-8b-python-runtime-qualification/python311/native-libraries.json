@@ -1,0 +1,71 @@
+{
+  "environment": "python311-isolated",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "torch": "2.6.0+cu124",
+  "libraries": [
+    {
+      "name": "torch_cpu.dll",
+      "path": "D:\\Downloads\\cobra-core\\.venv-qwen311\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "size_bytes": 251258368,
+      "sha256": "6eb25a52d1e3a2c0598797942a78def81138df0c6602f0e009c7db2bfbe39232",
+      "owner": "torch"
+    },
+    {
+      "name": "torch_cuda.dll",
+      "path": "D:\\Downloads\\cobra-core\\.venv-qwen311\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "size_bytes": 957267456,
+      "sha256": "37fcaf926c486739e4cb505acb167a55d8f2ffd021c78f8822365478935c4630",
+      "owner": "torch"
+    },
+    {
+      "name": "c10.dll",
+      "path": "D:\\Downloads\\cobra-core\\.venv-qwen311\\Lib\\site-packages\\torch\\lib\\c10.dll",
+      "size_bytes": 973312,
+      "sha256": "7b4bc7abb0b50cdfcfd4d6d58a310cd7e951f87621783af8d3eaa861d7719147",
+      "owner": "torch"
+    },
+    {
+      "name": "c10_cuda.dll",
+      "path": "D:\\Downloads\\cobra-core\\.venv-qwen311\\Lib\\site-packages\\torch\\lib\\c10_cuda.dll",
+      "size_bytes": 388608,
+      "sha256": "ff798a3e18a09291e993e9bba452152447c7507b605d683c8289bf5112efe024",
+      "owner": "torch"
+    },
+    {
+      "name": "libbitsandbytes_cpu.dll",
+      "path": "D:\\Downloads\\cobra-core\\.venv-qwen311\\Lib\\site-packages\\bitsandbytes\\libbitsandbytes_cpu.dll",
+      "size_bytes": 30720,
+      "sha256": "24773ae943562b9d575aac37dde114aa8ebc20cc5b3a013acf1d62ca6e66ed59",
+      "owner": "bitsandbytes"
+    },
+    {
+      "name": "libbitsandbytes_cuda118.dll",
+      "path": "D:\\Downloads\\cobra-core\\.venv-qwen311\\Lib\\site-packages\\bitsandbytes\\libbitsandbytes_cuda118.dll",
+      "size_bytes": 17144832,
+      "sha256": "497d2e288abfa3ec205557f58794ea6e85841adea4b56d27de6adc2dfed5052b",
+      "owner": "bitsandbytes"
+    },
+    {
+      "name": "libbitsandbytes_cuda120.dll",
+      "path": "D:\\Downloads\\cobra-core\\.venv-qwen311\\Lib\\site-packages\\bitsandbytes\\libbitsandbytes_cuda120.dll",
+      "size_bytes": 16591872,
+      "sha256": "735f2e65749f72e68e52a7def291256d88a7b9023edea2f7412d2988d123d8d2",
+      "owner": "bitsandbytes"
+    },
+    {
+      "name": "libbitsandbytes_cuda121.dll",
+      "path": "D:\\Downloads\\cobra-core\\.venv-qwen311\\Lib\\site-packages\\bitsandbytes\\libbitsandbytes_cuda121.dll",
+      "size_bytes": 16595968,
+      "sha256": "afb41a3a336a903dde84fd8f517491d3f18a1d261ddb47de7946bdf85cef1041",
+      "owner": "bitsandbytes"
+    },
+    {
+      "name": "libbitsandbytes_cuda122.dll",
+      "path": "D:\\Downloads\\cobra-core\\.venv-qwen311\\Lib\\site-packages\\bitsandbytes\\libbitsandbytes_cuda122.dll",
+      "size_bytes": 16627200,
+      "sha256": "f24b2c46de1c049d90d88497dd8c0b9226f9371587a344884a263ba7c9ffd9bb",
+      "owner": "bitsandbytes"
+    }
+  ],
+  "native_library_inventory_hash": "73306e943fb1132292c41e37bb880a7b611ec7129160ad7af9f32cf08ff8283b"
+}

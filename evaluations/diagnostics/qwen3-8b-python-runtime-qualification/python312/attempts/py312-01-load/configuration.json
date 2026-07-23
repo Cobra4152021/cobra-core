@@ -1,0 +1,12 @@
+{
+  "environment": "python312",
+  "python_executable": "D:\\Downloads\\cobra-core\\.venv-qwen312\\Scripts\\python.exe",
+  "mode": "load",
+  "device_map": {
+    "": 0
+  },
+  "quantization": "4bit-nf4-double",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "model_inventory_hash": "8cf07aa84c9e26c9dd4ce71b21bd498232c8dfa5afe5284d375be0c1e9bb3f4f",
+  "benchmark": false
+}
