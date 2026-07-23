@@ -1,0 +1,10 @@
+"""Cobra KC-001 — GPT-OSS native vision architecture audit."""
+
+__version__ = "0.1.0"
+
+GPT_OSS_HIDDEN_SIZE = 2880
+SIGLIP_HIDDEN_SIZE = 1152
+PSEUDO_DEEPSTACK_DIM = SIGLIP_HIDDEN_SIZE * 3  # 3456
+DEFAULT_IMAGE_TOKENS = 729
+DEFAULT_PSEUDO_LAYERS = (9, 18, 27)
+IMAGE_PAD_TOKEN = "<|image_pad|>"
