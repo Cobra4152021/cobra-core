@@ -4,8 +4,17 @@ import { GOVERNMENT_DEFAULT_REPORT_SECTIONS } from "../domains/government/domain
 import { listGovernmentTemplates } from "../domains/government/templates.js";
 import { LABOR_DEFAULT_REPORT_SECTIONS } from "../domains/labor/domain.js";
 import { listLaborTemplates } from "../domains/labor/templates.js";
+import { createResearchPackRegistration } from "../domains/research/pack.js";
 import { STUDIO_DOMAIN } from "../domains/studio/domain.js";
 import type { DomainPackRegistration, PluginManifest } from "./types.js";
+
+/** Built-in pack registration builders — domain packs register through this list. */
+export const PACK_BUILDERS: ReadonlyArray<() => DomainPackRegistration> = [
+  createBuiltInGovernmentPack,
+  createBuiltInLaborPack,
+  createBuiltInStudioPack,
+  createResearchPackRegistration,
+];
 
 const GOVERNMENT_METRIC_IDS = [
   "adopted_variance",
@@ -232,9 +241,5 @@ export function createBuiltInStudioPack(): DomainPackRegistration {
 }
 
 export function createAllBuiltInPacks(): DomainPackRegistration[] {
-  return [
-    createBuiltInGovernmentPack(),
-    createBuiltInLaborPack(),
-    createBuiltInStudioPack(),
-  ];
+  return PACK_BUILDERS.map((builder) => builder());
 }

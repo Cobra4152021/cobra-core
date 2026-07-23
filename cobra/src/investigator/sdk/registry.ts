@@ -5,7 +5,9 @@ import {
   createBuiltInGovernmentPack,
   createBuiltInLaborPack,
   createBuiltInStudioPack,
+  PACK_BUILDERS,
 } from "./builtin.js";
+import { registerResearchPack, createResearchPackRegistration } from "../domains/research/pack.js";
 import type {
   DomainPackRegistration,
   MetricRegistration,
@@ -72,4 +74,7 @@ export {
   createBuiltInLaborPack,
   createBuiltInStudioPack,
   createAllBuiltInPacks,
+  PACK_BUILDERS,
+  registerResearchPack,
+  createResearchPackRegistration,
 };

@@ -8,6 +8,7 @@ import { getTemplate } from "./templates.js";
 import { selectStrategy } from "./strategy.js";
 import { getGovernmentTemplate } from "./domains/government/templates.js";
 import { getLaborTemplate } from "./domains/labor/templates.js";
+import { getResearchTemplate } from "./domains/research/templates.js";
 
 function inferPriority(title: string, description: string, fallback: Priority): Priority {
   const t = `${title} ${description}`.toLowerCase();
@@ -48,7 +49,8 @@ export function planInvestigation(input: {
   const template = getTemplate(input.templateId ?? strategy.templateId);
   const govTemplate = getGovernmentTemplate(input.templateId);
   const laborTemplate = getLaborTemplate(input.templateId);
-  const domainTemplate = laborTemplate ?? govTemplate;
+  const researchTemplate = getResearchTemplate(input.templateId);
+  const domainTemplate = researchTemplate ?? laborTemplate ?? govTemplate;
   const known = input.knownFacts ?? [];
 
   const questions = uniqueStrings([
@@ -113,11 +115,13 @@ export function planInvestigation(input: {
     confidenceRules: strategy.confidenceRules,
     methodology: [
       `Strategy: ${strategy.name} (${strategy.id})`,
-      laborTemplate
-        ? "Labor Edition domain pack (KC-006)"
-        : govTemplate
-          ? "Government Edition domain pack (KC-005)"
-          : "Deterministic planner (no required LLM)",
+      researchTemplate
+        ? "Research Edition domain pack (KC-009)"
+        : laborTemplate
+          ? "Labor Edition domain pack (KC-006)"
+          : govTemplate
+            ? "Government Edition domain pack (KC-005)"
+            : "Deterministic planner (no required LLM)",
       "CKE/Evidence Vault retrieval with citation allowlist",
       "Evidence quality scoring across seven dimensions",
       "Competing hypotheses retained",
@@ -125,6 +129,9 @@ export function planInvestigation(input: {
       "Separated confidence + readiness review gate",
       ...(laborTemplate
         ? ["Not legal advice; no liability, ULP, or breach determination"]
+        : []),
+      ...(researchTemplate
+        ? ["Evidence synthesis only; not peer review or scientific publication"]
         : []),
     ],
   };

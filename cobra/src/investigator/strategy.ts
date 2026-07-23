@@ -13,6 +13,10 @@ import {
   getLaborTemplate,
   isLaborTemplateId,
 } from "./domains/labor/templates.js";
+import {
+  getResearchTemplate,
+  isResearchTemplateId,
+} from "./domains/research/templates.js";
 
 export type StrategyId =
   | "budget_audit"
@@ -288,6 +292,13 @@ export function selectStrategy(input: {
     const laborTpl = getLaborTemplate(input.templateId);
     const laborStrategy = getStrategy(laborTpl?.strategyId);
     if (laborStrategy) return laborStrategy;
+  }
+
+  // KC-009 — Research template IDs map into existing strategies.
+  if (isResearchTemplateId(input.templateId)) {
+    const researchTpl = getResearchTemplate(input.templateId);
+    const researchStrategy = getStrategy(researchTpl?.strategyId);
+    if (researchStrategy) return researchStrategy;
   }
 
   const prompt = `${input.title}\n${input.description ?? ""}`;
