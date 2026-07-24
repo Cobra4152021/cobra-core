@@ -23,5 +23,7 @@
   "production_changed": false,
   "governance_drift": false,
   "phase_5c_ready": "NO",
-  "server_gate_fix": "handleCobraStatus role filter + handleCobraChat admin-only deny before quota/network"
+  "server_gate_fix": "handleCobraStatus role filter + handleCobraChat admin-only deny before quota/network",
+  "evidence_commit_cobra_computer": "7b06a95e473a92e16bc24aad6ef94bc5275cc731",
+  "evidence_commit_cobra_core": "5a8284ed2861ee3a291a555cbeeebaba20a6d8a1"
 }
