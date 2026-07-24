@@ -1,0 +1,11 @@
+{
+  "schema": "cobra.release.quality_suite_result.v1",
+  "phase": "3F",
+  "evidence_commit": "0a2af49ee86451c374a600579d3644c811cd12c0",
+  "tag": "phase-3f-qualified",
+  "exit_code": 0,
+  "passed": true,
+  "captured_at": "2026-07-24T00:55:14.696226+00:00",
+  "summary_line": "229 passed, 1 skipped, 6 deselected in 3.50s",
+  "all_checks_passed_marker": true
+}

@@ -1,0 +1,45 @@
+{
+  "mode": "generate",
+  "started_at": "2026-07-23T23:41:49.253214+00:00",
+  "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+  "executable": "/workspace/cobra-core-cloud/.venv-qwen-cloud/bin/python",
+  "success": true,
+  "load_stage": "generated",
+  "offload_used": false,
+  "error": null,
+  "benchmark_content": false,
+  "platform": "linux",
+  "memory_before": {
+    "available_ram_bytes": 488971231232,
+    "total_ram_bytes": 540649254912
+  },
+  "vram_before": {
+    "free": 47428993024,
+    "total": 47708110848
+  },
+  "gpu_name": "NVIDIA A40",
+  "configuration": {
+    "device_map": {
+      "": 0
+    },
+    "quantization": "4bit-nf4-double",
+    "compute_dtype": "float16",
+    "offload": false,
+    "trust_remote_code": false
+  },
+  "param_device": "cuda:0",
+  "load_seconds": 22.486,
+  "generation": {
+    "text": "**Supported Facts:**\n\n1. The shipment was logged at 08:40. (S1)  \n2. The inspection form was signed at 09:05. (S2)  \n\n**Unresolved Uncertainty:**\n\n- There is no record identifying who moved the shipment. (S3)",
+    "non_empty": true,
+    "output_tokens": 67,
+    "latency_s": 6.833,
+    "peak_vram_bytes": 6318342144
+  },
+  "memory_after": {
+    "available_ram_bytes": 488623947776,
+    "total_ram_bytes": 540649254912
+  },
+  "peak_vram_bytes": 6318342144,
+  "ended_at": "2026-07-23T23:43:38.432372+00:00"
+}

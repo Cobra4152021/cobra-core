@@ -1,0 +1,10 @@
+{
+  "schema": "cobra.cloud.export_verification.v1",
+  "status": "verified",
+  "qualification_summary_present": true,
+  "outcome_present": true,
+  "runtime_candidate_present": true,
+  "reports_present": true,
+  "benchmark_executed": false,
+  "verified_at": "2026-07-23T23:54:26.626056+00:00"
+}

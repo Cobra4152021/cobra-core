@@ -1,0 +1,38 @@
+{
+  "mode": "load",
+  "started_at": "2026-07-23T23:37:08.820633+00:00",
+  "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+  "executable": "/workspace/cobra-core-cloud/.venv-qwen-cloud/bin/python",
+  "success": true,
+  "load_stage": "loaded",
+  "offload_used": false,
+  "error": null,
+  "benchmark_content": false,
+  "platform": "linux",
+  "memory_before": {
+    "available_ram_bytes": 493218095104,
+    "total_ram_bytes": 540649254912
+  },
+  "vram_before": {
+    "free": 47428993024,
+    "total": 47708110848
+  },
+  "gpu_name": "NVIDIA A40",
+  "configuration": {
+    "device_map": {
+      "": 0
+    },
+    "quantization": "4bit-nf4-double",
+    "compute_dtype": "float16",
+    "offload": false,
+    "trust_remote_code": false
+  },
+  "param_device": "cuda:0",
+  "load_seconds": 74.777,
+  "memory_after": {
+    "available_ram_bytes": 490701017088,
+    "total_ram_bytes": 540649254912
+  },
+  "peak_vram_bytes": 6173550592,
+  "ended_at": "2026-07-23T23:39:38.978189+00:00"
+}

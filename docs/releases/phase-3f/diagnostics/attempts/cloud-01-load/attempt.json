@@ -1,0 +1,50 @@
+{
+  "attempt_id": "cloud-01-load",
+  "label": "load",
+  "mode": "load",
+  "full_load_index": 1,
+  "exit_code": 0,
+  "elapsed_s": 152.561,
+  "success": true,
+  "stdout_tail": "",
+  "stderr_tail": "ights:  80%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588  | 320/399 [00:43<00:08,  9.54it/s]\nLoading weights:  81%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588  | 323/399 [00:44<00:08,  8.93it/s]\nLoading weights:  81%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f | 325/399 [00:44<00:12,  6.03it/s]\nLoading weights:  82%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f | 329/399 [00:45<00:08,  8.61it/s]\nLoading weights:  83%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e | 331/399 [00:45<00:07,  9.25it/s]\nLoading weights:  84%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e | 334/399 [00:45<00:08,  8.10it/s]\nLoading weights:  84%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d | 336/399 [00:46<00:10,  5.81it/s]\nLoading weights:  85%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c | 340/399 [00:46<00:06,  8.65it/s]\nLoading weights:  86%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c | 342/399 [00:46<00:05,  9.86it/s]\nLoading weights:  86%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b | 345/399 [00:47<00:06,  8.02it/s]\nLoading weights:  87%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b | 347/399 [00:47<00:09,  5.73it/s]\nLoading weights:  88%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a | 351/399 [00:47<00:05,  8.69it/s]\nLoading weights:  88%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a | 353/399 [00:47<00:04,  9.92it/s]\nLoading weights:  89%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589 | 356/399 [00:48<00:04,  8.91it/s]\nLoading weights:  90%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589 | 358/399 [00:48<00:06,  6.37it/s]\nLoading weights:  91%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 | 362/399 [00:49<00:04,  8.77it/s]\nLoading weights:  91%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 | 364/399 [00:49<00:03,  9.53it/s]\nLoading weights:  92%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f| 367/399 [00:49<00:03,  8.82it/s]\nLoading weights:  92%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f| 369/399 [00:50<00:05,  5.96it/s]\nLoading weights:  93%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e| 373/399 [00:50<00:03,  8.29it/s]\nLoading weights:  94%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d| 375/399 [00:50<00:02,  8.79it/s]\nLoading weights:  95%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d| 378/399 [00:51<00:02,  7.80it/s]\nLoading weights:  95%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c| 380/399 [00:51<00:03,  5.38it/s]\nLoading weights:  96%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c| 384/399 [00:52<00:01,  7.94it/s]\nLoading weights:  97%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b| 387/399 [00:52<00:01, 10.11it/s]\nLoading weights:  97%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b| 389/399 [00:52<00:01,  8.66it/s]\nLoading weights:  98%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a| 391/399 [00:53<00:01,  5.79it/s]\nLoading weights:  99%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 395/399 [00:53<00:00,  8.45it/s]\nLoading weights:  99%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 397/399 [00:53<00:00,  9.65it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 399/399 [00:53<00:00,  7.45it/s]\n",
+  "result": {
+    "mode": "load",
+    "started_at": "2026-07-23T23:37:08.820633+00:00",
+    "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+    "executable": "/workspace/cobra-core-cloud/.venv-qwen-cloud/bin/python",
+    "success": true,
+    "load_stage": "loaded",
+    "offload_used": false,
+    "error": null,
+    "benchmark_content": false,
+    "platform": "linux",
+    "memory_before": {
+      "available_ram_bytes": 493218095104,
+      "total_ram_bytes": 540649254912
+    },
+    "vram_before": {
+      "free": 47428993024,
+      "total": 47708110848
+    },
+    "gpu_name": "NVIDIA A40",
+    "configuration": {
+      "device_map": {
+        "": 0
+      },
+      "quantization": "4bit-nf4-double",
+      "compute_dtype": "float16",
+      "offload": false,
+      "trust_remote_code": false
+    },
+    "param_device": "cuda:0",
+    "load_seconds": 74.777,
+    "memory_after": {
+      "available_ram_bytes": 490701017088,
+      "total_ram_bytes": 540649254912
+    },
+    "peak_vram_bytes": 6173550592,
+    "ended_at": "2026-07-23T23:39:38.978189+00:00"
+  },
+  "benchmark_executed": false
+}

@@ -1,0 +1,266 @@
+{
+  "schema": "cobra.release.evidence_manifest.v1",
+  "phase": "3F",
+  "tag": "phase-3f-qualified",
+  "evidence_commit": "0a2af49ee86451c374a600579d3644c811cd12c0",
+  "freeze_generated_at": "2026-07-24T00:55:15.344770+00:00",
+  "outcome": "A",
+  "outcome_label": "Cloud Linux runtime fully qualified",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "model_inventory_hash": "8cf07aa84c9e26c9dd4ce71b21bd498232c8dfa5afe5284d375be0c1e9bb3f4f",
+  "cobrabench_v02_rc2_status": "prepared-not-run",
+  "official_v01_score": "0.840",
+  "benchmark_executed": false,
+  "quality_suite_passed": true,
+  "quality_suite_summary": "229 passed, 1 skipped, 6 deselected in 3.50s",
+  "artifact_count": 40,
+  "artifacts": [
+    {
+      "path": "PHASE_3F_RELEASE_REPORT.md",
+      "sha256": "6908782c53b3e49b49ceaa349b84e121a87d9c9f89a98556d5896cafc9d81ab3",
+      "size_bytes": 1027,
+      "source": "generated-during-freeze"
+    },
+    {
+      "path": "RELEASE_NOTES_Phase3F.md",
+      "sha256": "fce8008189cd6a4a67c21f30a55e38335f3a213a510f9f678f6140d847d9740a",
+      "size_bytes": 2925,
+      "source": "generated-during-freeze"
+    },
+    {
+      "path": "cloud/authorization-record.json",
+      "sha256": "6eced0d3151d9c0f6bb778c76e19075fc68d961f6f03364a4bb1058aaf7226aa",
+      "size_bytes": 2949,
+      "source": "evaluations/cloud/authorization-record.json"
+    },
+    {
+      "path": "cloud/cleanup-verification.json",
+      "sha256": "679bb0597bb62be4b3bbda2b5309dacec8a36326aa3141701f2ba3312d002885",
+      "size_bytes": 536,
+      "source": "evaluations/cloud/cleanup-verification.json"
+    },
+    {
+      "path": "cloud/cost-record.json",
+      "sha256": "e58e3eb9e52ef76f4a6314f7653b7ce587afe0a9d6e96971fd9d54d580b33acb",
+      "size_bytes": 658,
+      "source": "evaluations/cloud/cost-record.json"
+    },
+    {
+      "path": "cloud/export-verification.json",
+      "sha256": "5433c30c07d28d85646c1b57eaff96cc24c15e163e1d7cef1813ee7bffbfb6c8",
+      "size_bytes": 303,
+      "source": "evaluations/cloud/export-verification.json"
+    },
+    {
+      "path": "decisions/ADR-0014-cloud-linux-runtime-qualification.md",
+      "sha256": "473e8161de2b4354f2933e222e253bf741cfca8bfc69452d2cfecc57126a0440",
+      "size_bytes": 2153,
+      "source": "docs/decisions/ADR-0014-cloud-linux-runtime-qualification.md"
+    },
+    {
+      "path": "diagnostics/OUTCOME.json",
+      "sha256": "f209f9440c7d9747093fb37cf595ec38393e6bdfb06c12cc4df72542f2b669bf",
+      "size_bytes": 1262,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/OUTCOME.json"
+    },
+    {
+      "path": "diagnostics/attempts/cloud-01-load/attempt.json",
+      "sha256": "3c09a71701d716683dcd282538839238867b916107845ba01bd76aa9384bf317",
+      "size_bytes": 4739,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/attempts/cloud-01-load/attempt.json"
+    },
+    {
+      "path": "diagnostics/attempts/cloud-01-load/result.json",
+      "sha256": "9678801d5401cf643f5d407f4b8f59bc315e4c0d60a327cdd5551c47f6f541ba",
+      "size_bytes": 986,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/attempts/cloud-01-load/result.json"
+    },
+    {
+      "path": "diagnostics/attempts/cloud-02-gen/attempt.json",
+      "sha256": "239a101d10451f44683a665580af2515b4b24443e06a740668f07473543d1b21",
+      "size_bytes": 4622,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/attempts/cloud-02-gen/attempt.json"
+    },
+    {
+      "path": "diagnostics/attempts/cloud-02-gen/result.json",
+      "sha256": "3c5222d9330960265e6b90f92c250142a73b76d9b4883c515eae2e2c14bb50c6",
+      "size_bytes": 1353,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/attempts/cloud-02-gen/result.json"
+    },
+    {
+      "path": "diagnostics/attempts/cloud-02-gen/smoke-output.txt",
+      "sha256": "4868e5c67b5c7beeb05006388a8ad4bd6a526b370ea595ccefcda109b19e58a0",
+      "size_bytes": 208,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/attempts/cloud-02-gen/smoke-output.txt"
+    },
+    {
+      "path": "diagnostics/attempts/cloud-03-qual1/attempt.json",
+      "sha256": "a2571bc8da7746b8393f3ae7ba698249ac9541be33dd0cc6b1e8511b89ebfbba",
+      "size_bytes": 4516,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/attempts/cloud-03-qual1/attempt.json"
+    },
+    {
+      "path": "diagnostics/attempts/cloud-03-qual1/result.json",
+      "sha256": "a507a6fa55acbacee702b3accb474eb32c57c357e2c2d7de1fd8b1edecd07a43",
+      "size_bytes": 1353,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/attempts/cloud-03-qual1/result.json"
+    },
+    {
+      "path": "diagnostics/attempts/cloud-03-qual1/smoke-output.txt",
+      "sha256": "4868e5c67b5c7beeb05006388a8ad4bd6a526b370ea595ccefcda109b19e58a0",
+      "size_bytes": 208,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/attempts/cloud-03-qual1/smoke-output.txt"
+    },
+    {
+      "path": "diagnostics/attempts/cloud-04-qual2/attempt.json",
+      "sha256": "ec8c204cde7295dc74d97734707058673d7f4e682db29bdd5689e923d476467c",
+      "size_bytes": 4556,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/attempts/cloud-04-qual2/attempt.json"
+    },
+    {
+      "path": "diagnostics/attempts/cloud-04-qual2/result.json",
+      "sha256": "daf58a2051467ecc10a0a5a9468617bf17482ec27ea6d4f7be186e741a580090",
+      "size_bytes": 1353,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/attempts/cloud-04-qual2/result.json"
+    },
+    {
+      "path": "diagnostics/attempts/cloud-04-qual2/smoke-output.txt",
+      "sha256": "4868e5c67b5c7beeb05006388a8ad4bd6a526b370ea595ccefcda109b19e58a0",
+      "size_bytes": 208,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/attempts/cloud-04-qual2/smoke-output.txt"
+    },
+    {
+      "path": "diagnostics/attempts/cloud-05-qual3/attempt.json",
+      "sha256": "be357cdfda0afe859a26a5953d954bb45dd025f93ec8e1e4e47ecd342c091c7e",
+      "size_bytes": 4384,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/attempts/cloud-05-qual3/attempt.json"
+    },
+    {
+      "path": "diagnostics/attempts/cloud-05-qual3/result.json",
+      "sha256": "d967df96c136d3926fcfa1a923232a823b56b9e0dcfc9ff5300b5d91f5966321",
+      "size_bytes": 1351,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/attempts/cloud-05-qual3/result.json"
+    },
+    {
+      "path": "diagnostics/attempts/cloud-05-qual3/smoke-output.txt",
+      "sha256": "4868e5c67b5c7beeb05006388a8ad4bd6a526b370ea595ccefcda109b19e58a0",
+      "size_bytes": 208,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/attempts/cloud-05-qual3/smoke-output.txt"
+    },
+    {
+      "path": "diagnostics/attempts/cloud-06-extended/attempt.json",
+      "sha256": "6db2bfa00d21900ccb602d8d334ae28d708e9dbbf4350ad3db77cb6d2f7f3684",
+      "size_bytes": 6761,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/attempts/cloud-06-extended/attempt.json"
+    },
+    {
+      "path": "diagnostics/attempts/cloud-06-extended/result.json",
+      "sha256": "ce11d2fd3dc9f0d24e0e373993bdba91a21eba3aa79adb22e5171d33289bc8b5",
+      "size_bytes": 3393,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/attempts/cloud-06-extended/result.json"
+    },
+    {
+      "path": "diagnostics/attempts/cloud-06-extended/smoke-output.txt",
+      "sha256": "4868e5c67b5c7beeb05006388a8ad4bd6a526b370ea595ccefcda109b19e58a0",
+      "size_bytes": 208,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/attempts/cloud-06-extended/smoke-output.txt"
+    },
+    {
+      "path": "diagnostics/environment.json",
+      "sha256": "df6443ba10b6f2c5b0313fed8997e1ef71731caea70254415d4491d9113978df",
+      "size_bytes": 535,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/environment.json"
+    },
+    {
+      "path": "diagnostics/manifest.json",
+      "sha256": "95becdd7c0de803001c2fcc9dbb04aae374b6ca15b77cd50976bdac65c9f4b98",
+      "size_bytes": 743,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/manifest.json"
+    },
+    {
+      "path": "diagnostics/native-backend-validation.json",
+      "sha256": "3481c7f35a949f446dd4444294b5c58839b87e8b61aad6828ecc4264b59febd9",
+      "size_bytes": 139,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/native-backend-validation.json"
+    },
+    {
+      "path": "diagnostics/nvidia-smi.txt",
+      "sha256": "eefd5de65294d7d54ff447403b4b34aa1ea24711958a79fe66cecff75aa21d66",
+      "size_bytes": 1798,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/nvidia-smi.txt"
+    },
+    {
+      "path": "diagnostics/qualification_summary.json",
+      "sha256": "7e028afd3bd335a774ad936f254164092d6eaf96c97e42100f5e6a418cc9c02a",
+      "size_bytes": 1298,
+      "source": "evaluations/diagnostics/qwen3-8b-cloud-runtime-qualification/qualification_summary.json"
+    },
+    {
+      "path": "environment/dependency-lock.sha256",
+      "sha256": "eb115c2e67b35bb75226a0794707922d1f60fe1e460e913132bcc9b175b4e302",
+      "size_bytes": 98,
+      "source": "evaluations/environments/cloud-qwen3-runtime/dependency-lock.sha256"
+    },
+    {
+      "path": "environment/pip-freeze.txt",
+      "sha256": "0fb50fd411fb9bfe1bcec2756e5a714ccf3f0b294c5956f4b822ee758a37b6e7",
+      "size_bytes": 1139,
+      "source": "evaluations/environments/cloud-qwen3-runtime/pip-freeze.txt"
+    },
+    {
+      "path": "environment/requirements-cloud-lock.txt",
+      "sha256": "6c97133d601503005955674b3208fa7c731a687071df79394da00df4510753b6",
+      "size_bytes": 736,
+      "source": "evaluations/environments/cloud-qwen3-runtime/requirements-cloud-lock.txt"
+    },
+    {
+      "path": "environment/selection-rationale.md",
+      "sha256": "69d3f4cf1053e57cce8720cd1065dd6157ea5fe643d593dcc262c99da44bdd6c",
+      "size_bytes": 756,
+      "source": "evaluations/environments/cloud-qwen3-runtime/selection-rationale.md"
+    },
+    {
+      "path": "protocol/qwen3-8b-cobrabench-v0.2-rc2.status.json",
+      "sha256": "973fb2c1427856c4a408365c0f18d083a11365e4bef9fcc7d18ab2e0ea6ab9f7",
+      "size_bytes": 1638,
+      "source": "evaluations/protocols/qwen3-8b-cobrabench-v0.2-rc2.json"
+    },
+    {
+      "path": "quality-suite-results.json",
+      "sha256": "f46799236d234281bf12f298824747442c45689980bf591a9d68401a04f65aa3",
+      "size_bytes": 371,
+      "source": "generated-during-freeze"
+    },
+    {
+      "path": "quality-suite-results.txt",
+      "sha256": "e60abc396b4c8bb4bdaf0e23d94cba5209fb818cddb458f402b343e1e140c502",
+      "size_bytes": 816,
+      "source": "generated-during-freeze"
+    },
+    {
+      "path": "reports/QWEN3_8B_CLOUD_LINUX_RUNTIME_QUALIFICATION.md",
+      "sha256": "5c66a4ded9d7a1bff8cf3516c646df3ac2ea7e338b0be22561b24b72c366731a",
+      "size_bytes": 2118,
+      "source": "evaluations/reports/QWEN3_8B_CLOUD_LINUX_RUNTIME_QUALIFICATION.md"
+    },
+    {
+      "path": "reports/QWEN3_8B_PLATFORM_COMPARISON.md",
+      "sha256": "74ca7b979abf822f627a914090382d03f2bdc50ca2690dea6a2a02e760d96803",
+      "size_bytes": 466,
+      "source": "evaluations/reports/QWEN3_8B_PLATFORM_COMPARISON.md"
+    },
+    {
+      "path": "runtime-candidate/qwen3-8b-cloud-linux-qualified.json",
+      "sha256": "12d054e96f3429f0f04b6a88593b5dc6d53600d1145ae8c80e4b64424e17c3c6",
+      "size_bytes": 2321,
+      "source": "evaluations/runtime-candidates/qwen3-8b-cloud-linux-qualified.json"
+    }
+  ],
+  "sha256sums_file": "SHA256SUMS",
+  "notes": [
+    "Freeze package does not modify runtime behavior.",
+    "Phase 3G not started.",
+    "Tag phase-3f-qualified points at evidence commit 0a2af49ee86451c374a600579d3644c811cd12c0.",
+    "Verify package with SHA256SUMS (covers all files except itself)."
+  ]
+}

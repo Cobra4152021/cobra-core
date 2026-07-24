@@ -1,0 +1,73 @@
+{
+  "schema": "cobra.runtime_candidate.cloud_linux.v1",
+  "status": "qualified",
+  "provider_category": "runpod_community_cloud",
+  "redacted_instance_class": "community-cloud-gpu-pod",
+  "gpu_model": "NVIDIA A40",
+  "vram_gb": 48,
+  "system_ram_gb": 50,
+  "linux_distribution": "Ubuntu 24.04 (RunPod PyTorch template base)",
+  "kernel": "5.15.0-94-generic",
+  "python_version": "3.12.3",
+  "pytorch_version": "2.6.0+cu124",
+  "transformers_version": "5.14.1",
+  "accelerate_version": "1.14.0",
+  "bitsandbytes_version": "0.49.2",
+  "dependency_lock_sha256": "\ufeff6c97133d601503005955674b3208fa7c731a687071df79394da00df4510753b6",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "model_inventory_hash": "8cf07aa84c9e26c9dd4ce71b21bd498232c8dfa5afe5284d375be0c1e9bb3f4f",
+  "model_storage_path_class": "linux_native_network_volume",
+  "quantization": {
+    "method": "bitsandbytes-4bit-nf4",
+    "double_quant": true,
+    "compute_dtype": "float16"
+  },
+  "device_map": {
+    "": 0
+  },
+  "resource_prerequisites": {
+    "min_vram_gb": 16,
+    "min_system_ram_gb": 32,
+    "cuda_required": true
+  },
+  "initial_load": {
+    "success": true,
+    "load_seconds": 74.777
+  },
+  "initial_generation": {
+    "success": true,
+    "latency_s": 9.288
+  },
+  "qualification_3_of_3": true,
+  "extended_session": true,
+  "load_duration_range_s": {
+    "min": 22.203,
+    "max": 74.777
+  },
+  "generation_duration_range_s": {
+    "min": 1.393,
+    "max": 9.288
+  },
+  "peak_vram_bytes": 6318342144,
+  "peak_ram_note": "host reported ~503 GiB total; process stayed well below",
+  "limitations": [
+    "Qualification used synthetic prompts only",
+    "CobraBench not executed",
+    "Adopted A40 pod (not L4) within $10 ceiling"
+  ],
+  "required_benchmark_preflight": [
+    "recreate equivalent locked Linux CUDA environment",
+    "verify model inventory hash",
+    "verify dependency lock",
+    "confirm no public endpoint"
+  ],
+  "cloud_cleanup_requirements": [
+    "terminate GPU pod",
+    "delete temporary /workspace transfers",
+    "confirm zero remaining billable pods"
+  ],
+  "benchmark_executed": false,
+  "created_at": "2026-07-23T23:54:26.626056+00:00",
+  "qualification_status": "smoke-qualified",
+  "benchmark_authorized": false
+}

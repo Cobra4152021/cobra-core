@@ -1,0 +1,83 @@
+{
+  "schema": "cobra.cloud.authorization.v1",
+  "status": "authorized-qualification-complete",
+  "authorized": true,
+  "provider": "RunPod",
+  "service": "Community Cloud GPU Pod",
+  "instance_type": "community-cloud-gpu-pod",
+  "gpu": "NVIDIA L4",
+  "gpu_count": 1,
+  "required_vram_gb": 24,
+  "required_system_ram_gb": 50,
+  "quoted_hourly_rate_usd": 0.5,
+  "published_reference_hourly_rate_usd": {
+    "nvidia_l4_community_cloud": 0.44,
+    "nvidia_l4_secure_cloud": 0.39,
+    "nvidia_rtx_a5000_community_cloud": 0.16,
+    "nvidia_rtx_a5000_secure_cloud": 0.27,
+    "source": "https://www.runpod.io/pricing",
+    "checked_at": "2026-07-23T09:11:00+00:00",
+    "notes": "Launch must re-verify the displayed pod price at create time; refuse if above applicable limit."
+  },
+  "approved_spending_ceiling_usd": 10.0,
+  "approved_runtime_ceiling_hours": 8,
+  "approved_disk_size_gb": 100,
+  "region": "United States (any available U.S. region preferred)",
+  "pricing_mode": "on-demand-only",
+  "spot_or_interruptible": false,
+  "authorization_timestamp": "2026-07-23T09:11:00+00:00",
+  "authorization_source": "user-chat-phase-3f-cloud-authorization",
+  "fallback_gpu": {
+    "gpu": "NVIDIA RTX A5000",
+    "gpu_count": 1,
+    "approved_hourly_rate_usd": 0.35,
+    "condition": "Enough system RAM and storage for Phase 3F preflight; L4 unavailable only"
+  },
+  "rules": {
+    "max_active_gpu_instances": 1,
+    "max_persistent_volumes": 0,
+    "persistent_volume_beyond_session": false,
+    "autoscaling": false,
+    "multi_node": false,
+    "multi_gpu": false,
+    "managed_endpoint": false,
+    "public_inference_service": false,
+    "public_jupyter": false,
+    "reserved_commitment": false,
+    "automatic_recurring_charges": false,
+    "provider_switch_without_auth": false,
+    "gpu_substitution_without_auth": false
+  },
+  "prohibited_actions": [
+    "CobraBench execution",
+    "benchmark cases",
+    "training",
+    "fine-tuning",
+    "deployment",
+    "model acquisition",
+    "model revision changes",
+    "GitHub mutation",
+    "public endpoint",
+    "Cobra Core designation"
+  ],
+  "launch_gates": [
+    "verify_displayed_hourly_price_before_launch",
+    "refuse_if_rate_exceeds_approved_limit",
+    "create_only_one_pod",
+    "runtime_qualification_only",
+    "export_and_verify_artifacts",
+    "terminate_after_verification_or_limit",
+    "delete_temporary_storage_and_uploads",
+    "confirm_no_billable_resources_remain"
+  ],
+  "notes": "RunPod authorized. Adopted pod txw75nv9hn96hu (A40 @ $0.44/hr). SSH restored; Linux qualification Outcome A; pod terminated after export.",
+  "payment_information_recorded": false,
+  "credentials_present": true,
+  "provisioning_attempted": false,
+  "adopted_existing_pod": {
+    "pod_id": "txw75nv9hn96hu",
+    "user_reported_gpu": "NVIDIA A40",
+    "displayed_hourly_usd": 0.44,
+    "create_new_pod": false
+  }
+}
