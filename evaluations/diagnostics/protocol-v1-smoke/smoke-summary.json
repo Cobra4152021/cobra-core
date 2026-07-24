@@ -1,0 +1,60 @@
+{
+  "phase": "5B.1B",
+  "mode": "mock",
+  "host": "127.0.0.1",
+  "results": [
+    {
+      "name": "missing_or_invalid_auth",
+      "pass": true
+    },
+    {
+      "name": "missing_auth",
+      "pass": true
+    },
+    {
+      "name": "health_ok",
+      "pass": true
+    },
+    {
+      "name": "completion_ok",
+      "pass": true
+    },
+    {
+      "name": "latency_fields",
+      "pass": true
+    },
+    {
+      "name": "request_id_header",
+      "pass": true
+    },
+    {
+      "name": "usage_fields",
+      "pass": true
+    },
+    {
+      "name": "streaming_v1_oneshot_events",
+      "pass": true
+    },
+    {
+      "name": "request_id_generated",
+      "pass": true
+    },
+    {
+      "name": "limits_output_cap",
+      "pass": true
+    },
+    {
+      "name": "errors_bad_request",
+      "pass": true
+    },
+    {
+      "name": "safe_errors",
+      "pass": true
+    },
+    {
+      "name": "no_debug",
+      "pass": true
+    }
+  ],
+  "secret_redacted": true
+}

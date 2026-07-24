@@ -1,15 +1,7 @@
-"""Cobra Protocol Version 1 server (frozen Compatibility Version 1)."""
+"""Cobra Protocol V1 local inference server (Computer contract)."""
 
-from cobra_core.protocol_v1.constants import (
-    COMPATIBILITY_VERSION,
-    DEFAULT_MODEL,
-    PROTOCOL_VERSION,
-    PROVIDER_ID,
-)
+from __future__ import annotations
 
-__all__ = [
-    "COMPATIBILITY_VERSION",
-    "DEFAULT_MODEL",
-    "PROTOCOL_VERSION",
-    "PROVIDER_ID",
-]
+from cobra_core.protocol_v1.constants import COMPATIBILITY_VERSION, PROTOCOL_VERSION
+
+__all__ = ["COMPATIBILITY_VERSION", "PROTOCOL_VERSION"]

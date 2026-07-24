@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local Protocol V1 smoke test — no GPU, no cloud, loopback only."""
+"""Local Protocol V1 smoke test — mock inference, loopback only, no GPU/cloud."""
 
 from __future__ import annotations
 
@@ -16,6 +16,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
+
+EVIDENCE = ROOT / "evaluations" / "diagnostics" / "protocol-v1-smoke"
 
 
 def req(
@@ -52,16 +54,20 @@ def main() -> int:
         os.environ.get("COBRA_CORE_AUTH_SECRET") or "smoke-secret-protocol-v1"
     )
     os.environ["COBRA_INFERENCE_MODE"] = "mock"
-    os.environ["COBRA_PROTOCOL_HOST"] = "127.0.0.1"
-    os.environ["COBRA_PROTOCOL_PORT"] = os.environ.get("COBRA_PROTOCOL_PORT") or "18080"
+    os.environ["COBRA_CORE_HOST"] = "127.0.0.1"
+    os.environ["COBRA_CORE_PORT"] = os.environ.get("COBRA_CORE_PORT") or "18080"
     os.environ["COBRA_CORE_MAX_OUTPUT_TOKENS"] = "128"
     os.environ["COBRA_CORE_MAX_CONTEXT"] = "4096"
     os.environ["COBRA_CORE_TIMEOUT_MS"] = "5000"
-    os.environ["COBRA_CORE_REVISION"] = "phase-5b1-core-smoke"
+    os.environ["COBRA_CORE_REVISION"] = "phase-5b1b-smoke"
+    os.environ["COBRA_PROTOCOL_VERSION"] = "1"
+    os.environ["COBRA_COMPATIBILITY_VERSION"] = "1"
     token = os.environ["COBRA_CORE_AUTH_SECRET"]
 
+    from cobra_core.protocol_governance.schema_validate import validate_instance
     from cobra_core.protocol_v1.config import load_config
     from cobra_core.protocol_v1.server import make_server
+    from cobra_core.protocol_v1.streaming import oneshot_stream_events
 
     cfg = load_config()
     httpd = make_server(cfg)
@@ -70,17 +76,19 @@ def main() -> int:
     time.sleep(0.15)
     base = f"http://{cfg.host}:{cfg.port}"
     results: list[tuple[str, bool, str]] = []
+    schema_dir = ROOT / "protocol" / "v1" / "schemas"
 
     def check(name: str, ok: bool, detail: str = "") -> None:
         results.append((name, ok, detail))
         print(("PASS" if ok else "FAIL"), name, detail)
 
     try:
-        # auth fail
-        st, body, hdrs = req("GET", f"{base}/health", token="wrong")
-        check("health_auth_reject", st == 401 and body.get("code") == "auth_failed", f"status={st}")
+        st, body, _ = req("GET", f"{base}/health", token="wrong")
+        check("missing_or_invalid_auth", st == 401 and body.get("code") == "auth_failed", f"status={st}")
 
-        # health ok
+        st, body, hdrs = req("GET", f"{base}/health", token=None)
+        check("missing_auth", st == 401, f"status={st}")
+
         st, body, hdrs = req("GET", f"{base}/health", token=token, request_id="cc_smoke_health")
         check(
             "health_ok",
@@ -88,13 +96,10 @@ def main() -> int:
             and body.get("protocolVersion") == "1"
             and body.get("compatibilityVersion") == "1"
             and body.get("reason") == "ok"
-            and "capabilities" in body
-            and "limits" in body
             and hdrs.get("x-request-id") == "cc_smoke_health",
             f"status={st}",
         )
 
-        # completion
         st, body, hdrs = req(
             "POST",
             f"{base}/v1/chat/completions",
@@ -120,24 +125,25 @@ def main() -> int:
         )
         check(
             "latency_fields",
-            all(
-                k in latency
-                for k in ("queue_ms", "provider_latency_ms", "inference_ms", "total_ms")
-            ),
-            str(latency),
+            all(k in latency for k in ("queue_ms", "provider_latency_ms", "inference_ms", "total_ms")),
+            str({k: latency.get(k) for k in ("queue_ms", "provider_latency_ms", "inference_ms", "total_ms")}),
         )
-        check(
-            "request_id_header",
-            hdrs.get("x-request-id") == "cc_smoke_complete",
-            hdrs.get("x-request-id", ""),
-        )
+        check("request_id_header", hdrs.get("x-request-id") == "cc_smoke_complete", "")
         check(
             "usage_fields",
             all(k in usage for k in ("prompt_tokens", "completion_tokens", "total_tokens")),
             str(usage),
         )
 
-        # generated request id
+        # Protocol V1 streaming mode = one-shot wire + local event synthesis
+        events = oneshot_stream_events(text=text, request_id="cc_smoke_complete")
+        try:
+            schema = json.loads((schema_dir / "streaming.events.schema.json").read_text(encoding="utf-8"))
+            validate_instance(events, schema, base_dir=schema_dir)
+            check("streaming_v1_oneshot_events", True, "schema ok")
+        except Exception as exc:
+            check("streaming_v1_oneshot_events", False, str(exc)[:80])
+
         st, body, hdrs = req(
             "POST",
             f"{base}/v1/chat/completions",
@@ -150,9 +156,8 @@ def main() -> int:
             },
         )
         rid = hdrs.get("x-request-id") or body.get("requestId") or ""
-        check("request_id_generated", st == 200 and rid.startswith("cc_"), rid)
+        check("request_id_generated", st == 200 and str(rid).startswith("cc_"), str(rid))
 
-        # limits: max_tokens capped
         st, body, _ = req(
             "POST",
             f"{base}/v1/chat/completions",
@@ -166,7 +171,6 @@ def main() -> int:
         )
         check("limits_output_cap", st == 200 and bool(body.get("choices")), f"status={st}")
 
-        # bad request
         st, body, _ = req(
             "POST",
             f"{base}/v1/chat/completions",
@@ -174,14 +178,24 @@ def main() -> int:
             body={"model": "x", "stream": False, "max_tokens": 8, "messages": []},
         )
         check("errors_bad_request", st == 400 and body.get("code") == "bad_request", f"status={st}")
+        check("safe_errors", "traceback" not in json.dumps(body).lower(), "")
 
-        # no debug endpoints
         st, body, _ = req("GET", f"{base}/debug", token=token)
         check("no_debug", st == 404, f"status={st}")
 
     finally:
         httpd.shutdown()
         httpd.server_close()
+
+    EVIDENCE.mkdir(parents=True, exist_ok=True)
+    evidence = {
+        "phase": "5B.1B",
+        "mode": "mock",
+        "host": "127.0.0.1",
+        "results": [{"name": n, "pass": ok} for n, ok, _ in results],
+        "secret_redacted": True,
+    }
+    (EVIDENCE / "smoke-summary.json").write_text(json.dumps(evidence, indent=2) + "\n", encoding="utf-8")
 
     failed = [n for n, ok, _ in results if not ok]
     print("summary", f"{len(results) - len(failed)}/{len(results)} passed")

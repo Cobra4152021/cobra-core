@@ -4,18 +4,19 @@ from __future__ import annotations
 
 import json
 import logging
+import signal
+import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Any
 from urllib.parse import urlparse
 
-from cobra_core.protocol_v1.config import ServerConfig, load_config
+from cobra_core.protocol_v1.config import ConfigError, ServerConfig, load_config
 from cobra_core.protocol_v1.errors import normalized_error
-from cobra_core.protocol_v1.handlers import (
-    dumps,
-    handle_chat_completions,
-    handle_health,
-    new_request_id,
-)
+from cobra_core.protocol_v1.handlers import dumps, handle_chat_completions, handle_health
+from cobra_core.protocol_v1.inference_service import InferenceService
+from cobra_core.protocol_v1.logging_util import log_event
+from cobra_core.protocol_v1.request_id import new_request_id
+from cobra_core.protocol_v1.runtime_state import RuntimeState
 
 logger = logging.getLogger("cobra_core.protocol_v1")
 
@@ -23,19 +24,33 @@ logger = logging.getLogger("cobra_core.protocol_v1")
 class ProtocolV1Handler(BaseHTTPRequestHandler):
     server_version = "CobraProtocolV1/1"
     config: ServerConfig
+    state: RuntimeState
+    service: InferenceService
 
     def log_message(self, fmt: str, *args: Any) -> None:
-        # Never log Authorization or bodies.
-        logger.info("%s - %s", self.address_string(), fmt % args)
+        # Never log Authorization or bodies via base class access log.
+        msg = fmt % args
+        if "authorization" in msg.lower() or "bearer " in msg.lower():
+            msg = "[redacted]"
+        logger.info("%s - %s", self.address_string(), msg)
 
     def _send(self, status: int, body: dict[str, Any], request_id: str) -> None:
+        if getattr(self, "_response_started", False):
+            return
+        # Client disconnect: avoid writing after cancel.
+        if getattr(self, "_cancelled", False):
+            return
         data = dumps(body)
-        self.send_response(status)
-        self.send_header("Content-Type", "application/json")
-        self.send_header("Content-Length", str(len(data)))
-        self.send_header("x-request-id", request_id)
-        self.end_headers()
-        self.wfile.write(data)
+        try:
+            self.send_response(status)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(data)))
+            self.send_header("x-request-id", request_id)
+            self.end_headers()
+            self.wfile.write(data)
+            self._response_started = True
+        except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
+            self._cancelled = True
 
     def _read_json(self) -> dict[str, Any] | None:
         length = int(self.headers.get("Content-Length") or "0")
@@ -53,6 +68,8 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
         return obj
 
     def do_GET(self) -> None:  # noqa: N802
+        self._cancelled = False
+        self._response_started = False
         path = urlparse(self.path).path
         auth = self.headers.get("Authorization")
         rid_h = self.headers.get("x-request-id")
@@ -64,10 +81,18 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
                 rid,
             )
             return
-        status, body, rid = handle_health(self.config, authorization=auth, request_id_header=rid_h)
+        status, body, rid = handle_health(
+            self.config,
+            authorization=auth,
+            request_id_header=rid_h,
+            state=self.state,
+            service=self.service,
+        )
         self._send(status, body, rid)
 
     def do_POST(self) -> None:  # noqa: N802
+        self._cancelled = False
+        self._response_started = False
         path = urlparse(self.path).path
         auth = self.headers.get("Authorization")
         rid_h = self.headers.get("x-request-id")
@@ -92,12 +117,18 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
                 rid,
             )
             return
+        cancel = threading.Event()
         status, body, rid = handle_chat_completions(
             self.config,
             authorization=auth,
             request_id_header=rid_h,
             payload=payload,
+            state=self.state,
+            service=self.service,
+            cancel_event=cancel,
         )
+        # Cancellation is cooperative via cancel_event (tests / future disconnect hooks).
+        # Broken pipe on write sets _cancelled and skips a late response body.
         self._send(status, body, rid)
 
     def do_PUT(self) -> None:  # noqa: N802
@@ -117,27 +148,65 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
 
 def make_server(config: ServerConfig | None = None) -> ThreadingHTTPServer:
     cfg = config or load_config()
+    if not cfg.auth_configured:
+        raise ConfigError("COBRA_CORE_AUTH_SECRET is required")
     if cfg.host not in {"127.0.0.1", "localhost", "::1"}:
-        # Local-only guard for Phase 5B.1-CORE (no public exposure).
-        raise RuntimeError("COBRA_PROTOCOL_HOST must be loopback for Phase 5B.1-CORE")
+        # Local-only guard (no public exposure in this phase).
+        raise RuntimeError("COBRA_CORE_HOST/COBRA_PROTOCOL_HOST must be loopback")
+
+    state = RuntimeState(inference_mode=cfg.inference_mode)
+    service = InferenceService(cfg, state)
+    if cfg.inference_mode in {"mock", "echo", "test"}:
+        state.mark_loaded()
+    elif cfg.eager_load:
+        try:
+            service.ensure_runtime()
+        except Exception:
+            log_event("startup", status="model_unavailable", model=cfg.model)
+
+    bound_cfg = cfg
+    bound_state = state
+    bound_service = service
 
     class BoundHandler(ProtocolV1Handler):
-        config = cfg
+        config = bound_cfg
+        state = bound_state
+        service = bound_service
 
     httpd = ThreadingHTTPServer((cfg.host, cfg.port), BoundHandler)
+    httpd.daemon_threads = True
     return httpd
 
 
 def serve_forever(config: ServerConfig | None = None) -> None:
     cfg = config or load_config()
+    logging.getLogger().setLevel(getattr(logging, cfg.log_level, logging.INFO))
     httpd = make_server(cfg)
-    logger.info(
-        "Protocol V1 listening on http://%s:%s (inference_mode=%s)",
-        cfg.host,
-        cfg.port,
-        cfg.inference_mode,
+
+    def _shutdown(signum: int, frame: Any) -> None:
+        del signum, frame
+        log_event("shutdown", status="graceful")
+        threading.Thread(target=httpd.shutdown, daemon=True).start()
+
+    try:
+        signal.signal(signal.SIGINT, _shutdown)
+        signal.signal(signal.SIGTERM, _shutdown)
+    except (ValueError, OSError):
+        # Signals may be unavailable on some Windows/thread contexts.
+        pass
+
+    log_event(
+        "startup",
+        host=cfg.host,
+        port=cfg.port,
+        inference_mode=cfg.inference_mode,
+        protocolVersion=cfg.protocol_version,
+        compatibilityVersion=cfg.compatibility_version,
+        model=cfg.model,
+        revision=cfg.revision,
     )
     try:
         httpd.serve_forever()
     finally:
         httpd.server_close()
+        log_event("shutdown", status="closed")

@@ -10,7 +10,6 @@ import sys
 
 def main() -> int:
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
-    # Ensure src on path when run as script without install.
     root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     src = os.path.join(root, "src")
     if src not in sys.path:
@@ -20,11 +19,13 @@ def main() -> int:
         print("COBRA_CORE_AUTH_SECRET is required", file=sys.stderr)
         return 2
     os.environ.setdefault("COBRA_INFERENCE_MODE", "mock")
-    os.environ.setdefault("COBRA_PROTOCOL_HOST", "127.0.0.1")
+    os.environ.setdefault("COBRA_CORE_HOST", os.environ.get("COBRA_PROTOCOL_HOST", "127.0.0.1"))
+    os.environ.setdefault("COBRA_PROTOCOL_VERSION", "1")
+    os.environ.setdefault("COBRA_COMPATIBILITY_VERSION", "1")
 
-    from cobra_core.protocol_v1.server import serve_forever
+    from cobra_core.protocol_v1.cli import main as cli_main
 
-    serve_forever()
+    cli_main()
     return 0
 
 
