@@ -1,0 +1,41 @@
+{
+  "schema": "cobra.cloud.cost_record.v1",
+  "phase": "4.2-pilot",
+  "status": "terminated",
+  "provider": "RunPod",
+  "primary_pod_id": "q5s51eej16q58m",
+  "gpu": "NVIDIA RTX A5000",
+  "hourly_rate_at_launch_usd": 0.16,
+  "launch_timestamp": "2026-07-24T01:38:10Z",
+  "termination_timestamp": "2026-07-24T02:24:00Z",
+  "billed_or_estimated_duration_hours": 0.77,
+  "estimated_compute_cost_usd": 0.12,
+  "failed_attempt_pods": [
+    {
+      "pod_id": "aj9k9rzjyxpivp",
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "hourly_usd": 0.22,
+      "estimated_hours": 0.05,
+      "estimated_usd": 0.011,
+      "note": "SSH/scp path failure; terminated"
+    },
+    {
+      "pod_id": "wnikezu7ndzsai",
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "hourly_usd": 0.22,
+      "estimated_hours": 0.02,
+      "estimated_usd": 0.004,
+      "note": "mkdir argv mangling; terminated"
+    }
+  ],
+  "total_estimated_cost_usd": 0.14,
+  "approved_spending_ceiling_usd": 10.0,
+  "ceiling_respected": true,
+  "remaining_matching_pod_ids": [],
+  "delete_http_status": 204,
+  "notes": [
+    "Software pins matched phase-3f-qualified (torch 2.6.0+cu124, transformers 5.14.1, bnb 0.49.2, Python 3.12.3).",
+    "Host SKU was A5000 due to Community L4/A40 capacity exhaustion; not a re-qualification of A40.",
+    "No CobraBench; no prompt tuning; no training; no deployment."
+  ]
+}
