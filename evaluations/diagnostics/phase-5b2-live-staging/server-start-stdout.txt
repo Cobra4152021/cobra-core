@@ -1,0 +1,9 @@
+SERVER_PID:985
+HEALTH_OK:3
+Selecting previously unselected package cloudflared.
+(Reading database ... 49105 files and directories currently installed.)
+Preparing to unpack /tmp/cloudflared.deb ...
+Unpacking cloudflared (2026.7.3) ...
+Setting up cloudflared (2026.7.3) ...
+TUNNEL_PID:1041
+TUNNEL_URL:https://federal-armor-lite-reflect.trycloudflare.com

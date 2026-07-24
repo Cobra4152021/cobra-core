@@ -1,0 +1,85 @@
+{
+  "base_url": "https://federal-armor-lite-reflect.trycloudflare.com",
+  "results": [
+    {
+      "name": "health_auth_ok",
+      "pass": true,
+      "detail": "status=200 reason=ok"
+    },
+    {
+      "name": "revision",
+      "pass": true,
+      "detail": "phase-5b2-00e4862b90d0"
+    },
+    {
+      "name": "gitSha",
+      "pass": true,
+      "detail": "00e4862b90d0eca0f6ec0b5f7191ba0ce43fa6fa"
+    },
+    {
+      "name": "limits_context",
+      "pass": true,
+      "detail": "{'maxContext': 8192, 'maxOutputTokens': 256, 'timeoutMs': 120000}"
+    },
+    {
+      "name": "limits_output",
+      "pass": true,
+      "detail": "{'maxContext': 8192, 'maxOutputTokens': 256, 'timeoutMs': 120000}"
+    },
+    {
+      "name": "health_no_auth",
+      "pass": true,
+      "detail": "401"
+    },
+    {
+      "name": "health_bad_auth",
+      "pass": true,
+      "detail": "401"
+    },
+    {
+      "name": "completion_ok",
+      "pass": true,
+      "detail": "status=200 len=221"
+    },
+    {
+      "name": "request_id_preserved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "usage",
+      "pass": true,
+      "detail": "{'prompt_tokens': 13, 'completion_tokens': 48, 'total_tokens': 61}"
+    },
+    {
+      "name": "latency",
+      "pass": true,
+      "detail": "{'queue_ms': 0, 'provider_latency_ms': 4708, 'inference_ms': 4708, 'total_ms': 4708}"
+    },
+    {
+      "name": "no_traceback",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "request_id_generated",
+      "pass": true,
+      "detail": "cc_5f39c88a-87ee-42a4-9753-619534b21a80"
+    },
+    {
+      "name": "output_limit_cap",
+      "pass": true,
+      "detail": "200"
+    },
+    {
+      "name": "bad_request",
+      "pass": true,
+      "detail": "400"
+    },
+    {
+      "name": "safe_error",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}

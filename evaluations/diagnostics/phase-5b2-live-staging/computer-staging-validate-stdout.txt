@@ -1,0 +1,63 @@
+
+> hidden-grid-os@0.0.0 cobra-core:staging-validate
+> node scripts/cobra-core-staging/run-all.mjs --staging
+
+
+=== preflight.mjs ===
+info - mode=preflight (config only)
+ok  - production + staging COBRA_CORE_ENABLED/SHADOW_MODE=false
+ok  - COBRA_CORE_ADMIN_ONLY=true (prod + staging)
+ok  - committed BASE_URL empty (prod + staging)
+ok  - no COBRA_CORE_AUTH_SECRET in wrangler vars
+ok  - ENDPOINT_CONTRACT Protocol Version 1 present
+ok  - protocol + compatibility version constants frozen at 1
+ok  - default selection still references adaptive-claude
+ok  - no cobra-core fallbackProviders list detected in handlers.ts
+
+PASS: cobra-core staging preflight
+ok  - preflight.mjs passed
+
+=== smoke.mjs ===
+info - mode=live-http
+ok  - configuration: hard-disabled flags
+ok  - no automatic routing: default remains adaptive-claude
+ok  - provider absent from roster when disabled
+ok  - ordinary-user + admin: Core hidden while disabled
+ok  - not routable while disabled
+ok  - zero traffic while disabled (health/complete/stream/shadow)
+ok  - ordinary-user RBAC rejection (admin-only visibility)
+ok  - no fallback: normalized provider error, retryable=false
+ok  - no fallback via completeProvider dispatch
+ok  - request ID + latency + usage normalization on error path
+info - HTTP GET https://federal-armor-lite-reflect.trycloudflare.com/health headers={"authorization":"Bearer ***REDACTED***","content-type":"application/json","accept":"application/json"}
+ok  - endpoint health
+info - HTTP POST https://federal-armor-lite-reflect.trycloudflare.com/v1/chat/completions headers={"content-type":"application/json","accept":"application/json"}
+ok  - unauthorized request rejected
+info - HTTP POST https://federal-armor-lite-reflect.trycloudflare.com/v1/chat/completions headers={"authorization":"Bearer ***REDACTED***","content-type":"application/json","accept":"application/json"}
+ok  - invalid authentication rejected
+info - HTTP POST https://federal-armor-lite-reflect.trycloudflare.com/v1/chat/completions headers={"authorization":"Bearer ***REDACTED***","content-type":"application/json","accept":"application/json","x-request-id":"cc_smoke_1784885342062"}
+ok  - authorized completion
+ok  - usage normalization (server fields present)
+ok  - latency normalization (client wall_ms=3112)
+info - HTTP POST https://federal-armor-lite-reflect.trycloudflare.com/v1/chat/completions headers={"authorization":"Bearer ***REDACTED***","content-type":"application/json","accept":"application/json","x-request-id":"cc_smoke_1784885342062_stream"}
+ok  - authorized streaming (Protocol V1 one-shot-backed)
+ok  - request ID propagation (sent x-request-id=cc_smoke_1784885342062; value not a secret)
+ok  - timeout validation (abort observed)
+info - receipt: dryRun=false baseUrlConfigured=true secretPresentInEnv=true
+
+PASS: cobra-core staging smoke
+ok  - smoke.mjs passed
+
+=== kill-switch.mjs ===
+info - mode=kill-switch (config + offline adapter; no HTTP)
+ok  - COBRA_CORE_ENABLED=false (prod + staging committed config)
+ok  - COBRA_CORE_SHADOW_MODE=false (prod + staging committed config)
+ok  - provider disappears (roster / menu / configured)
+ok  - zero traffic occurs while disabled
+ok  - default selection remains adaptive-claude
+info - live HTTP skipped by design — kill-switch validates disabled posture only
+
+PASS: cobra-core kill-switch
+ok  - kill-switch.mjs passed
+
+PASS: cobra-core staging validate (all)

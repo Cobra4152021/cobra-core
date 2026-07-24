@@ -1,0 +1,82 @@
+[
+  {
+    "i": 0,
+    "ok": true,
+    "chars": 247,
+    "usage": {
+      "prompt_tokens": 20,
+      "completion_tokens": 64,
+      "total_tokens": 84
+    },
+    "latency": {
+      "queue_ms": 0,
+      "provider_latency_ms": 5168,
+      "inference_ms": 5168,
+      "total_ms": 5169
+    }
+  },
+  {
+    "i": 1,
+    "ok": true,
+    "chars": 328,
+    "usage": {
+      "prompt_tokens": 25,
+      "completion_tokens": 64,
+      "total_tokens": 89
+    },
+    "latency": {
+      "queue_ms": 0,
+      "provider_latency_ms": 5213,
+      "inference_ms": 5213,
+      "total_ms": 5214
+    }
+  },
+  {
+    "i": 2,
+    "ok": true,
+    "chars": 301,
+    "usage": {
+      "prompt_tokens": 17,
+      "completion_tokens": 64,
+      "total_tokens": 81
+    },
+    "latency": {
+      "queue_ms": 0,
+      "provider_latency_ms": 5158,
+      "inference_ms": 5158,
+      "total_ms": 5158
+    }
+  },
+  {
+    "i": 3,
+    "ok": true,
+    "chars": 315,
+    "usage": {
+      "prompt_tokens": 18,
+      "completion_tokens": 64,
+      "total_tokens": 82
+    },
+    "latency": {
+      "queue_ms": 0,
+      "provider_latency_ms": 5137,
+      "inference_ms": 5137,
+      "total_ms": 5137
+    }
+  },
+  {
+    "i": 4,
+    "ok": true,
+    "chars": 302,
+    "usage": {
+      "prompt_tokens": 19,
+      "completion_tokens": 64,
+      "total_tokens": 83
+    },
+    "latency": {
+      "queue_ms": 0,
+      "provider_latency_ms": 5204,
+      "inference_ms": 5204,
+      "total_ms": 5204
+    }
+  }
+]

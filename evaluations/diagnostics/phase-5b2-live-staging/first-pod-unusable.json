@@ -1,0 +1,6 @@
+{
+  "reason": "cuda_unknown_error",
+  "device_nodes": "nvidia1_without_nvidia0",
+  "action": "terminated_and_retry",
+  "at": "2026-07-24T08:49:00.802335+00:00"
+}

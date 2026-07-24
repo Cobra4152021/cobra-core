@@ -1,0 +1,23 @@
+{
+  "budget_usd": 10.0,
+  "provider": "RunPod",
+  "successful_pod": {
+    "pod_id": "mxdxxoqyo4hrdm",
+    "gpu": "NVIDIA RTX A5000",
+    "hourly_usd": 0.16,
+    "started_at": "2026-07-24T08:57:45.935+00:00",
+    "terminated_at": "2026-07-24T09:31:12.531721+00:00",
+    "runtime_hours": 0.5586,
+    "estimated_cost_usd": 0.0894
+  },
+  "prior_unusable_or_short_pods_estimated_usd": 0.13,
+  "notes": [
+    "First pod yh5jpomg934ydt terminated as CUDA-unusable (allowed second resource).",
+    "Intermediate short pods from earlier DNS/proxy retries were terminated before this successful A5000 run.",
+    "No persistent billable volumes retained.",
+    "Total Phase 5B.2 estimated spend remains well under $10."
+  ],
+  "estimated_total_phase_cost_usd": 0.22,
+  "zero_billable_remaining": true,
+  "remaining_pods_after_cleanup": 0
+}

@@ -1,0 +1,41 @@
+
+> hidden-grid-os@0.0.0 build
+> tsc -b && vite build
+
+vite v8.0.16 building hidden_grid_os environment for production...
+[2K
+transforming...✓ 637 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/hidden_grid_os/.vite/manifest.json                            1.38 kB │ gzip:   0.35 kB
+dist/hidden_grid_os/wrangler.json                                  9.16 kB │ gzip:   3.00 kB
+dist/hidden_grid_os/assets/version-BHTiQTUJ.js                     0.17 kB │ gzip:   0.15 kB
+dist/hidden_grid_os/assets/NodeWebSocketTransport-D64Fd4io.js      1.60 kB │ gzip:   0.78 kB
+dist/hidden_grid_os/assets/src-BkTOU0bl.js                        20.21 kB │ gzip:   6.15 kB
+dist/hidden_grid_os/assets/pdfjs-B2GznG7O.js                   2,067.77 kB │ gzip: 554.26 kB
+dist/hidden_grid_os/index.js                                   3,767.07 kB │ gzip: 855.51 kB
+
+✓ built in 649ms
+vite v8.0.16 building client environment for production...
+[2K
+transforming...✓ 802 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/client/.assetsignore                        0.02 kB
+dist/client/index.html                           1.35 kB │ gzip:   0.56 kB
+dist/client/assets/MapLab-vh-t_kPv.css          15.09 kB │ gzip:   6.36 kB
+dist/client/assets/index-BCelWlCW.css           66.13 kB │ gzip:  12.61 kB
+dist/client/assets/CobraShell-CPH7Jou7.css      77.53 kB │ gzip:  13.64 kB
+dist/client/assets/devKey-BNfWz3Ud.js            0.17 kB │ gzip:   0.14 kB
+dist/client/assets/chunk-QTnfLwEv.js             0.69 kB │ gzip:   0.42 kB
+dist/client/assets/pdf-t_axWaJj.js               6.21 kB │ gzip:   2.91 kB
+dist/client/assets/ReportBuilder-B5CiZZ9m.js     7.45 kB │ gzip:   2.48 kB
+dist/client/assets/SpeechLab-DuKk_Sv3.js         9.31 kB │ gzip:   3.20 kB
+dist/client/assets/LanguageLab-hWo4yXdy.js      15.66 kB │ gzip:   5.00 kB
+dist/client/assets/DocumentaryLab--2cJu5vV.js   17.53 kB │ gzip:   5.51 kB
+dist/client/assets/MapLab-ClwXYuY9.js          153.85 kB │ gzip:  45.11 kB
+dist/client/assets/es-lmhthCGG.js              519.07 kB │ gzip: 207.08 kB
+dist/client/assets/index-BE_d31iZ.js           625.96 kB │ gzip: 155.52 kB
+dist/client/assets/CobraShell-BSsPv-gi.js      802.51 kB │ gzip: 237.91 kB
+
+✓ built in 748ms

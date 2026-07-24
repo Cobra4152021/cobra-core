@@ -1,0 +1,9 @@
+{
+  "ready": true,
+  "pod_id": "mxdxxoqyo4hrdm",
+  "base_url": "https://federal-armor-lite-reflect.trycloudflare.com",
+  "gpu": null,
+  "cost_per_hr_usd": 0.16,
+  "revision": "phase-5b2-00e4862b90d0",
+  "deadline_unix": 1784887664.221129
+}

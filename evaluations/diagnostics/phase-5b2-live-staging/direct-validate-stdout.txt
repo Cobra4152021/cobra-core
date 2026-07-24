@@ -1,0 +1,17 @@
+PASS health_auth_ok status=200 reason=ok
+PASS revision phase-5b2-00e4862b90d0
+PASS gitSha 00e4862b90d0eca0f6ec0b5f7191ba0ce43fa6fa
+PASS limits_context {'maxContext': 8192, 'maxOutputTokens': 256, 'timeoutMs': 120000}
+PASS limits_output {'maxContext': 8192, 'maxOutputTokens': 256, 'timeoutMs': 120000}
+PASS health_no_auth 401
+PASS health_bad_auth 401
+PASS completion_ok status=200 len=221
+PASS request_id_preserved 
+PASS usage {'prompt_tokens': 13, 'completion_tokens': 48, 'total_tokens': 61}
+PASS latency {'queue_ms': 0, 'provider_latency_ms': 4708, 'inference_ms': 4708, 'total_ms': 4708}
+PASS no_traceback 
+PASS request_id_generated cc_5f39c88a-87ee-42a4-9753-619534b21a80
+PASS output_limit_cap 200
+PASS bad_request 400
+PASS safe_error 
+RESULTS_JSON_OK

@@ -1,0 +1,44 @@
+cuda_ok NVIDIA RTX A5000
+manifest_patched
+model_ok
+2.8.0+cu128 True NVIDIA RTX A5000 5.14.1 0.49.2
+Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+Get:3 https://ppa.launchpadcontent.net/deadsnakes/ppa/ubuntu noble InRelease [17.8 kB]
+Get:4 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1090 kB]
+Get:5 https://ppa.launchpadcontent.net/deadsnakes/ppa/ubuntu noble/main amd64 Packages [45.7 kB]
+Get:6 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1520 kB]
+Get:7 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64  InRelease [1581 B]
+Get:8 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1544 kB]
+Get:9 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:10 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [50.0 kB]
+Get:11 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:12 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+Get:13 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64  Packages [1684 kB]
+Get:14 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+Get:15 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+Get:16 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+Get:17 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1419 kB]
+Get:18 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1676 kB]
+Get:19 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2132 kB]
+Get:20 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [55.8 kB]
+Get:21 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [671 B]
+Get:22 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [48.9 kB]
+Get:23 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [37.7 kB]
+Fetched 33.5 MB in 19s (1784 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following NEW packages will be installed:
+  socat
+0 upgraded, 1 newly installed, 0 to remove and 255 not upgraded.
+Need to get 374 kB of archives.
+After this operation, 1653 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 socat amd64 1.8.0.0-4ubuntu0.1 [374 kB]
+Fetched 374 kB in 0s (1167 kB/s)
+Selecting previously unselected package socat.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 49062 files and directories currently installed.)
+Preparing to unpack .../socat_1.8.0.0-4ubuntu0.1_amd64.deb ...
+Unpacking socat (1.8.0.0-4ubuntu0.1) ...
+Setting up socat (1.8.0.0-4ubuntu0.1) ...

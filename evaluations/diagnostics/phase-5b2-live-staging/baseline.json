@@ -1,0 +1,13 @@
+{
+  "cobra_core_head": "00e4862b90d0eca0f6ec0b5f7191ba0ce43fa6fa",
+  "governance_tip": "50e66e37ebc97de3a4d97c57d67b8975af7caaba",
+  "governance_package": "e78d5be59a6e7cf8beda85a299c8fa707417d114",
+  "protocolVersion": "1",
+  "compatibilityVersion": "1",
+  "schemaVersion": "1.0.0",
+  "schemaHash": "f677ed325714a17ff948e3dbfaf575ec1ad3c2a3aa1940e4d05b5e49c66c32b3",
+  "fixtureHash": "9cddd578ff018902f3df1069e9550de066ef54c1077ac588f2881e7c204868e7",
+  "official_score": 0.84,
+  "cobrabench": "prepared-not-run",
+  "started_at": "2026-07-24T08:57:41.553734+00:00"
+}

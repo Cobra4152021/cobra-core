@@ -1,0 +1,14 @@
+{
+  "COBRA_CORE_BASE_URL": "https://federal-armor-lite-reflect.trycloudflare.com",
+  "COBRA_CORE_MODEL": "cobra-core-qwen3-8b",
+  "COBRA_CORE_REVISION": "phase-5b2-00e4862b90d0",
+  "COBRA_CORE_GIT_SHA": "00e4862b90d0eca0f6ec0b5f7191ba0ce43fa6fa",
+  "COBRA_CORE_TIMEOUT_MS": "120000",
+  "COBRA_CORE_MAX_CONTEXT": "8192",
+  "COBRA_CORE_MAX_OUTPUT_TOKENS": "256",
+  "COBRA_CORE_ENABLED": "true",
+  "COBRA_CORE_ADMIN_ONLY": "true",
+  "COBRA_CORE_SHADOW_MODE": "false",
+  "auth_secret_in_process_env": true,
+  "tls_method": "Cloudflare quick tunnel (trycloudflare.com) to loopback Protocol V1"
+}

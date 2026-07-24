@@ -1,0 +1,26 @@
+{
+  "started_at": "2026-07-24T09:28:26.018478+00:00",
+  "steps": [
+    {
+      "put_secret": true
+    },
+    {
+      "deploy_enable": true
+    },
+    {
+      "staging_validate": true,
+      "exit": 0
+    },
+    {
+      "sanity": true,
+      "count": 5
+    }
+  ],
+  "kill_switch": {
+    "build_rc": 0,
+    "deploy_rc": 0,
+    "kill_switch_rc": 0,
+    "secret_invalidated": true
+  },
+  "ended_at": "2026-07-24T09:30:32.014507+00:00"
+}
