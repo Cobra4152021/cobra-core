@@ -1,0 +1,20 @@
+{
+  "id": "BZ-03",
+  "domain": "business",
+  "repeats": 1,
+  "success": true,
+  "error": null,
+  "outputs": [
+    {
+      "latency_s": 19.986,
+      "output_tokens": 423,
+      "peak_vram_bytes": 6349381632,
+      "memory": {
+        "available_ram_bytes": 90831163392,
+        "total_ram_bytes": 100321173504,
+        "used_ram_bytes": 9490010112
+      },
+      "char_len": 1585
+    }
+  ]
+}

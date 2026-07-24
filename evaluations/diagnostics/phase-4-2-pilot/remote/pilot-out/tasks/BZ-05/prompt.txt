@@ -1,0 +1,5 @@
+Architecture review request:
+Proposed design: single Cloudflare Worker + D1 + R2 for storing evaluation artifact metadata and files.
+Constraints: no public unauthenticated upload; single engineer team; cost-sensitive.
+
+List at least 5 concrete risks and at least 2 alternatives. Do not invent CVE identifiers.

@@ -1,0 +1,12 @@
+Debug this Python snippet and traceback. Give root cause and a minimal fix only.
+
+Code:
+def average(nums):
+    return sum(nums) / len(nums)
+
+print(average([]))
+
+Traceback:
+ZeroDivisionError: division by zero
+  File "app.py", line 2, in average
+  File "app.py", line 4, in <module>

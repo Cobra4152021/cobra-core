@@ -1,0 +1,5 @@
+Sources:
+[S1] The report states rainfall was 12 mm on Monday.
+[S2] The station log lists wind peak at 40 km/h on Monday.
+
+Write three findings. Cite only [S1] and/or [S2]. Do not invent other source IDs.

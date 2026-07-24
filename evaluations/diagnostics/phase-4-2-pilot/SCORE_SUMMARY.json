@@ -1,0 +1,24 @@
+{
+  "schema": "cobra.diagnostics.phase42_pilot_score_summary.v1",
+  "tasks_executed": 10,
+  "pass_or_pass_plus": 10,
+  "pass_rate": 1.0,
+  "critical_hard_fails": 0,
+  "grades": {
+    "INV-05": "Pass",
+    "INV-08": "Pass+",
+    "RS-05": "Pass+",
+    "RS-06": "Pass+",
+    "REL-01": "Pass+",
+    "REL-04": "Pass",
+    "CG-01": "Pass+",
+    "CG-12": "Pass+",
+    "BZ-03": "Pass",
+    "BZ-05": "Pass"
+  },
+  "recommendation": "proceed_to_full_phase4_after_framework_revisions",
+  "official_score_unchanged": 0.84,
+  "cobrabench_status": "prepared-not-run",
+  "benchmark_executed": false,
+  "prompt_tuning": false
+}

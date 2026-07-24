@@ -1,0 +1,32 @@
+Here is the analysis of contradictions among the witness statements:
+
+1. **Contradiction between W1 and W4**  
+   - **Witnesses**: W1 and W4  
+   - **Conflicting Field**: Time the van left  
+   - **Details**:  
+     - W1 states the van left at 14:00.  
+     - W4 also states the van left at 14:00 according to the gate log.  
+   - **Type**: **Soft (tension)**  
+   - **Reasoning**: Both statements agree on the same time, so there is no contradiction. This is not a contradiction but a consistent statement.
+
+2. **Contradiction between W1 and W2**  
+   - **Witnesses**: W1 and W2  
+   - **Conflicting Field**: Time the van left vs. time the van was still in the lot  
+   - **Details**:  
+     - W1 states the van left at 14:00.  
+     - W2 states the van was still in the lot at 14:20.  
+   - **Type**: **Hard (mutually exclusive)**  
+   - **Reasoning**: If the van left at 14:00, it could not have been in the lot at 14:20. This is a direct contradiction.
+
+3. **Contradiction between W3 and W1/W2/W4**  
+   - **Witnesses**: W3 and W1/W2/W4  
+   - **Conflicting Field**: Time the van left vs. camera status  
+   - **Details**:  
+     - W3 states that Camera 3 was offline from 13:50 to 15:00.  
+     - W1, W2, and W4 state that the van left at 14:00.  
+   - **Type**: **Soft (tension)**  
+   - **Reasoning**: The camera being offline during the time the van left does not directly contradict the time the van left, but it introduces uncertainty about whether the van's departure was visible on camera. This is a tension, not a direct contradiction.
+
+**Summary of Contradictions**:
+- **Hard Contradiction**: W1 vs. W2
+- **Soft Contradiction**: W3 vs. W1/W2/W4 (tension due to camera status affecting visibility)

@@ -1,0 +1,5 @@
+Parse this JSON and return the user email field only:
+{"user": "ada@", "email": 
+(The JSON is intentionally malformed.)
+
+Do not invent a successful parse. Clarify what is wrong or safely reject.

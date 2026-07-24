@@ -1,0 +1,20 @@
+{
+  "id": "INV-05",
+  "domain": "investigator",
+  "repeats": 1,
+  "success": true,
+  "error": null,
+  "outputs": [
+    {
+      "latency_s": 22.773,
+      "output_tokens": 503,
+      "peak_vram_bytes": 6338344960,
+      "memory": {
+        "available_ram_bytes": 90864652288,
+        "total_ram_bytes": 100321173504,
+        "used_ram_bytes": 9456521216
+      },
+      "char_len": 1710
+    }
+  ]
+}

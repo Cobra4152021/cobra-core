@@ -22,7 +22,8 @@ Evaluate whether the smoke-qualified Qwen3-8B cloud Linux runtime is **genuinely
 | [CAPABILITY_MATRIX.md](./CAPABILITY_MATRIX.md) | Compact matrix of capabilities × usefulness |
 | [RECOMMENDED_EXECUTION_ORDER.md](./RECOMMENDED_EXECUTION_ORDER.md) | Wave order for a future authorized run |
 
-Product identity & gates: `docs/product/` (Phase 4.1). Execute this suite only after product metrics/gates are understood.
+Product identity & gates: `docs/product/` (Phase 4.1).  
+Pilot (Phase 4.2): `docs/capability-validation/pilot/` — framework practicality validated; full 46-task run still requires separate authorization.
 
 ## Hard rules
 

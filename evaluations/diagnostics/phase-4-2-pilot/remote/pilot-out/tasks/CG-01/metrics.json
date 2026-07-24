@@ -1,0 +1,20 @@
+{
+  "id": "CG-01",
+  "domain": "engineering",
+  "repeats": 1,
+  "success": true,
+  "error": null,
+  "outputs": [
+    {
+      "latency_s": 11.147,
+      "output_tokens": 238,
+      "peak_vram_bytes": 6331217920,
+      "memory": {
+        "available_ram_bytes": 90843136000,
+        "total_ram_bytes": 100321173504,
+        "used_ram_bytes": 9478037504
+      },
+      "char_len": 992
+    }
+  ]
+}

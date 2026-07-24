@@ -1,0 +1,42 @@
+{
+  "id": "REL-01",
+  "domain": "reliability",
+  "repeats": 3,
+  "success": true,
+  "error": null,
+  "outputs": [
+    {
+      "latency_s": 1.208,
+      "output_tokens": 22,
+      "peak_vram_bytes": 6318572544,
+      "memory": {
+        "available_ram_bytes": 90842079232,
+        "total_ram_bytes": 100321173504,
+        "used_ram_bytes": 9479094272
+      },
+      "char_len": 77
+    },
+    {
+      "latency_s": 1.189,
+      "output_tokens": 22,
+      "peak_vram_bytes": 6318572544,
+      "memory": {
+        "available_ram_bytes": 90842079232,
+        "total_ram_bytes": 100321173504,
+        "used_ram_bytes": 9479094272
+      },
+      "char_len": 77
+    },
+    {
+      "latency_s": 1.188,
+      "output_tokens": 22,
+      "peak_vram_bytes": 6318572544,
+      "memory": {
+        "available_ram_bytes": 90842079232,
+        "total_ram_bytes": 100321173504,
+        "used_ram_bytes": 9479094272
+      },
+      "char_len": 77
+    }
+  ]
+}

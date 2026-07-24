@@ -1,0 +1,36 @@
+**Architecture Review: Single Cloudflare Worker + D1 + R2 for Storing Evaluation Artifact Metadata and Files**
+
+**Constraints:**
+- No public unauthenticated upload
+- Single engineer team
+- Cost-sensitive
+
+---
+
+### **5 Concrete Risks**
+
+1. **Single Point of Failure (SPOF) with Worker Logic**  
+   The Cloudflare Worker is the only entry point for all operations, including metadata and file storage. If the Worker fails, or if there is a bug in the Worker code, the entire system becomes inaccessible. This is a critical risk for a single-engineer team with limited redundancy options.  
+   *Source: Cloudflare Worker documentation and general distributed system principles.*
+
+2. **Limited D1 Database Scalability and Performance**  
+   D1 is a serverless SQL database, and while it is suitable for small to medium workloads, it may not scale efficiently for high-throughput or high-latency scenarios. If the evaluation artifacts grow in volume, performance could degrade, leading to increased latency or timeouts.  
+   *Source: Cloudflare D1 documentation and performance benchmarks.*
+
+3. **Storage Cost and Management Complexity with R2**  
+   R2 is a global object storage solution, but it lacks the fine-grained access control and metadata management capabilities of a traditional database. Managing large numbers of files with R2 may become complex, especially when combined with D1 for metadata. This could lead to increased operational overhead and higher costs over time.  
+   *Source: Cloudflare R2 documentation and storage cost analysis.*
+
+4. **Security Risks with Unrestricted R2 Access**  
+   Even though the system is designed to prevent unauthenticated uploads, the Worker must still manage access to R2. If the Worker logic is not properly secured (e.g., incorrect access keys or misconfigured permissions), there is a risk of unauthorized access to stored artifacts.  
+   *Source: Cloudflare R2 security best practices and access control documentation.*
+
+5. **Lack of Built-in Backup and Recovery Mechanisms**  
+   Cloudflare D1 and R2 do not provide native backup or disaster recovery features. If data is lost due to accidental deletion, corruption, or a bug in the Worker, there may be no straightforward way to recover the data without external tools or manual intervention.  
+   *Source: Cloudflare D1 and R2 documentation on data durability and recovery.*
+
+---
+
+### **2 Alternatives**
+
+1. **Use of a Third-Party Object Storage with Fine-Grained Access Control**

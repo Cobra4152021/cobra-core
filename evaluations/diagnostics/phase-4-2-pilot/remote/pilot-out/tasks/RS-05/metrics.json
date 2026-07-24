@@ -1,0 +1,20 @@
+{
+  "id": "RS-05",
+  "domain": "research",
+  "repeats": 1,
+  "success": true,
+  "error": null,
+  "outputs": [
+    {
+      "latency_s": 3.761,
+      "output_tokens": 79,
+      "peak_vram_bytes": 6325469184,
+      "memory": {
+        "available_ram_bytes": 90849284096,
+        "total_ram_bytes": 100321173504,
+        "used_ram_bytes": 9471889408
+      },
+      "char_len": 245
+    }
+  ]
+}

@@ -1,0 +1,247 @@
+{
+  "schema": "cobra.diagnostics.phase42_pilot_run.v1",
+  "started_at": "2026-07-24T02:21:03.226692+00:00",
+  "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+  "gpu_name": "NVIDIA RTX A5000",
+  "cuda_available": true,
+  "tasks": [
+    {
+      "id": "INV-05",
+      "domain": "investigator",
+      "repeats": 1,
+      "success": true,
+      "error": null,
+      "outputs": [
+        {
+          "latency_s": 22.773,
+          "output_tokens": 503,
+          "peak_vram_bytes": 6338344960,
+          "memory": {
+            "available_ram_bytes": 90864652288,
+            "total_ram_bytes": 100321173504,
+            "used_ram_bytes": 9456521216
+          },
+          "char_len": 1710
+        }
+      ]
+    },
+    {
+      "id": "INV-08",
+      "domain": "investigator",
+      "repeats": 1,
+      "success": true,
+      "error": null,
+      "outputs": [
+        {
+          "latency_s": 7.755,
+          "output_tokens": 169,
+          "peak_vram_bytes": 6331448320,
+          "memory": {
+            "available_ram_bytes": 90861830144,
+            "total_ram_bytes": 100321173504,
+            "used_ram_bytes": 9459343360
+          },
+          "char_len": 745
+        }
+      ]
+    },
+    {
+      "id": "RS-05",
+      "domain": "research",
+      "repeats": 1,
+      "success": true,
+      "error": null,
+      "outputs": [
+        {
+          "latency_s": 3.761,
+          "output_tokens": 79,
+          "peak_vram_bytes": 6325469184,
+          "memory": {
+            "available_ram_bytes": 90849284096,
+            "total_ram_bytes": 100321173504,
+            "used_ram_bytes": 9471889408
+          },
+          "char_len": 245
+        }
+      ]
+    },
+    {
+      "id": "RS-06",
+      "domain": "research",
+      "repeats": 1,
+      "success": true,
+      "error": null,
+      "outputs": [
+        {
+          "latency_s": 4.602,
+          "output_tokens": 97,
+          "peak_vram_bytes": 6326618112,
+          "memory": {
+            "available_ram_bytes": 90844901376,
+            "total_ram_bytes": 100321173504,
+            "used_ram_bytes": 9476272128
+          },
+          "char_len": 361
+        }
+      ]
+    },
+    {
+      "id": "REL-01",
+      "domain": "reliability",
+      "repeats": 3,
+      "success": true,
+      "error": null,
+      "outputs": [
+        {
+          "latency_s": 1.208,
+          "output_tokens": 22,
+          "peak_vram_bytes": 6318572544,
+          "memory": {
+            "available_ram_bytes": 90842079232,
+            "total_ram_bytes": 100321173504,
+            "used_ram_bytes": 9479094272
+          },
+          "char_len": 77
+        },
+        {
+          "latency_s": 1.189,
+          "output_tokens": 22,
+          "peak_vram_bytes": 6318572544,
+          "memory": {
+            "available_ram_bytes": 90842079232,
+            "total_ram_bytes": 100321173504,
+            "used_ram_bytes": 9479094272
+          },
+          "char_len": 77
+        },
+        {
+          "latency_s": 1.188,
+          "output_tokens": 22,
+          "peak_vram_bytes": 6318572544,
+          "memory": {
+            "available_ram_bytes": 90842079232,
+            "total_ram_bytes": 100321173504,
+            "used_ram_bytes": 9479094272
+          },
+          "char_len": 77
+        }
+      ]
+    },
+    {
+      "id": "REL-04",
+      "domain": "reliability",
+      "repeats": 1,
+      "success": true,
+      "error": null,
+      "outputs": [
+        {
+          "latency_s": 3.9,
+          "output_tokens": 82,
+          "peak_vram_bytes": 6321790976,
+          "memory": {
+            "available_ram_bytes": 90841071616,
+            "total_ram_bytes": 100321173504,
+            "used_ram_bytes": 9480101888
+          },
+          "char_len": 391
+        }
+      ]
+    },
+    {
+      "id": "CG-01",
+      "domain": "engineering",
+      "repeats": 1,
+      "success": true,
+      "error": null,
+      "outputs": [
+        {
+          "latency_s": 11.147,
+          "output_tokens": 238,
+          "peak_vram_bytes": 6331217920,
+          "memory": {
+            "available_ram_bytes": 90843136000,
+            "total_ram_bytes": 100321173504,
+            "used_ram_bytes": 9478037504
+          },
+          "char_len": 992
+        }
+      ]
+    },
+    {
+      "id": "CG-12",
+      "domain": "engineering",
+      "repeats": 1,
+      "success": true,
+      "error": null,
+      "outputs": [
+        {
+          "latency_s": 6.596,
+          "output_tokens": 138,
+          "peak_vram_bytes": 6328919040,
+          "memory": {
+            "available_ram_bytes": 90843144192,
+            "total_ram_bytes": 100321173504,
+            "used_ram_bytes": 9478029312
+          },
+          "char_len": 572
+        }
+      ]
+    },
+    {
+      "id": "BZ-03",
+      "domain": "business",
+      "repeats": 1,
+      "success": true,
+      "error": null,
+      "outputs": [
+        {
+          "latency_s": 19.986,
+          "output_tokens": 423,
+          "peak_vram_bytes": 6349381632,
+          "memory": {
+            "available_ram_bytes": 90831163392,
+            "total_ram_bytes": 100321173504,
+            "used_ram_bytes": 9490010112
+          },
+          "char_len": 1585
+        }
+      ]
+    },
+    {
+      "id": "BZ-05",
+      "domain": "business",
+      "repeats": 1,
+      "success": true,
+      "error": null,
+      "outputs": [
+        {
+          "latency_s": 21.497,
+          "output_tokens": 512,
+          "peak_vram_bytes": 6325928960,
+          "memory": {
+            "available_ram_bytes": 92590977024,
+            "total_ram_bytes": 100321173504,
+            "used_ram_bytes": 7730196480
+          },
+          "char_len": 2484
+        }
+      ]
+    }
+  ],
+  "benchmark_content": false,
+  "prompt_tuning": false,
+  "load_seconds": 3.703,
+  "peak_vram_after_load": 6173550592,
+  "memory_after_load": {
+    "available_ram_bytes": 91659010048,
+    "total_ram_bytes": 100321173504,
+    "used_ram_bytes": 8662163456
+  },
+  "ended_at": "2026-07-24T02:22:52.890238+00:00",
+  "peak_vram_bytes": 6325928960,
+  "memory_end": {
+    "available_ram_bytes": 92590977024,
+    "total_ram_bytes": 100321173504,
+    "used_ram_bytes": 7730196480
+  }
+}

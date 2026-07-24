@@ -1,0 +1,42 @@
+1. **Set Up the Environment**  
+   - Create a new directory for the project and navigate into it.  
+   - Use `/workspace` as the root directory for the model and virtual environment (do not use overlay `/`).  
+
+2. **Create a Python 3.12 Virtual Environment**  
+   - Run the following command to create a virtual environment:  
+     ```bash
+     python3.12 -m venv /workspace/venv
+     ```  
+   - Activate the virtual environment:  
+     ```bash
+     source /workspace/venv/bin/activate
+     ```  
+
+3. **Install PyTorch**  
+   - Install the specified version of PyTorch with CUDA support:  
+     ```bash
+     pip install torch==2.6.0+cu124
+     ```  
+
+4. **Install Runtime Dependencies**  
+   - Install the runtime dependencies from the `requirements-cloud-runtime.txt` file:  
+     ```bash
+     pip install -r requirements-cloud-runtime.txt
+     ```  
+
+5. **Verify Model Inventory Hash**  
+   - Ensure the model inventory hash matches the required value:  
+     ```bash
+     echo "8cf07aa84c9e26c9dd4ce71b21bd498232c8dfa5afe5284d375be0c1e9bb3f4f"
+     ```  
+   - This hash must be used to validate the model inventory.  
+
+6. **Do Not Run CobraBench**  
+   - Avoid executing any benchmarks or tests related to `CobraBench` during the setup or runtime.  
+
+7. **Terminate the GPU Pod After Export**  
+   - Once the model is exported or the runtime is confirmed to be working, terminate the GPU pod to free up resources.  
+
+8. **Final Check**  
+   - Confirm that all steps have been completed without errors.  
+   - Ensure that the model and runtime are correctly set up and ready for use.

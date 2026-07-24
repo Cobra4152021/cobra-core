@@ -169,4 +169,7 @@ evaluations/cloud/.pod-ssh*
 evaluations/cloud/.ssh-ok.local
 evaluations/cloud/.ssh-method.local.json
 evaluations/cloud/provision-preflight.json
+evaluations/diagnostics/phase-4-2-pilot/probe-success.json
+evaluations/diagnostics/phase-4-2-pilot/create-response.json
+evaluations/diagnostics/phase-4-2-pilot/create-attempts.json
 

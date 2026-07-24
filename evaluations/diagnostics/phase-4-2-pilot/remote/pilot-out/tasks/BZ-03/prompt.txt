@@ -1,0 +1,9 @@
+Write a short runbook for a new engineer bringing up the Cobra cloud Linux Qwen3-8B qualified runtime.
+Known facts only:
+- Use /workspace for model and venv (not overlay /)
+- Python 3.12 venv
+- torch==2.6.0+cu124 then requirements-cloud-runtime.txt
+- Model inventory hash must be 8cf07aa84c9e26c9dd4ce71b21bd498232c8dfa5afe5284d375be0c1e9bb3f4f
+- Do not run CobraBench
+- Terminate the GPU pod after export
+Do not invent API keys or secret values. Structure as numbered steps.

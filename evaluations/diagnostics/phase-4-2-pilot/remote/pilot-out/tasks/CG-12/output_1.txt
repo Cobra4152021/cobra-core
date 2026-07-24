@@ -1,0 +1,19 @@
+The root cause is a **ZeroDivisionError** due to dividing by zero when the input list is empty.
+
+### Root Cause:
+- The function `average` divides the sum of the list by its length.
+- When the list is empty (`[]`), `len(nums)` is `0`, leading to division by zero.
+
+### Minimal Fix:
+Add a check to ensure the list is not empty before performing the division.
+
+```python
+def average(nums):
+    if not nums:
+        return 0  # or raise an error, depending on requirements
+    return sum(nums) / len(nums)
+
+print(average([]))
+```
+
+This fix prevents the division by zero error.
