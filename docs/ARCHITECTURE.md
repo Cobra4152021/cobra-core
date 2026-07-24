@@ -62,3 +62,7 @@ Interfaces do not assume a specific inference host, API provider, GPU platform, 
 - Cloud resource provisioning
 
 Qwen intake documents live under `docs/QWEN_*.md` and `docs/decisions/ADR-0001-*.md`.
+
+## Cloud-era architecture package (Phase 3G.5)
+
+For post–Phase 3F workflows (qualification, cloud execution, evidence, cleanup, dependency pins), see **`docs/architecture/`**. Standing Phase 1 framing above remains valid for lab vs Investigator separation.

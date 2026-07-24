@@ -137,6 +137,8 @@ tests/                 Unit tests
 docs/                  Architecture, CobraBench, intake, security
 ```
 
+Production-readiness package (Phase 3G.5): `docs/PRODUCTION_READINESS_REPORT.md`, `docs/architecture/`, `docs/operations/`, `docs/disaster-recovery/`, `docs/security/SECURITY_REVIEW.md`, `docs/runtime/GPU_COMPATIBILITY.md`.
+
 ## Definition of Done — Phase 1
 
 - [x] Repository structure exists

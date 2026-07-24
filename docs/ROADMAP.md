@@ -1,6 +1,6 @@
 # Cobra Model Lab Roadmap
 
-**Last updated:** 2026-07-23 (Phase 3G roadmap draft)
+**Last updated:** 2026-07-23 (Phase 3G.5 production-readiness docs)
 
 ## Completed
 
@@ -25,6 +25,7 @@
 | Phase | Intent | Gate |
 | --- | --- | --- |
 | **Phase 3G** | Cloud runtime production-readiness optimization (equivalence-preserving); **no benchmark execution** | **P1 implemented** (ops/pins/docs). P2+ require separate approval — see `docs/phases/PHASE_3G_STATUS.md` |
+| **Phase 3G.5** | Production-readiness documentation package (architecture, ops, DR, security, GPU matrix) | **Docs/review only** — see `docs/PRODUCTION_READINESS_REPORT.md` |
 | Later | Controlled CobraBench v0.2-rc2 on locked cloud runtime | Separate authorization; remains `prepared-not-run` until then |
 
 ## Future (not authorized by M1)
