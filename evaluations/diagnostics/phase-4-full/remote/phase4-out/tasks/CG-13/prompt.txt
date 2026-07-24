@@ -1,0 +1,9 @@
+Async race sketch (Python):
+shared = []
+async def add(x):
+    await asyncio.sleep(0)
+    shared.append(x)
+
+Two tasks call add concurrently and a reader assumes len(shared)==2 immediately after gather without awaiting completion ordering guarantees beyond gather.
+
+Explain the race and provide a safe fix using ordering/queue/lock as appropriate. Avoid sleep-only "fixes".

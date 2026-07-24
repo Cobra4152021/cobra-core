@@ -1,0 +1,1188 @@
+{
+  "schema": "cobra.diagnostics.phase4_full_run.v1",
+  "started_at": "2026-07-24T03:08:37.265862+00:00",
+  "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+  "gpu_name": "NVIDIA GeForce RTX 3090",
+  "cuda_available": true,
+  "framework_frozen": true,
+  "prompt_tuning": false,
+  "benchmark_content": false,
+  "task_count": 46,
+  "tasks": [
+    {
+      "id": "CG-01",
+      "domain": "engineering",
+      "repeats": 1,
+      "max_new_tokens": 768,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 27.362,
+          "output_tokens": 374,
+          "input_tokens": 152,
+          "peak_vram_bytes": 6333351936,
+          "memory": {
+            "available_ram_bytes": 211790467072,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58278121472
+          },
+          "char_len": 1875,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "CG-02",
+      "domain": "engineering",
+      "repeats": 1,
+      "max_new_tokens": 768,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 54.79,
+          "output_tokens": 768,
+          "input_tokens": 143,
+          "peak_vram_bytes": 6330988544,
+          "memory": {
+            "available_ram_bytes": 211814445056,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58254143488
+          },
+          "char_len": 2535,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "CG-03",
+      "domain": "engineering",
+      "repeats": 1,
+      "max_new_tokens": 640,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 31.681,
+          "output_tokens": 446,
+          "input_tokens": 120,
+          "peak_vram_bytes": 6325698560,
+          "memory": {
+            "available_ram_bytes": 211822714880,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58245873664
+          },
+          "char_len": 1877,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "CG-04",
+      "domain": "engineering",
+      "repeats": 1,
+      "max_new_tokens": 768,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 42.631,
+          "output_tokens": 598,
+          "input_tokens": 100,
+          "peak_vram_bytes": 6321100800,
+          "memory": {
+            "available_ram_bytes": 211840663552,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58227924992
+          },
+          "char_len": 2587,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "CG-05",
+      "domain": "engineering",
+      "repeats": 1,
+      "max_new_tokens": 768,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 52.292,
+          "output_tokens": 732,
+          "input_tokens": 110,
+          "peak_vram_bytes": 6323399680,
+          "memory": {
+            "available_ram_bytes": 211809558528,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58259030016
+          },
+          "char_len": 2859,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "CG-06",
+      "domain": "engineering",
+      "repeats": 1,
+      "max_new_tokens": 512,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 23.478,
+          "output_tokens": 320,
+          "input_tokens": 127,
+          "peak_vram_bytes": 6327308288,
+          "memory": {
+            "available_ram_bytes": 211933487104,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58135101440
+          },
+          "char_len": 1132,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "CG-07",
+      "domain": "engineering",
+      "repeats": 1,
+      "max_new_tokens": 512,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 23.122,
+          "output_tokens": 323,
+          "input_tokens": 102,
+          "peak_vram_bytes": 6321560576,
+          "memory": {
+            "available_ram_bytes": 211863236608,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58205351936
+          },
+          "char_len": 1385,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "CG-08",
+      "domain": "engineering",
+      "repeats": 1,
+      "max_new_tokens": 640,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 20.308,
+          "output_tokens": 285,
+          "input_tokens": 114,
+          "peak_vram_bytes": 6324319232,
+          "memory": {
+            "available_ram_bytes": 211851628544,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58216960000
+          },
+          "char_len": 1052,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "CG-09",
+      "domain": "engineering",
+      "repeats": 1,
+      "max_new_tokens": 400,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 28.605,
+          "output_tokens": 400,
+          "input_tokens": 90,
+          "peak_vram_bytes": 6318801920,
+          "memory": {
+            "available_ram_bytes": 211831889920,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58236698624
+          },
+          "char_len": 1473,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "CG-10",
+      "domain": "engineering",
+      "repeats": 1,
+      "max_new_tokens": 640,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 28.335,
+          "output_tokens": 396,
+          "input_tokens": 111,
+          "peak_vram_bytes": 6323630080,
+          "memory": {
+            "available_ram_bytes": 211861893120,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58206695424
+          },
+          "char_len": 1578,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "CG-11",
+      "domain": "engineering",
+      "repeats": 1,
+      "max_new_tokens": 640,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 33.861,
+          "output_tokens": 473,
+          "input_tokens": 102,
+          "peak_vram_bytes": 6321560576,
+          "memory": {
+            "available_ram_bytes": 211959549952,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58109038592
+          },
+          "char_len": 1998,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "CG-12",
+      "domain": "engineering",
+      "repeats": 1,
+      "max_new_tokens": 400,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 8.534,
+          "output_tokens": 119,
+          "input_tokens": 134,
+          "peak_vram_bytes": 6328919040,
+          "memory": {
+            "available_ram_bytes": 211837403136,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58231185408
+          },
+          "char_len": 518,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "CG-13",
+      "domain": "engineering",
+      "repeats": 1,
+      "max_new_tokens": 640,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 45.923,
+          "output_tokens": 640,
+          "input_tokens": 135,
+          "peak_vram_bytes": 6329149440,
+          "memory": {
+            "available_ram_bytes": 211871780864,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58196807680
+          },
+          "char_len": 2759,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "CG-14",
+      "domain": "engineering",
+      "repeats": 1,
+      "max_new_tokens": 768,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 43.615,
+          "output_tokens": 605,
+          "input_tokens": 187,
+          "peak_vram_bytes": 6341103616,
+          "memory": {
+            "available_ram_bytes": 211802923008,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58265665536
+          },
+          "char_len": 2497,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "CG-15",
+      "domain": "engineering",
+      "repeats": 1,
+      "max_new_tokens": 640,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 17.99,
+          "output_tokens": 252,
+          "input_tokens": 115,
+          "peak_vram_bytes": 6324549632,
+          "memory": {
+            "available_ram_bytes": 211879276544,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58189312000
+          },
+          "char_len": 983,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "RS-01",
+      "domain": "research",
+      "repeats": 1,
+      "max_new_tokens": 1024,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 34.724,
+          "output_tokens": 487,
+          "input_tokens": 391,
+          "peak_vram_bytes": 6388008960,
+          "memory": {
+            "available_ram_bytes": 211857108992,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58211479552
+          },
+          "char_len": 1778,
+          "citations": [
+            "[A]",
+            "[B]",
+            "[C]",
+            "[D]",
+            "[E]"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RS-02",
+      "domain": "research",
+      "repeats": 1,
+      "max_new_tokens": 768,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 14.727,
+          "output_tokens": 203,
+          "input_tokens": 415,
+          "peak_vram_bytes": 6393526272,
+          "memory": {
+            "available_ram_bytes": 211799388160,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58269200384
+          },
+          "char_len": 675,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "RS-03",
+      "domain": "research",
+      "repeats": 1,
+      "max_new_tokens": 512,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 5.843,
+          "output_tokens": 80,
+          "input_tokens": 150,
+          "peak_vram_bytes": 6332998656,
+          "memory": {
+            "available_ram_bytes": 211819147264,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58249441280
+          },
+          "char_len": 206,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "RS-04",
+      "domain": "research",
+      "repeats": 1,
+      "max_new_tokens": 512,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 17.584,
+          "output_tokens": 244,
+          "input_tokens": 137,
+          "peak_vram_bytes": 6329609216,
+          "memory": {
+            "available_ram_bytes": 211879165952,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58189422592
+          },
+          "char_len": 1104,
+          "citations": [
+            "[S1]",
+            "[S2]"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RS-05",
+      "domain": "research",
+      "repeats": 1,
+      "max_new_tokens": 256,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 5.707,
+          "output_tokens": 79,
+          "input_tokens": 119,
+          "peak_vram_bytes": 6325469184,
+          "memory": {
+            "available_ram_bytes": 211883765760,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58184822784
+          },
+          "char_len": 245,
+          "citations": [
+            "[S1]",
+            "[S2]"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RS-06",
+      "domain": "research",
+      "repeats": 1,
+      "max_new_tokens": 256,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 11.639,
+          "output_tokens": 164,
+          "input_tokens": 115,
+          "peak_vram_bytes": 6324549632,
+          "memory": {
+            "available_ram_bytes": 211854331904,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58214256640
+          },
+          "char_len": 702,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "RS-07",
+      "domain": "research",
+      "repeats": 1,
+      "max_new_tokens": 512,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 32.573,
+          "output_tokens": 451,
+          "input_tokens": 386,
+          "peak_vram_bytes": 6386859008,
+          "memory": {
+            "available_ram_bytes": 211810238464,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58258350080
+          },
+          "char_len": 1768,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "RS-08",
+      "domain": "research",
+      "repeats": 1,
+      "max_new_tokens": 640,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 42.36,
+          "output_tokens": 590,
+          "input_tokens": 381,
+          "peak_vram_bytes": 6385708032,
+          "memory": {
+            "available_ram_bytes": 211971006464,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58097582080
+          },
+          "char_len": 2403,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "INV-01",
+      "domain": "investigator",
+      "repeats": 1,
+      "max_new_tokens": 640,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 12.065,
+          "output_tokens": 168,
+          "input_tokens": 151,
+          "peak_vram_bytes": 6333175808,
+          "memory": {
+            "available_ram_bytes": 211783118848,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58285469696
+          },
+          "char_len": 826,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "INV-02",
+      "domain": "investigator",
+      "repeats": 1,
+      "max_new_tokens": 640,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 5.607,
+          "output_tokens": 78,
+          "input_tokens": 143,
+          "peak_vram_bytes": 6330988544,
+          "memory": {
+            "available_ram_bytes": 211822235648,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58246352896
+          },
+          "char_len": 182,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "INV-03",
+      "domain": "investigator",
+      "repeats": 1,
+      "max_new_tokens": 640,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 14.914,
+          "output_tokens": 204,
+          "input_tokens": 174,
+          "peak_vram_bytes": 6338114560,
+          "memory": {
+            "available_ram_bytes": 211858931712,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58209656832
+          },
+          "char_len": 654,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "INV-04",
+      "domain": "investigator",
+      "repeats": 1,
+      "max_new_tokens": 512,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 11.362,
+          "output_tokens": 158,
+          "input_tokens": 118,
+          "peak_vram_bytes": 6325238784,
+          "memory": {
+            "available_ram_bytes": 211830300672,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58238287872
+          },
+          "char_len": 670,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "INV-05",
+      "domain": "investigator",
+      "repeats": 1,
+      "max_new_tokens": 640,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 42.91,
+          "output_tokens": 604,
+          "input_tokens": 155,
+          "peak_vram_bytes": 6333882368,
+          "memory": {
+            "available_ram_bytes": 211857551360,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58211037184
+          },
+          "char_len": 2054,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "INV-06",
+      "domain": "investigator",
+      "repeats": 1,
+      "max_new_tokens": 512,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 30.017,
+          "output_tokens": 422,
+          "input_tokens": 129,
+          "peak_vram_bytes": 6327770112,
+          "memory": {
+            "available_ram_bytes": 211760967680,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58307620864
+          },
+          "char_len": 1778,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "INV-07",
+      "domain": "investigator",
+      "repeats": 1,
+      "max_new_tokens": 640,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 11.946,
+          "output_tokens": 168,
+          "input_tokens": 142,
+          "peak_vram_bytes": 6330758144,
+          "memory": {
+            "available_ram_bytes": 211821252608,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58247335936
+          },
+          "char_len": 590,
+          "citations": [
+            "[S1]",
+            "[S2]"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "INV-08",
+      "domain": "investigator",
+      "repeats": 1,
+      "max_new_tokens": 400,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 9.124,
+          "output_tokens": 128,
+          "input_tokens": 142,
+          "peak_vram_bytes": 6330758144,
+          "memory": {
+            "available_ram_bytes": 211844317184,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58224271360
+          },
+          "char_len": 519,
+          "citations": [
+            "[S1]",
+            "[S2]",
+            "[S3]"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BZ-01",
+      "domain": "business",
+      "repeats": 1,
+      "max_new_tokens": 768,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 54.602,
+          "output_tokens": 768,
+          "input_tokens": 96,
+          "peak_vram_bytes": 6320181248,
+          "memory": {
+            "available_ram_bytes": 211848577024,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58220011520
+          },
+          "char_len": 3505,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "BZ-02",
+      "domain": "business",
+      "repeats": 1,
+      "max_new_tokens": 640,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 24.952,
+          "output_tokens": 350,
+          "input_tokens": 124,
+          "peak_vram_bytes": 6326618112,
+          "memory": {
+            "available_ram_bytes": 211821633536,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58246955008
+          },
+          "char_len": 1482,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "BZ-03",
+      "domain": "business",
+      "repeats": 1,
+      "max_new_tokens": 768,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 34.824,
+          "output_tokens": 485,
+          "input_tokens": 215,
+          "peak_vram_bytes": 6347542528,
+          "memory": {
+            "available_ram_bytes": 211859656704,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58208931840
+          },
+          "char_len": 1773,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "BZ-04",
+      "domain": "business",
+      "repeats": 1,
+      "max_new_tokens": 768,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 54.724,
+          "output_tokens": 768,
+          "input_tokens": 108,
+          "peak_vram_bytes": 6322939904,
+          "memory": {
+            "available_ram_bytes": 211804332032,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58264256512
+          },
+          "char_len": 2413,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "BZ-05",
+      "domain": "business",
+      "repeats": 1,
+      "max_new_tokens": 1024,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 40.687,
+          "output_tokens": 566,
+          "input_tokens": 108,
+          "peak_vram_bytes": 6322939904,
+          "memory": {
+            "available_ram_bytes": 211896832000,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58171756544
+          },
+          "char_len": 2542,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "BZ-06",
+      "domain": "business",
+      "repeats": 1,
+      "max_new_tokens": 768,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 27.74,
+          "output_tokens": 390,
+          "input_tokens": 93,
+          "peak_vram_bytes": 6319492096,
+          "memory": {
+            "available_ram_bytes": 211707748352,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58360840192
+          },
+          "char_len": 2020,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "BZ-07",
+      "domain": "business",
+      "repeats": 1,
+      "max_new_tokens": 640,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 46.099,
+          "output_tokens": 640,
+          "input_tokens": 91,
+          "peak_vram_bytes": 6319032320,
+          "memory": {
+            "available_ram_bytes": 211881676800,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58186911744
+          },
+          "char_len": 2894,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "BZ-08",
+      "domain": "business",
+      "repeats": 1,
+      "max_new_tokens": 512,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 10.9,
+          "output_tokens": 154,
+          "input_tokens": 142,
+          "peak_vram_bytes": 6330758144,
+          "memory": {
+            "available_ram_bytes": 211791142912,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58277445632
+          },
+          "char_len": 528,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "REL-01",
+      "domain": "reliability",
+      "repeats": 3,
+      "max_new_tokens": 128,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 1.581,
+          "output_tokens": 22,
+          "input_tokens": 89,
+          "peak_vram_bytes": 6318572544,
+          "memory": {
+            "available_ram_bytes": 211809361920,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58259226624
+          },
+          "char_len": 77,
+          "citations": [
+            "[S1]"
+          ]
+        },
+        {
+          "latency_s": 1.584,
+          "output_tokens": 22,
+          "input_tokens": 89,
+          "peak_vram_bytes": 6318572544,
+          "memory": {
+            "available_ram_bytes": 211845066752,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58223521792
+          },
+          "char_len": 77,
+          "citations": [
+            "[S1]"
+          ]
+        },
+        {
+          "latency_s": 1.587,
+          "output_tokens": 22,
+          "input_tokens": 89,
+          "peak_vram_bytes": 6318572544,
+          "memory": {
+            "available_ram_bytes": 211859255296,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58209333248
+          },
+          "char_len": 77,
+          "citations": [
+            "[S1]"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REL-02",
+      "domain": "reliability",
+      "repeats": 1,
+      "max_new_tokens": 256,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 18.207,
+          "output_tokens": 256,
+          "input_tokens": 113,
+          "peak_vram_bytes": 6324089856,
+          "memory": {
+            "available_ram_bytes": 211884945408,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58183643136
+          },
+          "char_len": 1215,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "REL-03",
+      "domain": "reliability",
+      "repeats": 1,
+      "max_new_tokens": 400,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 4.238,
+          "output_tokens": 59,
+          "input_tokens": 117,
+          "peak_vram_bytes": 6325009408,
+          "memory": {
+            "available_ram_bytes": 211897155584,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58171432960
+          },
+          "char_len": 156,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "REL-04",
+      "domain": "reliability",
+      "repeats": 1,
+      "max_new_tokens": 256,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 4.953,
+          "output_tokens": 69,
+          "input_tokens": 99,
+          "peak_vram_bytes": 6320871424,
+          "memory": {
+            "available_ram_bytes": 211818373120,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58250215424
+          },
+          "char_len": 388,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "REL-05",
+      "domain": "reliability",
+      "repeats": 1,
+      "max_new_tokens": 256,
+      "success": true,
+      "error": null,
+      "meta": {},
+      "outputs": [
+        {
+          "latency_s": 4.896,
+          "output_tokens": 68,
+          "input_tokens": 121,
+          "peak_vram_bytes": 6325928960,
+          "memory": {
+            "available_ram_bytes": 211773538304,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58295050240
+          },
+          "char_len": 296,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "REL-06",
+      "domain": "reliability",
+      "repeats": 1,
+      "max_new_tokens": 128,
+      "success": true,
+      "error": null,
+      "meta": {
+        "needle": "COBRA_NEEDLE_TOKEN_7f3a9c"
+      },
+      "outputs": [
+        {
+          "latency_s": 2.649,
+          "output_tokens": 25,
+          "input_tokens": 3019,
+          "peak_vram_bytes": 6993215488,
+          "memory": {
+            "available_ram_bytes": 211833454592,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58235133952
+          },
+          "char_len": 82,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "REL-07",
+      "domain": "reliability",
+      "repeats": 1,
+      "max_new_tokens": 128,
+      "success": true,
+      "error": null,
+      "meta": {
+        "marker": "ALPHA",
+        "expected_count": 29
+      },
+      "outputs": [
+        {
+          "latency_s": 10.016,
+          "output_tokens": 128,
+          "input_tokens": 3368,
+          "peak_vram_bytes": 7073232896,
+          "memory": {
+            "available_ram_bytes": 211809161216,
+            "total_ram_bytes": 270068588544,
+            "used_ram_bytes": 58259427328
+          },
+          "char_len": 176,
+          "citations": []
+        }
+      ]
+    }
+  ],
+  "load_seconds": 6.948,
+  "peak_vram_after_load": 6173550592,
+  "memory_after_load": {
+    "available_ram_bytes": 212399976448,
+    "total_ram_bytes": 270068588544,
+    "used_ram_bytes": 57668612096
+  },
+  "ended_at": "2026-07-24T03:27:35.170308+00:00",
+  "peak_vram_bytes": 7073232896,
+  "memory_end": {
+    "available_ram_bytes": 211819491328,
+    "total_ram_bytes": 270068588544,
+    "used_ram_bytes": 58249097216
+  },
+  "successes": 46
+}

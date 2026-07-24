@@ -1,0 +1,1 @@
+Write a TypeScript module: typed fetch wrapper with timeout via AbortController, JSON error parsing, and a discriminated union result type (ok | err). Avoid `any`. Include a short usage snippet.

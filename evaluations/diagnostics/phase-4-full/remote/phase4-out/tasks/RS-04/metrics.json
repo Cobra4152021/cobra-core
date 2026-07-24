@@ -1,0 +1,27 @@
+{
+  "id": "RS-04",
+  "domain": "research",
+  "repeats": 1,
+  "max_new_tokens": 512,
+  "success": true,
+  "error": null,
+  "meta": {},
+  "outputs": [
+    {
+      "latency_s": 17.584,
+      "output_tokens": 244,
+      "input_tokens": 137,
+      "peak_vram_bytes": 6329609216,
+      "memory": {
+        "available_ram_bytes": 211879165952,
+        "total_ram_bytes": 270068588544,
+        "used_ram_bytes": 58189422592
+      },
+      "char_len": 1104,
+      "citations": [
+        "[S1]",
+        "[S2]"
+      ]
+    }
+  ]
+}

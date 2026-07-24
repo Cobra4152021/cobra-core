@@ -1,0 +1,27 @@
+{
+  "id": "REL-07",
+  "domain": "reliability",
+  "repeats": 1,
+  "max_new_tokens": 128,
+  "success": true,
+  "error": null,
+  "meta": {
+    "marker": "ALPHA",
+    "expected_count": 29
+  },
+  "outputs": [
+    {
+      "latency_s": 10.016,
+      "output_tokens": 128,
+      "input_tokens": 3368,
+      "peak_vram_bytes": 7073232896,
+      "memory": {
+        "available_ram_bytes": 211809161216,
+        "total_ram_bytes": 270068588544,
+        "used_ram_bytes": 58259427328
+      },
+      "char_len": 176,
+      "citations": []
+    }
+  ]
+}

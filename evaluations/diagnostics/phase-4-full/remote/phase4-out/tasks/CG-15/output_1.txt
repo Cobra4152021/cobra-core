@@ -1,0 +1,31 @@
+The provided code defines a function `calc(a, b)` that performs the following operations:
+
+1. Computes `tmp = a + b`
+2. Computes `unused = a * b * 0` (which is always 0)
+3. Contains a conditional block that is never executed (`if False:`)
+4. Returns `tmp`
+
+### Analysis
+
+- **`unused`** is assigned a value that is never used. This is a dead assignment and can be removed.
+- **`if False:`** block is a dead branch and can be removed.
+- **`tmp`** is the only meaningful variable and is returned, so it is safe to keep.
+
+### Risks
+
+- **`unused`** is not used, so its removal is safe.
+- **`if False:`** block is clearly dead, so its removal is safe.
+- The function logic is simple and does not have side effects, so no risk is introduced by removing the dead code.
+
+### Improved Code
+
+```python
+def calc(a, b):
+    return a + b
+```
+
+### Summary
+
+- Removed unused variable `unused`
+- Removed dead branch `if False:`
+- Resulting code is simpler and more readable without changing behavior.

@@ -1,0 +1,1 @@
+Create a 4-week plan to ship an internal evaluation dashboard for a 3-person team. Include phases, dependencies, owners (roles), and a risk register. Be realistic.

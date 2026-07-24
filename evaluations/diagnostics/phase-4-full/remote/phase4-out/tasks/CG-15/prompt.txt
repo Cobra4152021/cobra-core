@@ -1,0 +1,9 @@
+Module:
+def calc(a,b):
+    tmp = a+b
+    unused = a*b*0
+    if False:
+        return -1
+    return tmp
+
+Improve names and remove clearly dead branches. Call out risks if deletion is ambiguous. Show resulting code.

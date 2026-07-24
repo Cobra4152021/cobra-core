@@ -1,0 +1,8 @@
+Sources:
+[S1] Badge open at 09:12 side door.
+[S2] Laptop last seen on desk 08:55.
+[S3] No camera covers the desk.
+Answer with Finding/Evidence/Confidence/Missing for:
+Q1) When was the laptop last seen?
+Q2) Who took the laptop?
+Q3) Was the side door used that morning?

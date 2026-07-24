@@ -1,0 +1,3 @@
+Compare build vs buy for a small internal RAG helper.
+Constraints: 1 engineer-month max, no PII in third-party clouds, must cite sources, budget <$2k/year after.
+Write a <=1 page memo with explicit decision criteria and a recommendation tied to constraints. Do not invent vendors/certifications.

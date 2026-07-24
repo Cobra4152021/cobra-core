@@ -1,0 +1,4 @@
+Label each as hard or soft contradiction and explain:
+1) A says door locked; B says door open at same timestamp.
+2) A says suspect wore blue; B says lighting was dim and color uncertain.
+3) A says meeting ended 16:00; B says they left building 16:05 after meeting.

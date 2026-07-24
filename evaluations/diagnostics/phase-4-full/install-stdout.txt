@@ -1,0 +1,3 @@
+No broken requirements found.
+model_ok
+2.6.0+cu124 True NVIDIA GeForce RTX 3090 5.14.1 0.49.2

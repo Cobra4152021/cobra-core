@@ -1,0 +1,6 @@
+Four witness statements:
+[W1] The van left at 14:00.
+[W2] The van was still in the lot at 14:20.
+[W3] Camera 3 was offline from 13:50 to 15:00.
+[W4] The van left at 14:00 according to the gate log.
+List all contradictions with witnesses, field, hard vs soft. Do not invent events.

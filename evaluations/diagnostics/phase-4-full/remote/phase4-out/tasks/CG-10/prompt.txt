@@ -1,0 +1,1 @@
+Write a Cloudflare Worker (module format) fetch handler that returns JSON {ok:true, service:"health"} for /health and echoes a safe query param `q` for /echo. No Node-only APIs. Comment expected wrangler bindings if any.

@@ -1,0 +1,40 @@
+Here is an analysis of the contradictions among the witness statements, categorized as **hard** (direct, factual evidence) or **soft** (subjective or indirect evidence):
+
+---
+
+### **Contradictions:**
+
+1. **W1 and W4 both state that the van left at 14:00.**  
+   - This is **not a contradiction**, as both statements agree on the same time.  
+   - **Type**: Soft (subjective or indirect, as both are witness accounts).
+
+2. **W2 states that the van was still in the lot at 14:20.**  
+   - This **contradicts** W1 and W4, which state the van left at 14:00.  
+   - If the van left at 14:00, it would not have been in the lot at 14:20.  
+   - **Type**: Hard (direct evidence from a witness and possibly from a gate log).  
+   - **Source**: W2 vs. W1/W4.
+
+3. **W3 states that Camera 3 was offline from 13:50 to 15:00.**  
+   - This **contradicts** the timeline implied by W1 and W4 (van left at 14:00), as the camera was offline at 14:00.  
+   - However, this is **indirect** evidence. The camera being offline does not directly confirm or deny the van's departure, but it **could** suggest that the van's departure was not recorded.  
+   - **Type**: Soft (indirect evidence from a camera log).  
+   - **Source**: W3 vs. W1/W4.
+
+---
+
+### **Summary of Contradictions:**
+
+| Contradiction | Witnesses | Type | Notes |
+|--------------|-----------|------|-------|
+| Van left at 14:00 vs. still in lot at 14:20 | W1/W4 vs. W2 | Hard | Direct contradiction between departure time and presence at 14:20. |
+| Camera offline from 13:50–15:00 vs. van left at 14:00 | W3 vs. W1/W4 | Soft | Indirect contradiction; camera was offline when van supposedly left. |
+
+---
+
+### **Unknowns:**
+
+- The **exact location** of the van at 14:20 is not specified in W2, so it is unclear whether the van was still in the lot or had moved to another area.  
+- The **reliability** of the gate log (W4) is not established.  
+- The **accuracy** of the camera log (W3) is not confirmed.  
+
+No contradictions are **invented**; only those explicitly stated in the provided evidence are analyzed.

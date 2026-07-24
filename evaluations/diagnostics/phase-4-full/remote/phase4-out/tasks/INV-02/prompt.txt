@@ -1,0 +1,6 @@
+Events:
+[E1] 08:00 — Shift start (S1)
+[E2] 12:00 — Lunch break begins (S1)
+[E3] 18:00 — Shift end (S2)
+No events between 12:00 and 18:00 are provided.
+Build timeline and explicitly list gaps[]. Do not invent filler events.

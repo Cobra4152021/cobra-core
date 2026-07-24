@@ -1,0 +1,5 @@
+Document three synthetic REST endpoints:
+POST /v1/runs
+GET /v1/runs/{id}
+GET /v1/runs/{id}/artifacts
+Include request/response JSON examples and error codes. Keep field names consistent.

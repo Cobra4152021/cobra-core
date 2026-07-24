@@ -1,0 +1,5 @@
+| Entity       | Date       | Amount  |
+|-------------|------------|---------|
+| Acme Corp    | 2024-05-01 | 12,500  |
+| Beta LLC     | 2024-05-20 | 4,000   |
+| Remaining Balance | Not stated | Not stated |

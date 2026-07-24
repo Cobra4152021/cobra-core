@@ -2,8 +2,7 @@
 
 Gates apply to **future product/runtime releases** of the Cobra Core line. Passing a gate requires evidence, not aspiration.
 
-**Current assessed stage:** **Alpha (documentation + runtime qualification complete; capability execution pending).**  
-See §6 for readiness snapshot.
+**Current assessed stage:** **Beta-ready (Phase 4 full capability validation executed; see `docs/capability-validation/CAPABILITY_VALIDATION_REPORT.md`).**
 
 ## Gate conventions
 
@@ -38,14 +37,14 @@ See §6 for readiness snapshot.
 
 | Requirement | Evidence | Status |
 | --- | --- | --- |
-| Capability validation **executed** on qualified runtime | Phase 4 `SUITE_SUMMARY` + task scores | **Not met** (not executed) |
-| ≥90% task pass rate (Pass or Pass+) | Suite aggregate | **Not met** |
-| No critical failures | Zero U3/U4 hard fails; no secrets in outputs | **Not met** |
-| Persona bars for Investigator + Researcher | Per `SUCCESS_METRICS.md` | **Not met** |
-| Reliability domain gate passed | Incl. REL-01 | **Not met** |
-| Pins unchanged vs qualified runtime (or new requal) | `phase3g_verify_env` / freeze | Pending execution |
+| Capability validation **executed** on qualified runtime | Phase 4 full run + `SCOREBOARD.json` | **Met** (2026-07-24; RTX 3090 host, pin-equivalent stack) |
+| ≥90% task pass rate (Pass or Pass+) | Suite aggregate **97.8%** (45/46) | **Met** |
+| No critical failures | Zero hard fails | **Met** |
+| Persona bars for Investigator + Researcher | Domains 100% Pass/Pass+ | **Met** |
+| Reliability domain gate passed | REL-01 Pass+; 6/7 Pass/Pass+; REL-04 ok | **Met** (REL-07 Marginal minor) |
+| Pins unchanged vs qualified runtime (or new requal) | torch/transformers/bnb pins matched | **Met** (SKU ≠ A40; documented) |
 
-**Beta entry rule:** Separate authorization to spend/run Phase 4 required.
+**Beta entry:** Evidence in `docs/capability-validation/CAPABILITY_VALIDATION_REPORT.md`. RC still requires repeat validation + reproducible freeze package.
 
 ---
 

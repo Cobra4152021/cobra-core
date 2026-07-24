@@ -1,0 +1,1 @@
+Write a Bash script that tars a directory argument into backup-YYYYmmdd-HHMMSS.tar.gz in the current directory. Use set -euo pipefail, proper quoting, refuse if source missing. No rm -rf. Include a dry-run note.

@@ -1,0 +1,203 @@
+Document:
+Line 0: marker ALPHA observed in sector 0.
+Line 1: routine telemetry checksum ok for device D-1.
+Line 2: routine telemetry checksum ok for device D-2.
+Line 3: routine telemetry checksum ok for device D-3.
+Line 4: routine telemetry checksum ok for device D-4.
+Line 5: routine telemetry checksum ok for device D-5.
+Line 6: routine telemetry checksum ok for device D-6.
+Line 7: marker ALPHA observed in sector 2.
+Line 8: routine telemetry checksum ok for device D-8.
+Line 9: routine telemetry checksum ok for device D-9.
+Line 10: routine telemetry checksum ok for device D-10.
+Line 11: routine telemetry checksum ok for device D-11.
+Line 12: routine telemetry checksum ok for device D-12.
+Line 13: routine telemetry checksum ok for device D-13.
+Line 14: marker ALPHA observed in sector 4.
+Line 15: routine telemetry checksum ok for device D-15.
+Line 16: routine telemetry checksum ok for device D-16.
+Line 17: routine telemetry checksum ok for device D-17.
+Line 18: routine telemetry checksum ok for device D-18.
+Line 19: routine telemetry checksum ok for device D-19.
+Line 20: routine telemetry checksum ok for device D-20.
+Line 21: marker ALPHA observed in sector 1.
+Line 22: routine telemetry checksum ok for device D-22.
+Line 23: routine telemetry checksum ok for device D-23.
+Line 24: routine telemetry checksum ok for device D-24.
+Line 25: routine telemetry checksum ok for device D-25.
+Line 26: routine telemetry checksum ok for device D-26.
+Line 27: routine telemetry checksum ok for device D-27.
+Line 28: marker ALPHA observed in sector 3.
+Line 29: routine telemetry checksum ok for device D-29.
+Line 30: routine telemetry checksum ok for device D-30.
+Line 31: routine telemetry checksum ok for device D-31.
+Line 32: routine telemetry checksum ok for device D-32.
+Line 33: routine telemetry checksum ok for device D-33.
+Line 34: routine telemetry checksum ok for device D-34.
+Line 35: marker ALPHA observed in sector 0.
+Line 36: routine telemetry checksum ok for device D-36.
+Line 37: routine telemetry checksum ok for device D-37.
+Line 38: routine telemetry checksum ok for device D-38.
+Line 39: routine telemetry checksum ok for device D-39.
+Line 40: routine telemetry checksum ok for device D-40.
+Line 41: routine telemetry checksum ok for device D-41.
+Line 42: marker ALPHA observed in sector 2.
+Line 43: routine telemetry checksum ok for device D-43.
+Line 44: routine telemetry checksum ok for device D-44.
+Line 45: routine telemetry checksum ok for device D-45.
+Line 46: routine telemetry checksum ok for device D-46.
+Line 47: routine telemetry checksum ok for device D-47.
+Line 48: routine telemetry checksum ok for device D-48.
+Line 49: marker ALPHA observed in sector 4.
+Line 50: routine telemetry checksum ok for device D-50.
+Line 51: routine telemetry checksum ok for device D-51.
+Line 52: routine telemetry checksum ok for device D-52.
+Line 53: routine telemetry checksum ok for device D-53.
+Line 54: routine telemetry checksum ok for device D-54.
+Line 55: routine telemetry checksum ok for device D-55.
+Line 56: marker ALPHA observed in sector 1.
+Line 57: routine telemetry checksum ok for device D-57.
+Line 58: routine telemetry checksum ok for device D-58.
+Line 59: routine telemetry checksum ok for device D-59.
+Line 60: routine telemetry checksum ok for device D-60.
+Line 61: routine telemetry checksum ok for device D-61.
+Line 62: routine telemetry checksum ok for device D-62.
+Line 63: marker ALPHA observed in sector 3.
+Line 64: routine telemetry checksum ok for device D-64.
+Line 65: routine telemetry checksum ok for device D-65.
+Line 66: routine telemetry checksum ok for device D-66.
+Line 67: routine telemetry checksum ok for device D-67.
+Line 68: routine telemetry checksum ok for device D-68.
+Line 69: routine telemetry checksum ok for device D-69.
+Line 70: marker ALPHA observed in sector 0.
+Line 71: routine telemetry checksum ok for device D-71.
+Line 72: routine telemetry checksum ok for device D-72.
+Line 73: routine telemetry checksum ok for device D-73.
+Line 74: routine telemetry checksum ok for device D-74.
+Line 75: routine telemetry checksum ok for device D-75.
+Line 76: routine telemetry checksum ok for device D-76.
+Line 77: marker ALPHA observed in sector 2.
+Line 78: routine telemetry checksum ok for device D-78.
+Line 79: routine telemetry checksum ok for device D-79.
+Line 80: routine telemetry checksum ok for device D-80.
+Line 81: routine telemetry checksum ok for device D-81.
+Line 82: routine telemetry checksum ok for device D-82.
+Line 83: routine telemetry checksum ok for device D-83.
+Line 84: marker ALPHA observed in sector 4.
+Line 85: routine telemetry checksum ok for device D-85.
+Line 86: routine telemetry checksum ok for device D-86.
+Line 87: routine telemetry checksum ok for device D-87.
+Line 88: routine telemetry checksum ok for device D-88.
+Line 89: routine telemetry checksum ok for device D-89.
+Line 90: routine telemetry checksum ok for device D-90.
+Line 91: marker ALPHA observed in sector 1.
+Line 92: routine telemetry checksum ok for device D-92.
+Line 93: routine telemetry checksum ok for device D-93.
+Line 94: routine telemetry checksum ok for device D-94.
+Line 95: routine telemetry checksum ok for device D-95.
+Line 96: routine telemetry checksum ok for device D-96.
+Line 97: routine telemetry checksum ok for device D-97.
+Line 98: marker ALPHA observed in sector 3.
+Line 99: routine telemetry checksum ok for device D-99.
+Line 100: routine telemetry checksum ok for device D-100.
+Line 101: routine telemetry checksum ok for device D-101.
+Line 102: routine telemetry checksum ok for device D-102.
+Line 103: routine telemetry checksum ok for device D-103.
+Line 104: routine telemetry checksum ok for device D-104.
+Line 105: marker ALPHA observed in sector 0.
+Line 106: routine telemetry checksum ok for device D-106.
+Line 107: routine telemetry checksum ok for device D-107.
+Line 108: routine telemetry checksum ok for device D-108.
+Line 109: routine telemetry checksum ok for device D-109.
+Line 110: routine telemetry checksum ok for device D-110.
+Line 111: routine telemetry checksum ok for device D-111.
+Line 112: marker ALPHA observed in sector 2.
+Line 113: routine telemetry checksum ok for device D-113.
+Line 114: routine telemetry checksum ok for device D-114.
+Line 115: routine telemetry checksum ok for device D-115.
+Line 116: routine telemetry checksum ok for device D-116.
+Line 117: routine telemetry checksum ok for device D-117.
+Line 118: routine telemetry checksum ok for device D-118.
+Line 119: marker ALPHA observed in sector 4.
+Line 120: routine telemetry checksum ok for device D-120.
+Line 121: routine telemetry checksum ok for device D-121.
+Line 122: routine telemetry checksum ok for device D-122.
+Line 123: routine telemetry checksum ok for device D-123.
+Line 124: routine telemetry checksum ok for device D-124.
+Line 125: routine telemetry checksum ok for device D-125.
+Line 126: marker ALPHA observed in sector 1.
+Line 127: routine telemetry checksum ok for device D-127.
+Line 128: routine telemetry checksum ok for device D-128.
+Line 129: routine telemetry checksum ok for device D-129.
+Line 130: routine telemetry checksum ok for device D-130.
+Line 131: routine telemetry checksum ok for device D-131.
+Line 132: routine telemetry checksum ok for device D-132.
+Line 133: marker ALPHA observed in sector 3.
+Line 134: routine telemetry checksum ok for device D-134.
+Line 135: routine telemetry checksum ok for device D-135.
+Line 136: routine telemetry checksum ok for device D-136.
+Line 137: routine telemetry checksum ok for device D-137.
+Line 138: routine telemetry checksum ok for device D-138.
+Line 139: routine telemetry checksum ok for device D-139.
+Line 140: marker ALPHA observed in sector 0.
+Line 141: routine telemetry checksum ok for device D-141.
+Line 142: routine telemetry checksum ok for device D-142.
+Line 143: routine telemetry checksum ok for device D-143.
+Line 144: routine telemetry checksum ok for device D-144.
+Line 145: routine telemetry checksum ok for device D-145.
+Line 146: routine telemetry checksum ok for device D-146.
+Line 147: marker ALPHA observed in sector 2.
+Line 148: routine telemetry checksum ok for device D-148.
+Line 149: routine telemetry checksum ok for device D-149.
+Line 150: routine telemetry checksum ok for device D-150.
+Line 151: routine telemetry checksum ok for device D-151.
+Line 152: routine telemetry checksum ok for device D-152.
+Line 153: routine telemetry checksum ok for device D-153.
+Line 154: marker ALPHA observed in sector 4.
+Line 155: routine telemetry checksum ok for device D-155.
+Line 156: routine telemetry checksum ok for device D-156.
+Line 157: routine telemetry checksum ok for device D-157.
+Line 158: routine telemetry checksum ok for device D-158.
+Line 159: routine telemetry checksum ok for device D-159.
+Line 160: routine telemetry checksum ok for device D-160.
+Line 161: marker ALPHA observed in sector 1.
+Line 162: routine telemetry checksum ok for device D-162.
+Line 163: routine telemetry checksum ok for device D-163.
+Line 164: routine telemetry checksum ok for device D-164.
+Line 165: routine telemetry checksum ok for device D-165.
+Line 166: routine telemetry checksum ok for device D-166.
+Line 167: routine telemetry checksum ok for device D-167.
+Line 168: marker ALPHA observed in sector 3.
+Line 169: routine telemetry checksum ok for device D-169.
+Line 170: routine telemetry checksum ok for device D-170.
+Line 171: routine telemetry checksum ok for device D-171.
+Line 172: routine telemetry checksum ok for device D-172.
+Line 173: routine telemetry checksum ok for device D-173.
+Line 174: routine telemetry checksum ok for device D-174.
+Line 175: marker ALPHA observed in sector 0.
+Line 176: routine telemetry checksum ok for device D-176.
+Line 177: routine telemetry checksum ok for device D-177.
+Line 178: routine telemetry checksum ok for device D-178.
+Line 179: routine telemetry checksum ok for device D-179.
+Line 180: routine telemetry checksum ok for device D-180.
+Line 181: routine telemetry checksum ok for device D-181.
+Line 182: marker ALPHA observed in sector 2.
+Line 183: routine telemetry checksum ok for device D-183.
+Line 184: routine telemetry checksum ok for device D-184.
+Line 185: routine telemetry checksum ok for device D-185.
+Line 186: routine telemetry checksum ok for device D-186.
+Line 187: routine telemetry checksum ok for device D-187.
+Line 188: routine telemetry checksum ok for device D-188.
+Line 189: marker ALPHA observed in sector 4.
+Line 190: routine telemetry checksum ok for device D-190.
+Line 191: routine telemetry checksum ok for device D-191.
+Line 192: routine telemetry checksum ok for device D-192.
+Line 193: routine telemetry checksum ok for device D-193.
+Line 194: routine telemetry checksum ok for device D-194.
+Line 195: routine telemetry checksum ok for device D-195.
+Line 196: marker ALPHA observed in sector 1.
+Line 197: routine telemetry checksum ok for device D-197.
+Line 198: routine telemetry checksum ok for device D-198.
+Line 199: routine telemetry checksum ok for device D-199.
+
+How many lines contain the exact marker token ALPHA? Give an integer count and a one-sentence method. Do not guess.

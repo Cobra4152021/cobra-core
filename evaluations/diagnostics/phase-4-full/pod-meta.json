@@ -1,0 +1,15 @@
+{
+  "schema": "cobra.cloud.pod_meta.v1",
+  "phase": "4-full",
+  "pod_id": "s4qjueg403fjks",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "cost_per_hr_usd": 0.22,
+  "image": "runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404",
+  "software_baseline": "phase-3f-qualified pins",
+  "python": "3.12.3",
+  "torch": "2.6.0+cu124",
+  "transformers": "5.14.1",
+  "bitsandbytes": "0.49.2",
+  "model_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "note": "Community L4/A5000 unavailable at create; 3090 used with identical software pins"
+}

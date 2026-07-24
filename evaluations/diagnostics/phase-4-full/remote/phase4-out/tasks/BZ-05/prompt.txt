@@ -1,0 +1,3 @@
+Architecture review: single Cloudflare Worker + D1 + R2 for evaluation artifact metadata/files.
+Constraints: no public unauthenticated upload; single engineer; cost-sensitive.
+List >=5 concrete risks and >=2 alternatives. No invented CVE IDs.

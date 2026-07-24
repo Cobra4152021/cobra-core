@@ -1,0 +1,4 @@
+Implement a TypeScript validator for a user profile:
+required: id (string), email (string containing @)
+optional: displayName (string)
+Return useful error messages. Hand-rolled or zod if you state the dependency. Include passing and failing examples.

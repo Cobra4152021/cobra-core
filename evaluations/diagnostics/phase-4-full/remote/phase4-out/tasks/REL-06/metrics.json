@@ -1,0 +1,26 @@
+{
+  "id": "REL-06",
+  "domain": "reliability",
+  "repeats": 1,
+  "max_new_tokens": 128,
+  "success": true,
+  "error": null,
+  "meta": {
+    "needle": "COBRA_NEEDLE_TOKEN_7f3a9c"
+  },
+  "outputs": [
+    {
+      "latency_s": 2.649,
+      "output_tokens": 25,
+      "input_tokens": 3019,
+      "peak_vram_bytes": 6993215488,
+      "memory": {
+        "available_ram_bytes": 211833454592,
+        "total_ram_bytes": 270068588544,
+        "used_ram_bytes": 58235133952
+      },
+      "char_len": 82,
+      "citations": []
+    }
+  ]
+}

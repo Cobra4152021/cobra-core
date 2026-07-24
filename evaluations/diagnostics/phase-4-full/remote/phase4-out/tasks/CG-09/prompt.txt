@@ -1,0 +1,1 @@
+Provide grep and/or ripgrep commands to find ERROR lines across rotated logs matching app.log*. Note performance considerations for large files. Show expected output shape.

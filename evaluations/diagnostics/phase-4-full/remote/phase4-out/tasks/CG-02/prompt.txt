@@ -1,0 +1,5 @@
+Write a pure Python function that transforms a list of dict records:
+- normalize date fields named "date" to ISO-8601 YYYY-MM-DD when parseable
+- drop records where email is null/None/missing
+- dedupe by id keeping the first occurrence
+Do not mutate the input list or nested dicts in place. Provide the function and 3 unit-test style examples covering edge cases.

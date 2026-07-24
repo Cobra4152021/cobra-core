@@ -1,0 +1,12 @@
+**Finding:** Insufficient evidence to name the person who stole the laptop with certainty.  
+
+**Evidence:**  
+- [S1] Suspect A was seen near the building at 09:10.  
+- [S2] Suspect B's badge opened the side door at 09:12.  
+- [S3] No source identifies who removed the laptop.  
+
+**Confidence:** Low.  
+
+**Missing:** Direct evidence linking either suspect to the removal of the laptop.  
+
+**Conclusion:** The identity of the person who stole the laptop cannot be determined with certainty based on the provided evidence.

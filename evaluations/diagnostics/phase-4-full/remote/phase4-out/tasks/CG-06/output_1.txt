@@ -1,0 +1,31 @@
+**Dialect:** PostgreSQL
+
+```sql
+SELECT
+  u.plan,
+  EXTRACT(MONTH FROM o.ordered_at) AS month,
+  EXTRACT(YEAR FROM o.ordered_at) AS year,
+  SUM(o.amount_cents) AS total_revenue
+FROM
+  users u
+JOIN
+  orders o ON u.id = o.user_id
+WHERE
+  o.ordered_at >= CURRENT_DATE - INTERVAL '1 year'
+GROUP BY
+  u.plan,
+  EXTRACT(MONTH FROM o.ordered_at),
+  EXTRACT(YEAR FROM o.ordered_at)
+ORDER BY
+  year DESC,
+  month DESC;
+```
+
+**Grain:** The query aggregates revenue by **plan** and **month/year**, meaning it provides the total revenue per plan for each month within the last year.
+
+**Null Handling:** 
+- `plan` is a `text` field, and if it is `NULL`, it will be grouped as `NULL` in the result.
+- `amount_cents` is an `int`, and if it is `NULL`, it will be excluded from the `SUM` (as `NULL` values are not included in aggregate functions by default in PostgreSQL).
+- If a user has no orders, they will not appear in the result, as the `JOIN` filters out users with no orders.
+
+**Note:** If you want to include users with no orders (i.e., `NULL` in `plan` or no orders), you would need to use a `LEFT JOIN` and handle `NULL` values explicitly.

@@ -1,0 +1,4 @@
+Sources:
+[S1] Delivery occurred on 2024-03-01.
+[S2] The invoice lists delivery date 2024-03-03.
+Report the conflict. Do not average dates. Include confidence and unknowns.

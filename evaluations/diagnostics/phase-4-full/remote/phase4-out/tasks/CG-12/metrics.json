@@ -1,0 +1,24 @@
+{
+  "id": "CG-12",
+  "domain": "engineering",
+  "repeats": 1,
+  "max_new_tokens": 400,
+  "success": true,
+  "error": null,
+  "meta": {},
+  "outputs": [
+    {
+      "latency_s": 8.534,
+      "output_tokens": 119,
+      "input_tokens": 134,
+      "peak_vram_bytes": 6328919040,
+      "memory": {
+        "available_ram_bytes": 211837403136,
+        "total_ram_bytes": 270068588544,
+        "used_ram_bytes": 58231185408
+      },
+      "char_len": 518,
+      "citations": []
+    }
+  ]
+}

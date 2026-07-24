@@ -1,0 +1,57 @@
+Here is the annotated code with type hints and a structured error hierarchy, based on the provided stub:
+
+```python
+from typing import Dict, Tuple, Optional
+import json
+
+class UserLoadError(Exception):
+    """Base class for errors during user loading."""
+    pass
+
+class MissingKeyError(UserLoadError):
+    """Raised when a required key is missing from the input."""
+    def __init__(self, missing_key: str):
+        self.missing_key = missing_key
+        super().__init__(f"Missing key: {missing_key}")
+
+class BadTypeError(UserLoadError):
+    """Raised when a value is not of the expected type."""
+    def __init__(self, key: str, expected_type: type, received_type: type):
+        self.key = key
+        self.expected_type = expected_type
+        self.received_type = received_type
+        super().__init__(f"Bad type for key '{key}': expected {expected_type}, received {received_type}")
+
+def load_user(raw: Dict) -> Tuple[str, str]:
+    """
+    Load user data from a dictionary.
+
+    Args:
+        raw: A dictionary containing user data.
+
+    Returns:
+        A tuple (id, email) where id is a string and email is a string.
+
+    Raises:
+        MissingKeyError: If 'id' or 'email' is missing.
+        BadTypeError: If 'id' or 'email' is not a string.
+    """
+    if 'id' not in raw:
+        raise MissingKeyError('id')
+    if 'email' not in raw:
+        raise MissingKeyError('email')
+
+    if not isinstance(raw['id'], str):
+        raise BadTypeError('id', str, type(raw['id']))
+    if not isinstance(raw['email'], str):
+        raise BadTypeError('email', str, type(raw['email']))
+
+    return raw['id'], raw['email']
+```
+
+### Error Hierarchy:
+- `UserLoadError` (base class)
+  - `MissingKeyError` (for missing keys)
+  - `BadTypeError` (for type mismatches)
+
+This implementation preserves the original behavior of the stub and adds type safety and structured error handling.

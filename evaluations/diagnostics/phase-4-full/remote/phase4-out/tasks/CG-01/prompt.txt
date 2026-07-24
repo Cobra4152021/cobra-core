@@ -1,0 +1,7 @@
+Write a complete Python 3.12 script that:
+- uses argparse
+- takes a path to a JSON file
+- validates that top-level keys id, name, email exist
+- exits 0 on success, 1 on missing file, 2 on invalid JSON, 3 on missing keys
+- prints a one-line error to stderr on failure
+Do not use eval. No third-party dependencies. Include example invocation and exit-code table.

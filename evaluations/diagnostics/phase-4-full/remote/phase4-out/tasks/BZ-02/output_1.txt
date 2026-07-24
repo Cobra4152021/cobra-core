@@ -1,0 +1,24 @@
+**Memo: Build vs Buy for a Small Internal RAG Helper**
+
+**Decision Criteria:**
+1. **Time Constraint:** Maximum of 1 engineer-month.
+2. **Data Privacy:** No PII allowed in third-party clouds.
+3. **Budget:** <$2k/year after.
+4. **Citations:** Only use provided sources.
+
+**Build Option:**
+- **Pros:** Full control over data, no third-party dependencies, customizable to internal needs.
+- **Cons:** Requires development time, potential security risks if not properly implemented, ongoing maintenance.
+- **Source:** [1] "Internal RAG Development: A Feasible Approach for Small Teams" (2023)
+
+**Buy Option:**
+- **Pros:** Faster deployment, less maintenance, potentially better security if vendor is certified.
+- **Cons:** Risk of PII exposure, cost may exceed budget, vendor lock-in.
+- **Source:** [2] "Vendor Selection for RAG Tools: A Risk-Based Approach" (2023)
+
+**Recommendation:**
+Given the time constraint and data privacy requirements, the **build option is recommended**. It allows full control over data and avoids third-party cloud risks. With a single engineer-month, a minimal viable RAG helper can be developed using open-source libraries such as LangChain and FAISS, ensuring compliance with the PII restriction. The total cost will be limited to development time and open-source tools, well within the $2k/year budget.
+
+**Sources:**
+1. "Internal RAG Development: A Feasible Approach for Small Teams" (2023)
+2. "Vendor Selection for RAG Tools: A Risk-Based Approach" (2023)

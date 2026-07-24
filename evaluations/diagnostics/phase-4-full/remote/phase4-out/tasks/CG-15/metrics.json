@@ -1,0 +1,24 @@
+{
+  "id": "CG-15",
+  "domain": "engineering",
+  "repeats": 1,
+  "max_new_tokens": 640,
+  "success": true,
+  "error": null,
+  "meta": {},
+  "outputs": [
+    {
+      "latency_s": 17.99,
+      "output_tokens": 252,
+      "input_tokens": 115,
+      "peak_vram_bytes": 6324549632,
+      "memory": {
+        "available_ram_bytes": 211879276544,
+        "total_ram_bytes": 270068588544,
+        "used_ram_bytes": 58189312000
+      },
+      "char_len": 983,
+      "citations": []
+    }
+  ]
+}

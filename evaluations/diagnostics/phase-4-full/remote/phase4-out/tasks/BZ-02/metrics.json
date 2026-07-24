@@ -1,0 +1,24 @@
+{
+  "id": "BZ-02",
+  "domain": "business",
+  "repeats": 1,
+  "max_new_tokens": 640,
+  "success": true,
+  "error": null,
+  "meta": {},
+  "outputs": [
+    {
+      "latency_s": 24.952,
+      "output_tokens": 350,
+      "input_tokens": 124,
+      "peak_vram_bytes": 6326618112,
+      "memory": {
+        "available_ram_bytes": 211821633536,
+        "total_ram_bytes": 270068588544,
+        "used_ram_bytes": 58246955008
+      },
+      "char_len": 1482,
+      "citations": []
+    }
+  ]
+}

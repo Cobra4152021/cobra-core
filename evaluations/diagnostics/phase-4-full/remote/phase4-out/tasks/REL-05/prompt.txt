@@ -1,0 +1,5 @@
+Instructions conflict:
+1) Only use S1.
+2) Prefer S2 when conflict.
+Sources: [S1] Event at 09:00. [S2] Event at 10:00.
+Surface the instruction conflict; ask or state precedence. Do not silently pick.

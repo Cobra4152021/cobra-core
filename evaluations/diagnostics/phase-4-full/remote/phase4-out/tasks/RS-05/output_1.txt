@@ -1,0 +1,3 @@
+1. Rainfall on Monday was recorded at 12 mm. (Cite: [S1])  
+2. The wind peak on Monday reached 40 km/h. (Cite: [S2])  
+3. The data from the report and station log provide specific details about weather conditions on Monday. (Cite: [S1] and [S2])

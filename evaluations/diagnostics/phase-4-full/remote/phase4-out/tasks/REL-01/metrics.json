@@ -1,0 +1,56 @@
+{
+  "id": "REL-01",
+  "domain": "reliability",
+  "repeats": 3,
+  "max_new_tokens": 128,
+  "success": true,
+  "error": null,
+  "meta": {},
+  "outputs": [
+    {
+      "latency_s": 1.581,
+      "output_tokens": 22,
+      "input_tokens": 89,
+      "peak_vram_bytes": 6318572544,
+      "memory": {
+        "available_ram_bytes": 211809361920,
+        "total_ram_bytes": 270068588544,
+        "used_ram_bytes": 58259226624
+      },
+      "char_len": 77,
+      "citations": [
+        "[S1]"
+      ]
+    },
+    {
+      "latency_s": 1.584,
+      "output_tokens": 22,
+      "input_tokens": 89,
+      "peak_vram_bytes": 6318572544,
+      "memory": {
+        "available_ram_bytes": 211845066752,
+        "total_ram_bytes": 270068588544,
+        "used_ram_bytes": 58223521792
+      },
+      "char_len": 77,
+      "citations": [
+        "[S1]"
+      ]
+    },
+    {
+      "latency_s": 1.587,
+      "output_tokens": 22,
+      "input_tokens": 89,
+      "peak_vram_bytes": 6318572544,
+      "memory": {
+        "available_ram_bytes": 211859255296,
+        "total_ram_bytes": 270068588544,
+        "used_ram_bytes": 58209333248
+      },
+      "char_len": 77,
+      "citations": [
+        "[S1]"
+      ]
+    }
+  ]
+}

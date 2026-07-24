@@ -1,0 +1,25 @@
+**Brief**  
+**Facts:**  
+- Riverdale Logistics has three depots: North (2019), Central (2015), and South (2021) [A].  
+- The 2023 audit identified incomplete seal logs at Central for 14 days in June [A].  
+- On 2024-02-02, truck T-19 left North at 06:10 with manifest M-441 [B].  
+- Central received T-19 at 11:40 on the same day, as per dock camera notes [B].  
+- The Central intake form lists 47 sealed crates and notes one seal broken in transit [C].  
+- Manifest M-441 lists 48 sealed crates and 2 open crates of manuals [C].  
+- Dispatcher Kim authorized the redirect to Central for inspection [D].  
+- Inspector Lopez signed the broken-seal note [D].  
+- Humidity sensors at Central were offline from 10:00–12:00 on 2024-02-02 [E].  
+- The vendor invoice for M-441 is not included in the memo [E].  
+
+**Inferences:**  
+- The discrepancy between the manifest (48 sealed crates) and the intake form (47 sealed crates) suggests a possible loss or miscount [C].  
+- The broken seal noted at Central may indicate tampering or damage during transit [C].  
+- The redirect to Central for inspection, combined with the broken seal, raises questions about the truck’s condition or potential theft [B][D].  
+- The offline humidity sensors at Central during the time of receipt may have affected the integrity of the cargo [E].  
+- The absence of a vendor invoice for M-441 suggests incomplete documentation or a missing record [E].  
+
+**Unknowns:**  
+- The identity of the thief, if any, remains unidentified [D].  
+- The exact cause of the broken seal and whether it was due to damage or tampering is unclear [C].  
+- The impact of the offline humidity sensors on the cargo is not specified [E].  
+- The vendor invoice for M-441 is missing, so the financial details are unknown [E].

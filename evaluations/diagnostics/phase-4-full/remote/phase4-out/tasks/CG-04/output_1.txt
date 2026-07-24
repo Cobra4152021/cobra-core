@@ -1,0 +1,97 @@
+Here's a TypeScript module that provides a typed `fetch` wrapper with the following features:
+
+- Uses `AbortController` for timeout support
+- Handles JSON error parsing
+- Returns a discriminated union result type (`ok | err`)
+- Avoids using `any`
+- Includes a short usage snippet
+
+```ts
+// fetch-wrapper.ts
+import { AbortController } from 'node:abort-controller';
+
+type Result<T> = {
+  ok: true;
+  data: T;
+} | {
+  ok: false;
+  error: Error;
+};
+
+export class FetchError extends Error {
+  constructor(message: string, public status?: number) {
+    super(message);
+    this.name = 'FetchError';
+  }
+}
+
+export const fetchWithTimeout = <T>(
+  input: RequestInfo,
+  init?: RequestInit,
+  timeout?: number
+): Promise<Result<T>> => {
+  return new Promise((resolve, reject) => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeout);
+
+    fetch(input, { ...init, signal: controller.signal })
+      .then(response => {
+        clearTimeout(timeoutId);
+        if (!response.ok) {
+          return response.json().then(data => {
+            const error = new FetchError(
+              `HTTP error! status: ${response.status}, message: ${data.message}`,
+              response.status
+            );
+            reject(error);
+          });
+        }
+
+        return response.json();
+      })
+      .then(data => resolve({ ok: true, data }))
+      .catch(error => {
+        clearTimeout(timeoutId);
+        if (error.name === 'AbortError') {
+          reject(new FetchError('Request timed out', 408));
+        } else {
+          reject(new FetchError('Network error', 500));
+        }
+      });
+  });
+};
+```
+
+### Usage Snippet
+
+```ts
+// usage.ts
+import { fetchWithTimeout } from './fetch-wrapper';
+
+async function exampleUsage() {
+  try {
+    const result = await fetchWithTimeout<{ id: number; name: string }>(
+      'https://jsonplaceholder.typicode.com/users/1',
+      undefined,
+      5000
+    );
+
+    if (result.ok) {
+      console.log('Success:', result.data);
+    } else {
+      console.error('Error:', result.error.message);
+    }
+  } catch (error) {
+    console.error('Unexpected error:', error);
+  }
+}
+
+exampleUsage();
+```
+
+### Notes
+
+- This implementation assumes you're using a Node.js environment that supports `AbortController` (Node.js v15.0.0+).
+- The `FetchError` class is used to distinguish between network errors and HTTP errors.
+- The result type is a discriminated union (`ok | err`) with `ok` indicating success and `err` indicating an error.
+- The function avoids using `any` and uses type inference where possible.

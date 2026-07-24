@@ -1,0 +1,67 @@
+The race in the provided Python code arises from **concurrent modification of a shared list (`shared`)** without any synchronization mechanism. The `add` function is called concurrently by two tasks, and both append to the shared list. The reader assumes that the list will have exactly two elements immediately after `asyncio.gather()` completes, but this assumption is **not guaranteed** due to the **asynchronous nature of the tasks**.
+
+---
+
+### 🔍 **Explanation of the Race**
+
+- The `add` function is **not atomic** with respect to the shared list.
+- The `await asyncio.sleep(0)` is a **placeholder** to simulate concurrency (not a real delay).
+- The `shared.append(x)` is **not thread-safe** in an asynchronous context.
+- The reader assumes that after `gather()`, the list will have **exactly two elements**, but this is **not guaranteed** because:
+  - The tasks may not have completed yet.
+  - The `shared` list may not have been updated yet.
+  - The order of execution is **not guaranteed**.
+
+This is a **race condition** where the **reader may see an incomplete or inconsistent state** of the shared list.
+
+---
+
+### 🛡️ **Safe Fix Using a Lock**
+
+To ensure that the shared list is updated **atomically** and that the reader sees a consistent state, we can use an **async lock** (`asyncio.Lock`) to synchronize access to the shared list.
+
+Here is the **safe fix**:
+
+```python
+import asyncio
+
+shared = []
+lock = asyncio.Lock()
+
+async def add(x):
+    await asyncio.sleep(0)
+    async with lock:
+        shared.append(x)
+
+async def main():
+    task1 = asyncio.create_task(add(1))
+    task2 = asyncio.create_task(add(2))
+    await asyncio.gather(task1, task2)
+    print(len(shared))  # This will now be 2
+
+asyncio.run(main())
+```
+
+---
+
+### ✅ **Why This Fix Works**
+
+- The `async with lock` ensures that only one task can append to the shared list at a time.
+- This guarantees that the shared list is updated **atomically**.
+- The reader (i.e., the `print(len(shared))` in `main()`) will see the **final state** of the shared list after all tasks have completed, because the `gather()` ensures that all tasks are awaited before the reader proceeds.
+
+---
+
+### 🚫 Avoiding Sleep-Only Fixes
+
+- The `await asyncio.sleep(0)` in the `add` function is **not a synchronization mechanism**.
+- It is used to simulate concurrency but does **not prevent race conditions**.
+- A **safe fix** must use **explicit synchronization** (like `asyncio.Lock`) or **ordering guarantees** (like `asyncio.gather()` with proper task ordering).
+
+---
+
+### 📌 Summary
+
+- **Race**: Concurrent modification of a shared list without synchronization.
+- **Safe Fix**: Use `asyncio.Lock` to ensure atomic updates to the shared list.
+- **Avoid**: Sleep-only fixes or assuming task completion order

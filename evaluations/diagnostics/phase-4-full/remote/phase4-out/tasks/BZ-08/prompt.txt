@@ -1,0 +1,3 @@
+SOP: verify model inventory hash before qualification.
+Required hash: 8cf07aa84c9e26c9dd4ce71b21bd498232c8dfa5afe5284d375be0c1e9bb3f4f
+Include commands/pass-fail. Do not advise committing weights to git.

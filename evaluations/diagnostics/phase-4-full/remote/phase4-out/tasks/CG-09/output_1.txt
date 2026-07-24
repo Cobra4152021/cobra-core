@@ -1,0 +1,33 @@
+To find lines containing the word `ERROR` across rotated log files matching `app.log*`, you can use the `grep` or `ripgrep` (rg) command. Below are the recommended commands, along with performance considerations and expected output shape.
+
+---
+
+### ✅ **Using `ripgrep` (Recommended for Large Files)**
+
+```bash
+rg --files app.log* | xargs -P 4 -I {} grep -i 'ERROR' {}
+```
+
+#### Explanation:
+- `rg --files app.log*`: Lists all files matching `app.log*`.
+- `xargs -P 4`: Spawns up to 4 processes in parallel to process the files.
+- `grep -i 'ERROR' {}`: Performs a case-insensitive search for `ERROR` in each file.
+
+#### Performance Considerations:
+- `ripgrep` is faster than `grep` for large files due to its optimized search algorithm and support for parallel processing.
+- Using `-P 4` allows for parallel processing, which can significantly reduce total search time across many large files.
+- If you're on a system without `ripgrep`, consider using `grep` with `find` and `xargs` for similar performance.
+
+---
+
+### ✅ **Using `grep` with `find` and `xargs`**
+
+```bash
+find /var/log -type f -name 'app.log*' -print0 | xargs -0 -P 4 -I {} grep -i 'ERROR' {}
+```
+
+#### Explanation:
+- `find /var/log -type f -name 'app.log*'`: Finds all files in `/var/log` matching `app.log*`.
+- `-print0` and `-0` handle filenames with spaces or special characters safely.
+- `xargs -P 4`: Spawns up to 4 processes in parallel.
+- `grep -i 'ERROR' {}`: Performs a case-insensitive search for `

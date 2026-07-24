@@ -1,0 +1,7 @@
+Same facts, two formats.
+Facts from sources only:
+[S1] Inspection began 10:00.
+[S2] Inspection ended 10:35.
+A) bullets
+B) one prose paragraph
+Do not invent extra facts. Lists must not conflict.

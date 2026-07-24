@@ -1,0 +1,6 @@
+**A) Bullets**  
+- Inspection began at 10:00.  
+- Inspection ended at 10:35.
+
+**B) One prose paragraph**  
+The inspection began at 10:00 and ended at 10:35.

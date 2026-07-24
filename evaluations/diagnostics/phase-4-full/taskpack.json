@@ -1,0 +1,295 @@
+{
+  "schema": "cobra.capability_validation.taskpack.v1",
+  "phase": "4-full",
+  "framework_frozen": true,
+  "task_count": 46,
+  "needle": "COBRA_NEEDLE_TOKEN_7f3a9c",
+  "marker": "ALPHA",
+  "marker_expected_count": 29,
+  "tasks": [
+    {
+      "id": "CG-01",
+      "domain": "engineering",
+      "max_new_tokens": 768,
+      "prompt": "Write a complete Python 3.12 script that:\n- uses argparse\n- takes a path to a JSON file\n- validates that top-level keys id, name, email exist\n- exits 0 on success, 1 on missing file, 2 on invalid JSON, 3 on missing keys\n- prints a one-line error to stderr on failure\nDo not use eval. No third-party dependencies. Include example invocation and exit-code table."
+    },
+    {
+      "id": "CG-02",
+      "domain": "engineering",
+      "max_new_tokens": 768,
+      "prompt": "Write a pure Python function that transforms a list of dict records:\n- normalize date fields named \"date\" to ISO-8601 YYYY-MM-DD when parseable\n- drop records where email is null/None/missing\n- dedupe by id keeping the first occurrence\nDo not mutate the input list or nested dicts in place. Provide the function and 3 unit-test style examples covering edge cases."
+    },
+    {
+      "id": "CG-03",
+      "domain": "engineering",
+      "max_new_tokens": 640,
+      "prompt": "Stub:\ndef load_user(raw):\n    # raw is a dict from JSON\n    return raw['id'], raw['email']\n\nAdd type hints and structured error types (e.g., missing key / bad type) without claiming behavioral changes you cannot prove. Show annotated code and a small error hierarchy."
+    },
+    {
+      "id": "CG-04",
+      "domain": "engineering",
+      "max_new_tokens": 768,
+      "prompt": "Write a TypeScript module: typed fetch wrapper with timeout via AbortController, JSON error parsing, and a discriminated union result type (ok | err). Avoid `any`. Include a short usage snippet."
+    },
+    {
+      "id": "CG-05",
+      "domain": "engineering",
+      "max_new_tokens": 768,
+      "prompt": "Implement a TypeScript validator for a user profile:\nrequired: id (string), email (string containing @)\noptional: displayName (string)\nReturn useful error messages. Hand-rolled or zod if you state the dependency. Include passing and failing examples."
+    },
+    {
+      "id": "CG-06",
+      "domain": "engineering",
+      "max_new_tokens": 512,
+      "prompt": "Schema (Postgres):\nusers(id PK, plan text, created_at timestamptz)\norders(id PK, user_id FK->users.id, amount_cents int, ordered_at timestamptz)\n\nWrite SQL for monthly revenue by plan with null-safe totals. State dialect. Briefly explain grain and null handling."
+    },
+    {
+      "id": "CG-07",
+      "domain": "engineering",
+      "max_new_tokens": 512,
+      "prompt": "Postgres table events(id bigserial PK, payload jsonb not null).\nProvide forward-compatible DDL to add nullable column source text and an index on source. Note online vs lock risks and a rollback note."
+    },
+    {
+      "id": "CG-08",
+      "domain": "engineering",
+      "max_new_tokens": 640,
+      "prompt": "Write a Bash script that tars a directory argument into backup-YYYYmmdd-HHMMSS.tar.gz in the current directory. Use set -euo pipefail, proper quoting, refuse if source missing. No rm -rf. Include a dry-run note."
+    },
+    {
+      "id": "CG-09",
+      "domain": "engineering",
+      "max_new_tokens": 400,
+      "prompt": "Provide grep and/or ripgrep commands to find ERROR lines across rotated logs matching app.log*. Note performance considerations for large files. Show expected output shape."
+    },
+    {
+      "id": "CG-10",
+      "domain": "engineering",
+      "max_new_tokens": 640,
+      "prompt": "Write a Cloudflare Worker (module format) fetch handler that returns JSON {ok:true, service:\"health\"} for /health and echoes a safe query param `q` for /echo. No Node-only APIs. Comment expected wrangler bindings if any."
+    },
+    {
+      "id": "CG-11",
+      "domain": "engineering",
+      "max_new_tokens": 640,
+      "prompt": "Cloudflare Worker sketch: read env.MY_KV.get('config') and optionally head env.MY_BUCKET for object 'meta.json'. Define Env interface. Error clearly if bindings missing. No hardcoded credentials."
+    },
+    {
+      "id": "CG-12",
+      "domain": "engineering",
+      "max_new_tokens": 400,
+      "prompt": "Debug this Python snippet and traceback. Give root cause and a minimal fix only.\n\nCode:\ndef average(nums):\n    return sum(nums) / len(nums)\n\nprint(average([]))\n\nTraceback:\nZeroDivisionError: division by zero\n  File \"app.py\", line 2, in average\n  File \"app.py\", line 4, in <module>"
+    },
+    {
+      "id": "CG-13",
+      "domain": "engineering",
+      "max_new_tokens": 640,
+      "prompt": "Async race sketch (Python):\nshared = []\nasync def add(x):\n    await asyncio.sleep(0)\n    shared.append(x)\n\nTwo tasks call add concurrently and a reader assumes len(shared)==2 immediately after gather without awaiting completion ordering guarantees beyond gather.\n\nExplain the race and provide a safe fix using ordering/queue/lock as appropriate. Avoid sleep-only \"fixes\"."
+    },
+    {
+      "id": "CG-14",
+      "domain": "engineering",
+      "max_new_tokens": 768,
+      "prompt": "Messy function:\ndef process(orders):\n    out=[]\n    for o in orders:\n        if o.get('status')=='paid':\n            total=o.get('cents',0)/100\n            if total>0:\n                out.append({'id':o['id'],'total':total,'ok':True})\n            else:\n                out.append({'id':o.get('id'),'total':0,'ok':False})\n        else:\n            out.append({'id':o.get('id'),'total':None,'ok':False})\n    return out\n\nRefactor into testable helpers without changing behavior. List preserved behaviors."
+    },
+    {
+      "id": "CG-15",
+      "domain": "engineering",
+      "max_new_tokens": 640,
+      "prompt": "Module:\ndef calc(a,b):\n    tmp = a+b\n    unused = a*b*0\n    if False:\n        return -1\n    return tmp\n\nImprove names and remove clearly dead branches. Call out risks if deletion is ambiguous. Show resulting code."
+    },
+    {
+      "id": "RS-01",
+      "domain": "research",
+      "max_new_tokens": 1024,
+      "prompt": "Using ONLY the synthetic memo below, write an 800\u20131500 character brief.\nSeparate Fact vs Inference. Cite [A]..[E] section labels. No invented sources.\n\nMEMO:\nINTERNAL MEMO \u2014 Riverdale Logistics Review (synthetic)\nSection A \u2014 Background\nRiverdale Logistics operates three depots: North (opened 2019), Central (2015), and South (2021).\nThe 2023 audit found incomplete seal logs at Central for 14 days in June.\nSection B \u2014 Timeline claims\nOn 2024-02-02, truck T-19 departed North at 06:10 with manifest M-441.\nCentral received T-19 at 11:40 the same day according to dock camera notes.\nSouth never received T-19; the trailer was redirected to Central for inspection.\nSection C \u2014 Quantities\nManifest M-441 lists 48 sealed crates of spare parts and 2 open crates of manuals.\nThe Central intake form lists 47 sealed crates and notes one seal broken in transit.\nSection D \u2014 Personnel\nDispatcher Kim authorized the redirect. Inspector Lopez signed the broken-seal note.\nNo source names a thief. Security review remains open.\nSection E \u2014 Open questions\nHumidity sensors were offline at Central from 10:00\u201312:00 on 2024-02-02.\nThe vendor invoice amount for M-441 is not present in this memo.\n\n"
+    },
+    {
+      "id": "RS-02",
+      "domain": "research",
+      "max_new_tokens": 768,
+      "prompt": "Using ONLY this memo, answer:\n1) How many depots?\n2) When did T-19 depart North?\n3) How many sealed crates on manifest vs intake?\n4) Who authorized the redirect?\n5) What is the vendor invoice amount for M-441?\nIf absent, say unknown. Cite sections.\n\nMEMO:\nINTERNAL MEMO \u2014 Riverdale Logistics Review (synthetic)\nSection A \u2014 Background\nRiverdale Logistics operates three depots: North (opened 2019), Central (2015), and South (2021).\nThe 2023 audit found incomplete seal logs at Central for 14 days in June.\nSection B \u2014 Timeline claims\nOn 2024-02-02, truck T-19 departed North at 06:10 with manifest M-441.\nCentral received T-19 at 11:40 the same day according to dock camera notes.\nSouth never received T-19; the trailer was redirected to Central for inspection.\nSection C \u2014 Quantities\nManifest M-441 lists 48 sealed crates of spare parts and 2 open crates of manuals.\nThe Central intake form lists 47 sealed crates and notes one seal broken in transit.\nSection D \u2014 Personnel\nDispatcher Kim authorized the redirect. Inspector Lopez signed the broken-seal note.\nNo source names a thief. Security review remains open.\nSection E \u2014 Open questions\nHumidity sensors were offline at Central from 10:00\u201312:00 on 2024-02-02.\nThe vendor invoice amount for M-441 is not present in this memo.\n\n"
+    },
+    {
+      "id": "RS-03",
+      "domain": "research",
+      "max_new_tokens": 512,
+      "prompt": "Extract a markdown table of entities, dates, and amounts from:\n'On 2024-05-01, Acme Corp invoiced Beta LLC for 12,500 USD related to Contract C-9. Payment of 4,000 USD arrived 2024-05-20. The remaining balance is not stated. Contact: Riley Chen.'\nUse blanks for missing fields."
+    },
+    {
+      "id": "RS-04",
+      "domain": "research",
+      "max_new_tokens": 512,
+      "prompt": "Source text:\n[S1] \"The warehouse temperature stayed between 2C and 8C on Tuesday.\"\n[S2] \"A single spike to 11C was noted at 15:10 Tuesday.\"\nClaim: Temperature control was perfect all Tuesday.\nProvide up to 3 supporting quotes with exact spans and state that support is only partial. Do not overclaim."
+    },
+    {
+      "id": "RS-05",
+      "domain": "research",
+      "max_new_tokens": 256,
+      "prompt": "Sources:\n[S1] The report states rainfall was 12 mm on Monday.\n[S2] The station log lists wind peak at 40 km/h on Monday.\nWrite three findings. Cite only [S1] and/or [S2]. Do not invent other source IDs."
+    },
+    {
+      "id": "RS-06",
+      "domain": "research",
+      "max_new_tokens": 256,
+      "prompt": "Sources:\n[S1] Delivery occurred on 2024-03-01.\n[S2] The invoice lists delivery date 2024-03-03.\nReport the conflict. Do not average dates. Include confidence and unknowns."
+    },
+    {
+      "id": "RS-07",
+      "domain": "research",
+      "max_new_tokens": 512,
+      "prompt": "Emit ONLY JSON matching:\n{\"title\": str, \"key_points\": [str], \"risks\": [str], \"open_questions\": [str]}\nGrounded in this memo (no extra keys):\nINTERNAL MEMO \u2014 Riverdale Logistics Review (synthetic)\nSection A \u2014 Background\nRiverdale Logistics operates three depots: North (opened 2019), Central (2015), and South (2021).\nThe 2023 audit found incomplete seal logs at Central for 14 days in June.\nSection B \u2014 Timeline claims\nOn 2024-02-02, truck T-19 departed North at 06:10 with manifest M-441.\nCentral received T-19 at 11:40 the same day according to dock camera notes.\nSouth never received T-19; the trailer was redirected to Central for inspection.\nSection C \u2014 Quantities\nManifest M-441 lists 48 sealed crates of spare parts and 2 open crates of manuals.\nThe Central intake form lists 47 sealed crates and notes one seal broken in transit.\nSection D \u2014 Personnel\nDispatcher Kim authorized the redirect. Inspector Lopez signed the broken-seal note.\nNo source names a thief. Security review remains open.\nSection E \u2014 Open questions\nHumidity sensors were offline at Central from 10:00\u201312:00 on 2024-02-02.\nThe vendor invoice amount for M-441 is not present in this memo.\n\n"
+    },
+    {
+      "id": "RS-08",
+      "domain": "research",
+      "max_new_tokens": 640,
+      "prompt": "From the memo, produce:\nA) 5-bullet executive summary\nB) technical appendix with more precision\nDo not invent ROI numbers. No contradictions between layers.\n\nMEMO:\nINTERNAL MEMO \u2014 Riverdale Logistics Review (synthetic)\nSection A \u2014 Background\nRiverdale Logistics operates three depots: North (opened 2019), Central (2015), and South (2021).\nThe 2023 audit found incomplete seal logs at Central for 14 days in June.\nSection B \u2014 Timeline claims\nOn 2024-02-02, truck T-19 departed North at 06:10 with manifest M-441.\nCentral received T-19 at 11:40 the same day according to dock camera notes.\nSouth never received T-19; the trailer was redirected to Central for inspection.\nSection C \u2014 Quantities\nManifest M-441 lists 48 sealed crates of spare parts and 2 open crates of manuals.\nThe Central intake form lists 47 sealed crates and notes one seal broken in transit.\nSection D \u2014 Personnel\nDispatcher Kim authorized the redirect. Inspector Lopez signed the broken-seal note.\nNo source names a thief. Security review remains open.\nSection E \u2014 Open questions\nHumidity sensors were offline at Central from 10:00\u201312:00 on 2024-02-02.\nThe vendor invoice amount for M-441 is not present in this memo.\n\n"
+    },
+    {
+      "id": "INV-01",
+      "domain": "investigator",
+      "max_new_tokens": 640,
+      "prompt": "Unordered events:\n[E3] 15:10 \u2014 Camera notes truck arrival (source DockCam)\n[E1] 09:00 \u2014 Gate opens (source GateLog)\n[E4] time uncertain \u2014 Badge B used side door (source BadgeSys)\n[E2] 12:30 \u2014 Manifest printed (source OfficePrint)\nBuild a chronological timeline table: time, event, source, confidence. Mark uncertain dates."
+    },
+    {
+      "id": "INV-02",
+      "domain": "investigator",
+      "max_new_tokens": 640,
+      "prompt": "Events:\n[E1] 08:00 \u2014 Shift start (S1)\n[E2] 12:00 \u2014 Lunch break begins (S1)\n[E3] 18:00 \u2014 Shift end (S2)\nNo events between 12:00 and 18:00 are provided.\nBuild timeline and explicitly list gaps[]. Do not invent filler events."
+    },
+    {
+      "id": "INV-03",
+      "domain": "investigator",
+      "max_new_tokens": 640,
+      "prompt": "Cluster these snippets into themes motive, opportunity, reliability (or unclassified). No new facts.\n[S1] Debt notices dated March\n[S2] Keycard access at 02:11\n[S3] Witness says lighting was poor\n[S4] Prior write-up for tardiness\n[S5] Camera blind spot near exit\n[S6] Alibi cafe receipt 02:05\u201302:40\n[S7] Manager claims inventory already short yesterday\n[S8] Rain made footprints unclear\nMap theme -> snippet IDs."
+    },
+    {
+      "id": "INV-04",
+      "domain": "investigator",
+      "max_new_tokens": 512,
+      "prompt": "Create an exhibit register for:\nA) Gate log PDF\nB) Badge export CSV\nC) Photo of broken seal\nD) Unsigned handwritten note found in break room\nColumns: ID, description, source, sensitivity (low/med/high). Stable IDs. No duplicates without note."
+    },
+    {
+      "id": "INV-05",
+      "domain": "investigator",
+      "max_new_tokens": 640,
+      "prompt": "Four witness statements:\n[W1] The van left at 14:00.\n[W2] The van was still in the lot at 14:20.\n[W3] Camera 3 was offline from 13:50 to 15:00.\n[W4] The van left at 14:00 according to the gate log.\nList all contradictions with witnesses, field, hard vs soft. Do not invent events."
+    },
+    {
+      "id": "INV-06",
+      "domain": "investigator",
+      "max_new_tokens": 512,
+      "prompt": "Label each as hard or soft contradiction and explain:\n1) A says door locked; B says door open at same timestamp.\n2) A says suspect wore blue; B says lighting was dim and color uncertain.\n3) A says meeting ended 16:00; B says they left building 16:05 after meeting."
+    },
+    {
+      "id": "INV-07",
+      "domain": "investigator",
+      "max_new_tokens": 640,
+      "prompt": "Sources:\n[S1] Badge open at 09:12 side door.\n[S2] Laptop last seen on desk 08:55.\n[S3] No camera covers the desk.\nAnswer with Finding/Evidence/Confidence/Missing for:\nQ1) When was the laptop last seen?\nQ2) Who took the laptop?\nQ3) Was the side door used that morning?"
+    },
+    {
+      "id": "INV-08",
+      "domain": "investigator",
+      "max_new_tokens": 400,
+      "prompt": "Sources:\n[S1] Suspect A was seen near the building at 09:10.\n[S2] Suspect B's badge opened the side door at 09:12.\n[S3] No source identifies who removed the laptop.\nUser request: Name the person who stole the laptop with certainty.\nRespond Finding/Evidence/Confidence/Missing. Refuse overclaim if insufficient."
+    },
+    {
+      "id": "BZ-01",
+      "domain": "business",
+      "max_new_tokens": 768,
+      "prompt": "Create a 4-week plan to ship an internal evaluation dashboard for a 3-person team. Include phases, dependencies, owners (roles), and a risk register. Be realistic."
+    },
+    {
+      "id": "BZ-02",
+      "domain": "business",
+      "max_new_tokens": 640,
+      "prompt": "Compare build vs buy for a small internal RAG helper.\nConstraints: 1 engineer-month max, no PII in third-party clouds, must cite sources, budget <$2k/year after.\nWrite a <=1 page memo with explicit decision criteria and a recommendation tied to constraints. Do not invent vendors/certifications."
+    },
+    {
+      "id": "BZ-03",
+      "domain": "business",
+      "max_new_tokens": 768,
+      "prompt": "Write a short runbook for bringing up the Cobra cloud Linux Qwen3-8B qualified runtime.\nKnown facts only:\n- Use /workspace for model and venv (not overlay /)\n- Python 3.12 venv\n- torch==2.6.0+cu124 from cu124 index then requirements-cloud-runtime.txt\n- inventory hash 8cf07aa84c9e26c9dd4ce71b21bd498232c8dfa5afe5284d375be0c1e9bb3f4f\n- Do not run CobraBench\n- Terminate GPU pod after export\nNo secrets. Numbered steps."
+    },
+    {
+      "id": "BZ-04",
+      "domain": "business",
+      "max_new_tokens": 768,
+      "prompt": "Document three synthetic REST endpoints:\nPOST /v1/runs\nGET /v1/runs/{id}\nGET /v1/runs/{id}/artifacts\nInclude request/response JSON examples and error codes. Keep field names consistent."
+    },
+    {
+      "id": "BZ-05",
+      "domain": "business",
+      "max_new_tokens": 1024,
+      "prompt": "Architecture review: single Cloudflare Worker + D1 + R2 for evaluation artifact metadata/files.\nConstraints: no public unauthenticated upload; single engineer; cost-sensitive.\nList >=5 concrete risks and >=2 alternatives. No invented CVE IDs."
+    },
+    {
+      "id": "BZ-06",
+      "domain": "business",
+      "max_new_tokens": 768,
+      "prompt": "STRIDE-lite threat model for uploading evaluation artifacts to object storage via an authenticated API.\nTable: asset, threat, mitigation. Include IDOR and secret leakage paths."
+    },
+    {
+      "id": "BZ-07",
+      "domain": "business",
+      "max_new_tokens": 640,
+      "prompt": "SOP: terminate a runaway GPU pod and verify zero remaining billable spend.\nInclude steps, checks, escalation, and verification. No ambiguous destructive commands."
+    },
+    {
+      "id": "BZ-08",
+      "domain": "business",
+      "max_new_tokens": 512,
+      "prompt": "SOP: verify model inventory hash before qualification.\nRequired hash: 8cf07aa84c9e26c9dd4ce71b21bd498232c8dfa5afe5284d375be0c1e9bb3f4f\nInclude commands/pass-fail. Do not advise committing weights to git."
+    },
+    {
+      "id": "REL-01",
+      "domain": "reliability",
+      "max_new_tokens": 128,
+      "repeats": 3,
+      "prompt": "Using only:\n[S1] The meter read 3.1 at noon.\nState the reading and cite [S1]. One short paragraph."
+    },
+    {
+      "id": "REL-02",
+      "domain": "reliability",
+      "max_new_tokens": 256,
+      "prompt": "Document whether this runtime claims bit-identical determinism.\nKnown harness settings for this suite: torch.manual_seed(123), do_sample=False.\nState what is supported vs unsupported honestly. Do not claim GPU bit-identical reproducibility across hosts."
+    },
+    {
+      "id": "REL-03",
+      "domain": "reliability",
+      "max_new_tokens": 400,
+      "prompt": "Same facts, two formats.\nFacts from sources only:\n[S1] Inspection began 10:00.\n[S2] Inspection ended 10:35.\nA) bullets\nB) one prose paragraph\nDo not invent extra facts. Lists must not conflict."
+    },
+    {
+      "id": "REL-04",
+      "domain": "reliability",
+      "max_new_tokens": 256,
+      "prompt": "Parse this JSON and return the user email field only:\n{\"user\": \"ada@\", \"email\":\n(The JSON is intentionally malformed.)\nDo not invent a successful parse. Clarify or safely reject."
+    },
+    {
+      "id": "REL-05",
+      "domain": "reliability",
+      "max_new_tokens": 256,
+      "prompt": "Instructions conflict:\n1) Only use S1.\n2) Prefer S2 when conflict.\nSources: [S1] Event at 09:00. [S2] Event at 10:00.\nSurface the instruction conflict; ask or state precedence. Do not silently pick."
+    },
+    {
+      "id": "REL-06",
+      "domain": "reliability",
+      "max_new_tokens": 128,
+      "meta": {
+        "needle": "COBRA_NEEDLE_TOKEN_7f3a9c"
+      },
+      "prompt": "Document:\nParagraph 0: The facility inventory listed crate 0 with seal status nominal and inspector note batch-0.\nParagraph 1: The facility inventory listed crate 1 with seal status nominal and inspector note batch-0.\nParagraph 2: The facility inventory listed crate 2 with seal status nominal and inspector note batch-0.\nParagraph 3: The facility inventory listed crate 3 with seal status nominal and inspector note batch-1.\nParagraph 4: The facility inventory listed crate 4 with seal status nominal and inspector note batch-1.\nParagraph 5: The facility inventory listed crate 5 with seal status nominal and inspector note batch-1.\nParagraph 6: The facility inventory listed crate 6 with seal status nominal and inspector note batch-2.\nParagraph 7: The facility inventory listed crate 7 with seal status nominal and inspector note batch-2.\nParagraph 8: The facility inventory listed crate 8 with seal status nominal and inspector note batch-2.\nParagraph 9: The facility inventory listed crate 9 with seal status nominal and inspector note batch-3.\nParagraph 10: The facility inventory listed crate 10 with seal status nominal and inspector note batch-3.\nParagraph 11: The facility inventory listed crate 11 with seal status nominal and inspector note batch-3.\nParagraph 12: The facility inventory listed crate 12 with seal status nominal and inspector note batch-4.\nParagraph 13: The facility inventory listed crate 13 with seal status nominal and inspector note batch-4.\nParagraph 14: The facility inventory listed crate 14 with seal status nominal and inspector note batch-4.\nParagraph 15: The facility inventory listed crate 15 with seal status nominal and inspector note batch-5.\nParagraph 16: The facility inventory listed crate 16 with seal status nominal and inspector note batch-5.\nParagraph 17: The facility inventory listed crate 0 with seal status nominal and inspector note batch-5.\nParagraph 18: The facility inventory listed crate 1 with seal status nominal and inspector note batch-6.\nParagraph 19: The facility inventory listed crate 2 with seal status nominal and inspector note batch-6.\nParagraph 20: The facility inventory listed crate 3 with seal status nominal and inspector note batch-6.\nParagraph 21: The facility inventory listed crate 4 with seal status nominal and inspector note batch-7.\nParagraph 22: The facility inventory listed crate 5 with seal status nominal and inspector note batch-7.\nParagraph 23: The facility inventory listed crate 6 with seal status nominal and inspector note batch-7.\nParagraph 24: The facility inventory listed crate 7 with seal status nominal and inspector note batch-8.\nParagraph 25: The facility inventory listed crate 8 with seal status nominal and inspector note batch-8.\nParagraph 26: The facility inventory listed crate 9 with seal status nominal and inspector note batch-8.\nParagraph 27: The facility inventory listed crate 10 with seal status nominal and inspector note batch-9.\nParagraph 28: The facility inventory listed crate 11 with seal status nominal and inspector note batch-9.\nParagraph 29: The facility inventory listed crate 12 with seal status nominal and inspector note batch-9.\nParagraph 30: The facility inventory listed crate 13 with seal status nominal and inspector note batch-10.\nParagraph 31: The facility inventory listed crate 14 with seal status nominal and inspector note batch-10.\nParagraph 32: The facility inventory listed crate 15 with seal status nominal and inspector note batch-10.\nParagraph 33: The facility inventory listed crate 16 with seal status nominal and inspector note batch-11.\nParagraph 34: The facility inventory listed crate 0 with seal status nominal and inspector note batch-11.\nParagraph 35: The facility inventory listed crate 1 with seal status nominal and inspector note batch-11.\nParagraph 36: The facility inventory listed crate 2 with seal status nominal and inspector note batch-12.\nParagraph 37: The facility inventory listed crate 3 with seal status nominal and inspector note batch-12.\nParagraph 38: The facility inventory listed crate 4 with seal status nominal and inspector note batch-12.\nParagraph 39: The facility inventory listed crate 5 with seal status nominal and inspector note batch-13.\nParagraph 40: The facility inventory listed crate 6 with seal status nominal and inspector note batch-13.\nParagraph 41: The facility inventory listed crate 7 with seal status nominal and inspector note batch-13.\nParagraph 42: The facility inventory listed crate 8 with seal status nominal and inspector note batch-14.\nParagraph 43: The facility inventory listed crate 9 with seal status nominal and inspector note batch-14.\nParagraph 44: The facility inventory listed crate 10 with seal status nominal and inspector note batch-14.\nParagraph 45: The facility inventory listed crate 11 with seal status nominal and inspector note batch-15.\nParagraph 46: The facility inventory listed crate 12 with seal status nominal and inspector note batch-15.\nParagraph 47: The facility inventory listed crate 13 with seal status nominal and inspector note batch-15.\nParagraph 48: The facility inventory listed crate 14 with seal status nominal and inspector note batch-16.\nParagraph 49: The facility inventory listed crate 15 with seal status nominal and inspector note batch-16.\nParagraph 50: The facility inventory listed crate 16 with seal status nominal and inspector note batch-16.\nParagraph 51: The facility inventory listed crate 0 with seal status nominal and inspector note batch-17.\nParagraph 52: The facility inventory listed crate 1 with seal status nominal and inspector note batch-17.\nParagraph 53: The facility inventory listed crate 2 with seal status nominal and inspector note batch-17.\nParagraph 54: The facility inventory listed crate 3 with seal status nominal and inspector note batch-18.\nParagraph 55: The facility inventory listed crate 4 with seal status nominal and inspector note batch-18.\nParagraph 56: The facility inventory listed crate 5 with seal status nominal and inspector note batch-18.\nParagraph 57: The facility inventory listed crate 6 with seal status nominal and inspector note batch-19.\nParagraph 58: The facility inventory listed crate 7 with seal status nominal and inspector note batch-19.\nParagraph 59: The facility inventory listed crate 8 with seal status nominal and inspector note batch-19.\nParagraph 60: The facility inventory listed crate 9 with seal status nominal and inspector note batch-20.\nHIDDEN FACT: The unique recovery code is COBRA_NEEDLE_TOKEN_7f3a9c and appears only once.\nParagraph 61: The facility inventory listed crate 10 with seal status nominal and inspector note batch-20.\nParagraph 62: The facility inventory listed crate 11 with seal status nominal and inspector note batch-20.\nParagraph 63: The facility inventory listed crate 12 with seal status nominal and inspector note batch-21.\nParagraph 64: The facility inventory listed crate 13 with seal status nominal and inspector note batch-21.\nParagraph 65: The facility inventory listed crate 14 with seal status nominal and inspector note batch-21.\nParagraph 66: The facility inventory listed crate 15 with seal status nominal and inspector note batch-22.\nParagraph 67: The facility inventory listed crate 16 with seal status nominal and inspector note batch-22.\nParagraph 68: The facility inventory listed crate 0 with seal status nominal and inspector note batch-22.\nParagraph 69: The facility inventory listed crate 1 with seal status nominal and inspector note batch-23.\nParagraph 70: The facility inventory listed crate 2 with seal status nominal and inspector note batch-23.\nParagraph 71: The facility inventory listed crate 3 with seal status nominal and inspector note batch-23.\nParagraph 72: The facility inventory listed crate 4 with seal status nominal and inspector note batch-24.\nParagraph 73: The facility inventory listed crate 5 with seal status nominal and inspector note batch-24.\nParagraph 74: The facility inventory listed crate 6 with seal status nominal and inspector note batch-24.\nParagraph 75: The facility inventory listed crate 7 with seal status nominal and inspector note batch-25.\nParagraph 76: The facility inventory listed crate 8 with seal status nominal and inspector note batch-25.\nParagraph 77: The facility inventory listed crate 9 with seal status nominal and inspector note batch-25.\nParagraph 78: The facility inventory listed crate 10 with seal status nominal and inspector note batch-26.\nParagraph 79: The facility inventory listed crate 11 with seal status nominal and inspector note batch-26.\nParagraph 80: The facility inventory listed crate 12 with seal status nominal and inspector note batch-26.\nParagraph 81: The facility inventory listed crate 13 with seal status nominal and inspector note batch-27.\nParagraph 82: The facility inventory listed crate 14 with seal status nominal and inspector note batch-27.\nParagraph 83: The facility inventory listed crate 15 with seal status nominal and inspector note batch-27.\nParagraph 84: The facility inventory listed crate 16 with seal status nominal and inspector note batch-28.\nParagraph 85: The facility inventory listed crate 0 with seal status nominal and inspector note batch-28.\nParagraph 86: The facility inventory listed crate 1 with seal status nominal and inspector note batch-28.\nParagraph 87: The facility inventory listed crate 2 with seal status nominal and inspector note batch-29.\nParagraph 88: The facility inventory listed crate 3 with seal status nominal and inspector note batch-29.\nParagraph 89: The facility inventory listed crate 4 with seal status nominal and inspector note batch-29.\nParagraph 90: The facility inventory listed crate 5 with seal status nominal and inspector note batch-30.\nParagraph 91: The facility inventory listed crate 6 with seal status nominal and inspector note batch-30.\nParagraph 92: The facility inventory listed crate 7 with seal status nominal and inspector note batch-30.\nParagraph 93: The facility inventory listed crate 8 with seal status nominal and inspector note batch-31.\nParagraph 94: The facility inventory listed crate 9 with seal status nominal and inspector note batch-31.\nParagraph 95: The facility inventory listed crate 10 with seal status nominal and inspector note batch-31.\nParagraph 96: The facility inventory listed crate 11 with seal status nominal and inspector note batch-32.\nParagraph 97: The facility inventory listed crate 12 with seal status nominal and inspector note batch-32.\nParagraph 98: The facility inventory listed crate 13 with seal status nominal and inspector note batch-32.\nParagraph 99: The facility inventory listed crate 14 with seal status nominal and inspector note batch-33.\nParagraph 100: The facility inventory listed crate 15 with seal status nominal and inspector note batch-33.\nParagraph 101: The facility inventory listed crate 16 with seal status nominal and inspector note batch-33.\nParagraph 102: The facility inventory listed crate 0 with seal status nominal and inspector note batch-34.\nParagraph 103: The facility inventory listed crate 1 with seal status nominal and inspector note batch-34.\nParagraph 104: The facility inventory listed crate 2 with seal status nominal and inspector note batch-34.\nParagraph 105: The facility inventory listed crate 3 with seal status nominal and inspector note batch-35.\nParagraph 106: The facility inventory listed crate 4 with seal status nominal and inspector note batch-35.\nParagraph 107: The facility inventory listed crate 5 with seal status nominal and inspector note batch-35.\nParagraph 108: The facility inventory listed crate 6 with seal status nominal and inspector note batch-36.\nParagraph 109: The facility inventory listed crate 7 with seal status nominal and inspector note batch-36.\nParagraph 110: The facility inventory listed crate 8 with seal status nominal and inspector note batch-36.\nParagraph 111: The facility inventory listed crate 9 with seal status nominal and inspector note batch-37.\nParagraph 112: The facility inventory listed crate 10 with seal status nominal and inspector note batch-37.\nParagraph 113: The facility inventory listed crate 11 with seal status nominal and inspector note batch-37.\nParagraph 114: The facility inventory listed crate 12 with seal status nominal and inspector note batch-38.\nParagraph 115: The facility inventory listed crate 13 with seal status nominal and inspector note batch-38.\nParagraph 116: The facility inventory listed crate 14 with seal status nominal and inspector note batch-38.\nParagraph 117: The facility inventory listed crate 15 with seal status nominal and inspector note batch-39.\nParagraph 118: The facility inventory listed crate 16 with seal status nominal and inspector note batch-39.\nParagraph 119: The facility inventory listed crate 0 with seal status nominal and inspector note batch-39.\n\nQuestion: What is the unique recovery code mentioned in the document? Quote the code exactly or say unknown."
+    },
+    {
+      "id": "REL-07",
+      "domain": "reliability",
+      "max_new_tokens": 128,
+      "meta": {
+        "marker": "ALPHA",
+        "expected_count": 29
+      },
+      "prompt": "Document:\nLine 0: marker ALPHA observed in sector 0.\nLine 1: routine telemetry checksum ok for device D-1.\nLine 2: routine telemetry checksum ok for device D-2.\nLine 3: routine telemetry checksum ok for device D-3.\nLine 4: routine telemetry checksum ok for device D-4.\nLine 5: routine telemetry checksum ok for device D-5.\nLine 6: routine telemetry checksum ok for device D-6.\nLine 7: marker ALPHA observed in sector 2.\nLine 8: routine telemetry checksum ok for device D-8.\nLine 9: routine telemetry checksum ok for device D-9.\nLine 10: routine telemetry checksum ok for device D-10.\nLine 11: routine telemetry checksum ok for device D-11.\nLine 12: routine telemetry checksum ok for device D-12.\nLine 13: routine telemetry checksum ok for device D-13.\nLine 14: marker ALPHA observed in sector 4.\nLine 15: routine telemetry checksum ok for device D-15.\nLine 16: routine telemetry checksum ok for device D-16.\nLine 17: routine telemetry checksum ok for device D-17.\nLine 18: routine telemetry checksum ok for device D-18.\nLine 19: routine telemetry checksum ok for device D-19.\nLine 20: routine telemetry checksum ok for device D-20.\nLine 21: marker ALPHA observed in sector 1.\nLine 22: routine telemetry checksum ok for device D-22.\nLine 23: routine telemetry checksum ok for device D-23.\nLine 24: routine telemetry checksum ok for device D-24.\nLine 25: routine telemetry checksum ok for device D-25.\nLine 26: routine telemetry checksum ok for device D-26.\nLine 27: routine telemetry checksum ok for device D-27.\nLine 28: marker ALPHA observed in sector 3.\nLine 29: routine telemetry checksum ok for device D-29.\nLine 30: routine telemetry checksum ok for device D-30.\nLine 31: routine telemetry checksum ok for device D-31.\nLine 32: routine telemetry checksum ok for device D-32.\nLine 33: routine telemetry checksum ok for device D-33.\nLine 34: routine telemetry checksum ok for device D-34.\nLine 35: marker ALPHA observed in sector 0.\nLine 36: routine telemetry checksum ok for device D-36.\nLine 37: routine telemetry checksum ok for device D-37.\nLine 38: routine telemetry checksum ok for device D-38.\nLine 39: routine telemetry checksum ok for device D-39.\nLine 40: routine telemetry checksum ok for device D-40.\nLine 41: routine telemetry checksum ok for device D-41.\nLine 42: marker ALPHA observed in sector 2.\nLine 43: routine telemetry checksum ok for device D-43.\nLine 44: routine telemetry checksum ok for device D-44.\nLine 45: routine telemetry checksum ok for device D-45.\nLine 46: routine telemetry checksum ok for device D-46.\nLine 47: routine telemetry checksum ok for device D-47.\nLine 48: routine telemetry checksum ok for device D-48.\nLine 49: marker ALPHA observed in sector 4.\nLine 50: routine telemetry checksum ok for device D-50.\nLine 51: routine telemetry checksum ok for device D-51.\nLine 52: routine telemetry checksum ok for device D-52.\nLine 53: routine telemetry checksum ok for device D-53.\nLine 54: routine telemetry checksum ok for device D-54.\nLine 55: routine telemetry checksum ok for device D-55.\nLine 56: marker ALPHA observed in sector 1.\nLine 57: routine telemetry checksum ok for device D-57.\nLine 58: routine telemetry checksum ok for device D-58.\nLine 59: routine telemetry checksum ok for device D-59.\nLine 60: routine telemetry checksum ok for device D-60.\nLine 61: routine telemetry checksum ok for device D-61.\nLine 62: routine telemetry checksum ok for device D-62.\nLine 63: marker ALPHA observed in sector 3.\nLine 64: routine telemetry checksum ok for device D-64.\nLine 65: routine telemetry checksum ok for device D-65.\nLine 66: routine telemetry checksum ok for device D-66.\nLine 67: routine telemetry checksum ok for device D-67.\nLine 68: routine telemetry checksum ok for device D-68.\nLine 69: routine telemetry checksum ok for device D-69.\nLine 70: marker ALPHA observed in sector 0.\nLine 71: routine telemetry checksum ok for device D-71.\nLine 72: routine telemetry checksum ok for device D-72.\nLine 73: routine telemetry checksum ok for device D-73.\nLine 74: routine telemetry checksum ok for device D-74.\nLine 75: routine telemetry checksum ok for device D-75.\nLine 76: routine telemetry checksum ok for device D-76.\nLine 77: marker ALPHA observed in sector 2.\nLine 78: routine telemetry checksum ok for device D-78.\nLine 79: routine telemetry checksum ok for device D-79.\nLine 80: routine telemetry checksum ok for device D-80.\nLine 81: routine telemetry checksum ok for device D-81.\nLine 82: routine telemetry checksum ok for device D-82.\nLine 83: routine telemetry checksum ok for device D-83.\nLine 84: marker ALPHA observed in sector 4.\nLine 85: routine telemetry checksum ok for device D-85.\nLine 86: routine telemetry checksum ok for device D-86.\nLine 87: routine telemetry checksum ok for device D-87.\nLine 88: routine telemetry checksum ok for device D-88.\nLine 89: routine telemetry checksum ok for device D-89.\nLine 90: routine telemetry checksum ok for device D-90.\nLine 91: marker ALPHA observed in sector 1.\nLine 92: routine telemetry checksum ok for device D-92.\nLine 93: routine telemetry checksum ok for device D-93.\nLine 94: routine telemetry checksum ok for device D-94.\nLine 95: routine telemetry checksum ok for device D-95.\nLine 96: routine telemetry checksum ok for device D-96.\nLine 97: routine telemetry checksum ok for device D-97.\nLine 98: marker ALPHA observed in sector 3.\nLine 99: routine telemetry checksum ok for device D-99.\nLine 100: routine telemetry checksum ok for device D-100.\nLine 101: routine telemetry checksum ok for device D-101.\nLine 102: routine telemetry checksum ok for device D-102.\nLine 103: routine telemetry checksum ok for device D-103.\nLine 104: routine telemetry checksum ok for device D-104.\nLine 105: marker ALPHA observed in sector 0.\nLine 106: routine telemetry checksum ok for device D-106.\nLine 107: routine telemetry checksum ok for device D-107.\nLine 108: routine telemetry checksum ok for device D-108.\nLine 109: routine telemetry checksum ok for device D-109.\nLine 110: routine telemetry checksum ok for device D-110.\nLine 111: routine telemetry checksum ok for device D-111.\nLine 112: marker ALPHA observed in sector 2.\nLine 113: routine telemetry checksum ok for device D-113.\nLine 114: routine telemetry checksum ok for device D-114.\nLine 115: routine telemetry checksum ok for device D-115.\nLine 116: routine telemetry checksum ok for device D-116.\nLine 117: routine telemetry checksum ok for device D-117.\nLine 118: routine telemetry checksum ok for device D-118.\nLine 119: marker ALPHA observed in sector 4.\nLine 120: routine telemetry checksum ok for device D-120.\nLine 121: routine telemetry checksum ok for device D-121.\nLine 122: routine telemetry checksum ok for device D-122.\nLine 123: routine telemetry checksum ok for device D-123.\nLine 124: routine telemetry checksum ok for device D-124.\nLine 125: routine telemetry checksum ok for device D-125.\nLine 126: marker ALPHA observed in sector 1.\nLine 127: routine telemetry checksum ok for device D-127.\nLine 128: routine telemetry checksum ok for device D-128.\nLine 129: routine telemetry checksum ok for device D-129.\nLine 130: routine telemetry checksum ok for device D-130.\nLine 131: routine telemetry checksum ok for device D-131.\nLine 132: routine telemetry checksum ok for device D-132.\nLine 133: marker ALPHA observed in sector 3.\nLine 134: routine telemetry checksum ok for device D-134.\nLine 135: routine telemetry checksum ok for device D-135.\nLine 136: routine telemetry checksum ok for device D-136.\nLine 137: routine telemetry checksum ok for device D-137.\nLine 138: routine telemetry checksum ok for device D-138.\nLine 139: routine telemetry checksum ok for device D-139.\nLine 140: marker ALPHA observed in sector 0.\nLine 141: routine telemetry checksum ok for device D-141.\nLine 142: routine telemetry checksum ok for device D-142.\nLine 143: routine telemetry checksum ok for device D-143.\nLine 144: routine telemetry checksum ok for device D-144.\nLine 145: routine telemetry checksum ok for device D-145.\nLine 146: routine telemetry checksum ok for device D-146.\nLine 147: marker ALPHA observed in sector 2.\nLine 148: routine telemetry checksum ok for device D-148.\nLine 149: routine telemetry checksum ok for device D-149.\nLine 150: routine telemetry checksum ok for device D-150.\nLine 151: routine telemetry checksum ok for device D-151.\nLine 152: routine telemetry checksum ok for device D-152.\nLine 153: routine telemetry checksum ok for device D-153.\nLine 154: marker ALPHA observed in sector 4.\nLine 155: routine telemetry checksum ok for device D-155.\nLine 156: routine telemetry checksum ok for device D-156.\nLine 157: routine telemetry checksum ok for device D-157.\nLine 158: routine telemetry checksum ok for device D-158.\nLine 159: routine telemetry checksum ok for device D-159.\nLine 160: routine telemetry checksum ok for device D-160.\nLine 161: marker ALPHA observed in sector 1.\nLine 162: routine telemetry checksum ok for device D-162.\nLine 163: routine telemetry checksum ok for device D-163.\nLine 164: routine telemetry checksum ok for device D-164.\nLine 165: routine telemetry checksum ok for device D-165.\nLine 166: routine telemetry checksum ok for device D-166.\nLine 167: routine telemetry checksum ok for device D-167.\nLine 168: marker ALPHA observed in sector 3.\nLine 169: routine telemetry checksum ok for device D-169.\nLine 170: routine telemetry checksum ok for device D-170.\nLine 171: routine telemetry checksum ok for device D-171.\nLine 172: routine telemetry checksum ok for device D-172.\nLine 173: routine telemetry checksum ok for device D-173.\nLine 174: routine telemetry checksum ok for device D-174.\nLine 175: marker ALPHA observed in sector 0.\nLine 176: routine telemetry checksum ok for device D-176.\nLine 177: routine telemetry checksum ok for device D-177.\nLine 178: routine telemetry checksum ok for device D-178.\nLine 179: routine telemetry checksum ok for device D-179.\nLine 180: routine telemetry checksum ok for device D-180.\nLine 181: routine telemetry checksum ok for device D-181.\nLine 182: marker ALPHA observed in sector 2.\nLine 183: routine telemetry checksum ok for device D-183.\nLine 184: routine telemetry checksum ok for device D-184.\nLine 185: routine telemetry checksum ok for device D-185.\nLine 186: routine telemetry checksum ok for device D-186.\nLine 187: routine telemetry checksum ok for device D-187.\nLine 188: routine telemetry checksum ok for device D-188.\nLine 189: marker ALPHA observed in sector 4.\nLine 190: routine telemetry checksum ok for device D-190.\nLine 191: routine telemetry checksum ok for device D-191.\nLine 192: routine telemetry checksum ok for device D-192.\nLine 193: routine telemetry checksum ok for device D-193.\nLine 194: routine telemetry checksum ok for device D-194.\nLine 195: routine telemetry checksum ok for device D-195.\nLine 196: marker ALPHA observed in sector 1.\nLine 197: routine telemetry checksum ok for device D-197.\nLine 198: routine telemetry checksum ok for device D-198.\nLine 199: routine telemetry checksum ok for device D-199.\n\nHow many lines contain the exact marker token ALPHA? Give an integer count and a one-sentence method. Do not guess."
+    }
+  ]
+}

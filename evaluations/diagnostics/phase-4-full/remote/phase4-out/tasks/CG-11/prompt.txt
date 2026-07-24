@@ -1,0 +1,1 @@
+Cloudflare Worker sketch: read env.MY_KV.get('config') and optionally head env.MY_BUCKET for object 'meta.json'. Define Env interface. Error clearly if bindings missing. No hardcoded credentials.

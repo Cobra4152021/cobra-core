@@ -1,0 +1,22 @@
+Using ONLY the synthetic memo below, write an 800–1500 character brief.
+Separate Fact vs Inference. Cite [A]..[E] section labels. No invented sources.
+
+MEMO:
+INTERNAL MEMO — Riverdale Logistics Review (synthetic)
+Section A — Background
+Riverdale Logistics operates three depots: North (opened 2019), Central (2015), and South (2021).
+The 2023 audit found incomplete seal logs at Central for 14 days in June.
+Section B — Timeline claims
+On 2024-02-02, truck T-19 departed North at 06:10 with manifest M-441.
+Central received T-19 at 11:40 the same day according to dock camera notes.
+South never received T-19; the trailer was redirected to Central for inspection.
+Section C — Quantities
+Manifest M-441 lists 48 sealed crates of spare parts and 2 open crates of manuals.
+The Central intake form lists 47 sealed crates and notes one seal broken in transit.
+Section D — Personnel
+Dispatcher Kim authorized the redirect. Inspector Lopez signed the broken-seal note.
+No source names a thief. Security review remains open.
+Section E — Open questions
+Humidity sensors were offline at Central from 10:00–12:00 on 2024-02-02.
+The vendor invoice amount for M-441 is not present in this memo.
+

@@ -1,6 +1,6 @@
 # Cobra Model Lab Roadmap
 
-**Last updated:** 2026-07-23 (Phase 4.2 controlled pilot)
+**Last updated:** 2026-07-24 (Phase 4 full capability validation)
 
 ## Completed
 
@@ -26,9 +26,9 @@
 | --- | --- | --- |
 | **Phase 3G** | Cloud runtime production-readiness optimization (equivalence-preserving); **no benchmark execution** | **P1 implemented** (ops/pins/docs). P2+ require separate approval — see `docs/phases/PHASE_3G_STATUS.md` |
 | **Phase 3G.5** | Production-readiness documentation package (architecture, ops, DR, security, GPU matrix) | **Docs/review only** — see `docs/PRODUCTION_READINESS_REPORT.md` |
-| **Phase 4** | Capability validation framework (user workloads; not CobraBench) | **Framework only** — see `docs/capability-validation/`; execution requires separate authorization |
-| **Phase 4.1** | Product vision, personas, success metrics, release gates | **Docs only** — see `docs/product/`; Alpha gate met; Beta blocked on Phase 4 execution |
-| **Phase 4.2** | Controlled 10-task pilot on pin-equivalent cloud runtime | **Complete** — 100% Pass/Pass+; 0 critical fails; see `docs/capability-validation/pilot/`; revise framework then authorize full Phase 4 |
+| **Phase 4** | Capability validation framework + **full 46-task execution** | **Complete** — 97.8% Pass/Pass+; 0 critical; **Ready for Beta** — `docs/capability-validation/CAPABILITY_VALIDATION_REPORT.md` |
+| **Phase 4.1** | Product vision, personas, success metrics, release gates | **Complete** — `docs/product/` |
+| **Phase 4.2** | Controlled 10-task pilot | **Complete** — `docs/capability-validation/pilot/` |
 | Later | Controlled CobraBench v0.2-rc2 on locked cloud runtime | Separate authorization; remains `prepared-not-run` until then |
 
 ## Future (not authorized by M1)

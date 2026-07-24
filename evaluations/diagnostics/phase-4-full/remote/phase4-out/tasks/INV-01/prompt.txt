@@ -1,0 +1,6 @@
+Unordered events:
+[E3] 15:10 — Camera notes truck arrival (source DockCam)
+[E1] 09:00 — Gate opens (source GateLog)
+[E4] time uncertain — Badge B used side door (source BadgeSys)
+[E2] 12:30 — Manifest printed (source OfficePrint)
+Build a chronological timeline table: time, event, source, confidence. Mark uncertain dates.

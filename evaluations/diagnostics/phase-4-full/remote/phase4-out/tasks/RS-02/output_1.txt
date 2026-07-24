@@ -1,0 +1,19 @@
+1) **How many depots?**  
+There are **3 depots**: North, Central, and South.  
+**Cite section:** Section A  
+
+2) **When did T-19 depart North?**  
+T-19 departed North on **2024-02-02 at 06:10**.  
+**Cite section:** Section B  
+
+3) **How many sealed crates on manifest vs intake?**  
+The **manifest lists 48 sealed crates**, while the **intake form lists 47 sealed crates**.  
+**Cite sections:** Section C  
+
+4) **Who authorized the redirect?**  
+Dispatcher **Kim** authorized the redirect.  
+**Cite section:** Section D  
+
+5) **What is the vendor invoice amount for M-441?**  
+The vendor invoice amount for M-441 is **not present** in this memo.  
+**Cite section:** Section E

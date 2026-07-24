@@ -1,0 +1,8 @@
+Warning: Permanently added '[80.15.7.37]:41372' (ED25519) to the list of known hosts.
+
+[notice] A new release of pip is available: 25.1.1 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+/workspace/.venv-qwen-cloud/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:205: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `snapshot_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+Fetching 15 files:   0%|          | 0/15 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 15 files:   7%|▋         | 1/15 [00:00<00:03,  4.63it/s]Fetching 15 files:  47%|████▋     | 7/15 [00:34<00:41,  5.13s/it]Fetching 15 files: 100%|██████████| 15/15 [00:34<00:00,  2.30s/it]

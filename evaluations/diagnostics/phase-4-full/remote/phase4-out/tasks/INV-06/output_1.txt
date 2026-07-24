@@ -1,0 +1,22 @@
+Here is the analysis of each statement, labeled as **hard** or **soft contradiction** and explained:
+
+---
+
+### 1) **A says door locked; B says door open at same timestamp.**  
+**Label:** Hard contradiction  
+**Explanation:**  
+This is a **hard contradiction** because both A and B are making **direct, factual claims** about the **state of the door** at the **same timestamp**. If the door was locked, it could not have been open at the same time. These two statements are **logically incompatible** and **cannot both be true** under the same conditions. There is no ambiguity or uncertainty in the claims, so this is a **hard contradiction**.
+
+---
+
+### 2) **A says suspect wore blue; B says lighting was dim and color uncertain.**  
+**Label:** Soft contradiction  
+**Explanation:**  
+This is a **soft contradiction** because the two statements are **not directly incompatible**. A is making a **specific claim** about the suspect's clothing color, while B is **questioning the reliability** of that claim due to **dim lighting**. The contradiction is **not absolute**—it is **context-dependent** and **subject to interpretation**. Therefore, this is a **soft contradiction**.
+
+---
+
+### 3) **A says meeting ended 16:00; B says they left building 16:05 after meeting.**  
+**Label:** Soft contradiction  
+**Explanation:**  
+This is a **soft contradiction** because the two statements are **not mutually exclusive**. A claims the **meeting ended at 16:00**, while B claims they **left the building at 16:05** after the meeting. These two events could be **consistent** if the meeting ended at 16:00 and they left at 16:05. However, the **timing** and **sequence** of events are **not definitively confirmed**, so there is **some ambiguity**. This makes it a **soft contradiction**.

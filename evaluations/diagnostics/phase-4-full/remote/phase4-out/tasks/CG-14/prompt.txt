@@ -1,0 +1,15 @@
+Messy function:
+def process(orders):
+    out=[]
+    for o in orders:
+        if o.get('status')=='paid':
+            total=o.get('cents',0)/100
+            if total>0:
+                out.append({'id':o['id'],'total':total,'ok':True})
+            else:
+                out.append({'id':o.get('id'),'total':0,'ok':False})
+        else:
+            out.append({'id':o.get('id'),'total':None,'ok':False})
+    return out
+
+Refactor into testable helpers without changing behavior. List preserved behaviors.

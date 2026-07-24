@@ -1,0 +1,10 @@
+| **Asset** | **Threat** | **Mitigation** |
+|-----------|------------|----------------|
+| Object Storage API | IDOR (Insecure Direct Object Reference) | Implement access controls based on user roles and permissions. Ensure that only authorized users can access specific objects. Use token-based authentication and validate user permissions before allowing access to objects. |
+| Object Storage API | Secret Leakage (e.g., API keys in logs or client-side code) | Store API keys securely, using environment variables or secret management tools. Avoid logging sensitive information such as API keys or access tokens. Use encryption for sensitive data at rest and in transit. |
+| Object Storage API | Unauthorized Access (via misconfigured permissions) | Use the principle of least privilege. Regularly audit and rotate access keys. Use temporary, short-lived credentials (e.g., AWS SigV4, Azure SAS tokens) for API access. |
+| Object Storage API | Insecure API Endpoint (e.g., no authentication or weak authentication) | Enforce strong authentication mechanisms such as OAuth 2.0 or JWT. Validate and sanitize all inputs to prevent injection attacks. |
+| Object Storage API | Data Exfiltration (e.g., unauthorized download of sensitive artifacts) | Monitor and log all access to storage objects. Implement rate limiting and anomaly detection for unusual access patterns. Use access logs to track and audit user activity. |
+| Object Storage API | Misconfigured Access Policies | Use IAM roles and policies to define granular access controls. Regularly review and update access policies to ensure they align with the principle of least privilege. |
+
+**Source Key:** STRIDE-lite is a lightweight threat modeling framework used to identify and categorize threats in software systems. The above table is based on standard STRIDE-lite principles applied to the scenario of uploading evaluation artifacts to object storage via an authenticated API. No specific source was provided, so this is a general application of STRIDE-lite.

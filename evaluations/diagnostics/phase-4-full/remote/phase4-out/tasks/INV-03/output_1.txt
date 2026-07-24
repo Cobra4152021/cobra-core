@@ -1,0 +1,27 @@
+Here is the mapping of themes to snippet IDs based on the content of each snippet:
+
+### Motive
+- **No snippets** clearly indicate motive.
+
+### Opportunity
+- **S2** Keycard access at 02:11
+- **S6** Alibi cafe receipt 02:05–02:40
+- **S5** Camera blind spot near exit
+- **S8** Rain made footprints unclear
+
+### Reliability
+- **S3** Witness says lighting was poor
+- **S4** Prior write-up for tardiness
+- **S7** Manager claims inventory already short yesterday
+
+### Unclassified
+- **S1** Debt notices dated March
+
+---
+
+**Theme -> Snippet IDs Mapping:**
+
+- **Motive**: None
+- **Opportunity**: S2, S5, S6, S8
+- **Reliability**: S3, S4, S7
+- **Unclassified**: S1

@@ -1,0 +1,29 @@
+To add a nullable `source` column of type `text` to the `events` table in PostgreSQL, and to create an index on the `source` column, you can use the following forward-compatible DDL:
+
+```sql
+-- Add nullable 'source' column
+ALTER TABLE events
+ADD COLUMN source TEXT;
+
+-- Create index on 'source' column
+CREATE INDEX idx_events_source ON events(source);
+```
+
+### Notes:
+
+- **Online vs Lock Risks**:
+  - The `ALTER TABLE ... ADD COLUMN` operation is generally **online** in PostgreSQL (as of version 9.4 and later), meaning it does not lock the entire table for long periods. However, if the table is large, there may be some I/O or memory overhead.
+  - The `CREATE INDEX` operation will **lock the table** for the duration of the index creation, which can be significant for large tables. This is a **lock risk** during the index creation phase.
+
+- **Rollback Note**:
+  - If you need to roll back the changes, you can:
+    - Drop the index first: `DROP INDEX idx_events_source;`
+    - Remove the column: `ALTER TABLE events DROP COLUMN source;`
+  - These operations are safe and will not leave the database in an inconsistent state.
+
+### Summary:
+- The `ADD COLUMN` is online and safe.
+- The `CREATE INDEX` is not online and will lock the table.
+- Rollback is possible by reversing the operations in the reverse order.
+
+Let me know if you need to handle specific versions or constraints.

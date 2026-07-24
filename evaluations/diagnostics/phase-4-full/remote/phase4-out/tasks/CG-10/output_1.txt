@@ -1,0 +1,56 @@
+```js
+// wrangler.toml
+# This is a sample Wrangler configuration for a Cloudflare Worker
+name = "health-echo-worker"
+type = "javascript"
+main = "worker.js"
+workers_dev = true
+# If you need to use a specific environment variable, you can add it here
+# env = "production"
+
+```
+
+```js
+// worker.js
+addEventListener('fetch', event => {
+  const url = new URL(event.request.url);
+  const params = new URLSearchParams(url.search);
+
+  if (url.pathname === '/health') {
+    event.respondWith(
+      new Response(JSON.stringify({ ok: true, service: 'health' }), {
+        headers: { 'Content-Type': 'application/json' },
+      })
+    );
+  } else if (url.pathname === '/echo') {
+    const q = params.get('q');
+    if (q !== null) {
+      event.respondWith(
+        new Response(q, {
+          headers: { 'Content-Type': 'text/plain' },
+        })
+      );
+    } else {
+      event.respondWith(
+        new Response('Missing query parameter "q"', {
+          status: 400,
+          headers: { 'Content-Type': 'text/plain' },
+        })
+      );
+    }
+  } else {
+    event.respondWith(
+      new Response('Not Found', {
+        status: 404,
+        headers: { 'Content-Type': 'text/plain' },
+      })
+    );
+  }
+});
+```
+
+### Notes:
+- This code uses only the `URL` and `URLSearchParams` APIs, which are available in the Cloudflare Worker environment.
+- No Node.js-specific APIs are used.
+- The `wrangler.toml` configuration is provided as a comment, as it is not part of the Worker code itself.
+- The Worker handles `/health` and `/echo` paths, and echoes the `q` query parameter for `/echo`.

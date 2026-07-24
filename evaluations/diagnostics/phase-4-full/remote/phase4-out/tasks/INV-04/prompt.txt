@@ -1,0 +1,6 @@
+Create an exhibit register for:
+A) Gate log PDF
+B) Badge export CSV
+C) Photo of broken seal
+D) Unsigned handwritten note found in break room
+Columns: ID, description, source, sensitivity (low/med/high). Stable IDs. No duplicates without note.

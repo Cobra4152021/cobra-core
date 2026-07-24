@@ -1,0 +1,3 @@
+Extract a markdown table of entities, dates, and amounts from:
+'On 2024-05-01, Acme Corp invoiced Beta LLC for 12,500 USD related to Contract C-9. Payment of 4,000 USD arrived 2024-05-20. The remaining balance is not stated. Contact: Riley Chen.'
+Use blanks for missing fields.

@@ -1,0 +1,13 @@
+**Exhibit Register**
+
+| ID | Description | Source | Sensitivity |
+|----|-------------|--------|-------------|
+| GL-001 | Gate log PDF containing entry and exit records for the facility | A | High |
+| BE-001 | Badge export CSV with employee badge IDs and associated access levels | B | High |
+| PS-001 | Photo of broken seal found at the main entrance | C | Medium |
+| WN-001 | Unsigned handwritten note found in the break room | D | Low |
+
+**Notes:**
+- No duplicates are present in the register.
+- Sensitivity levels are assigned based on the potential impact of each item if disclosed or misused.
+- All items are assigned stable IDs for reference and tracking purposes.

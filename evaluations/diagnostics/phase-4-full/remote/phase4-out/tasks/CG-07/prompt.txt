@@ -1,0 +1,2 @@
+Postgres table events(id bigserial PK, payload jsonb not null).
+Provide forward-compatible DDL to add nullable column source text and an index on source. Note online vs lock risks and a rollback note.

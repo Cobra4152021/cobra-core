@@ -1,0 +1,12 @@
+The claim that "Temperature control was perfect all Tuesday" is not fully supported by the provided evidence. Here are up to 3 supporting quotes with exact spans:
+
+1. **[S1]**: "The warehouse temperature stayed between 2C and 8C on Tuesday."  
+   - This suggests that the temperature was within the acceptable range for most of Tuesday, but it does not confirm it was perfect throughout the entire day.
+
+2. **[S2]**: "A single spike to 11C was noted at 15:10 Tuesday."  
+   - This indicates that there was a deviation from the acceptable range, which contradicts the idea of "perfect" temperature control.
+
+3. **[S1]**: "The warehouse temperature stayed between 2C and 8C on Tuesday."  
+   - Repeated for emphasis, this supports the idea that the temperature was generally well-controlled, but again, it does not rule out the possibility of deviations not mentioned.
+
+**Support is only partial** because while the evidence suggests the temperature was mostly within the acceptable range, it also notes a specific deviation. Therefore, the claim of "perfect" temperature control cannot be fully confirmed.

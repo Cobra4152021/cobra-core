@@ -1,0 +1,3 @@
+Document whether this runtime claims bit-identical determinism.
+Known harness settings for this suite: torch.manual_seed(123), do_sample=False.
+State what is supported vs unsupported honestly. Do not claim GPU bit-identical reproducibility across hosts.

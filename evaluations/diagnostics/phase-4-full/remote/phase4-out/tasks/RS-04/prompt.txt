@@ -1,0 +1,5 @@
+Source text:
+[S1] "The warehouse temperature stayed between 2C and 8C on Tuesday."
+[S2] "A single spike to 11C was noted at 15:10 Tuesday."
+Claim: Temperature control was perfect all Tuesday.
+Provide up to 3 supporting quotes with exact spans and state that support is only partial. Do not overclaim.

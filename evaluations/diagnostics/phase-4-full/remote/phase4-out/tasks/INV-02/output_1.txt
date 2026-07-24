@@ -1,0 +1,8 @@
+**Timeline:**
+
+- **08:00** — Shift start (S1)
+- **12:00** — Lunch break begins (S1)
+- **18:00** — Shift end (S2)
+
+**Gaps:**
+- Between **12:00** and **18:00**, no events are provided.

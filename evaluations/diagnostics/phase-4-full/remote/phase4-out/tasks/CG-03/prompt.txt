@@ -1,0 +1,6 @@
+Stub:
+def load_user(raw):
+    # raw is a dict from JSON
+    return raw['id'], raw['email']
+
+Add type hints and structured error types (e.g., missing key / bad type) without claiming behavioral changes you cannot prove. Show annotated code and a small error hierarchy.

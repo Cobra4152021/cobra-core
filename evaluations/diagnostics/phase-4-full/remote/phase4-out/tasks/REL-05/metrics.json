@@ -1,0 +1,24 @@
+{
+  "id": "REL-05",
+  "domain": "reliability",
+  "repeats": 1,
+  "max_new_tokens": 256,
+  "success": true,
+  "error": null,
+  "meta": {},
+  "outputs": [
+    {
+      "latency_s": 4.896,
+      "output_tokens": 68,
+      "input_tokens": 121,
+      "peak_vram_bytes": 6325928960,
+      "memory": {
+        "available_ram_bytes": 211773538304,
+        "total_ram_bytes": 270068588544,
+        "used_ram_bytes": 58295050240
+      },
+      "char_len": 296,
+      "citations": []
+    }
+  ]
+}

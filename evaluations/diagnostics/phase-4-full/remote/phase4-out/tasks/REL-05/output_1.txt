@@ -1,0 +1,8 @@
+There is a conflict between the instructions:
+
+1) Only use S1.  
+2) Prefer S2 when conflict.
+
+Since the instructions conflict, the precedence should be explicitly stated. According to instruction 2, **S2 should be preferred when there is a conflict**. 
+
+Therefore, the preferred source is **S2**.

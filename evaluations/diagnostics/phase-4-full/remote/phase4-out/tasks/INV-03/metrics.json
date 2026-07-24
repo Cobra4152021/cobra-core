@@ -1,0 +1,24 @@
+{
+  "id": "INV-03",
+  "domain": "investigator",
+  "repeats": 1,
+  "max_new_tokens": 640,
+  "success": true,
+  "error": null,
+  "meta": {},
+  "outputs": [
+    {
+      "latency_s": 14.914,
+      "output_tokens": 204,
+      "input_tokens": 174,
+      "peak_vram_bytes": 6338114560,
+      "memory": {
+        "available_ram_bytes": 211858931712,
+        "total_ram_bytes": 270068588544,
+        "used_ram_bytes": 58209656832
+      },
+      "char_len": 654,
+      "citations": []
+    }
+  ]
+}

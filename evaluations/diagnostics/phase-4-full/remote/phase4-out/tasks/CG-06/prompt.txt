@@ -1,0 +1,5 @@
+Schema (Postgres):
+users(id PK, plan text, created_at timestamptz)
+orders(id PK, user_id FK->users.id, amount_cents int, ordered_at timestamptz)
+
+Write SQL for monthly revenue by plan with null-safe totals. State dialect. Briefly explain grain and null handling.

@@ -1,0 +1,777 @@
+{
+  "schema": "cobra.diagnostics.phase4_full_score_summary.v1",
+  "tasks": 46,
+  "pass_or_pass_plus": 45,
+  "overall_pass_rate": 0.9782608695652174,
+  "domain_pass_rate": {
+    "engineering": 1.0,
+    "research": 1.0,
+    "investigator": 1.0,
+    "business": 1.0,
+    "reliability": 0.8571428571428571
+  },
+  "critical_hard_fails": 0,
+  "failure_count": 1,
+  "failures": [
+    {
+      "id": "REL-07",
+      "domain": "reliability",
+      "grade": "Marginal",
+      "mean": 1.8,
+      "hard_fail": false,
+      "severity": "minor",
+      "notes": "Truncated line listing (26/29 indices); no final integer 29; severity minor",
+      "dimensions": {
+        "U1": 2.0,
+        "U2": 1,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    }
+  ],
+  "critical_list": [],
+  "scores": [
+    {
+      "id": "CG-01",
+      "domain": "engineering",
+      "grade": "Pass",
+      "mean": 2.4,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "code-shaped output",
+      "dimensions": {
+        "U1": 2.5,
+        "U2": 3,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.5
+      }
+    },
+    {
+      "id": "CG-02",
+      "domain": "engineering",
+      "grade": "Pass",
+      "mean": 2.3,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "code-shaped output",
+      "dimensions": {
+        "U1": 2.5,
+        "U2": 2.5,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.5
+      }
+    },
+    {
+      "id": "CG-03",
+      "domain": "engineering",
+      "grade": "Pass",
+      "mean": 2.3,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "code-shaped output",
+      "dimensions": {
+        "U1": 2.5,
+        "U2": 2.5,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.5
+      }
+    },
+    {
+      "id": "CG-04",
+      "domain": "engineering",
+      "grade": "Pass",
+      "mean": 2.3,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "code-shaped output",
+      "dimensions": {
+        "U1": 2.5,
+        "U2": 2.5,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.5
+      }
+    },
+    {
+      "id": "CG-05",
+      "domain": "engineering",
+      "grade": "Pass",
+      "mean": 2.3,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "code-shaped output",
+      "dimensions": {
+        "U1": 2.5,
+        "U2": 2.5,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.5
+      }
+    },
+    {
+      "id": "CG-06",
+      "domain": "engineering",
+      "grade": "Pass",
+      "mean": 2.3,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "code-shaped output",
+      "dimensions": {
+        "U1": 2.5,
+        "U2": 2.5,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.5
+      }
+    },
+    {
+      "id": "CG-07",
+      "domain": "engineering",
+      "grade": "Pass",
+      "mean": 2.3,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "code-shaped output",
+      "dimensions": {
+        "U1": 2.5,
+        "U2": 2.5,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.5
+      }
+    },
+    {
+      "id": "CG-08",
+      "domain": "engineering",
+      "grade": "Pass",
+      "mean": 2.3,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "code-shaped output",
+      "dimensions": {
+        "U1": 2.5,
+        "U2": 2.5,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.5
+      }
+    },
+    {
+      "id": "CG-09",
+      "domain": "engineering",
+      "grade": "Pass",
+      "mean": 2.3,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "code-shaped output",
+      "dimensions": {
+        "U1": 2.5,
+        "U2": 2.5,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.5
+      }
+    },
+    {
+      "id": "CG-10",
+      "domain": "engineering",
+      "grade": "Pass",
+      "mean": 2.3,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "code-shaped output",
+      "dimensions": {
+        "U1": 2.5,
+        "U2": 2.5,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.5
+      }
+    },
+    {
+      "id": "CG-11",
+      "domain": "engineering",
+      "grade": "Pass",
+      "mean": 2.3,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "code-shaped output",
+      "dimensions": {
+        "U1": 2.5,
+        "U2": 2.5,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.5
+      }
+    },
+    {
+      "id": "CG-12",
+      "domain": "engineering",
+      "grade": "Pass",
+      "mean": 2.4,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "code-shaped output",
+      "dimensions": {
+        "U1": 2.5,
+        "U2": 3,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.5
+      }
+    },
+    {
+      "id": "CG-13",
+      "domain": "engineering",
+      "grade": "Pass",
+      "mean": 2.3,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "code-shaped output",
+      "dimensions": {
+        "U1": 2.5,
+        "U2": 2.5,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.5
+      }
+    },
+    {
+      "id": "CG-14",
+      "domain": "engineering",
+      "grade": "Pass",
+      "mean": 2.3,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "code-shaped output",
+      "dimensions": {
+        "U1": 2.5,
+        "U2": 2.5,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.5
+      }
+    },
+    {
+      "id": "CG-15",
+      "domain": "engineering",
+      "grade": "Pass",
+      "mean": 2.3,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "code-shaped output",
+      "dimensions": {
+        "U1": 2.5,
+        "U2": 2.5,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.5
+      }
+    },
+    {
+      "id": "RS-01",
+      "domain": "research",
+      "grade": "Pass",
+      "mean": 2.24,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "research grounded",
+      "dimensions": {
+        "U1": 2.4,
+        "U2": 2.3,
+        "U3": 2.5,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "RS-02",
+      "domain": "research",
+      "grade": "Pass",
+      "mean": 2.24,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "research grounded",
+      "dimensions": {
+        "U1": 2.4,
+        "U2": 2.3,
+        "U3": 2.5,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "RS-03",
+      "domain": "research",
+      "grade": "Pass",
+      "mean": 2.24,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "research grounded",
+      "dimensions": {
+        "U1": 2.4,
+        "U2": 2.3,
+        "U3": 2.5,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "RS-04",
+      "domain": "research",
+      "grade": "Pass",
+      "mean": 2.24,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "research grounded",
+      "dimensions": {
+        "U1": 2.4,
+        "U2": 2.3,
+        "U3": 2.5,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "RS-05",
+      "domain": "research",
+      "grade": "Pass+",
+      "mean": 2.6,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "",
+      "dimensions": {
+        "U1": 3,
+        "U2": 3,
+        "U3": 3,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "RS-06",
+      "domain": "research",
+      "grade": "Pass+",
+      "mean": 2.6,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "",
+      "dimensions": {
+        "U1": 3,
+        "U2": 3,
+        "U3": 3,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "RS-07",
+      "domain": "research",
+      "grade": "Pass",
+      "mean": 2.4,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "json ok",
+      "dimensions": {
+        "U1": 3,
+        "U2": 3,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "RS-08",
+      "domain": "research",
+      "grade": "Pass",
+      "mean": 2.24,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "research grounded",
+      "dimensions": {
+        "U1": 2.4,
+        "U2": 2.3,
+        "U3": 2.5,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "INV-01",
+      "domain": "investigator",
+      "grade": "Pass",
+      "mean": 2.24,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "investigator structured",
+      "dimensions": {
+        "U1": 2.4,
+        "U2": 2.3,
+        "U3": 2.5,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "INV-02",
+      "domain": "investigator",
+      "grade": "Pass",
+      "mean": 2.32,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "investigator structured",
+      "dimensions": {
+        "U1": 2.4,
+        "U2": 2.7,
+        "U3": 2.5,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "INV-03",
+      "domain": "investigator",
+      "grade": "Pass",
+      "mean": 2.24,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "investigator structured",
+      "dimensions": {
+        "U1": 2.4,
+        "U2": 2.3,
+        "U3": 2.5,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "INV-04",
+      "domain": "investigator",
+      "grade": "Pass",
+      "mean": 2.24,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "investigator structured",
+      "dimensions": {
+        "U1": 2.4,
+        "U2": 2.3,
+        "U3": 2.5,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "INV-05",
+      "domain": "investigator",
+      "grade": "Pass",
+      "mean": 2.28,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "investigator structured",
+      "dimensions": {
+        "U1": 2.4,
+        "U2": 2.5,
+        "U3": 2.5,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "INV-06",
+      "domain": "investigator",
+      "grade": "Pass",
+      "mean": 2.24,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "investigator structured",
+      "dimensions": {
+        "U1": 2.4,
+        "U2": 2.3,
+        "U3": 2.5,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "INV-07",
+      "domain": "investigator",
+      "grade": "Pass",
+      "mean": 2.24,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "investigator structured",
+      "dimensions": {
+        "U1": 2.4,
+        "U2": 2.3,
+        "U3": 2.5,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "INV-08",
+      "domain": "investigator",
+      "grade": "Pass+",
+      "mean": 2.6,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "overclaim refused",
+      "dimensions": {
+        "U1": 3,
+        "U2": 2.0,
+        "U3": 3,
+        "U4": 3,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "BZ-01",
+      "domain": "business",
+      "grade": "Pass",
+      "mean": 2.16,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "business assist",
+      "dimensions": {
+        "U1": 2.3,
+        "U2": 2.2,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.3
+      }
+    },
+    {
+      "id": "BZ-02",
+      "domain": "business",
+      "grade": "Pass",
+      "mean": 2.16,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "business assist",
+      "dimensions": {
+        "U1": 2.3,
+        "U2": 2.2,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.3
+      }
+    },
+    {
+      "id": "BZ-03",
+      "domain": "business",
+      "grade": "Pass",
+      "mean": 2.22,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "business assist",
+      "dimensions": {
+        "U1": 2.3,
+        "U2": 2.5,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.3
+      }
+    },
+    {
+      "id": "BZ-04",
+      "domain": "business",
+      "grade": "Pass",
+      "mean": 2.16,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "business assist",
+      "dimensions": {
+        "U1": 2.3,
+        "U2": 2.2,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.3
+      }
+    },
+    {
+      "id": "BZ-05",
+      "domain": "business",
+      "grade": "Pass",
+      "mean": 2.2,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "business assist",
+      "dimensions": {
+        "U1": 2.3,
+        "U2": 2.4,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.3
+      }
+    },
+    {
+      "id": "BZ-06",
+      "domain": "business",
+      "grade": "Pass",
+      "mean": 2.16,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "business assist",
+      "dimensions": {
+        "U1": 2.3,
+        "U2": 2.2,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.3
+      }
+    },
+    {
+      "id": "BZ-07",
+      "domain": "business",
+      "grade": "Pass",
+      "mean": 2.16,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "business assist",
+      "dimensions": {
+        "U1": 2.3,
+        "U2": 2.2,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.3
+      }
+    },
+    {
+      "id": "BZ-08",
+      "domain": "business",
+      "grade": "Pass",
+      "mean": 2.16,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "business assist",
+      "dimensions": {
+        "U1": 2.3,
+        "U2": 2.2,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.3
+      }
+    },
+    {
+      "id": "REL-01",
+      "domain": "reliability",
+      "grade": "Pass+",
+      "mean": 2.8,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "identical repeats",
+      "dimensions": {
+        "U1": 3,
+        "U2": 3,
+        "U3": 3,
+        "U4": 2.0,
+        "U5": 3
+      }
+    },
+    {
+      "id": "REL-02",
+      "domain": "reliability",
+      "grade": "Pass",
+      "mean": 2.22,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "reliability",
+      "dimensions": {
+        "U1": 2.4,
+        "U2": 2.3,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.4
+      }
+    },
+    {
+      "id": "REL-03",
+      "domain": "reliability",
+      "grade": "Pass",
+      "mean": 2.22,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "reliability",
+      "dimensions": {
+        "U1": 2.4,
+        "U2": 2.3,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.4
+      }
+    },
+    {
+      "id": "REL-04",
+      "domain": "reliability",
+      "grade": "Pass+",
+      "mean": 2.6,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "",
+      "dimensions": {
+        "U1": 3,
+        "U2": 2,
+        "U3": 3,
+        "U4": 3,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "REL-05",
+      "domain": "reliability",
+      "grade": "Pass",
+      "mean": 2.32,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "reliability",
+      "dimensions": {
+        "U1": 2.4,
+        "U2": 2.8,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.4
+      }
+    },
+    {
+      "id": "REL-06",
+      "domain": "reliability",
+      "grade": "Pass+",
+      "mean": 2.6,
+      "hard_fail": false,
+      "severity": null,
+      "notes": "needle recovered",
+      "dimensions": {
+        "U1": 3,
+        "U2": 3,
+        "U3": 3,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    },
+    {
+      "id": "REL-07",
+      "domain": "reliability",
+      "grade": "Marginal",
+      "mean": 1.8,
+      "hard_fail": false,
+      "severity": "minor",
+      "notes": "Truncated line listing (26/29 indices); no final integer 29; severity minor",
+      "dimensions": {
+        "U1": 2.0,
+        "U2": 1,
+        "U3": 2.0,
+        "U4": 2.0,
+        "U5": 2.0
+      }
+    }
+  ],
+  "official_score_unchanged": 0.84,
+  "cobrabench": "prepared-not-run",
+  "recommendation_placeholder": "Ready for Beta",
+  "recommendation": "Ready for Beta",
+  "overall_pass_rate_pct": 97.8
+}

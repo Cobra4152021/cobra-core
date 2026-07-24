@@ -1,0 +1,61 @@
+**Standard Operating Procedure (SOP): Terminate a Runaway GPU Pod and Verify Zero Remaining Billable Spend**
+
+---
+
+### **1. Identify the Runaway GPU Pod**
+- **Action:** Use Kubernetes tools (e.g., `kubectl get pods`, `kubectl describe pod`) to identify the pod that is consuming excessive GPU resources.
+- **Check:** Confirm the pod is in a `Running` state and has been active for an extended period without user intervention.
+- **Source:** Kubernetes CLI tools, cluster monitoring systems (e.g., Prometheus, Grafana, CloudWatch).
+
+---
+
+### **2. Verify Pod Isolation and Non-Critical Status**
+- **Action:** Check if the pod is associated with a non-critical workload or a development/test environment.
+- **Check:** Confirm the pod is not part of a production or mission-critical service.
+- **Source:** Application metadata, environment tags, or labels (e.g., `env: dev`, `env: staging`).
+
+---
+
+### **3. Terminate the Pod Gracefully**
+- **Action:** Use `kubectl delete pod <pod-name>` to terminate the pod.
+- **Check:** Ensure the termination is graceful and does not leave orphaned resources.
+- **Source:** Kubernetes CLI.
+
+---
+
+### **4. Confirm Pod Termination**
+- **Action:** Use `kubectl get pods` to confirm the pod is no longer running.
+- **Check:** Ensure the pod status is `Terminating` or `Error` and that it has been removed from the node.
+- **Source:** Kubernetes CLI.
+
+---
+
+### **5. Verify Resource Usage and Billing**
+- **Action:** Query the cloud provider’s billing API or console (e.g., AWS EC2, GCP Compute Engine, Azure VMs) to verify GPU usage.
+- **Check:** Confirm that no new billable resources are being consumed by the terminated pod.
+- **Source:** Cloud provider billing dashboard or API (e.g., AWS Cost Explorer, GCP Billing Report).
+
+---
+
+### **6. Escalation and Documentation**
+- **Action:** If the pod was expected to be running or if termination caused unintended consequences, escalate to the DevOps or cloud operations team.
+- **Check:** Document the reason for termination, the time of termination, and the verification of no ongoing billable spend.
+- **Source:** Incident management system (e.g., Jira, ServiceNow), internal documentation tools (e.g., Confluence).
+
+---
+
+### **7. Post-Termination Verification**
+- **Action:** Re-check the cloud provider’s billing dashboard to ensure no residual charges are being incurred.
+- **Check:** Confirm that the GPU resources are no longer being billed.
+- **Source:** Cloud provider billing dashboard.
+
+---
+
+### **8. Optional: Schedule Post-Mortem Review**
+- **Action:** Schedule a post-mortem review to understand why the pod was running unattended and implement preventive measures (e.g., auto-scaling, resource limits, or alerting).
+- **Check:** Ensure that the root cause is identified and that preventive actions are documented.
+- **Source:** Internal incident review process.
+
+---
+
+### **Summary of Checks and Escal

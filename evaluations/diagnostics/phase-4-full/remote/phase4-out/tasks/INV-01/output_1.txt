@@ -1,0 +1,12 @@
+Here is the chronological timeline table based on the provided events and their sources:
+
+| Time         | Event                                | Source       | Confidence |
+|--------------|--------------------------------------|--------------|------------|
+| 09:00        | Gate opens                           | GateLog      | High       |
+| 12:30        | Manifest printed                     | OfficePrint  | High       |
+| 15:10        | Camera notes truck arrival           | DockCam      | High       |
+| Time uncertain | Badge B used side door              | BadgeSys     | Low        |
+
+**Notes:**
+- The event with "Time uncertain" refers to the use of Badge B on the side door, as the exact time is not specified in the source.
+- Confidence levels are based on the availability and clarity of the source information.

@@ -1,0 +1,2 @@
+SOP: terminate a runaway GPU pod and verify zero remaining billable spend.
+Include steps, checks, escalation, and verification. No ambiguous destructive commands.

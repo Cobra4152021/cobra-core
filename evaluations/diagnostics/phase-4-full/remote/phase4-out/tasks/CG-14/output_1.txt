@@ -1,0 +1,67 @@
+To refactor the `process` function into testable helpers without changing its behavior, we can break it down into smaller, focused functions. Each helper will encapsulate a specific part of the original logic, making it easier to test in isolation.
+
+---
+
+### **Refactored Code**
+
+```python
+def is_order_paid(order):
+    """Check if an order is marked as 'paid'."""
+    return order.get('status') == 'paid'
+
+def get_order_total(order):
+    """Get the total amount in dollars from cents."""
+    cents = order.get('cents', 0)
+    return cents / 100 if cents > 0 else 0
+
+def is_valid_total(total):
+    """Check if the total is valid (i.e., greater than 0)."""
+    return total > 0
+
+def create_processed_order(order):
+    """Create a processed order dictionary based on the original order."""
+    if is_order_paid(order):
+        total = get_order_total(order)
+        ok = is_valid_total(total)
+        return {
+            'id': order.get('id'),
+            'total': total if ok else 0,
+            'ok': ok
+        }
+    else:
+        return {
+            'id': order.get('id'),
+            'total': None,
+            'ok': False
+        }
+
+def process(orders):
+    """Process a list of orders using helper functions."""
+    return [create_processed_order(order) for order in orders]
+```
+
+---
+
+### **Preserved Behaviors**
+
+1. **Order Status Check**: If the order's status is `'paid'`, it is included in the output.
+2. **Total Calculation**: If the order is paid, the total is calculated as `cents / 100`. If `cents` is 0 or not present, the total is 0.
+3. **Validation of Total**: If the total is greater than 0, the `'ok'` field is set to `True`; otherwise, it is `False`.
+4. **Non-Paid Orders**: If the order is not paid, the `'total'` is set to `None` and `'ok'` is `False`.
+5. **ID Handling**: The `'id'` field is always included, even if the order is not paid.
+
+---
+
+### **Testable Helpers**
+
+- `is_order_paid(order)`: Checks if the order is paid.
+- `get_order_total(order)`: Converts cents to dollars and returns 0 if cents is 0 or not present.
+- `is_valid_total(total)`: Validates if the total is greater than 0.
+- `create_processed_order(order)`: Builds the processed order dictionary.
+- `process(orders)`: Applies the helper functions to a list of orders.
+
+---
+
+### **Summary**
+
+The refactored code preserves all the original behaviors while making the logic more modular and testable. Each helper function is isolated and can be tested independently, improving maintainability and clarity.

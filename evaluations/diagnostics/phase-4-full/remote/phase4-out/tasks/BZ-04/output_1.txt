@@ -1,0 +1,106 @@
+Here are three synthetic REST endpoints with consistent field names, request/response JSON examples, and error codes, based on the assumption that these endpoints are part of a system that tracks "runs" and their associated "artifacts." The examples are constructed to be consistent and realistic, though no actual source or API was provided.
+
+---
+
+### 1. **POST /v1/runs**
+
+**Description:**  
+Creates a new run with metadata such as name, user, and start time.
+
+**Request Example:**
+```http
+POST /v1/runs
+Content-Type: application/json
+
+{
+  "name": "training_model_v2",
+  "user": "alice",
+  "start_time": "2025-03-10T14:30:00Z"
+}
+```
+
+**Response Example (Success):**
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+  "id": "run_12345",
+  "name": "training_model_v2",
+  "user": "alice",
+  "start_time": "2025-03-10T14:30:00Z",
+  "status": "pending"
+}
+```
+
+**Error Codes:**
+- `400 Bad Request` - If the request is malformed (e.g., missing required fields).
+- `401 Unauthorized` - If the request lacks proper authentication.
+- `422 Unprocessable Entity` - If the data is invalid (e.g., invalid date format).
+
+---
+
+### 2. **GET /v1/runs/{id}**
+
+**Description:**  
+Retrieves a specific run by its ID.
+
+**Request Example:**
+```http
+GET /v1/runs/run_12345
+```
+
+**Response Example (Success):**
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id": "run_12345",
+  "name": "training_model_v2",
+  "user": "alice",
+  "start_time": "2025-03-10T14:30:00Z",
+  "status": "completed",
+  "end_time": "2025-03-10T15:30:00Z"
+}
+```
+
+**Error Codes:**
+- `404 Not Found` - If the run with the specified ID does not exist.
+- `401 Unauthorized` - If the request lacks proper authentication.
+- `403 Forbidden` - If the user is not authorized to access the run.
+
+---
+
+### 3. **GET /v1/runs/{id}/artifacts**
+
+**Description:**  
+Retrieves a list of artifacts associated with a specific run.
+
+**Request Example:**
+```http
+GET /v1/runs/run_12345/artifacts
+```
+
+**Response Example (Success):**
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "artifacts": [
+    {
+      "id": "artifact_67890",
+      "name": "model_weights",
+      "type": "model",
+      "size": 1024,
+      "url": "https://example.com/artifacts/model_weights"
+    },
+    {
+      "id": "artifact_67891",
+      "name": "training_logs",
+      "type": "log",
+      "size": 512,
+      "url": "https://example.com/artifacts/training_logs"
+    }
+ 

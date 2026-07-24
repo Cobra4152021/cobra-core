@@ -1,0 +1,51 @@
+1. **Prepare the Environment**  
+   - Ensure the system has access to the NVIDIA CUDA 12.4 toolkit.  
+   - Verify that the Python 3.12 environment is installed.  
+
+2. **Create a Workspace Directory**  
+   - Create a directory for the model and virtual environment:  
+     ```bash
+     mkdir -p /workspace
+     ```
+
+3. **Set Up the Virtual Environment**  
+   - Navigate to the workspace directory and create a Python 3.12 virtual environment:  
+     ```bash
+     cd /workspace
+     python3.12 -m venv venv
+     source venv/bin/activate
+     ```
+
+4. **Install PyTorch with CUDA 12.4 Support**  
+   - Install PyTorch version 2.6.0+cu124 from the official NVIDIA index:  
+     ```bash
+     pip install torch==2.6.0+cu124 --index-url https://download.pytorch.org/whl/cu124
+     ```
+
+5. **Install Runtime Dependencies**  
+   - Install the required packages from the `requirements-cloud-runtime.txt` file:  
+     ```bash
+     pip install -r requirements-cloud-runtime.txt
+     ```
+
+6. **Verify Inventory Hash**  
+   - Ensure the inventory hash matches the provided value:  
+     ```bash
+     echo "8cf07aa84c9e26c9dd4ce71b21bd498232c8dfa5afe5284d375be0c1e9bb3f4f"
+     ```
+
+7. **Do Not Run CobraBench**  
+   - Skip running any benchmarking or testing tools as specified.  
+
+8. **Export the Model and Environment**  
+   - Export the model and runtime environment to the specified workspace directory.  
+
+9. **Terminate GPU Pod After Export**  
+   - Once the export is complete, terminate the GPU pod to free up resources.  
+
+10. **No Secrets**  
+    - Ensure no sensitive information is stored or used in the environment.  
+
+**Unknowns:**  
+- The exact method for exporting the model and environment is not specified.  
+- The exact command to terminate the GPU pod is not provided.

@@ -1,0 +1,2 @@
+STRIDE-lite threat model for uploading evaluation artifacts to object storage via an authenticated API.
+Table: asset, threat, mitigation. Include IDOR and secret leakage paths.

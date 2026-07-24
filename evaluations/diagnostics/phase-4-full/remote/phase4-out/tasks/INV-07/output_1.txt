@@ -1,0 +1,17 @@
+**Q1) When was the laptop last seen?**  
+**Finding:** The laptop was last seen on the desk at 08:55.  
+**Evidence:** [S2]  
+**Confidence:** High  
+**Missing:** No missing information.  
+
+**Q2) Who took the laptop?**  
+**Finding:** Unknown.  
+**Evidence:** None provided.  
+**Confidence:** Low  
+**Missing:** No evidence is provided to identify who took the laptop.  
+
+**Q3) Was the side door used that morning?**  
+**Finding:** The side door was open at 09:12.  
+**Evidence:** [S1]  
+**Confidence:** Medium  
+**Missing:** No evidence is provided about the use of the side door before 09:12.

@@ -1,0 +1,16 @@
+{
+  "schema": "cobra.cloud.cost_record.v1",
+  "phase": "4-full",
+  "status": "terminated",
+  "provider": "RunPod",
+  "pod_id": "s4qjueg403fjks",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "hourly_rate_at_launch_usd": 0.22,
+  "launch_timestamp": "2026-07-24T03:05:24.227300+00:00",
+  "termination_timestamp": "2026-07-24T03:30:39.336307+00:00",
+  "billed_or_estimated_duration_hours": 0.4209,
+  "estimated_compute_cost_usd": 0.0926,
+  "approved_spending_ceiling_usd": 10.0,
+  "delete_http_status": 204,
+  "remaining_matching_pod_ids": []
+}

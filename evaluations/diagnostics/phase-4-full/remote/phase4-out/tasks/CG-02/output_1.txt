@@ -1,0 +1,73 @@
+```python
+def normalize_records(records):
+    """
+    Transforms a list of dict records by:
+    - Normalizing date fields named "date" to ISO-8601 YYYY-MM-DD when parseable
+    - Dropping records where email is null/None/missing
+    - Deduping by id, keeping the first occurrence
+    """
+    seen_ids = set()
+    result = []
+    
+    for record in records:
+        # Skip if email is missing or None
+        if 'email' not in record or record['email'] is None:
+            continue
+        
+        # Normalize date field if present
+        if 'date' in record:
+            try:
+                from datetime import datetime
+                date_obj = datetime.strptime(record['date'], "%Y-%m-%d")
+                record['date'] = date_obj.strftime("%Y-%m-%d")
+            except ValueError:
+                # If date is not in the expected format, leave it as-is
+                pass
+        
+        # Dedupe by id
+        record_id = record.get('id')
+        if record_id and record_id not in seen_ids:
+            seen_ids.add(record_id)
+            result.append(record)
+    
+    return result
+```
+
+### Unit Test Examples
+
+1. **Test with mixed date formats and missing emails:**
+```python
+test1 = [
+    {'id': 1, 'date': '2023/04/05', 'email': 'a@example.com'},
+    {'id': 2, 'date': '2023-04-06', 'email': 'b@example.com'},
+    {'id': 3, 'date': 'invalid', 'email': None},
+    {'id': 1, 'date': '2023-04-07', 'email': 'a@example.com'}
+]
+# Expected: [{'id': 1, 'date': '2023-04-05', 'email': 'a@example.com'}, {'id': 2, 'date': '2023-04-06', 'email': 'b@example.com'}]
+```
+
+2. **Test with no date field and missing emails:**
+```python
+test2 = [
+    {'id': 1, 'email': 'a@example.com'},
+    {'id': 2, 'email': None},
+    {'id': 3, 'email': 'c@example.com'}
+]
+# Expected: [{'id': 1, 'email': 'a@example.com'}, {'id': 3, 'email': 'c@example.com'}]
+```
+
+3. **Test with invalid date and no id:**
+```python
+test3 = [
+    {'id': None, 'date': '2023-04-05', 'email': 'a@example.com'},
+    {'id': 2, 'date': 'invalid', 'email': 'b@example.com'},
+    {'id': 2, 'date': '2023-04-06', 'email': 'b@example.com'}
+]
+# Expected: [{'id': None, 'date': '2023-04-05', 'email': 'a@example.com'}]
+```
+
+### Notes:
+- The function does **not** mutate the input list or nested dicts.
+- It assumes that the date field is named `"date"` and that the date is in a format that can be parsed with `strptime("%Y-%m-%d")`.
+- If the date is not in the expected format, it is left as-is.
+- If the `id` field is missing or not hashable, the record will not be dedup

@@ -1,0 +1,35 @@
+```bash
+#!/bin/bash
+set -euo pipefail
+
+# Check if a directory argument is provided
+if [ -z "$1" ]; then
+    echo "Usage: $0 <directory>"
+    exit 1
+fi
+
+# Check if the provided path is a valid directory
+if [ ! -d "$1" ]; then
+    echo "Error: '$1' is not a valid directory."
+    exit 1
+fi
+
+# Generate timestamp in YYYYmmdd-HHMMSS format
+timestamp=$(date +"%Y%m%d-%H%M%S")
+
+# Create the backup filename
+backup_file="backup-${timestamp}.tar.gz"
+
+# Create the tarball with proper quoting to handle spaces and special characters
+tar -czf "$backup_file" -- "$1"
+
+# Dry-run note: To perform a dry run, add the -n option to tar:
+# tar -cnzf "$backup_file" -- "$1"
+```
+
+### Notes:
+- This script uses `set -euo pipefail` to ensure strict error checking.
+- It checks that a directory is provided and that it exists.
+- It uses proper quoting to handle directories with spaces or special characters.
+- It does **not** use `rm -rf` or any destructive commands.
+- A dry-run note is included for the user to know how to test the script without creating a real archive.

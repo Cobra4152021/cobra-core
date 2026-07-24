@@ -1,0 +1,24 @@
+**A) Executive Summary**
+
+- Riverdale Logistics operates three depots (North, Central, South), with Central having a history of incomplete seal logs from a 2023 audit.
+- On 2024-02-02, truck T-19 departed North with manifest M-441, containing 48 sealed crates and 2 open crates, and was redirected to Central for inspection.
+- Central received T-19 at 11:40 on 2024-02-02, but the trailer was not delivered to South as originally planned.
+- The Central intake form noted one broken seal, but the exact cause and responsible party remain unknown.
+- The incident occurred during a period when humidity sensors at Central were offline, raising concerns about environmental conditions during the inspection.
+
+---
+
+**B) Technical Appendix**
+
+- **Depots Overview**: Riverdale Logistics maintains three depots: North (opened 2019), Central (opened 2015), and South (opened 2021). The Central depot was identified in a 2023 audit for incomplete seal logs over 14 days in June.
+- **Incident Timeline**: On 2024-02-02, truck T-109 (T-19) departed the North depot at 06:10 with manifest M-441. Dock camera notes at Central indicate the truck arrived at 11:40 the same day. The truck was redirected to Central for inspection and was not delivered to South.
+- **Manifest and Intake Discrepancy**: Manifest M-441 lists 48 sealed crates of spare parts and 2 open crates of manuals. The Central intake form records 47 sealed crates and notes one seal broken in transit. The discrepancy suggests a possible loss or damage during transit.
+- **Personnel Involvement**: Dispatcher Kim authorized the redirect of T-19 to Central. Inspector Lopez signed the broken-seal note. No individual is identified as a thief, and the security review is ongoing.
+- **Environmental Conditions**: Humidity sensors at Central were offline from 10:00 to 12:00 on 2024-02-02, which may have impacted the integrity of the sealed crates during the inspection period.
+- **Missing Information**: The vendor invoice amount for manifest M-441 is not included in the memo, limiting the ability to assess financial impact or verify the contents of the shipment.
+
+**Unknowns**:
+- The exact cause of the broken seal.
+- The identity of the individual or entity responsible for the missing crate.
+- The financial impact of the incident, due to the absence of the vendor invoice.
+- The full extent of the environmental conditions' impact on the shipment.
