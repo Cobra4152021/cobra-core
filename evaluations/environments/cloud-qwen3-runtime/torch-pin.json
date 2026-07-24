@@ -1,0 +1,14 @@
+{
+  "schema": "cobra.cloud.torch_pin.v1",
+  "torch": "2.6.0+cu124",
+  "index_url": "https://download.pytorch.org/whl/cu124",
+  "install_command": "python -m pip install torch==2.6.0+cu124 --index-url https://download.pytorch.org/whl/cu124",
+  "qualified_with_phase": "3F",
+  "qualified_tag": "phase-3f-qualified",
+  "qualified_commit": "0a2af49ee86451c374a600579d3644c811cd12c0",
+  "notes": [
+    "Install torch before requirements-cloud-runtime.txt",
+    "Do not use nightlies or source builds",
+    "Phase 3F host template shipped torch 2.8; qualification venv overrode to 2.6.0+cu124"
+  ]
+}

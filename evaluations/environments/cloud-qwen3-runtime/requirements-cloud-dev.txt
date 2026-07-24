@@ -1,0 +1,4 @@
+# Phase 3G development-only dependencies (not required for inference qualification).
+# Install after runtime lock when running tests on the cloud host.
+-r requirements-cloud-runtime.txt
+pytest==8.4.2

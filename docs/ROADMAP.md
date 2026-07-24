@@ -1,6 +1,6 @@
 # Cobra Model Lab Roadmap
 
-**Last updated:** 2026-07-23 (Phase 3A / Milestone M1)
+**Last updated:** 2026-07-23 (Phase 3G roadmap draft)
 
 ## Completed
 
@@ -17,14 +17,15 @@
 | Phase 2H | Independent review → v0.2-rc2 |
 | Phase 2I | Second review → Outcome D (rc2 remains non-final) |
 | Phase 3A | Reviewer kit + Milestone M1 governance freeze |
+| Phase 3B–3E | Windows/WSL runtime isolation path; WSL unavailable (Outcome E) |
+| Phase 3F | Cloud Linux runtime qualification on RunPod — **Outcome A**; tag `phase-3f-qualified` |
 
-## Upcoming
+## Active / upcoming
 
 | Phase | Intent | Gate |
 | --- | --- | --- |
-| **Phase 3B** | Official Qwen3-8B evaluation reporting hygiene against **v0.1** (no score rewrite) | Separate authorization; do not alter 0.840 |
-| **Phase 3C** | Qwen3-8B evaluation against **rc2** only after stronger review / Outcome A path | Separate authorization; prepared-not-run until executed |
-| **Phase 3D** | Controlled Phase 2E-style diagnostics under resource guards | Separate authorization; new run IDs only |
+| **Phase 3G** | Cloud runtime production-readiness optimization (equivalence-preserving); **no benchmark execution** | **P1 implemented** (ops/pins/docs). P2+ require separate approval — see `docs/phases/PHASE_3G_STATUS.md` |
+| Later | Controlled CobraBench v0.2-rc2 on locked cloud runtime | Separate authorization; remains `prepared-not-run` until then |
 
 ## Future (not authorized by M1)
 

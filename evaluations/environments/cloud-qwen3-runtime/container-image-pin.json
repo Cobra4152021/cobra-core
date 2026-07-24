@@ -1,0 +1,24 @@
+{
+  "schema": "cobra.cloud.container_image_pin.v1",
+  "provider": "RunPod",
+  "image_name": "runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404",
+  "tag": "1.0.2-cu1281-torch280-ubuntu2404",
+  "registry": "docker.io/runpod/pytorch",
+  "digest_tag": "sha256:0a360022e8de4375af99430f84e8b38951acc397252163a37ceac7204d01be35",
+  "digest_amd64": "sha256:4d1721e62b56d345c83b4fd6090664be6daf9312caab5b2e76f23d8231941851",
+  "pin_source": "Docker Hub tag API at Phase 3G P1 freeze",
+  "qualified_with_phase": "3F",
+  "qualified_tag": "phase-3f-qualified",
+  "qualified_commit": "0a2af49ee86451c374a600579d3644c811cd12c0",
+  "qualified_pod_id": "txw75nv9hn96hu",
+  "host_driver_observed": {
+    "nvidia_smi_driver": "570.195.03",
+    "nvidia_smi_cuda_version": "12.8"
+  },
+  "runtime_venv_overrides_image_torch": true,
+  "notes": [
+    "Prefer launching with this image tag/digest for equivalence to Phase 3F host base",
+    "Always create .venv-qwen-cloud and install torch-pin.json + requirements-cloud-runtime.txt",
+    "Do not rely on image-bundled torch version for qualification equivalence"
+  ]
+}

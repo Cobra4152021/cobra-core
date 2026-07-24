@@ -1,15 +1,12 @@
-# Cloud Linux lock for Phase 3F.
-# Aligned to the validated primary/Python3.12 inference freeze (transformers 5.14.1 stack).
-# Previous draft pinned huggingface-hub==0.34.4 which conflicts with transformers==5.14.1
-# (requires huggingface-hub>=1.5.0). Corrected before first cloud install.
-# Python 3.11 preferred; 3.12 acceptable. Do not use Python 3.13.
-# Install torch from official cu124 wheel index when authorized.
+# Compatibility alias for Phase 3F consumers.
+# Canonical production lock is requirements-cloud-runtime.txt (same pins).
+# Development extras: requirements-cloud-dev.txt
+# Install torch separately: see torch-pin.json
 pip==25.1.1
 setuptools==80.9.0
 wheel==0.45.1
 numpy==2.5.1
 psutil==7.2.2
-pytest==8.4.2
 safetensors==0.8.0
 tokenizers==0.22.2
 huggingface-hub==1.24.0

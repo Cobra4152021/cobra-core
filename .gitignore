@@ -166,4 +166,7 @@ artifacts/**/*.tar.gz
 
 evaluations/cloud/.pod-connection.local.json
 evaluations/cloud/.pod-ssh*
+evaluations/cloud/.ssh-ok.local
+evaluations/cloud/.ssh-method.local.json
+evaluations/cloud/provision-preflight.json
 

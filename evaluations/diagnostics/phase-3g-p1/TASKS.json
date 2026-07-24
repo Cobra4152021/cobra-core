@@ -1,0 +1,114 @@
+[
+  {
+    "id": "P1-01",
+    "title": "Automate SSH bootstrap and qualification setup",
+    "files": [
+      "scripts/phase3g_ssh_bootstrap.py",
+      "evaluations/environments/cloud-qwen3-runtime/creation-commands.md"
+    ],
+    "benefit": "Removes multi-step SSH PUBLIC_KEY recovery; faster session start",
+    "risk": "Low \u2014 ops only; may restart pod if --restart used",
+    "requalification_required": false
+  },
+  {
+    "id": "P1-02",
+    "title": "Pin runtime dependencies and container image digests",
+    "files": [
+      "evaluations/environments/cloud-qwen3-runtime/torch-pin.json",
+      "evaluations/environments/cloud-qwen3-runtime/container-image-pin.json",
+      "evaluations/environments/cloud-qwen3-runtime/requirements-cloud-runtime.txt",
+      "evaluations/environments/cloud-qwen3-runtime/dependency-lock.sha256"
+    ],
+    "benefit": "Bit-identity for host image + venv pins; fewer silent skews",
+    "risk": "Low \u2014 pins match Phase 3F qualified versions",
+    "requalification_required": false
+  },
+  {
+    "id": "P1-03",
+    "title": "Separate runtime vs development dependencies",
+    "files": [
+      "evaluations/environments/cloud-qwen3-runtime/requirements-cloud-runtime.txt",
+      "evaluations/environments/cloud-qwen3-runtime/requirements-cloud-dev.txt",
+      "evaluations/environments/cloud-qwen3-runtime/requirements-cloud-lock.txt"
+    ],
+    "benefit": "Smaller production venv; pytest excluded from runtime path",
+    "risk": "Low \u2014 runtime pins unchanged from 3F inference stack",
+    "requalification_required": false
+  },
+  {
+    "id": "P1-04",
+    "title": "Improve reproducibility of environment creation",
+    "files": [
+      "evaluations/environments/cloud-qwen3-runtime/creation-commands.md",
+      "scripts/phase3g_verify_env.py",
+      "evaluations/environments/cloud-qwen3-runtime/environment-manifest.json"
+    ],
+    "benefit": "Deterministic create path with verify step",
+    "risk": "Low",
+    "requalification_required": false
+  },
+  {
+    "id": "P1-05",
+    "title": "Improve provisioning scripts",
+    "files": [
+      "scripts/phase3g_provision_preflight.py"
+    ],
+    "benefit": "Hard gates before spend; single-instance / price / disk checks",
+    "risk": "Low \u2014 does not create pods",
+    "requalification_required": false
+  },
+  {
+    "id": "P1-06",
+    "title": "Improve cleanup verification",
+    "files": [
+      "scripts/phase3g_cleanup_verify.py"
+    ],
+    "benefit": "Reliable terminate + remaining-resource audit",
+    "risk": "Low\u2013Med if --terminate mis-targeted (requires explicit pod id)",
+    "requalification_required": false
+  },
+  {
+    "id": "P1-07",
+    "title": "Improve documentation",
+    "files": [
+      "docs/phases/PHASE_3G_P1_IMPLEMENTATION.md",
+      "docs/phases/PHASE_3G_STATUS.md",
+      "docs/decisions/ADR-0015-phase-3g-runtime-ops-hardening.md",
+      "evaluations/environments/cloud-qwen3-runtime/README.md"
+    ],
+    "benefit": "Clear ops runbooks and governance",
+    "risk": "None",
+    "requalification_required": false
+  },
+  {
+    "id": "P1-08",
+    "title": "Improve qualification evidence generation",
+    "files": [
+      "scripts/phase3g_write_p1_evidence.py",
+      "evaluations/diagnostics/phase-3g-p1/"
+    ],
+    "benefit": "Structured P1 evidence with hashes and requal flags",
+    "risk": "None",
+    "requalification_required": false
+  },
+  {
+    "id": "P1-09",
+    "title": "Document validated VRAM envelope",
+    "files": [
+      "evaluations/environments/cloud-qwen3-runtime/VRAM_ENVELOPE.md"
+    ],
+    "benefit": "Enables safe SKU right-sizing without guessing",
+    "risk": "None (docs)",
+    "requalification_required": false
+  },
+  {
+    "id": "P1-10",
+    "title": "Recommend lowest-cost supported GPU configurations",
+    "files": [
+      "evaluations/environments/cloud-qwen3-runtime/GPU_COST_RECOMMENDATIONS.md"
+    ],
+    "benefit": "Guides cheaper L4/A5000 create path vs A40 adopt",
+    "risk": "Low \u2014 recommendations only; new SKU needs abbreviated smoke later",
+    "requalification_required": false
+  }
+]

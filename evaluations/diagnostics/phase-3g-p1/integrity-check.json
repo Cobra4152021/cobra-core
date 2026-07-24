@@ -1,0 +1,8 @@
+{
+  "schema": "cobra.diagnostics.phase3g_p1_integrity.v1",
+  "cobrabench_v02_rc2_status": "prepared-not-run",
+  "official_score_marker_present": true,
+  "baseline_tag": "phase-3f-qualified",
+  "baseline_commit": "0a2af49ee86451c374a600579d3644c811cd12c0",
+  "checked_at": "2026-07-24T01:11:47.000310+00:00"
+}

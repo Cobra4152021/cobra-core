@@ -1,0 +1,158 @@
+{
+  "schema": "cobra.diagnostics.phase3g_p1_summary.v1",
+  "phase": "3G",
+  "priority": 1,
+  "status": "implemented-docs-and-tooling",
+  "baseline_tag": "phase-3f-qualified",
+  "baseline_commit": "0a2af49ee86451c374a600579d3644c811cd12c0",
+  "benchmark_executed": false,
+  "prepared_protocol_status": "prepared-not-run",
+  "official_v01_score_unchanged": 0.84,
+  "model_behavior_changed": false,
+  "inference_behavior_changed": false,
+  "runtime_requalification_required": false,
+  "runtime_requalification_rationale": "P1 changes are operational tooling, dependency pinning identical to Phase 3F qualified versions, and documentation. No model/prompt/quantization/device_map changes.",
+  "estimated_cloud_savings": {
+    "ops_only_per_session_usd": 0.22,
+    "ops_note": "Approx. 30 minutes less avoidable GPU time at $0.44/hr",
+    "sku_rightsize_per_hour_usd": 0.19,
+    "sku_note": "Indicative A40 $0.44 vs A5000 ~$0.25 if authorized fallback used after smoke"
+  },
+  "tasks": [
+    {
+      "id": "P1-01",
+      "title": "Automate SSH bootstrap and qualification setup",
+      "files": [
+        "scripts/phase3g_ssh_bootstrap.py",
+        "evaluations/environments/cloud-qwen3-runtime/creation-commands.md"
+      ],
+      "benefit": "Removes multi-step SSH PUBLIC_KEY recovery; faster session start",
+      "risk": "Low \u2014 ops only; may restart pod if --restart used",
+      "requalification_required": false
+    },
+    {
+      "id": "P1-02",
+      "title": "Pin runtime dependencies and container image digests",
+      "files": [
+        "evaluations/environments/cloud-qwen3-runtime/torch-pin.json",
+        "evaluations/environments/cloud-qwen3-runtime/container-image-pin.json",
+        "evaluations/environments/cloud-qwen3-runtime/requirements-cloud-runtime.txt",
+        "evaluations/environments/cloud-qwen3-runtime/dependency-lock.sha256"
+      ],
+      "benefit": "Bit-identity for host image + venv pins; fewer silent skews",
+      "risk": "Low \u2014 pins match Phase 3F qualified versions",
+      "requalification_required": false
+    },
+    {
+      "id": "P1-03",
+      "title": "Separate runtime vs development dependencies",
+      "files": [
+        "evaluations/environments/cloud-qwen3-runtime/requirements-cloud-runtime.txt",
+        "evaluations/environments/cloud-qwen3-runtime/requirements-cloud-dev.txt",
+        "evaluations/environments/cloud-qwen3-runtime/requirements-cloud-lock.txt"
+      ],
+      "benefit": "Smaller production venv; pytest excluded from runtime path",
+      "risk": "Low \u2014 runtime pins unchanged from 3F inference stack",
+      "requalification_required": false
+    },
+    {
+      "id": "P1-04",
+      "title": "Improve reproducibility of environment creation",
+      "files": [
+        "evaluations/environments/cloud-qwen3-runtime/creation-commands.md",
+        "scripts/phase3g_verify_env.py",
+        "evaluations/environments/cloud-qwen3-runtime/environment-manifest.json"
+      ],
+      "benefit": "Deterministic create path with verify step",
+      "risk": "Low",
+      "requalification_required": false
+    },
+    {
+      "id": "P1-05",
+      "title": "Improve provisioning scripts",
+      "files": [
+        "scripts/phase3g_provision_preflight.py"
+      ],
+      "benefit": "Hard gates before spend; single-instance / price / disk checks",
+      "risk": "Low \u2014 does not create pods",
+      "requalification_required": false
+    },
+    {
+      "id": "P1-06",
+      "title": "Improve cleanup verification",
+      "files": [
+        "scripts/phase3g_cleanup_verify.py"
+      ],
+      "benefit": "Reliable terminate + remaining-resource audit",
+      "risk": "Low\u2013Med if --terminate mis-targeted (requires explicit pod id)",
+      "requalification_required": false
+    },
+    {
+      "id": "P1-07",
+      "title": "Improve documentation",
+      "files": [
+        "docs/phases/PHASE_3G_P1_IMPLEMENTATION.md",
+        "docs/phases/PHASE_3G_STATUS.md",
+        "docs/decisions/ADR-0015-phase-3g-runtime-ops-hardening.md",
+        "evaluations/environments/cloud-qwen3-runtime/README.md"
+      ],
+      "benefit": "Clear ops runbooks and governance",
+      "risk": "None",
+      "requalification_required": false
+    },
+    {
+      "id": "P1-08",
+      "title": "Improve qualification evidence generation",
+      "files": [
+        "scripts/phase3g_write_p1_evidence.py",
+        "evaluations/diagnostics/phase-3g-p1/"
+      ],
+      "benefit": "Structured P1 evidence with hashes and requal flags",
+      "risk": "None",
+      "requalification_required": false
+    },
+    {
+      "id": "P1-09",
+      "title": "Document validated VRAM envelope",
+      "files": [
+        "evaluations/environments/cloud-qwen3-runtime/VRAM_ENVELOPE.md"
+      ],
+      "benefit": "Enables safe SKU right-sizing without guessing",
+      "risk": "None (docs)",
+      "requalification_required": false
+    },
+    {
+      "id": "P1-10",
+      "title": "Recommend lowest-cost supported GPU configurations",
+      "files": [
+        "evaluations/environments/cloud-qwen3-runtime/GPU_COST_RECOMMENDATIONS.md"
+      ],
+      "benefit": "Guides cheaper L4/A5000 create path vs A40 adopt",
+      "risk": "Low \u2014 recommendations only; new SKU needs abbreviated smoke later",
+      "requalification_required": false
+    }
+  ],
+  "file_hashes": {
+    "scripts/phase3g_ssh_bootstrap.py": "aefeb772315297988a022ada007ad68090d185c900c4923130b7c1eb86225efb",
+    "evaluations/environments/cloud-qwen3-runtime/creation-commands.md": "d2f2897b95dcf63bf110808196ecbabc4c6ef87b1a2d1287c94ccdcf797c6611",
+    "evaluations/environments/cloud-qwen3-runtime/torch-pin.json": "0dac8818008b6b42b7feed9cf2d3caca6df85bdc323ad4c112ac47ecc2fbc8f2",
+    "evaluations/environments/cloud-qwen3-runtime/container-image-pin.json": "e9d6b6b6ecf857caff0103500281f230300442d64115c7e04461628d229f9dbf",
+    "evaluations/environments/cloud-qwen3-runtime/requirements-cloud-runtime.txt": "cce91d6e8fcbf239c24078b558c22afdbef4f8402cf241d0777f8e733805c6a7",
+    "evaluations/environments/cloud-qwen3-runtime/dependency-lock.sha256": "4fc4438f4ab38ae3d086df72747ab67ea765e0bf77aa718dfefbe2dfb345f63e",
+    "evaluations/environments/cloud-qwen3-runtime/requirements-cloud-dev.txt": "3241928aa0c873dfef3071af413373ec5c3c34acca72ba932086094cc9a93632",
+    "evaluations/environments/cloud-qwen3-runtime/requirements-cloud-lock.txt": "33853eefddcc03f9dd1e2b98c54854d3d55886865b2e75d2750b4e95ab1a3e52",
+    "scripts/phase3g_verify_env.py": "5982bdb8c2baf9e1c3606228b049ced422f960905cece0f22621058e68d06f19",
+    "evaluations/environments/cloud-qwen3-runtime/environment-manifest.json": "dc1d746c2303de5efb9c8e57f0825bd805442bb399c7d8db34f22cc26ad13494",
+    "scripts/phase3g_provision_preflight.py": "6ccc59f85195509272619e71f6ee67a8f0924f57fb67fb642c31627b84d55479",
+    "scripts/phase3g_cleanup_verify.py": "080e0512c258416ecf2e2518377bdfa0b49c33b42194ab018aba11345e7c7a36",
+    "docs/phases/PHASE_3G_P1_IMPLEMENTATION.md": "3bf3c2d78fc64d920cd03b87fb30db231564cbebb502c762ed84c59668147e55",
+    "docs/phases/PHASE_3G_STATUS.md": "9280a4ec405c05211072ac2b2f30a61ecfaad7fc018c958b9c99f89ac807aad1",
+    "docs/decisions/ADR-0015-phase-3g-runtime-ops-hardening.md": "fff479a590f2b5aebea52ad7a0331b30baea9a61bc03f56f4dee887582d745ff",
+    "evaluations/environments/cloud-qwen3-runtime/README.md": "cebade3d6c47c0d713cdd9a5128bfdecc2b09d993b7351a038e645fd594fe0f7",
+    "scripts/phase3g_write_p1_evidence.py": "8c20cc9605c9f52159292b67e680af358fb06b5cff06204653a845141ecf6ebc",
+    "evaluations/diagnostics/phase-3g-p1/": "directory",
+    "evaluations/environments/cloud-qwen3-runtime/VRAM_ENVELOPE.md": "1e0f54dbb2dc21c4972a5e7390258e75c45277b04a8bdaa9a8bf8f590b0db3d4",
+    "evaluations/environments/cloud-qwen3-runtime/GPU_COST_RECOMMENDATIONS.md": "43e4bc220493671e4f89dc79f1cac85c2d695c086003d718bad953bca50f07a8"
+  },
+  "generated_at": "2026-07-24T01:11:46.985719+00:00"
+}

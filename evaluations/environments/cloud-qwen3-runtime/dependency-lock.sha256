@@ -1,1 +1,3 @@
-﻿6c97133d601503005955674b3208fa7c731a687071df79394da00df4510753b6  requirements-cloud-lock.txt
+cce91d6e8fcbf239c24078b558c22afdbef4f8402cf241d0777f8e733805c6a7  requirements-cloud-runtime.txt
+33853eefddcc03f9dd1e2b98c54854d3d55886865b2e75d2750b4e95ab1a3e52  requirements-cloud-lock.txt
+3241928aa0c873dfef3071af413373ec5c3c34acca72ba932086094cc9a93632  requirements-cloud-dev.txt
