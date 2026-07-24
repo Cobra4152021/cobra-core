@@ -1,6 +1,6 @@
 # Cobra Model Lab Roadmap
 
-**Last updated:** 2026-07-24 (Phase 4 full capability validation)
+**Last updated:** 2026-07-24 (Phase 5B.1-CORE Protocol V1 server)
 
 ## Completed
 
@@ -29,6 +29,7 @@
 | **Phase 4** | Capability validation framework + **full 46-task execution** | **Complete** — 97.8% Pass/Pass+; 0 critical; **Ready for Beta** — `docs/capability-validation/CAPABILITY_VALIDATION_REPORT.md` |
 | **Phase 4.1** | Product vision, personas, success metrics, release gates | **Complete** — `docs/product/` |
 | **Phase 4.2** | Controlled 10-task pilot | **Complete** — `docs/capability-validation/pilot/` |
+| **Phase 5B.1-CORE** | Cobra Protocol V1 local inference server (Computer contract) | **Complete (local/mock)** — `docs/protocol/v1/`; Ready for 5B.2 |
 | Later | Controlled CobraBench v0.2-rc2 on locked cloud runtime | Separate authorization; remains `prepared-not-run` until then |
 
 ## Future (not authorized by M1)
