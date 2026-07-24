@@ -62,6 +62,7 @@ def patch_deploy_staging(enable: bool, handoff: dict) -> None:
             text,
             flags=re.S,
         )
+    needle = "writeFileSync(out, JSON.stringify(cfg, null, 2));"
     if enable:
         block = f"""
 {marker_start}
@@ -78,9 +79,15 @@ cfg.vars = {{
   COBRA_CORE_MAX_OUTPUT_TOKENS: {json.dumps(handoff["COBRA_CORE_MAX_OUTPUT_TOKENS"])},
 }};
 {marker_end}
+
 """
-        # Insert before writeFileSync(out...
-        text = text.replace("writeFileSync(out, JSON.stringify(cfg, null, 2));", block + "\nwriteFileSync(out, JSON.stringify(cfg, null, 2));")
+        if needle not in text:
+            raise RuntimeError("deploy-staging.mjs missing writeFileSync needle for Core overlay")
+        text = text.replace(needle, block + needle, 1)
+        if marker_start not in text or "COBRA_CORE_ENABLED" not in text:
+            raise RuntimeError("Core overlay patch failed to apply")
+    # Collapse accidental blank runs from prior strips.
+    text = re.sub(r"\n{3,}", "\n\n", text)
     path.write_text(text, encoding="utf-8")
 
 

@@ -1,0 +1,14 @@
+{
+  "provider": "RunPod",
+  "pod_id": "jgcka9724koh87",
+  "gpu": null,
+  "cost_per_hr_usd": 0.22,
+  "image": "runpod/pytorch:1.0.2-cu1281-torch280-ubuntu2404",
+  "started_at": "2026-07-24T22:44:57.699730+00:00",
+  "proxy_base_url": "https://pending-jgcka9724koh87.invalid",
+  "ports": [
+    "22/tcp"
+  ],
+  "tls_method": "Cloudflare quick tunnel (trycloudflare.com)",
+  "public_ip_present": true
+}

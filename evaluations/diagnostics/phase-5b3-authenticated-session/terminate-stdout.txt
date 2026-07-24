@@ -1,0 +1,1 @@
+{"pod_id": "jgcka9724koh87", "delete_status": 204, "still_listed": [], "terminated_at": "2026-07-24T22:54:21.079584+00:00", "runtime_hours": 0.15649440388888888, "estimated_cost_usd": 0.0344, "zero_billable_remaining": true}

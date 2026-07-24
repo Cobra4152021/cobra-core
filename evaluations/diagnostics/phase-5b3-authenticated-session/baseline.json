@@ -1,0 +1,20 @@
+{
+  "phase": "5B.3",
+  "cobra_computer_baseline": "9d003dbd3e59cc54d61749d530c817b10c14fe74",
+  "cobra_core_baseline": "00e4862b90d0eca0f6ec0b5f7191ba0ce43fa6fa",
+  "protocolVersion": "1",
+  "compatibilityVersion": "1",
+  "schemaVersion": "1.0.0",
+  "schemaHash": "f677ed325714a17ff948e3dbfaf575ec1ad3c2a3aa1940e4d05b5e49c66c32b3",
+  "fixtureHash": "9cddd578ff018902f3df1069e9550de066ef54c1077ac588f2881e7c204868e7",
+  "official_score": 0.84,
+  "cobrabench": "prepared-not-run",
+  "preflight": {
+    "computer_test_cobra_core": "pass",
+    "computer_test_guards": "pass",
+    "computer_staging_validate_dry_run": "pass",
+    "core_governance": "pass",
+    "core_protocol_v1_conformance": "pass"
+  },
+  "admin_only_server_gate": "added_handleCobraChat_and_handleCobraStatus_role_filter"
+}

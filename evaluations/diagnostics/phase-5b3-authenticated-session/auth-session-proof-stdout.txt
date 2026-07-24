@@ -1,0 +1,24 @@
+
+> hidden-grid-os@0.0.0 cobra-core:auth-session-proof
+> node scripts/cobra-core-staging/auth-session-proof.mjs --staging
+
+info - target=https://hidden-grid-os-staging.cobra4152020.workers.dev d1=hidden-grid-staging-db
+ok  - adminA session recognized (role=admin)
+ok  - userA session recognized (role=researcher)
+ok  - adminB session recognized (role=admin)
+ok  - userB session recognized (role=researcher)
+ok  - admin sees Core; ordinary user does not
+ok  - defaultModel is adaptive (not Core): adaptive-mistral
+ok  - chats created for admin and ordinary user
+ok  - admin explicit Core invocation reached Worker chat path
+ok  - ordinary-user Core invoke rejected server-side (403)
+ok  - cross-org Org B cannot use Org A chat id
+ok  - org B ordinary Core invoke rejected
+ok  - missing session rejected
+ok  - malformed session rejected
+ok  - expired session rejected
+ok  - tampered organization identifier rejected
+ok  - routing: Core requires explicit model=cobra-core (no adaptive auto-select proven via defaultModel)
+
+PASS: phase 5B.3 authenticated staging session proof
+ok  - temporary sessions revoked

@@ -1,0 +1,9 @@
+{
+  "ready": true,
+  "pod_id": "jgcka9724koh87",
+  "base_url": "https://specs-warned-isaac-chargers.trycloudflare.com",
+  "gpu": null,
+  "cost_per_hr_usd": 0.22,
+  "revision": "phase-5b2-00e4862b90d0",
+  "deadline_unix": 1784937302.0120003
+}

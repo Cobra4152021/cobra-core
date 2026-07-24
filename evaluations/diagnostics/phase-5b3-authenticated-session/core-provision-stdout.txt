@@ -1,0 +1,32 @@
+create_try ['NVIDIA L4'] 500
+create_try ['NVIDIA RTX A5000'] 500
+create_try ['NVIDIA GeForce RTX 3090'] 201
+pod_id jgcka9724koh87
+wait_endpoint 0 missing ip/port
+ssh_wait 1 255
+ssh_ready 99.69.17.69 10796 0.22 None
+install_begin
+install_rc 0
+server_start_begin
+server_start_rc 0
+direct_validate https://specs-warned-isaac-chargers.trycloudflare.com
+PASS health_auth_ok status=200 reason=ok
+PASS revision phase-5b2-00e4862b90d0
+PASS gitSha 00e4862b90d0eca0f6ec0b5f7191ba0ce43fa6fa
+PASS limits_context {'maxContext': 8192, 'maxOutputTokens': 256, 'timeoutMs': 120000}
+PASS limits_output {'maxContext': 8192, 'maxOutputTokens': 256, 'timeoutMs': 120000}
+PASS health_no_auth 401
+PASS health_bad_auth 401
+PASS completion_ok status=200 len=229
+PASS request_id_preserved 
+PASS usage {'prompt_tokens': 13, 'completion_tokens': 48, 'total_tokens': 61}
+PASS latency {'queue_ms': 0, 'provider_latency_ms': 2499, 'inference_ms': 2499, 'total_ms': 2499}
+PASS no_traceback 
+PASS request_id_generated cc_80a4dbfc-f0a3-4f6b-b4e7-48cde4a46720
+PASS output_limit_cap 200
+PASS bad_request 400
+PASS safe_error 
+PASS tunnel_dns specs-warned-isaac-chargers.trycloudflare.com
+PASS tunnel_https_health status=200 reason=ok
+CORE_READY https://specs-warned-isaac-chargers.trycloudflare.com
+KEEP requested � leaving pod running for Computer staging steps

@@ -1,0 +1,74 @@
+NCHMARK_SCHEDULER_ENABLED ("false")                                            Environment Variable         
+env.BENCHMARK_SCHEDULE_MODE ("smoke")                                                Environment Variable         
+env.BENCHMARK_SCHEDULE_CRON ("0 6 * * 1")                                            Environment Variable         
+env.BENCHMARK_MAX_WEEKLY_COST_USD ("5")                                              Environment Variable         
+env.BENCHMARK_MAX_RUN_COST_USD ("2")                                                 Environment Variable         
+env.BENCHMARK_MAX_MODEL_COST_USD ("1")                                               Environment Variable         
+env.BENCHMARK_MAX_MODELS_PER_RUN ("12")                                              Environment Variable         
+env.BENCHMARK_MAX_PROMPT_COUNT ("400")                                               Environment Variable         
+env.BENCHMARK_MAX_RETRIES_PER_JOB ("30")                                             Environment Variable         
+env.BENCHMARK_MAX_RUN_DURATION_MS ("28800000")                                       Environment Variable         
+env.BENCHMARK_QUEUE_PAUSED ("true")                                                  Environment Variable         
+env.CKE_ENABLED ("true")                                                             Environment Variable         
+env.CKE_WRITE_ENABLED ("false")                                                      Environment Variable         
+env.CKE_EMBEDDINGS_ENABLED ("false")                                                 Environment Variable         
+env.CKE_LLM_COMPOSE_ENABLED ("false")                                                Environment Variable         
+env.CKE_MEMORY_WRITE_MODE ("automatic")                                              Environment Variable         
+env.CKE_MAX_GRAPH_DEPTH ("2")                                                        Environment Variable         
+env.CKE_MAX_EVIDENCE_CHUNKS ("12")                                                   Environment Variable         
+env.INVESTIGATOR_ENABLED ("true")                                                    Environment Variable         
+env.INVESTIGATOR_WRITE_ENABLED ("true")                                              Environment Variable         
+env.INVESTIGATOR_RUN_ENABLED ("true")                                                Environment Variable         
+env.INVESTIGATOR_LLM_ENABLED ("false")                                               Environment Variable         
+env.INVESTIGATOR_EXPORT_ENABLED ("false")                                            Environment Variable         
+env.GOVERNMENT_ENABLED ("true")                                                      Environment Variable         
+env.GOVERNMENT_WRITE_ENABLED ("true")                                                Environment Variable         
+env.GOVERNMENT_RUN_ENABLED ("true")                                                  Environment Variable         
+env.GOVERNMENT_PILOT_ENABLED ("true")                                                Environment Variable         
+env.GOVERNMENT_PUBLISH_ENABLED ("false")                                             Environment Variable         
+env.GOVERNMENT_LLM_ENABLED ("false")                                                 Environment Variable         
+env.LABOR_ENABLED ("true")                                                           Environment Variable         
+env.LABOR_WRITE_ENABLED ("true")                                                     Environment Variable         
+env.LABOR_RUN_ENABLED ("true")                                                       Environment Variable         
+env.LABOR_PILOT_ENABLED ("true")                                                     Environment Variable         
+env.LABOR_PUBLISH_ENABLED ("false")                                                  Environment Variable         
+env.LABOR_LLM_ENABLED ("false")                                                      Environment Variable         
+env.RESEARCH_ENABLED ("true")                                                        Environment Variable         
+env.RESEARCH_WRITE_ENABLED ("true")                                                  Environment Variable         
+env.RESEARCH_RUN_ENABLED ("true")                                                    Environment Variable         
+env.RESEARCH_PILOT_ENABLED ("true")                                                  Environment Variable         
+env.RESEARCH_PUBLISH_ENABLED ("false")                                               Environment Variable         
+env.RESEARCH_LLM_ENABLED ("false")                                                   Environment Variable         
+env.RESEARCH_WORKSPACE_ENABLED ("true")                                              Environment Variable         
+env.STUDIO_ENABLED ("true")                                                          Environment Variable         
+env.STUDIO_GRAPH_ENABLED ("true")                                                    Environment Variable         
+env.STUDIO_TIMELINE_ENABLED ("true")                                                 Environment Variable         
+env.STUDIO_DASHBOARD_ENABLED ("true")                                                Environment Variable         
+env.SDK_ENABLED ("true")                                                             Environment Variable         
+env.MARKETPLACE_ENABLED ("true")                                                     Environment Variable         
+env.MARKETPLACE_INSTALL_ENABLED ("true")                                             Environment Variable         
+env.MARKETPLACE_SIGNING_REQUIRED ("false")                                           Environment Variable         
+env.ENTERPRISE_ENABLED ("true")                                                      Environment Variable         
+env.ENTERPRISE_SSO_ENABLED ("true")                                                  Environment Variable         
+env.ENTERPRISE_SCIM_ENABLED ("true")                                                 Environment Variable         
+env.ENTERPRISE_BYOM_ENABLED ("true")                                                 Environment Variable         
+env.ENTERPRISE_GOVERNANCE_ENABLED ("true")                                           Environment Variable         
+env.ENTERPRISE_COLLAB_ENABLED ("true")                                               Environment Variable         
+env.ENTERPRISE_AUDIT_ENABLED ("true")                                                Environment Variable         
+env.SENTINEL_ENABLED ("true")                                                        Environment Variable         
+env.SENTINEL_FEEDBACK_ENABLED ("true")                                               Environment Variable         
+env.SENTINEL_REPLAY_ENABLED ("true")                                                 Environment Variable         
+env.SENTINEL_AI_TRIAGE_ENABLED ("true")                                              Environment Variable         
+
+The following containers are available:
+- hidden-grid-os-searxngcontainer-staging (C:\Users\Dynamic Mining Inc\Downloads\hidden-grid-os-phase5b2\containers\searxng\Dockerfile)
+- hidden-grid-os-reelrendercontainer-staging (C:\Users\Dynamic Mining Inc\Downloads\hidden-grid-os-phase5b2\containers\reel-render\Dockerfile)
+- hidden-grid-os-govfetchcontainer-staging (C:\Users\Dynamic Mining Inc\Downloads\hidden-grid-os-phase5b2\containers\gov-fetch\Dockerfile)
+- hidden-grid-os-codesandboxcontainer-staging (C:\Users\Dynamic Mining Inc\Downloads\hidden-grid-os-phase5b2\containers\code-sandbox\Dockerfile)
+- hidden-grid-os-gisprocesscontainer-staging (C:\Users\Dynamic Mining Inc\Downloads\hidden-grid-os-phase5b2\containers\gis-process\Dockerfile)
+
+Uploaded hidden-grid-os-staging (4.41 sec)
+Deployed hidden-grid-os-staging triggers (1.13 sec)
+  https://hidden-grid-os-staging.cobra4152020.workers.dev
+  workflow: cobra-agent-workflow
+Current Version ID: db3332d2-b32c-4002-ad0d-da35f8656b5a

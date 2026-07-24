@@ -1,0 +1,40 @@
+ Variable         
+env.RESEARCH_ENABLED ("true")                                                        Environment Variable         
+env.RESEARCH_WRITE_ENABLED ("true")                                                  Environment Variable         
+env.RESEARCH_RUN_ENABLED ("true")                                                    Environment Variable         
+env.RESEARCH_PILOT_ENABLED ("true")                                                  Environment Variable         
+env.RESEARCH_PUBLISH_ENABLED ("false")                                               Environment Variable         
+env.RESEARCH_LLM_ENABLED ("false")                                                   Environment Variable         
+env.RESEARCH_WORKSPACE_ENABLED ("true")                                              Environment Variable         
+env.STUDIO_ENABLED ("true")                                                          Environment Variable         
+env.STUDIO_GRAPH_ENABLED ("true")                                                    Environment Variable         
+env.STUDIO_TIMELINE_ENABLED ("true")                                                 Environment Variable         
+env.STUDIO_DASHBOARD_ENABLED ("true")                                                Environment Variable         
+env.SDK_ENABLED ("true")                                                             Environment Variable         
+env.MARKETPLACE_ENABLED ("true")                                                     Environment Variable         
+env.MARKETPLACE_INSTALL_ENABLED ("true")                                             Environment Variable         
+env.MARKETPLACE_SIGNING_REQUIRED ("false")                                           Environment Variable         
+env.ENTERPRISE_ENABLED ("true")                                                      Environment Variable         
+env.ENTERPRISE_SSO_ENABLED ("true")                                                  Environment Variable         
+env.ENTERPRISE_SCIM_ENABLED ("true")                                                 Environment Variable         
+env.ENTERPRISE_BYOM_ENABLED ("true")                                                 Environment Variable         
+env.ENTERPRISE_GOVERNANCE_ENABLED ("true")                                           Environment Variable         
+env.ENTERPRISE_COLLAB_ENABLED ("true")                                               Environment Variable         
+env.ENTERPRISE_AUDIT_ENABLED ("true")                                                Environment Variable         
+env.SENTINEL_ENABLED ("true")                                                        Environment Variable         
+env.SENTINEL_FEEDBACK_ENABLED ("true")                                               Environment Variable         
+env.SENTINEL_REPLAY_ENABLED ("true")                                                 Environment Variable         
+env.SENTINEL_AI_TRIAGE_ENABLED ("true")                                              Environment Variable         
+
+The following containers are available:
+- hidden-grid-os-searxngcontainer-staging (C:\Users\Dynamic Mining Inc\Downloads\hidden-grid-os-phase5b2\containers\searxng\Dockerfile)
+- hidden-grid-os-reelrendercontainer-staging (C:\Users\Dynamic Mining Inc\Downloads\hidden-grid-os-phase5b2\containers\reel-render\Dockerfile)
+- hidden-grid-os-govfetchcontainer-staging (C:\Users\Dynamic Mining Inc\Downloads\hidden-grid-os-phase5b2\containers\gov-fetch\Dockerfile)
+- hidden-grid-os-codesandboxcontainer-staging (C:\Users\Dynamic Mining Inc\Downloads\hidden-grid-os-phase5b2\containers\code-sandbox\Dockerfile)
+- hidden-grid-os-gisprocesscontainer-staging (C:\Users\Dynamic Mining Inc\Downloads\hidden-grid-os-phase5b2\containers\gis-process\Dockerfile)
+
+Uploaded hidden-grid-os-staging (4.37 sec)
+Deployed hidden-grid-os-staging triggers (1.17 sec)
+  https://hidden-grid-os-staging.cobra4152020.workers.dev
+  workflow: cobra-agent-workflow
+Current Version ID: dd18b30b-c1ad-4671-af33-f918089c39d2

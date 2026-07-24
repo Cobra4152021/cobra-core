@@ -1,0 +1,28 @@
+{
+  "started_at": "2026-07-24T22:44:57.496949+00:00",
+  "steps": [
+    {
+      "provision": true
+    },
+    {
+      "secret_recovered": true
+    },
+    {
+      "staging_enable": true
+    },
+    {
+      "auth_session_proof": true,
+      "exit": 0
+    },
+    {
+      "kill_switch": true,
+      "deploy_disable_rc": 0,
+      "kill_switch_rc": 0
+    }
+  ],
+  "staging_enable_version": "db3332d2-b32c-4002-ad0d-da35f8656b5a",
+  "staging_disable_version": "dd18b30b-c1ad-4671-af33-f918089c39d2",
+  "ok": true,
+  "terminate_rc": 0,
+  "ended_at": "2026-07-24T22:54:51.261664+00:00"
+}

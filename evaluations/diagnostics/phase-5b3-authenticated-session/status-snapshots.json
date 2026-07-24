@@ -1,0 +1,26 @@
+{
+  "adminHttp": 200,
+  "userHttp": 200,
+  "adminDefaultModel": "adaptive-mistral",
+  "adminModelIds": [
+    "adaptive-mistral",
+    "gpt-mini",
+    "gemini-flash",
+    "gemini-pro",
+    "mistral-medium",
+    "mistral",
+    "qwen-3-5",
+    "cobra-core"
+  ],
+  "userModelIds": [
+    "adaptive-mistral",
+    "gpt-mini",
+    "gemini-flash",
+    "gemini-pro",
+    "mistral-medium",
+    "mistral",
+    "qwen-3-5"
+  ],
+  "adminSeesCore": true,
+  "userSeesCore": false
+}

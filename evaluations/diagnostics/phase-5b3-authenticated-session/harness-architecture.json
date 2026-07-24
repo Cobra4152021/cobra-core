@@ -1,0 +1,15 @@
+{
+  "name": "phase-5b3-auth-session-proof",
+  "authenticates_via": "opaque D1-backed hidden_grid_session cookies",
+  "not_used": [
+    "HIDDEN_GRID_DEV_KEY maintenance bypass",
+    "forged application JWTs",
+    "direct internal handler calls bypassing Worker"
+  ],
+  "worker": "hidden-grid-os-staging",
+  "base_url": "https://hidden-grid-os-staging.cobra4152020.workers.dev",
+  "d1": "hidden-grid-staging-db",
+  "script": "scripts/cobra-core-staging/auth-session-proof.mjs",
+  "redaction": ["cookies", "Authorization", "secrets"],
+  "production_guard": "refuses askcobra.ai / production markers"
+}

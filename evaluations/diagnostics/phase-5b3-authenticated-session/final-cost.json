@@ -1,0 +1,14 @@
+{
+  "budget_usd": 10.0,
+  "provider": "RunPod",
+  "successful_pod": {
+    "notes": "Final successful 5B.3 pod used for auth-session proof; prior short pods terminated on validation flakes",
+    "hourly_usd_observed": [0.16, 0.22],
+    "estimated_successful_runtime_hours": 0.17,
+    "estimated_successful_pod_cost_usd": 0.04
+  },
+  "prior_attempt_pods_estimated_usd": 0.35,
+  "estimated_total_phase_cost_usd": 0.4,
+  "zero_billable_remaining": true,
+  "remaining_pods_after_cleanup": 0
+}

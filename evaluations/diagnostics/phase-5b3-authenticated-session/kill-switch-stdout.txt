@@ -1,0 +1,12 @@
+
+> hidden-grid-os@0.0.0 cobra-core:kill-switch
+> node scripts/cobra-core-staging/kill-switch.mjs --staging --dry-run
+
+info - mode=dry-run (config + offline adapter; no HTTP)
+ok  - COBRA_CORE_ENABLED=false (prod + staging committed config)
+ok  - COBRA_CORE_SHADOW_MODE=false (prod + staging committed config)
+ok  - provider disappears (roster / menu / configured)
+ok  - zero traffic occurs while disabled
+ok  - default selection remains adaptive-claude
+
+PASS: cobra-core kill-switch

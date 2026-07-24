@@ -1,0 +1,75 @@
+{
+  "startedAt": "2026-07-24T22:53:07.008Z",
+  "base": "https://hidden-grid-os-staging.cobra4152020.workers.dev",
+  "steps": [
+    {
+      "session": "adminA",
+      "http": 200,
+      "mode": "session",
+      "role": "admin",
+      "orgIdPresent": true
+    },
+    {
+      "session": "userA",
+      "http": 200,
+      "mode": "session",
+      "role": "researcher",
+      "orgIdPresent": true
+    },
+    {
+      "session": "adminB",
+      "http": 200,
+      "mode": "session",
+      "role": "admin",
+      "orgIdPresent": true
+    },
+    {
+      "session": "userB",
+      "http": 200,
+      "mode": "session",
+      "role": "researcher",
+      "orgIdPresent": true
+    },
+    {
+      "visibility": {
+        "adminSeesCore": true,
+        "userSeesCore": false,
+        "defaultModel": "adaptive-mistral"
+      }
+    },
+    {
+      "adminInvoke": {
+        "http": 200,
+        "hasCoreModel": true,
+        "requestId": "req_cb7a2205-6ded-424f-ac59-a17cdd447ec4",
+        "usagePromptTokens": null
+      }
+    },
+    {
+      "ordinaryDeny": {
+        "http": 403,
+        "code": "cobra_core_forbidden"
+      }
+    },
+    {
+      "crossOrgChat": {
+        "http": 404
+      }
+    },
+    {
+      "orgBOrdinaryDeny": {
+        "http": 403
+      }
+    },
+    {
+      "negatives": {
+        "missing": 401,
+        "malformed": 401,
+        "expired": 401,
+        "spoofOrg": 404
+      }
+    }
+  ],
+  "ok": true,
+  "endedAt": "2026-07-24T22:53:22.039Z"
+}

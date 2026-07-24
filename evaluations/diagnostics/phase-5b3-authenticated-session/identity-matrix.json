@@ -1,0 +1,34 @@
+{
+  "identities": [
+    {
+      "id": "admin_org_a",
+      "role": "admin",
+      "org": "A",
+      "expectedCoreVisible": true,
+      "expectedCoreInvoke": true
+    },
+    {
+      "id": "ordinary_org_a",
+      "role": "researcher",
+      "org": "A",
+      "expectedCoreVisible": false,
+      "expectedCoreInvoke": false
+    },
+    {
+      "id": "admin_org_b",
+      "role": "admin",
+      "org": "B",
+      "expectedCoreVisible": true,
+      "expectedCoreInvoke": true,
+      "note": "Independently authorized admin; must not access Org A resources"
+    },
+    {
+      "id": "ordinary_org_b",
+      "role": "researcher",
+      "org": "B",
+      "expectedCoreVisible": false,
+      "expectedCoreInvoke": false
+    }
+  ],
+  "credentials": "not_recorded"
+}
