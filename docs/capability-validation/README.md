@@ -22,6 +22,8 @@ Evaluate whether the smoke-qualified Qwen3-8B cloud Linux runtime is **genuinely
 | [CAPABILITY_MATRIX.md](./CAPABILITY_MATRIX.md) | Compact matrix of capabilities × usefulness |
 | [RECOMMENDED_EXECUTION_ORDER.md](./RECOMMENDED_EXECUTION_ORDER.md) | Wave order for a future authorized run |
 
+Product identity & gates: `docs/product/` (Phase 4.1). Execute this suite only after product metrics/gates are understood.
+
 ## Hard rules
 
 1. Do **not** execute tasks until a separate authorization says so.
