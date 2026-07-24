@@ -1,0 +1,6 @@
+{
+  "code": "timeout",
+  "message": "Cobra Core request timed out",
+  "retryable": false,
+  "requestId": "cc_fixture_timeout"
+}

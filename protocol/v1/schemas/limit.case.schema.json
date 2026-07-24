@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cobra.local/protocol/v1/schemas/limit.case.schema.json",
+  "title": "CobraProtocolV1LimitCase",
+  "description": "Fixture envelope for context/output limit scenarios.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["case", "request", "expected"],
+  "properties": {
+    "case": { "type": "string", "enum": ["context_limit", "output_limit"] },
+    "request": { "$ref": "completion.request.schema.json" },
+    "expected": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["behavior"],
+      "properties": {
+        "behavior": { "type": "string", "minLength": 1 },
+        "maxContext": { "type": ["integer", "null"] },
+        "maxOutputTokens": { "type": ["integer", "null"] },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

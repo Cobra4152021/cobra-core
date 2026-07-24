@@ -1,0 +1,33 @@
+{
+  "protocolVersion": "1",
+  "compatibilityVersion": "1",
+  "providerId": "cobra-core",
+  "model": "cobra-core-qwen3-8b",
+  "revision": "protocol-v1",
+  "gitSha": "0000000000000000000000000000000000000000",
+  "capabilities": {
+    "streaming": true,
+    "vision": false,
+    "toolCalling": false,
+    "jsonMode": false,
+    "thinking": false,
+    "embeddings": false
+  },
+  "provider": "cobra-core",
+  "enabled": true,
+  "authenticated": true,
+  "reachable": true,
+  "reason": "ok",
+  "limits": {
+    "maxContext": 8192,
+    "maxOutputTokens": 2048,
+    "timeoutMs": 120000
+  },
+  "requestId": "cc_fixture_health_success",
+  "latency": {
+    "queue_ms": 0,
+    "provider_latency_ms": 1,
+    "inference_ms": 0,
+    "total_ms": 1
+  }
+}

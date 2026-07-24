@@ -1,6 +1,6 @@
 # Cobra Model Lab Roadmap
 
-**Last updated:** 2026-07-24 (Phase 5B.1-CORE Protocol V1 server)
+**Last updated:** 2026-07-24 (Phase 5B.1A Protocol governance)
 
 ## Completed
 
@@ -30,6 +30,7 @@
 | **Phase 4.1** | Product vision, personas, success metrics, release gates | **Complete** — `docs/product/` |
 | **Phase 4.2** | Controlled 10-task pilot | **Complete** — `docs/capability-validation/pilot/` |
 | **Phase 5B.1-CORE** | Cobra Protocol V1 local inference server (Computer contract) | **Complete (local/mock)** — `docs/protocol/v1/`; Ready for 5B.2 |
+| **Phase 5B.1A** | Cobra Protocol governance (docs/schemas/fixtures/OpenAPI/types/drift) | **Complete** — `docs/cobra-protocol/`, `protocol/v1/`; no server logic |
 | Later | Controlled CobraBench v0.2-rc2 on locked cloud runtime | Separate authorization; remains `prepared-not-run` until then |
 
 ## Future (not authorized by M1)

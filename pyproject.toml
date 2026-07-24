@@ -39,6 +39,7 @@ cobra-validate-cases = "cobra_core.cli:validate_cases_main"
 cobra-validate-manifests = "cobra_core.cli:validate_manifests_main"
 cobra-report-template = "cobra_core.cli:report_template_main"
 cobra-protocol-v1 = "cobra_core.protocol_v1.cli:main"
+cobra-protocol-conformance = "cobra_core.protocol_governance.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/cobra_core"]

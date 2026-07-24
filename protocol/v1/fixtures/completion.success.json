@@ -1,0 +1,40 @@
+{
+  "id": "cc_fixture_completion_success",
+  "object": "chat.completion",
+  "model": "cobra-core-qwen3-8b",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Protocol V1 completion fixture."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 12,
+    "completion_tokens": 6,
+    "total_tokens": 18
+  },
+  "latency": {
+    "queue_ms": 0,
+    "provider_latency_ms": 12,
+    "inference_ms": 10,
+    "total_ms": 12
+  },
+  "protocolVersion": "1",
+  "compatibilityVersion": "1",
+  "requestId": "cc_fixture_completion_success",
+  "providerId": "cobra-core",
+  "revision": "protocol-v1",
+  "gitSha": "0000000000000000000000000000000000000000",
+  "capabilities": {
+    "streaming": true,
+    "vision": false,
+    "toolCalling": false,
+    "jsonMode": false,
+    "thinking": false,
+    "embeddings": false
+  }
+}

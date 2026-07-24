@@ -1,0 +1,20 @@
+{
+  "mode": "one-shot-backed",
+  "wire": {
+    "method": "POST",
+    "path": "/v1/chat/completions",
+    "stream": false
+  },
+  "events": [
+    {
+      "type": "delta",
+      "text": "Protocol V1 completion fixture.",
+      "requestId": "cc_fixture_streaming"
+    },
+    {
+      "type": "done",
+      "text": "Protocol V1 completion fixture.",
+      "requestId": "cc_fixture_streaming"
+    }
+  ]
+}

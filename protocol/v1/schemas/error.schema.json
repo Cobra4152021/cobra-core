@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cobra.local/protocol/v1/schemas/error.schema.json",
+  "title": "CobraProtocolV1Error",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["code", "message", "retryable", "requestId"],
+  "properties": {
+    "code": { "type": "string", "minLength": 1 },
+    "message": { "type": "string", "minLength": 1 },
+    "retryable": { "type": "boolean", "const": false },
+    "requestId": { "type": "string", "minLength": 1 }
+  }
+}

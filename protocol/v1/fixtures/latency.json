@@ -1,0 +1,6 @@
+{
+  "queue_ms": 0,
+  "provider_latency_ms": 12,
+  "inference_ms": 10,
+  "total_ms": 12
+}

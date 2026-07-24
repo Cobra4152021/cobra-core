@@ -1,0 +1,16 @@
+{
+  "case": "output_limit",
+  "request": {
+    "model": "cobra-core-qwen3-8b",
+    "stream": false,
+    "max_tokens": 4096,
+    "messages": [
+      { "role": "user", "content": "Write a long answer." }
+    ]
+  },
+  "expected": {
+    "behavior": "cap_max_tokens_to_server_or_client_output_limit",
+    "maxOutputTokens": 256,
+    "notes": "Requested max_tokens is reduced to configured max output before inference."
+  }
+}

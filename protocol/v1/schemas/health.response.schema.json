@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cobra.local/protocol/v1/schemas/health.response.schema.json",
+  "title": "CobraProtocolV1HealthResponse",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "protocolVersion",
+    "compatibilityVersion",
+    "providerId",
+    "model",
+    "revision",
+    "gitSha",
+    "capabilities",
+    "provider",
+    "enabled",
+    "authenticated",
+    "reachable",
+    "reason",
+    "limits",
+    "latency"
+  ],
+  "properties": {
+    "protocolVersion": { "type": "string", "const": "1" },
+    "compatibilityVersion": { "type": "string", "const": "1" },
+    "providerId": { "type": "string", "minLength": 1 },
+    "model": { "type": "string" },
+    "revision": { "type": "string" },
+    "gitSha": { "type": "string" },
+    "capabilities": { "$ref": "capabilities.schema.json" },
+    "provider": { "type": "string", "minLength": 1 },
+    "enabled": { "type": "boolean" },
+    "authenticated": { "type": "boolean" },
+    "reachable": { "type": "boolean" },
+    "reason": { "type": "string", "minLength": 1 },
+    "limits": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "maxContext": { "type": ["integer", "null"] },
+        "maxOutputTokens": { "type": ["integer", "null"] },
+        "timeoutMs": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "latency": { "$ref": "latency.schema.json" },
+    "requestId": { "type": "string" }
+  }
+}

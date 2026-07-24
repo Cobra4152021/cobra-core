@@ -1,0 +1,19 @@
+{
+  "case": "context_limit",
+  "request": {
+    "model": "cobra-core-qwen3-8b",
+    "stream": false,
+    "max_tokens": 64,
+    "messages": [
+      { "role": "system", "content": "You are a concise assistant." },
+      { "role": "user", "content": "AAAA BBBB CCCC DDDD EEEE FFFF GGGG HHHH IIII JJJJ KKKK LLLL MMMM NNNN OOOO PPPP" },
+      { "role": "assistant", "content": "Acknowledged." },
+      { "role": "user", "content": "Summarize the prior turn in one sentence." }
+    ]
+  },
+  "expected": {
+    "behavior": "truncate_oldest_messages_to_approx_context_cap",
+    "maxContext": 32,
+    "notes": "Approx ~4 chars/token. Server drops oldest turns while keeping newest."
+  }
+}

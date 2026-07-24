@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: Cobra Protocol V1
+  version: "1"
+  description: |
+    Frozen Cobra Protocol Version 1 / Compatibility Version 1.
+    Owned contract: Cobra Computer. This OpenAPI describes the Core server surface.
+    Streaming is one-shot-backed; native SSE is out of Protocol V1.
+servers:
+  - url: http://127.0.0.1:8080
+    description: Local loopback (Core default)
+security:
+  - bearerAuth: []
+tags:
+  - name: health
+  - name: completions
+paths:
+  /health:
+    get:
+      tags: [health]
+      operationId: getHealth
+      summary: Provider health (no inference)
+      parameters:
+        - $ref: "#/components/parameters/RequestId"
+      responses:
+        "200":
+          description: Healthy and authenticated
+          headers:
+            x-request-id:
+              schema: { type: string }
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/health.response.schema.json"
+              examples:
+                success:
+                  $ref: "#/components/examples/HealthSuccess"
+        "401":
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/error.schema.json"
+  /v1/chat/completions:
+    post:
+      tags: [completions]
+      operationId: createChatCompletion
+      summary: Non-streaming chat completion (Protocol V1)
+      parameters:
+        - $ref: "#/components/parameters/RequestId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/completion.request.schema.json"
+      responses:
+        "200":
+          description: Completion success
+          headers:
+            x-request-id:
+              schema: { type: string }
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/completion.response.schema.json"
+              examples:
+                success:
+                  $ref: "#/components/examples/CompletionSuccess"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/error.schema.json"
+        "401":
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/error.schema.json"
+        "504":
+          description: Timeout
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/error.schema.json"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: opaque
+  parameters:
+    RequestId:
+      name: x-request-id
+      in: header
+      required: false
+      schema:
+        type: string
+        pattern: "^cc_"
+  examples:
+    HealthSuccess:
+      summary: Health success fixture
+      externalValue: "./fixtures/health.success.json"
+    CompletionSuccess:
+      summary: Completion success fixture
+      externalValue: "./fixtures/completion.success.json"

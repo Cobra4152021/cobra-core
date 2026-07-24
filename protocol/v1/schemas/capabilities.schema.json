@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cobra.local/protocol/v1/schemas/capabilities.schema.json",
+  "title": "CobraProtocolV1Capabilities",
+  "type": "object",
+  "additionalProperties": { "type": "boolean" },
+  "required": [
+    "streaming",
+    "vision",
+    "toolCalling",
+    "jsonMode",
+    "thinking",
+    "embeddings"
+  ],
+  "properties": {
+    "streaming": { "type": "boolean" },
+    "vision": { "type": "boolean" },
+    "toolCalling": { "type": "boolean" },
+    "jsonMode": { "type": "boolean" },
+    "thinking": { "type": "boolean" },
+    "embeddings": { "type": "boolean" }
+  }
+}

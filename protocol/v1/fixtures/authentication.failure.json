@@ -1,0 +1,6 @@
+{
+  "code": "auth_failed",
+  "message": "Cobra Core authentication failed",
+  "retryable": false,
+  "requestId": "cc_fixture_auth_failure"
+}
