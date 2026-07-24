@@ -19,3 +19,4 @@ export * from "./api/index.js";
 export * from "./storage/types.js";
 export * from "./investigator/index.js";
 export * from "./enterprise/index.js";
+export * from "./sentinel/index.js";
