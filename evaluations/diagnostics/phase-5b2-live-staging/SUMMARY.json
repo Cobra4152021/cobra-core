@@ -30,5 +30,7 @@
   "production_changed": false,
   "governance_drift": false,
   "secrets_in_git": false,
-  "phase_5c_started": false
+  "phase_5c_started": false,
+  "evidence_commit_cobra_core": "9c51813e010b5e058d94328507abb8bea612a160",
+  "evidence_commit_cobra_computer": "9d003dbd3e59cc54d61749d530c817b10c14fe74"
 }
