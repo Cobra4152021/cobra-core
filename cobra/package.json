@@ -1,0 +1,23 @@
+{
+  "name": "@cobra-core/knowledge-engine",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Cobra Knowledge Engine + Investigator + Enterprise Platform (v1.0)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "tsx --test tests/**/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "demo": "tsx scripts/demo.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.2",
+    "tsx": "^4.20.5",
+    "typescript": "~5.9.2"
+  }
+}

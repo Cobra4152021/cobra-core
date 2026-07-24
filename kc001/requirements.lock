@@ -1,0 +1,21 @@
+# KC-001 lock snapshot (pip freeze style targets).
+# Generate a machine-local freeze after `make setup`:
+#   pip freeze > requirements.lock.local
+#
+# Pinned minimums for reproducible research (Windows + CUDA wheels via PyTorch index).
+
+torch==2.7.1
+transformers==4.55.0
+accelerate==1.9.0
+peft==0.16.0
+safetensors==0.5.3
+Pillow==11.3.0
+numpy==2.2.6
+tqdm==4.67.1
+PyYAML==6.0.2
+einops==0.8.1
+pytest==8.4.1
+pytest-timeout==2.4.0
+ruff==0.12.3
+# optional:
+# bitsandbytes==0.46.1

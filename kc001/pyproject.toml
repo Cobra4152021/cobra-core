@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cobra-kc001"
+version = "0.1.0"
+description = "King Cobra KC-001 — GPT-OSS native vision architecture audit"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Cobra Core" }]
+dependencies = [
+  "torch>=2.4.0",
+  "transformers>=4.55.0",
+  "accelerate>=1.0.0",
+  "peft>=0.13.0",
+  "safetensors>=0.4.0",
+  "Pillow>=10.0.0",
+  "numpy>=1.26.0",
+  "tqdm>=4.66.0",
+  "pyyaml>=6.0",
+  "einops>=0.8.0",
+]
+
+[project.optional-dependencies]
+qlora = ["bitsandbytes>=0.43.0"]
+dev = [
+  "pytest>=8.0.0",
+  "pytest-timeout>=2.3.0",
+  "ruff>=0.6.0",
+]
+
+[project.scripts]
+kc001-validate-env = "cobra_kc001.cli:validate_env_entry"
+kc001-smoke-text = "cobra_kc001.cli:smoke_text_entry"
+kc001-smoke-vision = "cobra_kc001.cli:smoke_vision_entry"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+timeout = 120
+markers = [
+  "gpu: requires CUDA",
+  "heavy: downloads or loads large models",
+  "integration: optional full-weight checks",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
