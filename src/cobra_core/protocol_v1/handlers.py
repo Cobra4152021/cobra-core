@@ -260,6 +260,7 @@ def handle_chat_completions(
             int(normalized["max_tokens"]),
             cancel_event=cancel,
             timeout_ms=cfg.timeout_ms,
+            request_id=request_id,
         )
         total = sw.ms_since()
         metrics.observe_latency(total)

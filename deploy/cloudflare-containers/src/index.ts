@@ -35,6 +35,10 @@ export type Env = {
   CIAL_LIVE_MAX_CONCURRENT?: string;
   CIAL_LIVE_DAILY_REQUEST_QUOTA?: string;
   CIAL_LIVE_DAILY_COST_CEILING?: string;
+  /** KC-022/023 Adaptive Intelligence Router */
+  AIR_ENABLED?: string;
+  AIR_POLICY_ID?: string;
+  AIR_EXCLUDE_PROVIDERS?: string;
   /** Wrangler secret — never log / never put in vars. */
   OPENAI_API_KEY?: string;
 };
@@ -93,6 +97,9 @@ export class CobraCoreContainer extends Container<Env> {
       CIAL_LIVE_MAX_CONCURRENT: pick("CIAL_LIVE_MAX_CONCURRENT", "1"),
       CIAL_LIVE_DAILY_REQUEST_QUOTA: pick("CIAL_LIVE_DAILY_REQUEST_QUOTA"),
       CIAL_LIVE_DAILY_COST_CEILING: pick("CIAL_LIVE_DAILY_COST_CEILING"),
+      AIR_ENABLED: pick("AIR_ENABLED", "true"),
+      AIR_POLICY_ID: pick("AIR_POLICY_ID", "default_v1"),
+      AIR_EXCLUDE_PROVIDERS: pick("AIR_EXCLUDE_PROVIDERS"),
     };
   }
 
@@ -170,7 +177,18 @@ export default {
         version: env.COBRA_CORE_VERSION,
         revision: env.COBRA_CORE_REVISION,
         killSwitch: String(env.COBRA_CORE_KILL_SWITCH ?? "false"),
-        routes: ["/health", "/version", "/metrics", "/v1/chat/completions", "/cial-gate"],
+        routes: [
+          "/health",
+          "/version",
+          "/metrics",
+          "/v1/chat/completions",
+          "/cial-gate",
+          "/air-gate",
+          "/air/route",
+          "/air/catalog",
+          "/air/audit",
+          "/air/metrics",
+        ],
         note: "Protocol V1 is served by the container; use Bearer auth.",
       });
     }
@@ -189,12 +207,26 @@ export default {
       });
     }
 
+    // KC-023 Worker-side AIR gate probe (booleans / non-secret vars only).
+    if (url.pathname === "/air-gate" && request.method === "GET") {
+      return json({
+        appEnv: env.APP_ENV,
+        airEnabled: env.AIR_ENABLED ?? "true",
+        airPolicyId: env.AIR_POLICY_ID ?? null,
+        airExcludeProviders: env.AIR_EXCLUDE_PROVIDERS ?? "",
+        cialProfile: env.CIAL_PROFILE ?? null,
+        liveFlag: env.CIAL_LIVE_PROVIDER_ENABLED ?? null,
+        openaiModel: env.OPENAI_MODEL ?? null,
+        openaiKeyConfigured: Boolean(env.OPENAI_API_KEY?.trim()),
+      });
+    }
+
     // Shared staging instance (stateless mock Protocol V1).
     // Bump the name after auth-secret rotation so a fresh Container boots with
     // current Worker secrets (DO constructor envVars are not hot-reloaded).
     // Bump after OPENAI secret/var binding so containers pick up new envVars.
-    // kc021n: Phase 6 rollback to default/mock (live gate closed).
-    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc021n");
+    // kc023a: AIR staging certification (telemetry + capability routing).
+    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc023a");
     return container.fetch(request);
   },
 };

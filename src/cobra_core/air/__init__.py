@@ -7,7 +7,7 @@ the Computer request contract: provider ids or model ids.
 
 from __future__ import annotations
 
-from cobra_core.air.audit import AirAuditLog
+from cobra_core.air.audit import AIR_AUDIT, AirAuditLog
 from cobra_core.air.bridge import (
     air_decision_to_route_decision,
     air_request_for_config,
@@ -21,7 +21,7 @@ from cobra_core.air.capabilities import (
     parse_air_capabilities,
 )
 from cobra_core.air.errors import AirRoutingError, AirRoutingFailureCode
-from cobra_core.air.metrics import AirMetrics
+from cobra_core.air.metrics import AIR_METRICS, AirMetrics
 from cobra_core.air.policy import AirPolicyConfig, load_air_policy
 from cobra_core.air.profiles import (
     BUILTIN_AIR_PROFILE_IDS,
@@ -44,6 +44,8 @@ from cobra_core.air.types import (
 )
 
 __all__ = [
+    "AIR_AUDIT",
+    "AIR_METRICS",
     "AirAuditLog",
     "AirCapability",
     "AirDecision",

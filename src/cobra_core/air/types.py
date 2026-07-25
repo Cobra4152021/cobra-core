@@ -86,6 +86,7 @@ class AirRequest:
     budget: BudgetClass = BudgetClass.NORMAL
     latency: LatencyClass = LatencyClass.NORMAL
     profile_id: str = "default"
+    correlation_id: str = ""
     metadata: dict[str, Any] = field(default_factory=dict)
 
 
@@ -107,6 +108,7 @@ class AirDecision:
     priority: PriorityClass = PriorityClass.NORMAL
     budget: BudgetClass = BudgetClass.NORMAL
     requested_latency: LatencyClass = LatencyClass.NORMAL
+    correlation_id: str = ""
 
 
 @dataclass(frozen=True)

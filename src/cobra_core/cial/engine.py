@@ -118,7 +118,16 @@ class CialEngine:
         forced_mock = False
         try:
             if self._use_air and route_policy != RoutingPolicy.MANUAL:
-                decision, air_reason, forced_mock = self._route_with_air()
+                corr = ""
+                if metadata:
+                    corr = str(
+                        metadata.get("correlation_id")
+                        or metadata.get("request_id")
+                        or ""
+                    ).strip()
+                decision, air_reason, forced_mock = self._route_with_air(
+                    correlation_id=corr
+                )
             else:
                 decision, forced_mock = self._route_legacy(
                     route_policy, preferred_model_id
@@ -187,11 +196,11 @@ class CialEngine:
         result.cial_health_state = decision.health_state.value
         return result
 
-    def _route_with_air(self) -> tuple[Any, str, bool]:
+    def _route_with_air(self, *, correlation_id: str = "") -> tuple[Any, str, bool]:
         """AIR capability routing; returns (RouteDecision, reason, forced_offline)."""
         router = self.air_router or build_adaptive_router(self.config)
         self.air_router = router
-        request = air_request_for_config(self.config)
+        request = air_request_for_config(self.config, correlation_id=correlation_id)
         profile = self.config.resolved_profile()
         forced = bool(
             profile.requires_live

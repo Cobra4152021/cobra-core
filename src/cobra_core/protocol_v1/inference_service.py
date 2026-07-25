@@ -135,6 +135,7 @@ class InferenceService:
         *,
         cancel_event: threading.Event | None = None,
         timeout_ms: int | None = None,
+        request_id: str | None = None,
     ) -> ServiceOutcome:
         """
         Run one inference with server-side timeout.
@@ -171,6 +172,9 @@ class InferenceService:
                             delay_ms=self.cfg.mock_delay_ms,
                             fail=bool(fail),
                             preferred_model_id=self.cfg.model,
+                            metadata={
+                                "correlation_id": (request_id or "").strip(),
+                            },
                         )
                     except CialError as exc:
                         raise to_inference_failed(exc) from None

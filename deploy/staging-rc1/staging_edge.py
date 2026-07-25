@@ -28,7 +28,7 @@ from urllib.parse import urlparse
 CERTIFIED_VERSION = "v0.9.0-rc1"
 CERTIFIED_REVISION = "ec400d83a9cc8105557bda2105f177cc619638b2"
 # Bump when staging_edge diagnostics change — proves which image is serving.
-STAGING_EDGE_BUILD = "kc021-edge-20260725j"
+STAGING_EDGE_BUILD = "kc023-edge-20260725a"
 
 logger = logging.getLogger("cobra_core.staging_edge")
 
@@ -63,13 +63,9 @@ def _start_core() -> None:
     cfg = load_config()
     # Fail closed if pin drifted.
     rev = (cfg.revision or "").strip().lower()
-    if not (
-        rev == CERTIFIED_REVISION.lower()
-        or rev.startswith(CERTIFIED_REVISION[:12].lower())
-    ):
+    if not (rev == CERTIFIED_REVISION.lower() or rev.startswith(CERTIFIED_REVISION[:12].lower())):
         print(
-            f"revision pin failed: configured={cfg.revision!r} "
-            f"required={CERTIFIED_REVISION}",
+            f"revision pin failed: configured={cfg.revision!r} required={CERTIFIED_REVISION}",
             file=sys.stderr,
         )
         raise SystemExit(3)
@@ -172,7 +168,7 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
             )
             return
 
-        if path in {"/health", "/metrics"}:
+        if path in {"/health", "/metrics", "/air/catalog", "/air/audit", "/air/metrics"}:
             # No anonymous requests — Bearer required for all staging edge GETs.
             if not self._auth_ok():
                 self._send_json(
@@ -190,10 +186,9 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                 return
             # Kill switch at edge (also enforced by Core).
             # COBRA_CORE_KILL_SWITCH=true is an explicit alias used by Cloudflare Workers vars.
-            if (
-                _env("COBRA_CORE_ENABLED", "true").lower() in {"0", "false", "no", "off"}
-                or _env("COBRA_CORE_KILL_SWITCH", "false").lower() in {"1", "true", "yes", "on"}
-            ):
+            if _env("COBRA_CORE_ENABLED", "true").lower() in {"0", "false", "no", "off"} or _env(
+                "COBRA_CORE_KILL_SWITCH", "false"
+            ).lower() in {"1", "true", "yes", "on"}:
                 self._send_json(
                     503,
                     {
@@ -208,9 +203,11 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
             rid = self.headers.get("x-request-id")
             if rid:
                 headers["x-request-id"] = rid
+            # Preserve query string for /air/audit?correlation_id=
+            proxy_path = self.path if path.startswith("/air/") else path
             status, resp_headers, raw = _proxy(
                 "GET",
-                f"{self.core_base}{path}",
+                f"{self.core_base}{proxy_path}",
                 headers=headers,
                 timeout=15.0,
             )
@@ -229,8 +226,9 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                     "model_not_loaded",
                     "model_unavailable",
                 } and bool(core_body.get("authenticated"))
-                # KC-021: safe CIAL gate visibility (no secrets / no prompts).
+                # KC-021/023: safe CIAL/AIR gate visibility (no secrets / no prompts).
                 cial_gate: dict[str, object] = {"error": "cial_unavailable"}
+                air_gate: dict[str, object] = {"error": "air_unavailable"}
                 try:
                     from cobra_core.cial.config import load_cial_config
 
@@ -279,8 +277,26 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                         "usesMaxCompletionTokens": bool(uses_mct),
                         "payloadTokenField": token_field,
                     }
+                    from cobra_core.air.bridge import catalog_for_config
+                    from cobra_core.cial.engine import _air_enabled
+
+                    air_reg = catalog_for_config(cfg)
+                    air_gate = {
+                        "edgeBuild": STAGING_EDGE_BUILD,
+                        "airEnabled": _air_enabled(),
+                        "policyId": os.environ.get("AIR_POLICY_ID", "default_v1"),
+                        "excludeProviders": [
+                            p.strip()
+                            for p in os.environ.get("AIR_EXCLUDE_PROVIDERS", "").split(",")
+                            if p.strip()
+                        ],
+                        "catalogProviders": [p.provider_id for p in air_reg.list_providers()],
+                        "liveGateOpen": cfg.can_use_live_provider,
+                        "activeProfile": cfg.active_profile,
+                    }
                 except Exception as exc:  # noqa: BLE001 — diagnostic only
                     cial_gate = {"error": type(exc).__name__}
+                    air_gate = {"error": type(exc).__name__}
                 enriched = {
                     **core_body,
                     "status": "healthy" if healthy else "degraded",
@@ -288,6 +304,7 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                     "revision": CERTIFIED_REVISION,
                     "gitSha": CERTIFIED_REVISION,
                     "cialGate": cial_gate,
+                    "airGate": air_gate,
                 }
                 self._send_json(200, enriched, request_id=str(enriched.get("requestId") or ""))
                 return
@@ -298,7 +315,7 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:  # noqa: N802
         path = urlparse(self.path).path
-        if path != "/v1/chat/completions":
+        if path not in {"/v1/chat/completions", "/air/route"}:
             self._send_json(404, {"error": {"code": "bad_request", "message": "Not found"}})
             return
         if not self._auth_ok():
@@ -312,10 +329,9 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                 },
             )
             return
-        if (
-            _env("COBRA_CORE_ENABLED", "true").lower() in {"0", "false", "no", "off"}
-            or _env("COBRA_CORE_KILL_SWITCH", "false").lower() in {"1", "true", "yes", "on"}
-        ):
+        if _env("COBRA_CORE_ENABLED", "true").lower() in {"0", "false", "no", "off"} or _env(
+            "COBRA_CORE_KILL_SWITCH", "false"
+        ).lower() in {"1", "true", "yes", "on"}:
             self._send_json(
                 503,
                 {
@@ -326,7 +342,7 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                 },
             )
             return
-        if not self._org_ok():
+        if path == "/v1/chat/completions" and not self._org_ok():
             # Defense-in-depth header gate. Membership checks remain on Computer.
             self._send_json(
                 403,

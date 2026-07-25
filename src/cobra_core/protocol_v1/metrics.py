@@ -96,6 +96,15 @@ class MetricsRegistry:
             "# TYPE cobra_core_kill_switch_blocks_total counter",
             f"cobra_core_kill_switch_blocks_total {s['kill_switch_blocks']}",
         ]
+        # KC-023 — append AIR metrics (bounded labels; no prompts/ids).
+        try:
+            from cobra_core.air.metrics import AIR_METRICS
+
+            air_text = AIR_METRICS.render_prometheus().rstrip("\n")
+            if air_text:
+                lines.append(air_text)
+        except Exception:  # noqa: BLE001 — metrics must never break exposition
+            pass
         return "\n".join(lines) + "\n"
 
     def reset_for_tests(self) -> None:

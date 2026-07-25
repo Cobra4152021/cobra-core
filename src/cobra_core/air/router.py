@@ -15,9 +15,9 @@ from __future__ import annotations
 import time
 from typing import Any, NoReturn
 
-from cobra_core.air.audit import AirAuditLog
+from cobra_core.air.audit import AIR_AUDIT, AirAuditLog
 from cobra_core.air.errors import AirRoutingError, AirRoutingFailureCode
-from cobra_core.air.metrics import AirMetrics
+from cobra_core.air.metrics import AIR_METRICS, AirMetrics, monotonic_ms
 from cobra_core.air.policy import AirPolicyConfig, default_air_policy
 from cobra_core.air.registry import DescriptorRegistry
 from cobra_core.air.types import (
@@ -29,7 +29,7 @@ from cobra_core.air.types import (
     health_rank,
     latency_class_rank,
 )
-from cobra_core.cial.health import HealthState, is_routable_health
+from cobra_core.cial.health import is_routable_health
 
 
 class AdaptiveRouter:
@@ -46,8 +46,8 @@ class AdaptiveRouter:
         self.registry = registry
         self.policy = policy if policy is not None else default_air_policy()
         # Use `is None` — AirAuditLog/AirMetrics define __len__ and are falsy when empty.
-        self.audit = audit if audit is not None else AirAuditLog()
-        self.metrics = metrics if metrics is not None else AirMetrics()
+        self.audit = audit if audit is not None else AIR_AUDIT
+        self.metrics = metrics if metrics is not None else AIR_METRICS
 
     def route(self, request: AirRequest) -> AirDecision:
         """
@@ -55,6 +55,7 @@ class AdaptiveRouter:
 
         Never silently selects a model lacking required capabilities.
         """
+        t0 = monotonic_ms()
         now_ms = int(time.time() * 1000)
         models = [m for m in self.registry.list_models() if m.enabled]
         if not models:
@@ -63,6 +64,7 @@ class AdaptiveRouter:
                 AirRoutingFailureCode.EMPTY_REGISTRY,
                 "no models registered in AIR catalog",
                 now_ms,
+                t0,
             )
 
         # 1. Required capabilities
@@ -74,6 +76,7 @@ class AdaptiveRouter:
                 AirRoutingFailureCode.NO_CAPABILITY_MATCH,
                 "no provider satisfies required capabilities",
                 now_ms,
+                t0,
             )
 
         # 2. Health (exclude unavailable/disabled)
@@ -84,6 +87,7 @@ class AdaptiveRouter:
                 AirRoutingFailureCode.NO_HEALTHY_CANDIDATE,
                 "no healthy provider for required capabilities",
                 now_ms,
+                t0,
                 health_related=True,
             )
 
@@ -95,6 +99,7 @@ class AdaptiveRouter:
                 AirRoutingFailureCode.POLICY_EXCLUDED,
                 "all capability-matched providers excluded by policy",
                 now_ms,
+                t0,
             )
 
         requires_live = bool(request.metadata.get("requires_live"))
@@ -109,6 +114,7 @@ class AdaptiveRouter:
                     AirRoutingFailureCode.LIVE_REQUIRED_UNAVAILABLE,
                     "live provider required but unavailable",
                     now_ms,
+                    t0,
                 )
 
         chosen = self._select(request, candidates)
@@ -128,9 +134,11 @@ class AdaptiveRouter:
             priority=request.priority,
             budget=request.budget,
             requested_latency=request.latency,
+            correlation_id=request.correlation_id or "",
         )
+        elapsed = max(0, monotonic_ms() - t0)
         self.audit.record(decision)
-        self.metrics.record_decision(decision)
+        self.metrics.record_decision(decision, latency_ms=elapsed)
         return decision
 
     def _apply_policy(
@@ -154,10 +162,8 @@ class AdaptiveRouter:
 
         def sort_key(m: ModelDescriptor) -> tuple[Any, ...]:
             cost_r = cost_class_rank(m.estimated_cost)
-            # Prefer models within budget; over-budget sorts later.
             over_budget = 0 if cost_r <= max_cost else 1
             lat_r = latency_class_rank(m.latency)
-            # Prefer models meeting or beating requested latency class.
             latency_penalty = 0 if lat_r <= want_latency else (lat_r - want_latency)
             pref = self.policy.provider_preference.get(m.provider_id, 100)
             return (
@@ -200,9 +206,11 @@ class AdaptiveRouter:
         code: AirRoutingFailureCode,
         message: str,
         timestamp_ms: int,
+        t0: int,
         *,
         health_related: bool = False,
     ) -> NoReturn:
+        elapsed = max(0, monotonic_ms() - t0)
         self.audit.record_failure(
             profile_id=request.profile_id,
             capabilities=request.capabilities,
@@ -210,6 +218,12 @@ class AdaptiveRouter:
             message=message,
             timestamp_ms=timestamp_ms,
             task=request.task,
+            correlation_id=request.correlation_id or "",
+            policy_id=self.policy.policy_id,
         )
-        self.metrics.record_failure(air_code=code.value, health_related=health_related)
+        self.metrics.record_failure(
+            air_code=code.value,
+            health_related=health_related,
+            latency_ms=elapsed,
+        )
         raise AirRoutingError(code, message)

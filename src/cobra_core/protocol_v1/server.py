@@ -71,7 +71,8 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:  # noqa: N802
         self._cancelled = False
         self._response_started = False
-        path = urlparse(self.path).path
+        parsed = urlparse(self.path)
+        path = parsed.path
         auth = self.headers.get("Authorization")
         rid_h = self.headers.get("x-request-id")
         if path == "/metrics":
@@ -106,6 +107,42 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
             except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
                 self._cancelled = True
             return
+        if path in {"/air/catalog", "/air/audit", "/air/metrics"}:
+            rid = new_request_id(rid_h)
+            if not verify_bearer(auth, self.config.auth_secret):
+                self._send(
+                    401,
+                    normalized_error(
+                        code="auth_failed",
+                        message="Cobra Core authentication failed",
+                        request_id=rid,
+                    ),
+                    rid,
+                )
+                return
+            from cobra_core.air.http_api import (
+                handle_air_audit,
+                handle_air_catalog,
+                handle_air_metrics_json,
+            )
+
+            if path == "/air/catalog":
+                body = handle_air_catalog()
+            elif path == "/air/metrics":
+                body = handle_air_metrics_json()
+            else:
+                from urllib.parse import parse_qs
+
+                qs = parse_qs(parsed.query or "")
+                limit_raw = (qs.get("limit") or ["50"])[0]
+                try:
+                    limit = int(limit_raw)
+                except ValueError:
+                    limit = 50
+                corr = (qs.get("correlation_id") or [""])[0]
+                body = handle_air_audit(limit=limit, correlation_id=corr or None)
+            self._send(200, body, rid)
+            return
         if path != "/health":
             rid = new_request_id(rid_h)
             self._send(
@@ -129,6 +166,36 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
         path = urlparse(self.path).path
         auth = self.headers.get("Authorization")
         rid_h = self.headers.get("x-request-id")
+        if path == "/air/route":
+            rid = new_request_id(rid_h)
+            if not verify_bearer(auth, self.config.auth_secret):
+                self._send(
+                    401,
+                    normalized_error(
+                        code="auth_failed",
+                        message="Cobra Core authentication failed",
+                        request_id=rid,
+                    ),
+                    rid,
+                )
+                return
+            payload = self._read_json()
+            if payload is None:
+                self._send(
+                    400,
+                    normalized_error(
+                        code="bad_request",
+                        message="Malformed JSON body",
+                        request_id=rid,
+                    ),
+                    rid,
+                )
+                return
+            from cobra_core.air.http_api import handle_air_route
+
+            status, body = handle_air_route(payload, correlation_id=rid)
+            self._send(status, body, rid)
+            return
         if path != "/v1/chat/completions":
             rid = new_request_id(rid_h)
             self._send(
