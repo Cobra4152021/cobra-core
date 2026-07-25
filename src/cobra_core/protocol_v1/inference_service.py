@@ -13,6 +13,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from cobra_core.cial.config import CialConfig, load_cial_config
+from cobra_core.cial.engine import CialEngine
+from cobra_core.cial.errors import CialError, to_inference_failed
 from cobra_core.protocol_v1.admission import AdmissionController
 from cobra_core.protocol_v1.config import ServerConfig
 from cobra_core.protocol_v1.inference import (
@@ -41,6 +44,14 @@ class ServiceOutcome:
     queue_ms: int = 0
     inference_ms: int = 0
     provider_latency_ms: int = 0
+    # Internal CIAL observability (not Protocol V1 wire fields).
+    cial_provider_id: str | None = None
+    cial_model_id: str | None = None
+    cial_routing_policy: str | None = None
+    cial_route_reason: str | None = None
+    cial_latency_ms: int | None = None
+    cial_fallback_count: int | None = None
+    cial_health_state: str | None = None
 
 
 class InferenceService:
@@ -51,6 +62,8 @@ class InferenceService:
         *,
         admission: AdmissionController | None = None,
         metrics: MetricsRegistry | None = None,
+        cial_config: CialConfig | None = None,
+        cial_engine: CialEngine | None = None,
     ) -> None:
         self.cfg = cfg
         self.state = state
@@ -63,6 +76,11 @@ class InferenceService:
         self._manifest: Any | None = None
         self._artifact_dir: Path | None = None
         self._lock = threading.Lock()
+        self._cial_config = cial_config if cial_config is not None else load_cial_config()
+        self._cial_engine = cial_engine
+        if self._cial_config.enabled and self._cial_engine is None:
+            # Lazy-safe default: mock-backed CIAL for mock/echo/test modes.
+            self._cial_engine = CialEngine.build_default(self._cial_config)
 
     def ready(self) -> bool:
         return self.state.inference_ready
@@ -137,11 +155,43 @@ class InferenceService:
         # force_fail hook for tests only
         fail = getattr(self, "_force_fail", False)
 
+        cial_meta: dict[str, Any] = {}
+
         def _work() -> InferenceResult:
             if cancel_event is not None and cancel_event.is_set():
                 raise InferenceCancelledError()
             if self.cfg.inference_mode in {"mock", "echo", "test"}:
                 self.state.record_generation()
+                if self._cial_config.enabled and self._cial_engine is not None:
+                    try:
+                        cial_result = self._cial_engine.complete(
+                            truncated,
+                            max_tokens,
+                            cancel_event=cancel_event,
+                            delay_ms=self.cfg.mock_delay_ms,
+                            fail=bool(fail),
+                            preferred_model_id=self.cfg.model,
+                        )
+                    except CialError as exc:
+                        raise to_inference_failed(exc) from None
+                    cial_meta.update(
+                        {
+                            "cial_provider_id": cial_result.cial_provider_id,
+                            "cial_model_id": cial_result.cial_model_id,
+                            "cial_routing_policy": cial_result.cial_routing_policy,
+                            "cial_route_reason": cial_result.cial_route_reason,
+                            "cial_latency_ms": cial_result.cial_latency_ms,
+                            "cial_fallback_count": cial_result.cial_fallback_count,
+                            "cial_health_state": cial_result.cial_health_state,
+                        }
+                    )
+                    return InferenceResult(
+                        content=cial_result.content,
+                        prompt_tokens=cial_result.prompt_tokens,
+                        completion_tokens=cial_result.completion_tokens,
+                        inference_ms=cial_result.inference_ms,
+                    )
+                # Escape hatch: CIAL_ENABLED=false keeps legacy direct mock path.
                 return mock_complete(
                     truncated,
                     max_tokens,
@@ -213,4 +263,11 @@ class InferenceService:
             queue_ms=queue_ms,
             inference_ms=result.inference_ms,
             provider_latency_ms=queue_ms + result.inference_ms,
+            cial_provider_id=cial_meta.get("cial_provider_id"),
+            cial_model_id=cial_meta.get("cial_model_id"),
+            cial_routing_policy=cial_meta.get("cial_routing_policy"),
+            cial_route_reason=cial_meta.get("cial_route_reason"),
+            cial_latency_ms=cial_meta.get("cial_latency_ms"),
+            cial_fallback_count=cial_meta.get("cial_fallback_count"),
+            cial_health_state=cial_meta.get("cial_health_state"),
         )
