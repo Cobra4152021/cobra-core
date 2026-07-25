@@ -91,9 +91,7 @@ class DeterministicRouter:
             chosen = self._pick_by_key(candidates, key=lambda m: (_estimated_cost(m),))
             reason = "lowest_cost"
         elif request.policy == RoutingPolicy.LOWEST_LATENCY:
-            chosen = self._pick_by_key(
-                candidates, key=lambda m: (latency_rank(m.latency_tier),)
-            )
+            chosen = self._pick_by_key(candidates, key=lambda m: (latency_rank(m.latency_tier),))
             reason = "lowest_latency"
         elif request.policy == RoutingPolicy.HIGHEST_QUALITY:
             chosen = self._pick_by_key(
