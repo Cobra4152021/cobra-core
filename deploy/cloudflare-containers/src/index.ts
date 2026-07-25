@@ -193,8 +193,8 @@ export default {
     // Bump the name after auth-secret rotation so a fresh Container boots with
     // current Worker secrets (DO constructor envVars are not hot-reloaded).
     // Bump after OPENAI secret/var binding so containers pick up new envVars.
-    // kc021g: gpt-5 max_completion_tokens payload fix.
-    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc021g");
+    // kc021h: force new container after confirmed OpenAI probe (max_completion_tokens).
+    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc021h");
     return container.fetch(request);
   },
 };
