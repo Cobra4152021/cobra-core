@@ -74,6 +74,27 @@ def test_json_mode_payload() -> None:
     assert b"json_object" in body
 
 
+def test_gpt5_uses_max_completion_tokens() -> None:
+    transport = FakeTransport([HttpResponse(200, _completion_body("pong"), {})])
+    provider = OpenAICompatibleProvider(
+        api_key="test-key",
+        model_id="gpt-5.4-mini",
+        transport=transport,
+        max_retries=0,
+    )
+    provider.set_health(HealthState.HEALTHY)
+    provider.generate(
+        GenerateRequest(
+            messages=[{"role": "user", "content": "ping"}],
+            max_tokens=16,
+            model_id="gpt-5.4-mini",
+        )
+    )
+    body = transport.calls[0]["body"] or b""
+    assert b"max_completion_tokens" in body
+    assert b'"max_tokens"' not in body
+
+
 def test_health_probe_states() -> None:
     healthy = FakeTransport([HttpResponse(200, b'{"data":[]}', {})])
     p = OpenAICompatibleProvider(api_key="k", transport=healthy, max_retries=0)

@@ -62,9 +62,35 @@ def map_http_status_to_cial(status: int) -> CialErrorCode:
     return CialErrorCode.PROVIDER_UNAVAILABLE
 
 
-def _safe_error_message(status: int) -> str:
-    """Non-leaking operator message (no body, no URLs with tokens)."""
-    return f"openai-compatible provider HTTP {status}"
+def _uses_max_completion_tokens(model_id: str) -> bool:
+    """Newer OpenAI chat models require max_completion_tokens instead of max_tokens."""
+    mid = (model_id or "").strip().lower()
+    return mid.startswith(("gpt-5", "o1", "o3", "o4"))
+
+
+def _safe_error_message(status: int, body: bytes | None = None) -> str:
+    """Non-leaking operator message (no prompts, keys, or raw bodies)."""
+    base = f"openai-compatible provider HTTP {status}"
+    if not body:
+        return base
+    try:
+        data = json.loads(body.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        return base
+    if not isinstance(data, dict):
+        return base
+    err = data.get("error")
+    if not isinstance(err, dict):
+        return base
+    # Allowlist short machine codes only (never message text — may echo prompts).
+    code = err.get("code")
+    err_type = err.get("type")
+    bits: list[str] = []
+    if isinstance(code, str) and code.isascii() and len(code) <= 64:
+        bits.append(f"code={code}")
+    if isinstance(err_type, str) and err_type.isascii() and len(err_type) <= 64:
+        bits.append(f"type={err_type}")
+    return f"{base} ({', '.join(bits)})" if bits else base
 
 
 class OpenAICompatibleProvider:
@@ -240,9 +266,14 @@ class OpenAICompatibleProvider:
         payload: dict[str, Any] = {
             "model": request.model_id,
             "messages": messages,
-            "max_tokens": int(request.max_tokens),
             "stream": False,
         }
+        # GPT-5 / o-series reject legacy max_tokens (HTTP 400); use max_completion_tokens.
+        token_limit = int(request.max_tokens)
+        if _uses_max_completion_tokens(request.model_id):
+            payload["max_completion_tokens"] = token_limit
+        else:
+            payload["max_tokens"] = token_limit
 
         meta = request.metadata or {}
         if meta.get("json_mode") is True or meta.get("response_format") == "json_object":
@@ -290,7 +321,7 @@ class OpenAICompatibleProvider:
                 return self._decode_json_object(resp)
 
             code = map_http_status_to_cial(resp.status)
-            last_error = CialError(code, _safe_error_message(resp.status))
+            last_error = CialError(code, _safe_error_message(resp.status, resp.body))
             if resp.status in _RETRYABLE_STATUSES and attempt + 1 < attempts:
                 self._backoff(attempt)
                 continue
