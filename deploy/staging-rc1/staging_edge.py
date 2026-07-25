@@ -28,7 +28,7 @@ from urllib.parse import urlparse
 CERTIFIED_VERSION = "v0.9.0-rc1"
 CERTIFIED_REVISION = "ec400d83a9cc8105557bda2105f177cc619638b2"
 # Bump when staging_edge diagnostics change — proves which image is serving.
-STAGING_EDGE_BUILD = "kc023-edge-20260725a"
+STAGING_EDGE_BUILD = "kc025-edge-20260725a"
 
 logger = logging.getLogger("cobra_core.staging_edge")
 
@@ -168,7 +168,16 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
             )
             return
 
-        if path in {"/health", "/metrics", "/air/catalog", "/air/audit", "/air/metrics"}:
+        if path in {
+            "/health",
+            "/metrics",
+            "/air/catalog",
+            "/air/audit",
+            "/air/metrics",
+            "/isf/skills",
+            "/isf/audit",
+            "/isf/metrics",
+        }:
             # No anonymous requests — Bearer required for all staging edge GETs.
             if not self._auth_ok():
                 self._send_json(
@@ -203,8 +212,12 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
             rid = self.headers.get("x-request-id")
             if rid:
                 headers["x-request-id"] = rid
-            # Preserve query string for /air/audit?correlation_id=
-            proxy_path = self.path if path.startswith("/air/") else path
+            # Preserve query string for /air/audit and /isf/audit.
+            proxy_path = (
+                self.path
+                if path.startswith("/air/") or path.startswith("/isf/")
+                else path
+            )
             status, resp_headers, raw = _proxy(
                 "GET",
                 f"{self.core_base}{proxy_path}",
@@ -229,6 +242,7 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                 # KC-021/023: safe CIAL/AIR gate visibility (no secrets / no prompts).
                 cial_gate: dict[str, object] = {"error": "cial_unavailable"}
                 air_gate: dict[str, object] = {"error": "air_unavailable"}
+                isf_gate: dict[str, object] = {"error": "isf_unavailable"}
                 try:
                     from cobra_core.cial.config import load_cial_config
 
@@ -279,6 +293,8 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                     }
                     from cobra_core.air.bridge import catalog_for_config
                     from cobra_core.cial.engine import _air_enabled
+                    from cobra_core.isf.enabled import isf_enabled
+                    from cobra_core.isf.registry import SKILL_REGISTRY
 
                     air_reg = catalog_for_config(cfg)
                     air_gate = {
@@ -294,9 +310,18 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                         "liveGateOpen": cfg.can_use_live_provider,
                         "activeProfile": cfg.active_profile,
                     }
+                    isf_gate = {
+                        "edgeBuild": STAGING_EDGE_BUILD,
+                        "isfEnabled": isf_enabled(),
+                        "skillCount": len(SKILL_REGISTRY),
+                        "airEnabled": _air_enabled(),
+                        "liveGateOpen": cfg.can_use_live_provider,
+                        "activeProfile": cfg.active_profile,
+                    }
                 except Exception as exc:  # noqa: BLE001 — diagnostic only
                     cial_gate = {"error": type(exc).__name__}
                     air_gate = {"error": type(exc).__name__}
+                    isf_gate = {"error": type(exc).__name__}
                 enriched = {
                     **core_body,
                     "status": "healthy" if healthy else "degraded",
@@ -305,6 +330,7 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                     "gitSha": CERTIFIED_REVISION,
                     "cialGate": cial_gate,
                     "airGate": air_gate,
+                    "isfGate": isf_gate,
                 }
                 self._send_json(200, enriched, request_id=str(enriched.get("requestId") or ""))
                 return
@@ -315,7 +341,7 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:  # noqa: N802
         path = urlparse(self.path).path
-        if path not in {"/v1/chat/completions", "/air/route"}:
+        if path not in {"/v1/chat/completions", "/air/route", "/isf/execute"}:
             self._send_json(404, {"error": {"code": "bad_request", "message": "Not found"}})
             return
         if not self._auth_ok():

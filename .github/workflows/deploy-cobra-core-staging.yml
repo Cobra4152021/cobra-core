@@ -21,6 +21,10 @@ on:
         description: "AIR_ENABLED"
         required: false
         default: "true"
+      isf_enabled:
+        description: "ISF_ENABLED"
+        required: false
+        default: "true"
       cial_profile:
         description: "CIAL_PROFILE"
         required: false
@@ -36,7 +40,7 @@ on:
       container_instance_suffix:
         description: "Bump container DO name suffix (forces fresh envVars)"
         required: false
-        default: "kc023a"
+        default: "kc025a"
   push:
     branches: [kc-016-staging-deploy]
     paths:
@@ -142,10 +146,11 @@ jobs:
             -c wrangler.cobra-core-staging.jsonc
           echo "OPENAI_API_KEY secret bound (value not logged)."
 
-      - name: Apply KC-023 staging gate vars (workflow_dispatch inputs)
+      - name: Apply KC-025 staging gate vars (workflow_dispatch inputs)
         if: github.event_name == 'workflow_dispatch'
         env:
           AIR_ENABLED: ${{ inputs.air_enabled }}
+          ISF_ENABLED: ${{ inputs.isf_enabled }}
           CIAL_PROFILE: ${{ inputs.cial_profile }}
           CIAL_LIVE_PROVIDER_ENABLED: ${{ inputs.cial_live_provider_enabled }}
           AIR_EXCLUDE_PROVIDERS: ${{ inputs.air_exclude_providers }}
@@ -164,6 +169,7 @@ jobs:
               return patched
 
           text = set_var(text, "AIR_ENABLED", os.environ.get("AIR_ENABLED") or "true")
+          text = set_var(text, "ISF_ENABLED", os.environ.get("ISF_ENABLED") or "true")
           text = set_var(text, "CIAL_PROFILE", os.environ.get("CIAL_PROFILE") or "default")
           text = set_var(
               text,
@@ -179,13 +185,14 @@ jobs:
           print(
               "vars:",
               "AIR_ENABLED=", os.environ.get("AIR_ENABLED"),
+              "ISF_ENABLED=", os.environ.get("ISF_ENABLED"),
               "CIAL_PROFILE=", os.environ.get("CIAL_PROFILE"),
               "CIAL_LIVE=", os.environ.get("CIAL_LIVE_PROVIDER_ENABLED"),
               "AIR_EXCLUDE=", os.environ.get("AIR_EXCLUDE_PROVIDERS") or "(none)",
           )
           idx = pathlib.Path("deploy/cloudflare-containers/src/index.ts")
           src = idx.read_text(encoding="utf-8")
-          suffix = (os.environ.get("CONTAINER_SUFFIX") or "kc023a").strip()
+          suffix = (os.environ.get("CONTAINER_SUFFIX") or "kc025a").strip()
           patched, n = re.subn(
               r'(getContainer\(env\.COBRA_CORE_CONTAINER,\s*")[^"]*("\))',
               rf"\g<1>staging-rc1-{suffix}\g<2>",

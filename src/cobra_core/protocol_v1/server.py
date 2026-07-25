@@ -143,6 +143,42 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
                 body = handle_air_audit(limit=limit, correlation_id=corr or None)
             self._send(200, body, rid)
             return
+        if path in {"/isf/skills", "/isf/audit", "/isf/metrics"}:
+            rid = new_request_id(rid_h)
+            if not verify_bearer(auth, self.config.auth_secret):
+                self._send(
+                    401,
+                    normalized_error(
+                        code="auth_failed",
+                        message="Cobra Core authentication failed",
+                        request_id=rid,
+                    ),
+                    rid,
+                )
+                return
+            from cobra_core.isf.http_api import (
+                handle_isf_audit,
+                handle_isf_metrics_json,
+                handle_isf_skills,
+            )
+
+            if path == "/isf/skills":
+                body = handle_isf_skills()
+            elif path == "/isf/metrics":
+                body = handle_isf_metrics_json()
+            else:
+                from urllib.parse import parse_qs
+
+                qs = parse_qs(parsed.query or "")
+                limit_raw = (qs.get("limit") or ["50"])[0]
+                try:
+                    limit = int(limit_raw)
+                except ValueError:
+                    limit = 50
+                corr = (qs.get("correlation_id") or [""])[0]
+                body = handle_isf_audit(limit=limit, correlation_id=corr or None)
+            self._send(200, body, rid)
+            return
         if path != "/health":
             rid = new_request_id(rid_h)
             self._send(
@@ -194,6 +230,36 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
             from cobra_core.air.http_api import handle_air_route
 
             status, body = handle_air_route(payload, correlation_id=rid)
+            self._send(status, body, rid)
+            return
+        if path == "/isf/execute":
+            rid = new_request_id(rid_h)
+            if not verify_bearer(auth, self.config.auth_secret):
+                self._send(
+                    401,
+                    normalized_error(
+                        code="auth_failed",
+                        message="Cobra Core authentication failed",
+                        request_id=rid,
+                    ),
+                    rid,
+                )
+                return
+            payload = self._read_json()
+            if payload is None:
+                self._send(
+                    400,
+                    normalized_error(
+                        code="bad_request",
+                        message="Malformed JSON body",
+                        request_id=rid,
+                    ),
+                    rid,
+                )
+                return
+            from cobra_core.isf.http_api import handle_isf_execute
+
+            status, body = handle_isf_execute(payload or {}, correlation_id=rid)
             self._send(status, body, rid)
             return
         if path != "/v1/chat/completions":

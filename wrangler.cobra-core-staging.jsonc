@@ -30,6 +30,7 @@
 		"AIR_ENABLED": "true",
 		"AIR_POLICY_ID": "default_v1",
 		"AIR_EXCLUDE_PROVIDERS": "",
+		"ISF_ENABLED": "true",
 		"OPENAI_BASE_URL": "https://api.openai.com/v1",
 		"OPENAI_MODEL": "gpt-5.4-mini",
 		"OPENAI_TIMEOUT_SECONDS": "60",

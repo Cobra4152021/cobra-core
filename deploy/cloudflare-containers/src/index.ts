@@ -39,6 +39,8 @@ export type Env = {
   AIR_ENABLED?: string;
   AIR_POLICY_ID?: string;
   AIR_EXCLUDE_PROVIDERS?: string;
+  /** KC-025 Investigation Skills Framework */
+  ISF_ENABLED?: string;
   /** Wrangler secret — never log / never put in vars. */
   OPENAI_API_KEY?: string;
 };
@@ -100,6 +102,7 @@ export class CobraCoreContainer extends Container<Env> {
       AIR_ENABLED: pick("AIR_ENABLED", "true"),
       AIR_POLICY_ID: pick("AIR_POLICY_ID", "default_v1"),
       AIR_EXCLUDE_PROVIDERS: pick("AIR_EXCLUDE_PROVIDERS"),
+      ISF_ENABLED: pick("ISF_ENABLED", "true"),
     };
   }
 
@@ -184,10 +187,15 @@ export default {
           "/v1/chat/completions",
           "/cial-gate",
           "/air-gate",
+          "/isf-gate",
           "/air/route",
           "/air/catalog",
           "/air/audit",
           "/air/metrics",
+          "/isf/execute",
+          "/isf/skills",
+          "/isf/audit",
+          "/isf/metrics",
         ],
         note: "Protocol V1 is served by the container; use Bearer auth.",
       });
@@ -221,12 +229,25 @@ export default {
       });
     }
 
+    // KC-025 Worker-side ISF gate probe (booleans / non-secret vars only).
+    if (url.pathname === "/isf-gate" && request.method === "GET") {
+      return json({
+        appEnv: env.APP_ENV,
+        isfEnabled: env.ISF_ENABLED ?? "true",
+        airEnabled: env.AIR_ENABLED ?? "true",
+        cialProfile: env.CIAL_PROFILE ?? null,
+        liveFlag: env.CIAL_LIVE_PROVIDER_ENABLED ?? null,
+        openaiModel: env.OPENAI_MODEL ?? null,
+        openaiKeyConfigured: Boolean(env.OPENAI_API_KEY?.trim()),
+      });
+    }
+
     // Shared staging instance (stateless mock Protocol V1).
     // Bump the name after auth-secret rotation so a fresh Container boots with
     // current Worker secrets (DO constructor envVars are not hot-reloaded).
     // Bump after OPENAI secret/var binding so containers pick up new envVars.
-    // kc023a: AIR staging certification (telemetry + capability routing).
-    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc023a");
+    // kc025a: ISF Computer integration + staging certification.
+    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc025a");
     return container.fetch(request);
   },
 };

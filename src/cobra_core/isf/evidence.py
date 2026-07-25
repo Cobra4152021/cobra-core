@@ -56,3 +56,34 @@ def missing_required_evidence(
     """Return required evidence types not present in the provided set."""
     have = {e.evidence_type for e in provided}
     return sorted(required - have, key=lambda t: t.value)
+
+
+def document_ref_count(provided: list[EvidenceRef] | tuple[EvidenceRef, ...]) -> int:
+    """Count logical documents for document_comparison (pair requires >= 2)."""
+    total = 0
+    for e in provided:
+        if e.evidence_type == EvidenceType.DOCUMENT_PAIR:
+            # A DOCUMENT_PAIR ref implies two docs unless metadata says otherwise.
+            if "document_count" in e.metadata:
+                total += max(0, int(e.metadata.get("document_count") or 0))
+            else:
+                total += 2
+        elif e.evidence_type == EvidenceType.GENERIC_FILE:
+            total += 1
+    return total
+
+
+def skill_evidence_gaps(
+    skill_id: str,
+    required: frozenset[EvidenceType],
+    provided: list[EvidenceRef] | tuple[EvidenceRef, ...],
+) -> list[EvidenceType]:
+    """Type-level gaps plus skill-specific cardinality rules."""
+    missing = list(missing_required_evidence(required, provided))
+    if (
+        skill_id == "document_comparison"
+        and document_ref_count(provided) < 2
+        and EvidenceType.DOCUMENT_PAIR not in missing
+    ):
+        missing.append(EvidenceType.DOCUMENT_PAIR)
+    return sorted(set(missing), key=lambda t: t.value)

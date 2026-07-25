@@ -105,6 +105,15 @@ class MetricsRegistry:
                 lines.append(air_text)
         except Exception:  # noqa: BLE001 — metrics must never break exposition
             pass
+        # KC-025 — append ISF metrics (bounded labels; no prompts/ids).
+        try:
+            from cobra_core.isf.metrics import ISF_METRICS
+
+            isf_text = ISF_METRICS.render_prometheus().rstrip("\n")
+            if isf_text:
+                lines.append(isf_text)
+        except Exception:  # noqa: BLE001 — metrics must never break exposition
+            pass
         return "\n".join(lines) + "\n"
 
     def reset_for_tests(self) -> None:

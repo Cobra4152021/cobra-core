@@ -15,6 +15,7 @@ class SkillExecutionStatus(StrEnum):
     COMPLETED = "completed"
     NEEDS_HUMAN_REVIEW = "needs_human_review"
     MISSING_REQUIRED_EVIDENCE = "missing_required_evidence"
+    STRUCTURED_OUTPUT_INVALID = "structured_output_invalid"
     FAILED = "failed"
 
 
@@ -32,6 +33,7 @@ class SkillRequest:
     profile_id: str = "default"
     correlation_id: str = ""
     task: str = "investigation"
+    skill_version: str | None = None
     metadata: dict[str, Any] = field(default_factory=dict)
 
 
