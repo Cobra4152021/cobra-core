@@ -73,6 +73,8 @@ def _req(
         "Authorization": f"Bearer {token}",
         "X-Cobra-Org-Id": ORG,
         "Content-Type": "application/json",
+        # Cloudflare may return 1010 for default Python-urllib User-Agent.
+        "User-Agent": "CobraKC023Cert/1.0 (compatible; Mozilla/5.0)",
     }
     if request_id:
         headers["x-request-id"] = request_id
@@ -161,6 +163,7 @@ def phase1(base: str, token: str) -> list[CaseResult]:
         token=token,
         body={
             "model": "cobra-core-qwen3-8b",
+            "stream": False,
             "messages": [{"role": "user", "content": "kc023 phase1 ping"}],
             "max_tokens": 16,
         },
@@ -370,6 +373,7 @@ def phase8(base: str, token: str) -> list[CaseResult]:
         token=token,
         body={
             "model": "cobra-core-qwen3-8b",
+            "stream": False,
             "messages": [{"role": "user", "content": "kc023 rollback ping"}],
             "max_tokens": 16,
         },

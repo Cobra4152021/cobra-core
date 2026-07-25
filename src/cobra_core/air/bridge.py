@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 from cobra_core.air.audit import AIR_AUDIT
+from cobra_core.air.capabilities import AirCapability
 from cobra_core.air.catalog import build_default_catalog
 from cobra_core.air.metrics import AIR_METRICS
 from cobra_core.air.policy import AirPolicyConfig, load_air_policy
@@ -33,8 +36,8 @@ def catalog_for_config(config: CialConfig) -> DescriptorRegistry:
 def air_request_for_config(
     config: CialConfig,
     *,
-    extra_capabilities: frozenset | None = None,
-    capabilities_override: frozenset | None = None,
+    extra_capabilities: frozenset[AirCapability] | None = None,
+    capabilities_override: frozenset[AirCapability] | None = None,
     correlation_id: str = "",
     priority: PriorityClass | None = None,
     budget: BudgetClass | None = None,
@@ -49,7 +52,7 @@ def air_request_for_config(
         req_priority = priority or PriorityClass.NORMAL
         req_budget = budget or BudgetClass.NORMAL
         req_latency = latency or LatencyClass.NORMAL
-        meta: dict = {
+        meta: dict[str, Any] = {
             "requires_live": bool(profile.requires_live and config.can_use_live_provider),
             "allow_offline_fallback": profile.allow_offline_fallback,
         }
@@ -120,7 +123,7 @@ def air_decision_to_route_decision(decision: AirDecision) -> RouteDecision:
     )
 
 
-def safe_catalog_snapshot(config: CialConfig) -> dict:
+def safe_catalog_snapshot(config: CialConfig) -> dict[str, Any]:
     """Safe runtime catalog view (no secrets)."""
     reg = catalog_for_config(config)
     providers = []
