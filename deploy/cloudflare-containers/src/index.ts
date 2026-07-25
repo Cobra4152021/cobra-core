@@ -172,7 +172,8 @@ export default {
     // Bump the name after auth-secret rotation so a fresh Container boots with
     // current Worker secrets (DO constructor envVars are not hot-reloaded).
     // Bump after OPENAI secret/var binding so containers pick up new envVars.
-    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc021c");
+    // kc021d: boot after OPENAI secret bind + research activation (workflow secrets-first).
+    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc021d");
     return container.fetch(request);
   },
 };
