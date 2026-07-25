@@ -128,7 +128,7 @@ export default {
     // Shared staging instance (stateless mock Protocol V1).
     // Bump the name after auth-secret rotation so a fresh Container boots with
     // current Worker secrets (DO constructor envVars are not hot-reloaded).
-    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-b");
+    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-ms08xjxg");
     return container.fetch(request);
   },
 };
