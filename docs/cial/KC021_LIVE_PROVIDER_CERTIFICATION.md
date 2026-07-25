@@ -2,11 +2,10 @@
 
 ## Status
 
-**Pre-deployment / harness complete.** Live endpoint certification, Computer E2E,
-soak, and approval regression are **blocked pending explicit deploy approval**
-and operator-supplied staging endpoint credentials (GitHub/Cloudflare secrets).
+**PASS — live provider certified for staging.**
 
-Production remains disabled.
+Production remains disabled. Branch not merged. Certification tag:
+`kc-021-live-provider-staging-cert`.
 
 ## Scope
 
@@ -18,7 +17,8 @@ endpoint, with mock rollback retained.
 | Field | Value |
 |-------|-------|
 | Provider type | OpenAI-compatible (`openai`) |
-| Model ID | *operator-selected — not committed* |
+| Model ID | `gpt-5.4-mini` |
+| Base URL | `https://api.openai.com/v1` |
 | Environment | staging only |
 | Live flag default | `CIAL_LIVE_PROVIDER_ENABLED=false` |
 | Base commit (branch start) | `9713265` (KC-020 tip on `kc-019-cial`) |
@@ -55,29 +55,33 @@ Quota/cost breaches fail closed as `quota_exceeded` → Protocol `rate_limited`.
 
 | Suite | Mode | Status |
 |-------|------|--------|
-| Simulated transport failures | local harness / pytest | implemented |
-| Unit live-control tests | pytest | implemented |
-| KC-018 / Protocol V1 regression | pytest | required pre-deploy |
-| Live health + inference | staging after deploy | **pending approval** |
-| Computer → pending_approval E2E | staging | **pending approval** |
-| Approval/rejection regression | staging Computer | **pending approval** |
-| Soak 10/25/50 | staging | **pending approval** |
-| Rollback to mock | staging | documented; **pending execution** |
+| Simulated transport failures | local harness / pytest | PASS |
+| Unit live-control tests | pytest | PASS |
+| Live health + inference | staging | PASS |
+| Computer → pending_approval E2E | staging | PASS (live draft) |
+| Approval/rejection regression | staging Computer | PASS 13/13 |
+| Soak 10/25/50 | staging | PASS 100% |
+| Rollback to mock | staging | PASS |
 
-## Results placeholders (fill after live cert)
+## Certification evidence
 
-See `KC021_STAGING_RESULTS.md` for live tracking.
+See `KC021_STAGING_RESULTS.md` and `KC021_SOAK_RESULTS.md`.
 
-- Git commit: `f46e324` (Phase 1 deployed)
-- Workflow run URL: https://github.com/Cobra4152021/cobra-core/actions/runs/30171261323
-- Container image digest: `sha256:e829ad250a79f06833c7a49a61f5912ea3bbc5dfcde63e7f80b9ef524d34a4b7`
-- Worker version: `b6fa3d64-3f7a-4017-8f86-0443c1bf81c4`
-- Health result: Phase 1 PASS (`healthy`, certified revision)
-- Live inference summary: blocked (no OPENAI_API_KEY)
-- Proposal status: Phase 1 PASS (`pending_approval`, mock)
-- Audit result: Phase 1 partial (create OK; list/D1 probe limited)
-- Soak summary: blocked
-- Rollback result: blocked pending live activation
+| Item | Value |
+|------|-------|
+| Final rollback commit | `06be494` |
+| Rollback workflow | https://github.com/Cobra4152021/cobra-core/actions/runs/30176022544 |
+| Rollback image digest | `sha256:14249cd78265d27f28acfd3819a1e9da5116509308acac413fd22187444c1d2f` |
+| Worker version (rollback) | `fdb92c04-110d-45b1-8cef-569e5502cf5f` |
+| Certified Core revision | `ec400d83a9cc8105557bda2105f177cc619638b2` |
+| Post-cert profile | `default` / live `false` (mock restored) |
+
+## Ops lessons (staging)
+
+1. Bind secrets **before** container boot; bump instance after secret/var changes.
+2. Tag container images per commit (`v0.9.0-rc1-<sha>`); fixed tags can pin stale digests.
+3. GPT-5 family requires `max_completion_tokens` on Chat Completions.
+4. Computer proposals request 2048 max tokens — set live output ceiling accordingly.
 
 ## Limitations
 
@@ -85,10 +89,8 @@ See `KC021_STAGING_RESULTS.md` for live tracking.
 - No production activation
 - No billing / live pricing
 - Computer UI unchanged
+- Staging invalid-key mutation not executed (positive live auth + simulated 401 taxonomy)
 
 ## Remaining blockers
 
-1. Explicit operator approval to deploy `kc-021-live-provider-cert` via GHA
-2. Staging `OPENAI_BASE_URL` / model selection + `OPENAI_API_KEY` secret binding
-3. Opt-in `CIAL_LIVE_PROVIDER_ENABLED=true` after safe deploy with flag false
-4. Live E2E + soak + rollback evidence recording
+None for staging certification. Production enablement remains explicitly out of scope.

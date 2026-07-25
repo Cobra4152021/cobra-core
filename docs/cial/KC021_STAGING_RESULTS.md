@@ -2,81 +2,109 @@
 
 ## Status
 
-**PARTIAL** — Phase 1 (mock-safe deploy) completed. Phases 2–6 blocked pending
-operator-supplied live provider secrets/config.
+**PASS** — Phases 1–6 completed on staging. Live OpenAI-compatible provider
+certified for staging only. Production remains disabled. No merge.
 
-Production remains disabled.
+Certification tag: `kc-021-live-provider-staging-cert` (created after this record).
 
-## Deploy metadata
+## Final rollback deploy (Phase 6)
 
 | Field | Value |
 |-------|-------|
 | Branch | `kc-021-live-provider-cert` |
-| Deployed commit | `f46e324` |
-| Workflow | [30171261323](https://github.com/Cobra4152021/cobra-core/actions/runs/30171261323) |
-| Conclusion | success |
-| Image | `registry.cloudflare.com/ef3a70f5368245d987e2f2bb4a351b4a/cobra-core-staging:v0.9.0-rc1` |
-| Image digest | `sha256:e829ad250a79f06833c7a49a61f5912ea3bbc5dfcde63e7f80b9ef524d34a4b7` |
-| Worker version ID | `b6fa3d64-3f7a-4017-8f86-0443c1bf81c4` |
-| Deployed at (UTC) | 2026-07-25T19:16:58Z |
+| Deployed commit | `06be494` |
+| Workflow | [30176022544](https://github.com/Cobra4152021/cobra-core/actions/runs/30176022544) |
+| Image tag | `v0.9.0-rc1-06be494e613e` |
+| Image digest | `sha256:14249cd78265d27f28acfd3819a1e9da5116509308acac413fd22187444c1d2f` |
+| Worker version ID | `fdb92c04-110d-45b1-8cef-569e5502cf5f` |
 | APP_ENV | staging |
 | Profile | `default` |
 | Live flag | `false` |
+| canUseLive | `false` |
 
-## Phase 1 — Mock-safe deploy
+## Phase summary
 
-| Check | Result |
-|-------|--------|
-| GHA cloud build/deploy | PASS |
-| Core `/health` | PASS `healthy` |
-| Version | PASS `v0.9.0-rc1` |
-| Certified revision | PASS `ec400d83a9cc8105557bda2105f177cc619638b2` |
-| Worker root `appEnv` | PASS `staging` (not production) |
-| Kill switch | PASS `false` (Core enabled for staging) |
-| Completion model identity | PASS `cobra-core-qwen3-8b` |
-| Mock content prefix | PASS `[mock] …` |
-| Computer proposal create | PASS HTTP 201 `pending_approval` |
-| Proposal model | PASS `cobra-core-qwen3-8b` |
-| Human approval still required | PASS (status pending_approval) |
-| OPENAI_API_KEY bound | NO (not present in GitHub secrets; intentional for Phase 1) |
-
-Notes:
-- Proposal list API returned 403 for this login path; create→`pending_approval` is the certification evidence for Phase 1.
-- Remote D1 probe from this workstation failed Cloudflare auth (local token scope); does not invalidate proposal create result.
+| Phase | Status | Evidence |
+|-------|--------|----------|
+| 1 Mock-safe deploy | PASS | Prior record; mock proposal `pending_approval` |
+| 2 Provider configured, gate closed | PASS | Secret bound; vars set; mock only ([301](https://github.com/Cobra4152021/cobra-core/actions/runs/30174324646)) |
+| 3 Research + live activation | PASS | `canUseLive=true`; live completion `pong` (non-mock) |
+| 4 E2E + approval/reject | PASS | Live proposal HTTP 201; `kc018:approval` 13/13 |
+| 5 Soak 10/25/50 | PASS | 100% success each stage (see soak doc) |
+| 6 Rollback to mock | PASS | Mock completion + mock proposal `pending_approval` |
 
 ## Phase 2 — Configure live provider, gate closed
 
-**BLOCKED** — missing operator inputs:
-
-1. GitHub Actions secret `OPENAI_API_KEY` on `Cobra4152021/cobra-core`
-2. Non-secret vars: `OPENAI_BASE_URL`, `OPENAI_MODEL` (and optional timeout/retries)
-
-Keep after binding: `CIAL_PROFILE=default`, `CIAL_LIVE_PROVIDER_ENABLED=false`.
-
-## Phases 3–6
-
-**BLOCKED** until Phase 2 completes.
-
-| Phase | Status |
+| Check | Result |
 |-------|--------|
-| 3 Research activation | blocked |
-| 4 E2E live proposal + approval regression | blocked |
-| 5 Soak 10/25/50 | blocked |
-| 6 Rollback proof | blocked (Phase 1 already proves mock path; full rollback after live still required) |
+| `OPENAI_API_KEY` bound (GHA secret → Worker secret) | PASS (value not logged) |
+| `OPENAI_BASE_URL` | `https://api.openai.com/v1` |
+| `OPENAI_MODEL` | `gpt-5.4-mini` |
+| `CIAL_PROFILE=default` / live flag `false` | PASS |
+| Completion mock prefix | PASS `[mock]…` |
+| Live model identity absent | PASS |
+| Computer proposal `pending_approval` | PASS |
 
-## Security findings (so far)
+## Phase 3 — Research activation
 
-- No credentials committed.
-- Workflow logged `OPENAI_API_KEY not set` (no secret echoed).
-- Health/completion responses contained no auth material.
-- Production not enabled (`APP_ENV=staging` only).
+| Check | Result |
+|-------|--------|
+| `CIAL_PROFILE=research` + live flag `true` | PASS |
+| Worker `/cial-gate` openaiKeyConfigured | PASS |
+| Container `cialGate.canUseLive` | PASS |
+| Live minimal inference (non-mock) | PASS |
+| Direct OpenAI probe (`max_completion_tokens`) | PASS HTTP 200 |
+| Certified revision pin | PASS `ec400d83…` |
+| Production not enabled | PASS `APP_ENV=staging` |
 
-## Estimated cost
+Fixes required for live path (recorded for ops):
 
-$0 for Phase 1 (mock only).
+1. Secrets before container boot (workflow order).
+2. Unique image tags per commit (stale `:v0.9.0-rc1` digest).
+3. GPT-5 `max_completion_tokens` (not `max_tokens`).
+4. `CIAL_LIVE_MAX_OUTPUT_TOKENS=2048` for Computer proposals (was 256).
 
-## Remaining blockers
+## Phase 4 — Computer E2E + approval regression
 
-1. Provide/bind `OPENAI_API_KEY` (GitHub secret) + `OPENAI_BASE_URL` + `OPENAI_MODEL`
-2. Approve Phase 2–3 var updates (gate closed, then research activation)
-3. Complete live E2E, soak, rollback, then certification tag
+| Check | Result |
+|-------|--------|
+| Live proposal create | PASS HTTP 201 `pending_approval` (non-mock draft) |
+| Approve + audit | PASS |
+| Reject + audit | PASS |
+| Cancel unsupported / duplicate / unauthorized | PASS |
+| `npm run kc018:approval` | PASS 13/13 |
+
+## Phase 5 — Soak
+
+See `KC021_SOAK_RESULTS.md`. All stages 100% success; no mock regression;
+no auth leakage; revision pin held.
+
+## Phase 6 — Rollback
+
+| Check | Result |
+|-------|--------|
+| Profile `default` / live `false` | PASS |
+| `canUseLive=false` | PASS |
+| Core mock completion | PASS |
+| Computer mock proposal `pending_approval` | PASS |
+| Production still disabled | PASS |
+
+## Security findings
+
+- No credentials committed or logged.
+- OpenAI probe logs only HTTP status + error code/type/param.
+- Health `cialGate` exposes booleans/hosts/profile only (no keys/prompts).
+- Invalid-key staging mutation not performed (would leave staging broken);
+  taxonomy covered by simulated harness `auth_401`; positive live auth proven
+  by successful inference.
+
+## Estimated cost (staging live window)
+
+Controlled soak + E2E only. Soft ceiling `CIAL_LIVE_DAILY_COST_CEILING=5.00`.
+No abnormal cost growth observed during soak (small `max_tokens=16` stages).
+
+## Remaining (out of scope)
+
+- Production enablement — **refused**
+- Automatic merge — **not performed**
+- Multi-provider fallback — not in scope

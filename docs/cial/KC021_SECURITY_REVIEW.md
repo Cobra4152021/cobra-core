@@ -33,7 +33,12 @@ investigative PII.
 3. Restore valid secret and bump container instance.
 4. Confirm no key material in logs or API responses.
 
-## Findings (pre-deploy)
+## Findings (post staging cert)
 
-No credential commits identified in KC-021 diff. Live leakage checks remain
-**pending** until staging deploy with secrets.
+- No credential commits identified in KC-021 diff.
+- GHA secret bind logs: `OPENAI_API_KEY secret bound (value not logged)`.
+- Probe workflow/step emits only HTTP status + error code/type/param.
+- Health `/cial-gate` and `cialGate` expose configuration booleans only.
+- Positive live authentication proven by successful staging inference.
+- Temporary invalid-key staging mutation **not** executed (would leave staging
+  broken mid-cert); `auth_401` taxonomy covered by simulated harness.
