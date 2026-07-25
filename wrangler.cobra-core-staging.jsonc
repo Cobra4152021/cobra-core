@@ -45,8 +45,8 @@
 			"class_name": "CobraCoreContainer",
 			// Pre-built in CI — no local Dockerfile build on deploy
 			"image": "registry.cloudflare.com/ef3a70f5368245d987e2f2bb4a351b4a/cobra-core-staging:v0.9.0-rc1",
-			// Allow brief overlap during secret-rotation instance bumps (KC-018).
-			"max_instances": 4,
+			// Allow overlap during secret-rotation / CIAL instance bumps (KC-018/021).
+			"max_instances": 10,
 			"instance_type": "basic"
 		}
 	],

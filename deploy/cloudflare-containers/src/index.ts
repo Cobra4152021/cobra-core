@@ -193,8 +193,8 @@ export default {
     // Bump the name after auth-secret rotation so a fresh Container boots with
     // current Worker secrets (DO constructor envVars are not hot-reloaded).
     // Bump after OPENAI secret/var binding so containers pick up new envVars.
-    // kc021e: health cialGate diagnostic + workerEnv secret fallback.
-    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc021e");
+    // kc021f: after raising max_instances so a fresh live-enabled boot can start.
+    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc021f");
     return container.fetch(request);
   },
 };
