@@ -1,0 +1,106 @@
+# KC-021 — secret-safe OpenAI reachability probe (staging cert only).
+# Prints HTTP status + error code/type/param only. Never prints keys, prompts, or message text.
+
+name: KC-021 OpenAI Probe
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Probe chat completions (safe metadata only)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_BASE_URL: https://api.openai.com/v1
+          OPENAI_MODEL: gpt-5.4-mini
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "OPENAI_API_KEY missing"
+            exit 1
+          fi
+          python3 <<'PY'
+          import json, os, urllib.error, urllib.request
+
+          key = os.environ["OPENAI_API_KEY"]
+          base = os.environ["OPENAI_BASE_URL"].rstrip("/")
+          model = os.environ["OPENAI_MODEL"]
+
+          def call(payload: dict) -> None:
+              req = urllib.request.Request(
+                  f"{base}/chat/completions",
+                  data=json.dumps(payload).encode("utf-8"),
+                  headers={
+                      "Authorization": f"Bearer {key}",
+                      "Content-Type": "application/json",
+                  },
+                  method="POST",
+              )
+              try:
+                  with urllib.request.urlopen(req, timeout=60) as resp:
+                      data = json.loads(resp.read().decode("utf-8"))
+                      content = ((data.get("choices") or [{}])[0].get("message") or {}).get("content") or ""
+                      usage = data.get("usage") or {}
+                      print(
+                          json.dumps(
+                              {
+                                  "case": payload.get("_case"),
+                                  "http": resp.status,
+                                  "ok": True,
+                                  "content_len": len(content),
+                                  "usage_keys": sorted(usage.keys()),
+                                  "total_tokens": usage.get("total_tokens"),
+                              }
+                          )
+                      )
+              except urllib.error.HTTPError as exc:
+                  raw = exc.read().decode("utf-8", errors="replace")
+                  try:
+                      err = (json.loads(raw).get("error") or {})
+                  except json.JSONDecodeError:
+                      err = {}
+                  print(
+                      json.dumps(
+                          {
+                              "case": payload.get("_case"),
+                              "http": exc.code,
+                              "ok": False,
+                              "code": err.get("code"),
+                              "type": err.get("type"),
+                              "param": err.get("param"),
+                          }
+                      )
+                  )
+
+          # Case A: max_completion_tokens (expected for GPT-5)
+          call(
+              {
+                  "_case": "max_completion_tokens",
+                  "model": model,
+                  "messages": [{"role": "user", "content": "Reply with exactly one word: pong"}],
+                  "max_completion_tokens": 32,
+                  "stream": False,
+              }
+          )
+          # Case B: legacy max_tokens (expected 400 unsupported_parameter)
+          call(
+              {
+                  "_case": "max_tokens_legacy",
+                  "model": model,
+                  "messages": [{"role": "user", "content": "Reply with exactly one word: pong"}],
+                  "max_tokens": 32,
+                  "stream": False,
+              }
+          )
+          # Case C: no token limit
+          call(
+              {
+                  "_case": "no_token_limit",
+                  "model": model,
+                  "messages": [{"role": "user", "content": "Reply with exactly one word: pong"}],
+                  "stream": False,
+              }
+          )
+          PY
