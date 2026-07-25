@@ -6,6 +6,7 @@
  */
 
 import { Container, getContainer } from "@cloudflare/containers";
+import { env as workerEnv } from "cloudflare:workers";
 
 export type Env = {
   COBRA_CORE_CONTAINER: DurableObjectNamespace;
@@ -48,19 +49,25 @@ export class CobraCoreContainer extends Container<Env> {
 
   constructor(ctx: DurableObjectState, env: Env) {
     super(ctx, env);
-    const kill = /^(1|true|yes|on)$/i.test(String(env.COBRA_CORE_KILL_SWITCH ?? "false"));
+    // Prefer constructor env; fall back to module workerEnv (CF secrets pattern).
+    const we = workerEnv as Env;
+    const pick = (k: keyof Env, fallback = ""): string =>
+      String(env[k] ?? we[k] ?? fallback);
+    const kill = /^(1|true|yes|on)$/i.test(pick("COBRA_CORE_KILL_SWITCH", "false"));
     // KC-021: live provider is opt-in. Defaults keep mock / disabled.
     const liveEnabled = /^(1|true|yes|on)$/i.test(
-      String(env.CIAL_LIVE_PROVIDER_ENABLED ?? "false"),
+      pick("CIAL_LIVE_PROVIDER_ENABLED", "false"),
     );
+    const openaiKey = pick("OPENAI_API_KEY");
+    const authSecret = pick("COBRA_CORE_AUTH_SECRET");
     this.envVars = {
-      APP_ENV: env.APP_ENV || "staging",
-      COBRA_CORE_VERSION: env.COBRA_CORE_VERSION || CERTIFIED_VERSION,
-      COBRA_CORE_REVISION: env.COBRA_CORE_REVISION || CERTIFIED_REVISION,
-      COBRA_CORE_GIT_SHA: env.COBRA_CORE_REVISION || CERTIFIED_REVISION,
+      APP_ENV: pick("APP_ENV", "staging"),
+      COBRA_CORE_VERSION: pick("COBRA_CORE_VERSION", CERTIFIED_VERSION),
+      COBRA_CORE_REVISION: pick("COBRA_CORE_REVISION", CERTIFIED_REVISION),
+      COBRA_CORE_GIT_SHA: pick("COBRA_CORE_REVISION", CERTIFIED_REVISION),
       COBRA_CORE_KILL_SWITCH: kill ? "true" : "false",
       COBRA_CORE_ENABLED: kill ? "false" : "true",
-      COBRA_CORE_AUTH_SECRET: env.COBRA_CORE_AUTH_SECRET || "",
+      COBRA_CORE_AUTH_SECRET: authSecret,
       COBRA_INFERENCE_MODE: "mock",
       COBRA_PROTOCOL_VERSION: "1",
       COBRA_COMPATIBILITY_VERSION: "1",
@@ -68,24 +75,24 @@ export class CobraCoreContainer extends Container<Env> {
       COBRA_CORE_MAX_CONCURRENT: "2",
       COBRA_CORE_REQUIRE_ORG_HEADER: "true",
       PORT: "8080",
-      CIAL_ENABLED: env.CIAL_ENABLED || "true",
+      CIAL_ENABLED: pick("CIAL_ENABLED", "true"),
       CIAL_LIVE_PROVIDER_ENABLED: liveEnabled ? "true" : "false",
-      CIAL_PROFILE: env.CIAL_PROFILE || "default",
+      CIAL_PROFILE: pick("CIAL_PROFILE", "default"),
       // Legacy vendor knobs (optional); Core maps them to profiles if CIAL_PROFILE unset.
-      CIAL_PROVIDER: env.CIAL_PROVIDER || "",
-      CIAL_DEFAULT_PROVIDER: env.CIAL_DEFAULT_PROVIDER || "",
-      CIAL_DEFAULT_MODEL: env.CIAL_DEFAULT_MODEL || "",
-      CIAL_ROUTING_POLICY: env.CIAL_ROUTING_POLICY || "default",
-      OPENAI_BASE_URL: env.OPENAI_BASE_URL || "",
-      OPENAI_MODEL: env.OPENAI_MODEL || "",
-      OPENAI_TIMEOUT_SECONDS: env.OPENAI_TIMEOUT_SECONDS || "60",
-      OPENAI_MAX_RETRIES: env.OPENAI_MAX_RETRIES || "2",
-      OPENAI_API_KEY: env.OPENAI_API_KEY || "",
-      CIAL_LIVE_MAX_INPUT_CHARS: env.CIAL_LIVE_MAX_INPUT_CHARS || "32000",
-      CIAL_LIVE_MAX_OUTPUT_TOKENS: env.CIAL_LIVE_MAX_OUTPUT_TOKENS || "",
-      CIAL_LIVE_MAX_CONCURRENT: env.CIAL_LIVE_MAX_CONCURRENT || "1",
-      CIAL_LIVE_DAILY_REQUEST_QUOTA: env.CIAL_LIVE_DAILY_REQUEST_QUOTA || "",
-      CIAL_LIVE_DAILY_COST_CEILING: env.CIAL_LIVE_DAILY_COST_CEILING || "",
+      CIAL_PROVIDER: pick("CIAL_PROVIDER"),
+      CIAL_DEFAULT_PROVIDER: pick("CIAL_DEFAULT_PROVIDER"),
+      CIAL_DEFAULT_MODEL: pick("CIAL_DEFAULT_MODEL"),
+      CIAL_ROUTING_POLICY: pick("CIAL_ROUTING_POLICY", "default"),
+      OPENAI_BASE_URL: pick("OPENAI_BASE_URL"),
+      OPENAI_MODEL: pick("OPENAI_MODEL"),
+      OPENAI_TIMEOUT_SECONDS: pick("OPENAI_TIMEOUT_SECONDS", "60"),
+      OPENAI_MAX_RETRIES: pick("OPENAI_MAX_RETRIES", "2"),
+      OPENAI_API_KEY: openaiKey,
+      CIAL_LIVE_MAX_INPUT_CHARS: pick("CIAL_LIVE_MAX_INPUT_CHARS", "32000"),
+      CIAL_LIVE_MAX_OUTPUT_TOKENS: pick("CIAL_LIVE_MAX_OUTPUT_TOKENS"),
+      CIAL_LIVE_MAX_CONCURRENT: pick("CIAL_LIVE_MAX_CONCURRENT", "1"),
+      CIAL_LIVE_DAILY_REQUEST_QUOTA: pick("CIAL_LIVE_DAILY_REQUEST_QUOTA"),
+      CIAL_LIVE_DAILY_COST_CEILING: pick("CIAL_LIVE_DAILY_COST_CEILING"),
     };
   }
 
@@ -163,8 +170,22 @@ export default {
         version: env.COBRA_CORE_VERSION,
         revision: env.COBRA_CORE_REVISION,
         killSwitch: String(env.COBRA_CORE_KILL_SWITCH ?? "false"),
-        routes: ["/health", "/version", "/metrics", "/v1/chat/completions"],
+        routes: ["/health", "/version", "/metrics", "/v1/chat/completions", "/cial-gate"],
         note: "Protocol V1 is served by the container; use Bearer auth.",
+      });
+    }
+
+    // KC-021 Worker-side gate probe (booleans / non-secret vars only).
+    if (url.pathname === "/cial-gate" && request.method === "GET") {
+      return json({
+        appEnv: env.APP_ENV,
+        cialEnabled: env.CIAL_ENABLED ?? null,
+        cialProfile: env.CIAL_PROFILE ?? null,
+        liveFlag: env.CIAL_LIVE_PROVIDER_ENABLED ?? null,
+        openaiModel: env.OPENAI_MODEL ?? null,
+        openaiBaseUrl: env.OPENAI_BASE_URL ?? null,
+        openaiKeyConfigured: Boolean(env.OPENAI_API_KEY?.trim()),
+        authSecretConfigured: Boolean(env.COBRA_CORE_AUTH_SECRET?.trim()),
       });
     }
 
@@ -172,8 +193,8 @@ export default {
     // Bump the name after auth-secret rotation so a fresh Container boots with
     // current Worker secrets (DO constructor envVars are not hot-reloaded).
     // Bump after OPENAI secret/var binding so containers pick up new envVars.
-    // kc021d: boot after OPENAI secret bind + research activation (workflow secrets-first).
-    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc021d");
+    // kc021e: health cialGate diagnostic + workerEnv secret fallback.
+    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc021e");
     return container.fetch(request);
   },
 };

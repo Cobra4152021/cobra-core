@@ -227,12 +227,37 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                     "model_not_loaded",
                     "model_unavailable",
                 } and bool(core_body.get("authenticated"))
+                # KC-021: safe CIAL gate visibility (no secrets / no prompts).
+                cial_gate: dict[str, object] = {"error": "cial_unavailable"}
+                try:
+                    from cobra_core.cial.config import load_cial_config
+
+                    cfg = load_cial_config()
+                    profile = cfg.resolved_profile()
+                    cial_gate = {
+                        "enabled": cfg.enabled,
+                        "appEnv": cfg.app_env,
+                        "profile": cfg.active_profile,
+                        "resolvedProvider": profile.provider_id,
+                        "resolvedModel": profile.model_id,
+                        "liveFlag": cfg.live_provider_enabled,
+                        "openaiConfigured": cfg.openai_configured,
+                        "openaiBaseUrlHost": (
+                            cfg.openai_base_url.split("://", 1)[-1].split("/", 1)[0]
+                            if cfg.openai_base_url
+                            else ""
+                        ),
+                        "canUseLive": cfg.can_use_live_provider,
+                    }
+                except Exception as exc:  # noqa: BLE001 — diagnostic only
+                    cial_gate = {"error": type(exc).__name__}
                 enriched = {
                     **core_body,
                     "status": "healthy" if healthy else "degraded",
                     "version": CERTIFIED_VERSION,
                     "revision": CERTIFIED_REVISION,
                     "gitSha": CERTIFIED_REVISION,
+                    "cialGate": cial_gate,
                 }
                 self._send_json(200, enriched, request_id=str(enriched.get("requestId") or ""))
                 return
