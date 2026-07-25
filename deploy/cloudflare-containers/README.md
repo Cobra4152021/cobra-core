@@ -1,50 +1,50 @@
 # KC-016 — Cobra Core on Cloudflare Containers (staging)
 
 **Certified revision:** `ec400d83a9cc8105557bda2105f177cc619638b2` (`v0.9.0-rc1`)  
-**Worker name:** `cobra-core-staging`  
+**Worker:** `cobra-core-staging`  
 **Not production.**
 
-## Phase 1 summary
+## No Docker on your laptop
 
-See [DEPLOYMENT_SUMMARY.md](./DEPLOYMENT_SUMMARY.md).
+Cloudflare Containers need a Linux `amd64` image build. That build runs in **GitHub Actions** (cloud runner with Docker), not on your PC.
 
-## Why a public HTTPS URL
+| Where | Docker? |
+|-------|---------|
+| Your computer | **No** |
+| GitHub Actions `ubuntu-latest` | Yes (ephemeral) |
+| Cloudflare (runtime) | Runs the pushed image |
 
-Cobra Computer’s Protocol V1 client uses absolute `fetch(COBRA_CORE_BASE_URL)`.  
-A **workers.dev HTTPS URL** is therefore required for Internal Alpha without changing Computer to a service binding.
+## One-time GitHub secrets
 
-Preferred later: Computer staging `services` binding → `cobra-core-staging` (no public Core URL).
+In https://github.com/Cobra4152021/cobra-core/settings/secrets/actions add:
 
-## Prerequisites
+| Secret | Purpose |
+|--------|---------|
+| `CLOUDFLARE_API_TOKEN` | API token with Workers edit + Containers + Account read |
+| `COBRA_CORE_AUTH_SECRET` | Bearer token shared with Cobra Computer staging |
 
-1. Docker Desktop **running** (`docker info` succeeds) — **required** by Cloudflare Containers
-2. Workers Paid plan + Containers enabled
-3. Wrangler authenticated (`npx wrangler whoami`)
+Create the Cloudflare token at: https://dash.cloudflare.com/profile/api-tokens  
+Use a custom token including **Account → Cloudflare Workers → Edit** (and Containers if listed).
 
-## Deploy (staging only)
+## Deploy (cloud only)
 
-From **cobra-core repository root**:
+1. Merge/push `kc-016-staging-deploy` (or run workflow manually).
+2. GitHub → **Actions** → **Deploy Cobra Core Staging (Cloudflare Containers)** → **Run workflow**.
+3. When green, open:
+   `https://cobra-core-staging.<your-subdomain>.workers.dev`
+
+Smoke:
 
 ```bash
-# Install Worker deps once
-cd deploy/cloudflare-containers && npm install && cd ../..
-
-# Secret (never commit)
-npx wrangler secret put COBRA_CORE_AUTH_SECRET -c wrangler.cobra-core-staging.jsonc
-
-# Deploy Worker + build/push container image
-npx wrangler deploy -c wrangler.cobra-core-staging.jsonc
+curl -sS -H "Authorization: Bearer $COBRA_CORE_AUTH_SECRET" \
+  https://cobra-core-staging.<subdomain>.workers.dev/health
 ```
-
-Expected URL:
-
-`https://cobra-core-staging.<YOUR_SUBDOMAIN>.workers.dev`
 
 ## Connect Cobra Computer staging
 
 ```bash
-# On Computer staging Worker only:
-npx wrangler secret put COBRA_CORE_AUTH_SECRET --env staging   # same value
+# Same auth secret as Core
+npx wrangler secret put COBRA_CORE_AUTH_SECRET --env staging
 npx wrangler vars set COBRA_CORE_BASE_URL="https://cobra-core-staging.<subdomain>.workers.dev" --env staging
 npx wrangler vars set COBRA_CORE_REVISION="ec400d83a9cc8105557bda2105f177cc619638b2" --env staging
 npx wrangler vars set COBRA_CORE_ENABLED="true" --env staging
@@ -52,27 +52,10 @@ npx wrangler vars set RESEARCH_LLM_ENABLED="true" --env staging
 npx wrangler deploy --env staging
 ```
 
-## Endpoints
+## Why public HTTPS (not only a service binding)
 
-| Path | Auth | Notes |
-|------|------|--------|
-| `GET /health` | Bearer | `status`, `version`, `revision` + Protocol V1 fields |
-| `GET /version` | Bearer | Certified pin |
-| `GET /metrics` | Bearer | Prometheus |
-| `POST /v1/chat/completions` | Bearer + `X-Cobra-Org-Id` | Protocol V1 |
+Cobra Computer’s adapter calls `fetch(COBRA_CORE_BASE_URL)`. A workers.dev HTTPS URL is required until Computer is changed to a Worker service binding.
 
-## Kill switch
-
-```bash
-npx wrangler vars set COBRA_CORE_KILL_SWITCH="true" -c wrangler.cobra-core-staging.jsonc
-npx wrangler deploy -c wrangler.cobra-core-staging.jsonc
-```
-
-## Rollback
+## Kill switch / rollback
 
 See [ROLLBACK.md](./ROLLBACK.md).
-
-## Current machine blocker
-
-Docker Desktop is **not installed** here (winget install failed without admin).  
-Wrangler is authenticated. Deploy cannot complete until Docker is available.

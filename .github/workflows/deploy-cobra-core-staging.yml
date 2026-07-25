@@ -1,0 +1,104 @@
+# KC-016 — Build & deploy Cobra Core staging on Cloudflare Containers.
+# Docker runs ONLY on GitHub-hosted runners — not on developer laptops.
+#
+# Required repo secrets:
+#   CLOUDFLARE_API_TOKEN   — Account API token (Workers Scripts Edit + Containers + Account read)
+#   COBRA_CORE_AUTH_SECRET — Bearer secret shared with Cobra Computer staging
+#
+# Trigger: Actions → "Deploy Cobra Core Staging (Cloudflare Containers)" → Run workflow
+
+name: Deploy Cobra Core Staging (Cloudflare Containers)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [kc-016-staging-deploy]
+    paths:
+      - "Dockerfile.cobra-core-staging"
+      - "wrangler.cobra-core-staging.jsonc"
+      - "deploy/cloudflare-containers/**"
+      - "deploy/staging-rc1/staging_edge.py"
+      - "src/cobra_core/**"
+      - "pyproject.toml"
+      - ".github/workflows/deploy-cobra-core-staging.yml"
+
+concurrency:
+  group: cobra-core-staging-deploy
+  cancel-in-progress: false
+
+env:
+  CERTIFIED_TAG: v0.9.0-rc1
+  IMAGE_NAME: cobra-core-staging
+  # Account ID from wrangler whoami (Cobra4152020)
+  CF_ACCOUNT_ID: ef3a70f5368245d987e2f2bb4a351b4a
+
+jobs:
+  build-and-deploy:
+    name: Cloud build + staging deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Pin certified Core sources note
+        run: |
+          echo "Deploy packaging branch may sit atop RC1; Protocol V1 pin is enforced at runtime."
+          echo "Certified revision: ec400d83a9cc8105557bda2105f177cc619638b2"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: deploy/cloudflare-containers/package-lock.json
+
+      - name: Install Worker deps
+        working-directory: deploy/cloudflare-containers
+        run: npm ci
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build image (GitHub runner Docker — not local)
+        run: |
+          docker build \
+            --platform linux/amd64 \
+            -f Dockerfile.cobra-core-staging \
+            -t "${IMAGE_NAME}:${CERTIFIED_TAG}" \
+            .
+
+      - name: Push image to Cloudflare Registry
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          npx wrangler containers push "${IMAGE_NAME}:${CERTIFIED_TAG}" \
+            -c wrangler.cobra-core-staging.jsonc
+
+      - name: Deploy Worker (uses pre-built registry image)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          npx wrangler deploy -c wrangler.cobra-core-staging.jsonc
+
+      - name: Ensure Core auth secret is set
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          COBRA_CORE_AUTH_SECRET: ${{ secrets.COBRA_CORE_AUTH_SECRET }}
+        run: |
+          if [ -z "$COBRA_CORE_AUTH_SECRET" ]; then
+            echo "COBRA_CORE_AUTH_SECRET repo secret is required" >&2
+            exit 1
+          fi
+          # Non-interactive secret put
+          printf '%s' "$COBRA_CORE_AUTH_SECRET" | npx wrangler secret put COBRA_CORE_AUTH_SECRET \
+            -c wrangler.cobra-core-staging.jsonc
+
+      - name: Print staging URL hint
+        run: |
+          echo "Staging Worker: cobra-core-staging"
+          echo "Expected URL: https://cobra-core-staging.<subdomain>.workers.dev"
+          echo "Image: registry.cloudflare.com/${CF_ACCOUNT_ID}/${IMAGE_NAME}:${CERTIFIED_TAG}"

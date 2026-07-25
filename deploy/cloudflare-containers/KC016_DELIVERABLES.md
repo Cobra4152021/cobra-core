@@ -105,11 +105,10 @@ See `ROLLBACK.md`.
 
 ## 15. Remaining blockers
 
-1. **Install and start Docker Desktop** (admin rights), then:
-   ```bash
-   npx wrangler secret put COBRA_CORE_AUTH_SECRET -c wrangler.cobra-core-staging.jsonc
-   npx wrangler deploy -c wrangler.cobra-core-staging.jsonc
-   ```
+1. **No local Docker required.** Add GitHub Actions secrets, then run workflow:
+   - `CLOUDFLARE_API_TOKEN`
+   - `COBRA_CORE_AUTH_SECRET`
+   - Actions → **Deploy Cobra Core Staging (Cloudflare Containers)** → Run workflow
 2. Point Computer staging `COBRA_CORE_BASE_URL` at the workers.dev URL and enable Core flags.
 3. Run smoke + Research OS proposal E2E as admin.
 

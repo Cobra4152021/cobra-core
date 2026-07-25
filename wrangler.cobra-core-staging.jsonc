@@ -1,10 +1,10 @@
 /**
  * KC-016 — Cobra Core Protocol V1 on Cloudflare Containers (STAGING ONLY).
  *
- * Deploy from repository root:
- *   npx wrangler deploy -c wrangler.cobra-core-staging.jsonc
+ * NO LOCAL DOCKER. Image is built/pushed by GitHub Actions
+ * (.github/workflows/deploy-cobra-core-staging.yml), then this Worker
+ * references the Cloudflare Registry image below.
  *
- * Requires: Docker running locally, Workers Paid, Containers enabled.
  * Never deploy this as production.
  */
 {
@@ -24,12 +24,13 @@
 		"COBRA_CORE_REVISION": "ec400d83a9cc8105557bda2105f177cc619638b2",
 		"COBRA_CORE_KILL_SWITCH": "false"
 	},
-	// Secret (set via CLI, never commit):
+	// Secret via GitHub Actions or:
 	//   npx wrangler secret put COBRA_CORE_AUTH_SECRET -c wrangler.cobra-core-staging.jsonc
 	"containers": [
 		{
 			"class_name": "CobraCoreContainer",
-			"image": "./Dockerfile.cobra-core-staging",
+			// Pre-built in CI — no local Dockerfile build on deploy
+			"image": "registry.cloudflare.com/ef3a70f5368245d987e2f2bb4a351b4a/cobra-core-staging:v0.9.0-rc1",
 			"max_instances": 2,
 			"instance_type": "basic"
 		}
