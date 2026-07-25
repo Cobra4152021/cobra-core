@@ -187,7 +187,11 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                 )
                 return
             # Kill switch at edge (also enforced by Core).
-            if _env("COBRA_CORE_ENABLED", "true").lower() in {"0", "false", "no", "off"}:
+            # COBRA_CORE_KILL_SWITCH=true is an explicit alias used by Cloudflare Workers vars.
+            if (
+                _env("COBRA_CORE_ENABLED", "true").lower() in {"0", "false", "no", "off"}
+                or _env("COBRA_CORE_KILL_SWITCH", "false").lower() in {"1", "true", "yes", "on"}
+            ):
                 self._send_json(
                     503,
                     {
@@ -253,7 +257,10 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                 },
             )
             return
-        if _env("COBRA_CORE_ENABLED", "true").lower() in {"0", "false", "no", "off"}:
+        if (
+            _env("COBRA_CORE_ENABLED", "true").lower() in {"0", "false", "no", "off"}
+            or _env("COBRA_CORE_KILL_SWITCH", "false").lower() in {"1", "true", "yes", "on"}
+        ):
             self._send_json(
                 503,
                 {

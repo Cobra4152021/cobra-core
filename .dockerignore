@@ -13,6 +13,10 @@ training
 kc001
 kc002
 cobra/node_modules
+deploy/cloudflare-containers/node_modules
 **/.env
 **/.env.*
 !deploy/staging-rc1/.env.example
+*.md
+!README.md
+fly.staging-rc1.toml
