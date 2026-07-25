@@ -5,6 +5,11 @@
 #   CLOUDFLARE_API_TOKEN   — Account API token (Workers Scripts Edit + Containers + Account read)
 #   COBRA_CORE_AUTH_SECRET — Bearer secret shared with Cobra Computer staging
 #
+# Optional KC-021 live-provider secrets (staging only; never commit values):
+#   OPENAI_API_KEY         — OpenAI-compatible API key (Wrangler secret)
+# Optional non-secret vars are set in wrangler.cobra-core-staging.jsonc
+# (CIAL_LIVE_PROVIDER_ENABLED defaults to false).
+#
 # Trigger: Actions → "Deploy Cobra Core Staging (Cloudflare Containers)" → Run workflow
 
 name: Deploy Cobra Core Staging (Cloudflare Containers)
@@ -97,8 +102,22 @@ jobs:
           printf '%s' "$COBRA_CORE_AUTH_SECRET" | npx wrangler secret put COBRA_CORE_AUTH_SECRET \
             -c wrangler.cobra-core-staging.jsonc
 
+      - name: Optional OpenAI-compatible secret (KC-021)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "OPENAI_API_KEY not set — live provider remains unavailable (mock default)."
+            exit 0
+          fi
+          printf '%s' "$OPENAI_API_KEY" | npx wrangler secret put OPENAI_API_KEY \
+            -c wrangler.cobra-core-staging.jsonc
+          echo "OPENAI_API_KEY secret bound (value not logged)."
+
       - name: Print staging URL hint
         run: |
           echo "Staging Worker: cobra-core-staging"
           echo "Expected URL: https://cobra-core-staging.<subdomain>.workers.dev"
           echo "Image: registry.cloudflare.com/${CF_ACCOUNT_ID}/${IMAGE_NAME}:${CERTIFIED_TAG}"
+          echo "CIAL_LIVE_PROVIDER_ENABLED default: false (opt-in via wrangler vars after approval)"

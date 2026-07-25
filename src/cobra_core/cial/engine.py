@@ -7,7 +7,8 @@ import time
 from typing import Any
 
 from cobra_core.cial.config import CialConfig, load_cial_config
-from cobra_core.cial.errors import CialError, to_inference_failed
+from cobra_core.cial.errors import CialError, CialErrorCode, to_inference_failed
+from cobra_core.cial.guards import LiveRequestGuard
 from cobra_core.cial.providers.mock import MockProvider
 from cobra_core.cial.providers.openai_compatible import OpenAICompatibleProvider
 from cobra_core.cial.registry import ModelRegistry, ProviderRegistry
@@ -15,6 +16,7 @@ from cobra_core.cial.router import DeterministicRouter
 from cobra_core.cial.types import (
     GenerateRequest,
     InferenceResult,
+    ModelRecord,
     RoutingPolicy,
     RoutingRequest,
 )
@@ -31,8 +33,8 @@ class CialEngine:
     """
     Orchestrates deterministic routing and provider generation.
 
-    Phase 2 registers mock (always) and openai-compatible (when configured).
-    Automatic fallback remains out of scope.
+    Live OpenAI-compatible use is opt-in via ``CIAL_LIVE_PROVIDER_ENABLED``
+    and only on staging. Mock remains the safe default / rollback path.
     """
 
     def __init__(
@@ -42,29 +44,30 @@ class CialEngine:
         providers: ProviderRegistry | None = None,
         models: ModelRegistry | None = None,
         router: DeterministicRouter | None = None,
+        live_guard: LiveRequestGuard | None = None,
     ) -> None:
         self.config = config or load_cial_config()
         self.providers = providers or ProviderRegistry()
         self.models = models or ModelRegistry()
         self.router = router or DeterministicRouter(self.models)
+        self.live_guard = live_guard or LiveRequestGuard(self.config)
 
     @classmethod
     def build_default(cls, config: CialConfig | None = None) -> CialEngine:
-        """
-        Construct an engine with mock always registered.
-
-        OpenAI-compatible provider is registered only when ``OPENAI_API_KEY``
-        is present (or when tests inject a configured provider via constructor).
-        """
+        """Construct engine with mock always registered; openai only when live-ready."""
         cfg = config or load_cial_config()
         engine = cls(config=cfg)
-        # Wire Protocol identity stays on mock for KC-018 compatibility.
-        mock_model_id = cfg.default_model if cfg.default_provider == "mock" else DEFAULT_MODEL
+        mock_model_id = (
+            cfg.default_model
+            if cfg.default_provider == "mock" or not cfg.can_use_live_provider
+            else DEFAULT_MODEL
+        )
+        if cfg.can_use_live_provider:
+            mock_model_id = DEFAULT_MODEL
         mock = MockProvider(model_id=mock_model_id)
         engine.providers.register_provider_models(mock, engine.models)
 
-        # Register OpenAI adapter when keyed or explicitly selected as default.
-        if cfg.openai_configured or cfg.default_provider == "openai":
+        if cfg.can_use_live_provider:
             openai = OpenAICompatibleProvider(
                 api_key=cfg.openai_api_key,
                 base_url=cfg.openai_base_url,
@@ -91,13 +94,15 @@ class CialEngine:
         """Route then generate; raises CialError or InferenceCancelledError."""
         t0 = time.perf_counter()
         route_policy = policy or self.config.routing_policy
-        preferred = self._resolve_preferred_model(preferred_model_id)
+        preferred, effective_provider, forced_mock = self._resolve_route_target(preferred_model_id)
 
         if route_policy == RoutingPolicy.MANUAL:
             request = RoutingRequest(
                 policy=RoutingPolicy.MANUAL,
-                manual_provider_id=self.config.default_provider,
-                manual_model_id=preferred,
+                manual_provider_id=effective_provider,
+                manual_model_id=(
+                    self.config.openai_model if effective_provider == "openai" else preferred
+                ),
             )
         else:
             request = RoutingRequest(
@@ -105,9 +110,28 @@ class CialEngine:
                 preferred_model_id=preferred,
             )
 
+        acquired = False
+        model: ModelRecord | None = None
+        decision = None
+        result: InferenceResult | None = None
         try:
             decision = self.router.route(request)
+            if decision.provider_id == "openai" and not self.config.can_use_live_provider:
+                raise CialError(
+                    CialErrorCode.LIVE_PROVIDER_DISABLED,
+                    "live provider is not enabled for this environment",
+                )
             provider = self.providers.get(decision.provider_id)
+            model = self.models.get(decision.provider_id, decision.model_id)
+            if decision.provider_id == "openai":
+                input_chars = sum(len(str(m.get("content") or "")) for m in messages)
+                self.live_guard.acquire(
+                    input_chars=input_chars,
+                    max_tokens=max_tokens,
+                    model=model,
+                )
+                acquired = True
+
             gen_req = GenerateRequest(
                 messages=messages,
                 max_tokens=max_tokens,
@@ -122,27 +146,38 @@ class CialEngine:
             raise
         except CialError:
             raise
+        finally:
+            if acquired and model is not None:
+                prompt_tokens = result.prompt_tokens if result is not None else 0
+                completion_tokens = result.completion_tokens if result is not None else 0
+                self.live_guard.release(
+                    prompt_tokens=prompt_tokens,
+                    completion_tokens=completion_tokens,
+                    model=model,
+                )
 
+        assert decision is not None and result is not None
         elapsed = max(0, int(round((time.perf_counter() - t0) * 1000)))
         result.cial_provider_id = decision.provider_id
         result.cial_model_id = decision.model_id
         result.cial_routing_policy = decision.policy.value
-        result.cial_route_reason = decision.reason
+        result.cial_route_reason = (
+            "live_provider_disabled_use_mock" if forced_mock else decision.reason
+        )
         result.cial_latency_ms = elapsed
         result.cial_fallback_count = decision.fallback_count
         result.cial_health_state = decision.health_state.value
         return result
 
-    def _resolve_preferred_model(self, preferred_model_id: str | None) -> str:
-        """
-        Select internal CIAL model id.
-
-        When ``CIAL_PROVIDER=openai``, prefer the OpenAI model even if Protocol
-        V1 wire model is still ``cobra-core-qwen3-8b``.
-        """
-        if self.config.default_provider == "openai":
-            return self.config.openai_model
-        return preferred_model_id or self.config.default_model
+    def _resolve_route_target(self, preferred_model_id: str | None) -> tuple[str, str, bool]:
+        """Return (preferred_model_id, effective_provider, forced_mock)."""
+        if self.config.can_use_live_provider:
+            return self.config.openai_model, "openai", False
+        preferred = preferred_model_id or DEFAULT_MODEL
+        if self.config.default_provider == "mock":
+            preferred = preferred_model_id or self.config.default_model or DEFAULT_MODEL
+        forced = self.config.default_provider == "openai"
+        return preferred, "mock", forced
 
     def complete_as_protocol(
         self,
@@ -153,11 +188,6 @@ class CialEngine:
         delay_ms: int = 0,
         fail: bool = False,
     ) -> ProtoResult:
-        """
-        Generate and return Protocol V1 InferenceResult (content/tokens/ms only).
-
-        Maps CialError → InferenceFailedError for InferenceService.
-        """
         try:
             result = self.complete(
                 messages,

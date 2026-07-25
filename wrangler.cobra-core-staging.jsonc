@@ -22,10 +22,16 @@
 		"APP_ENV": "staging",
 		"COBRA_CORE_VERSION": "v0.9.0-rc1",
 		"COBRA_CORE_REVISION": "ec400d83a9cc8105557bda2105f177cc619638b2",
-		"COBRA_CORE_KILL_SWITCH": "false"
+		"COBRA_CORE_KILL_SWITCH": "false",
+		"CIAL_ENABLED": "true",
+		"CIAL_LIVE_PROVIDER_ENABLED": "false",
+		"CIAL_PROVIDER": "mock",
+		"CIAL_DEFAULT_PROVIDER": "mock",
+		"CIAL_ROUTING_POLICY": "default"
 	},
-	// Secret via GitHub Actions or:
-	//   npx wrangler secret put COBRA_CORE_AUTH_SECRET -c wrangler.cobra-core-staging.jsonc
+	// Secrets via GitHub Actions / wrangler secret put (never plain vars):
+	//   COBRA_CORE_AUTH_SECRET
+	//   OPENAI_API_KEY
 	"containers": [
 		{
 			"class_name": "CobraCoreContainer",

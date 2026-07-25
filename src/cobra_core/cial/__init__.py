@@ -11,6 +11,7 @@ from cobra_core.cial.capabilities import Capability
 from cobra_core.cial.config import CialConfig, load_cial_config
 from cobra_core.cial.engine import CialEngine
 from cobra_core.cial.errors import CialError, CialErrorCode
+from cobra_core.cial.guards import LiveRequestGuard
 from cobra_core.cial.health import HealthState
 from cobra_core.cial.providers.mock import MockProvider
 from cobra_core.cial.providers.openai_compatible import OpenAICompatibleProvider
@@ -31,6 +32,7 @@ __all__ = [
     "GenerateRequest",
     "HealthState",
     "InferenceResult",
+    "LiveRequestGuard",
     "MockProvider",
     "ModelRecord",
     "OpenAICompatibleProvider",

@@ -15,6 +15,24 @@ export type Env = {
   COBRA_CORE_KILL_SWITCH: string;
   /** Wrangler secret — never log. */
   COBRA_CORE_AUTH_SECRET: string;
+  /** KC-021 — plain vars only (never secrets). */
+  CIAL_ENABLED?: string;
+  CIAL_LIVE_PROVIDER_ENABLED?: string;
+  CIAL_PROVIDER?: string;
+  CIAL_DEFAULT_PROVIDER?: string;
+  CIAL_DEFAULT_MODEL?: string;
+  CIAL_ROUTING_POLICY?: string;
+  OPENAI_BASE_URL?: string;
+  OPENAI_MODEL?: string;
+  OPENAI_TIMEOUT_SECONDS?: string;
+  OPENAI_MAX_RETRIES?: string;
+  CIAL_LIVE_MAX_INPUT_CHARS?: string;
+  CIAL_LIVE_MAX_OUTPUT_TOKENS?: string;
+  CIAL_LIVE_MAX_CONCURRENT?: string;
+  CIAL_LIVE_DAILY_REQUEST_QUOTA?: string;
+  CIAL_LIVE_DAILY_COST_CEILING?: string;
+  /** Wrangler secret — never log / never put in vars. */
+  OPENAI_API_KEY?: string;
 };
 
 const CERTIFIED_REVISION = "ec400d83a9cc8105557bda2105f177cc619638b2";
@@ -28,6 +46,10 @@ export class CobraCoreContainer extends Container<Env> {
   constructor(ctx: DurableObjectState, env: Env) {
     super(ctx, env);
     const kill = /^(1|true|yes|on)$/i.test(String(env.COBRA_CORE_KILL_SWITCH ?? "false"));
+    // KC-021: live provider is opt-in. Defaults keep mock / disabled.
+    const liveEnabled = /^(1|true|yes|on)$/i.test(
+      String(env.CIAL_LIVE_PROVIDER_ENABLED ?? "false"),
+    );
     this.envVars = {
       APP_ENV: env.APP_ENV || "staging",
       COBRA_CORE_VERSION: env.COBRA_CORE_VERSION || CERTIFIED_VERSION,
@@ -43,6 +65,22 @@ export class CobraCoreContainer extends Container<Env> {
       COBRA_CORE_MAX_CONCURRENT: "2",
       COBRA_CORE_REQUIRE_ORG_HEADER: "true",
       PORT: "8080",
+      CIAL_ENABLED: env.CIAL_ENABLED || "true",
+      CIAL_LIVE_PROVIDER_ENABLED: liveEnabled ? "true" : "false",
+      CIAL_PROVIDER: env.CIAL_PROVIDER || "mock",
+      CIAL_DEFAULT_PROVIDER: env.CIAL_DEFAULT_PROVIDER || env.CIAL_PROVIDER || "mock",
+      CIAL_DEFAULT_MODEL: env.CIAL_DEFAULT_MODEL || "",
+      CIAL_ROUTING_POLICY: env.CIAL_ROUTING_POLICY || "default",
+      OPENAI_BASE_URL: env.OPENAI_BASE_URL || "",
+      OPENAI_MODEL: env.OPENAI_MODEL || "",
+      OPENAI_TIMEOUT_SECONDS: env.OPENAI_TIMEOUT_SECONDS || "60",
+      OPENAI_MAX_RETRIES: env.OPENAI_MAX_RETRIES || "2",
+      OPENAI_API_KEY: env.OPENAI_API_KEY || "",
+      CIAL_LIVE_MAX_INPUT_CHARS: env.CIAL_LIVE_MAX_INPUT_CHARS || "32000",
+      CIAL_LIVE_MAX_OUTPUT_TOKENS: env.CIAL_LIVE_MAX_OUTPUT_TOKENS || "",
+      CIAL_LIVE_MAX_CONCURRENT: env.CIAL_LIVE_MAX_CONCURRENT || "1",
+      CIAL_LIVE_DAILY_REQUEST_QUOTA: env.CIAL_LIVE_DAILY_REQUEST_QUOTA || "",
+      CIAL_LIVE_DAILY_COST_CEILING: env.CIAL_LIVE_DAILY_COST_CEILING || "",
     };
   }
 
@@ -128,7 +166,8 @@ export default {
     // Shared staging instance (stateless mock Protocol V1).
     // Bump the name after auth-secret rotation so a fresh Container boots with
     // current Worker secrets (DO constructor envVars are not hot-reloaded).
-    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-ms08xjxg");
+    // Bump after KC-021 CIAL env/secret wiring so containers pick up new envVars.
+    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc021a");
     return container.fetch(request);
   },
 };

@@ -21,6 +21,8 @@ class CialErrorCode(StrEnum):
     TIMEOUT = "timeout"
     INVALID_RESPONSE = "invalid_response"
     INFERENCE_FAILED = "inference_failed"
+    QUOTA_EXCEEDED = "quota_exceeded"
+    LIVE_PROVIDER_DISABLED = "live_provider_disabled"
 
 
 # Map CIAL taxonomy → existing Protocol V1 ServiceOutcome / wire codes.
@@ -36,6 +38,8 @@ _PROTOCOL_CODE_MAP: dict[CialErrorCode, str] = {
     CialErrorCode.TIMEOUT: "timeout",
     CialErrorCode.INVALID_RESPONSE: "malformed_response",
     CialErrorCode.INFERENCE_FAILED: "provider_error",
+    CialErrorCode.QUOTA_EXCEEDED: "rate_limited",
+    CialErrorCode.LIVE_PROVIDER_DISABLED: "provider_disabled",
 }
 
 
