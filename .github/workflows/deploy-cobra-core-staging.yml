@@ -123,3 +123,76 @@ jobs:
           echo "Expected URL: https://cobra-core-staging.<subdomain>.workers.dev"
           echo "Image: registry.cloudflare.com/${CF_ACCOUNT_ID}/${IMAGE_NAME}:${CERTIFIED_TAG}"
           echo "CIAL_LIVE_PROVIDER_ENABLED default: false (opt-in via wrangler vars after approval)"
+
+      # KC-021: secret-safe provider probe (no keys/prompts/message text in logs).
+      - name: KC-021 OpenAI probe (safe metadata)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_BASE_URL: https://api.openai.com/v1
+          OPENAI_MODEL: gpt-5.4-mini
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "OPENAI_API_KEY not set — skipping live probe."
+            exit 0
+          fi
+          python3 <<'PY'
+          import json, os, urllib.error, urllib.request
+          key = os.environ["OPENAI_API_KEY"]
+          base = os.environ["OPENAI_BASE_URL"].rstrip("/")
+          model = os.environ["OPENAI_MODEL"]
+
+          def call(case: str, payload: dict) -> None:
+              req = urllib.request.Request(
+                  f"{base}/chat/completions",
+                  data=json.dumps(payload).encode("utf-8"),
+                  headers={
+                      "Authorization": f"Bearer {key}",
+                      "Content-Type": "application/json",
+                  },
+                  method="POST",
+              )
+              try:
+                  with urllib.request.urlopen(req, timeout=60) as resp:
+                      data = json.loads(resp.read().decode("utf-8"))
+                      content = ((data.get("choices") or [{}])[0].get("message") or {}).get("content") or ""
+                      usage = data.get("usage") or {}
+                      print(json.dumps({
+                          "case": case,
+                          "http": resp.status,
+                          "ok": True,
+                          "content_len": len(content),
+                          "total_tokens": usage.get("total_tokens"),
+                      }))
+              except urllib.error.HTTPError as exc:
+                  raw = exc.read().decode("utf-8", errors="replace")
+                  try:
+                      err = (json.loads(raw).get("error") or {})
+                  except json.JSONDecodeError:
+                      err = {}
+                  print(json.dumps({
+                      "case": case,
+                      "http": exc.code,
+                      "ok": False,
+                      "code": err.get("code"),
+                      "type": err.get("type"),
+                      "param": err.get("param"),
+                  }))
+
+          call("max_completion_tokens", {
+              "model": model,
+              "messages": [{"role": "user", "content": "Reply with exactly one word: pong"}],
+              "max_completion_tokens": 32,
+              "stream": False,
+          })
+          call("max_tokens_legacy", {
+              "model": model,
+              "messages": [{"role": "user", "content": "Reply with exactly one word: pong"}],
+              "max_tokens": 32,
+              "stream": False,
+          })
+          call("no_token_limit", {
+              "model": model,
+              "messages": [{"role": "user", "content": "Reply with exactly one word: pong"}],
+              "stream": False,
+          })
+          PY
