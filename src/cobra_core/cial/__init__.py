@@ -9,8 +9,10 @@ from __future__ import annotations
 
 from cobra_core.cial.capabilities import Capability
 from cobra_core.cial.config import CialConfig, load_cial_config
+from cobra_core.cial.engine import CialEngine
 from cobra_core.cial.errors import CialError, CialErrorCode
 from cobra_core.cial.health import HealthState
+from cobra_core.cial.providers.mock import MockProvider
 from cobra_core.cial.types import (
     GenerateRequest,
     InferenceResult,
@@ -22,11 +24,13 @@ from cobra_core.cial.types import (
 __all__ = [
     "Capability",
     "CialConfig",
+    "CialEngine",
     "CialError",
     "CialErrorCode",
     "GenerateRequest",
     "HealthState",
     "InferenceResult",
+    "MockProvider",
     "ModelRecord",
     "RoutingPolicy",
     "RoutingRequest",
