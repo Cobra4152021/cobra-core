@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from enum import Enum
+from enum import StrEnum
 
 from cobra_core.protocol_v1.inference import InferenceFailedError
 
 
-class CialErrorCode(str, Enum):
+class CialErrorCode(StrEnum):
     """Internal CIAL error codes (not Protocol V1 wire codes)."""
 
     PROVIDER_NOT_FOUND = "provider_not_found"

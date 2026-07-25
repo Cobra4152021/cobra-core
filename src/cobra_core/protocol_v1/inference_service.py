@@ -163,14 +163,17 @@ class InferenceService:
             if self.cfg.inference_mode in {"mock", "echo", "test"}:
                 self.state.record_generation()
                 if self._cial_config.enabled and self._cial_engine is not None:
-                    cial_result = self._cial_engine.complete(
-                        truncated,
-                        max_tokens,
-                        cancel_event=cancel_event,
-                        delay_ms=self.cfg.mock_delay_ms,
-                        fail=bool(fail),
-                        preferred_model_id=self.cfg.model,
-                    )
+                    try:
+                        cial_result = self._cial_engine.complete(
+                            truncated,
+                            max_tokens,
+                            cancel_event=cancel_event,
+                            delay_ms=self.cfg.mock_delay_ms,
+                            fail=bool(fail),
+                            preferred_model_id=self.cfg.model,
+                        )
+                    except CialError as exc:
+                        raise to_inference_failed(exc) from None
                     cial_meta.update(
                         {
                             "cial_provider_id": cial_result.cial_provider_id,

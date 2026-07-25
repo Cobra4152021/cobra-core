@@ -119,9 +119,7 @@ def test_lowest_latency_routing() -> None:
         _model("slow", latency=LatencyTier.SLOW),
         _model("fast", latency=LatencyTier.FAST),
     )
-    decision = DeterministicRouter(reg).route(
-        RoutingRequest(policy=RoutingPolicy.LOWEST_LATENCY)
-    )
+    decision = DeterministicRouter(reg).route(RoutingRequest(policy=RoutingPolicy.LOWEST_LATENCY))
     assert decision.model_id == "fast"
 
 
@@ -130,9 +128,7 @@ def test_highest_quality_routing() -> None:
         _model("basic", quality=QualityTier.LOW),
         _model("best", quality=QualityTier.PREMIUM),
     )
-    decision = DeterministicRouter(reg).route(
-        RoutingRequest(policy=RoutingPolicy.HIGHEST_QUALITY)
-    )
+    decision = DeterministicRouter(reg).route(RoutingRequest(policy=RoutingPolicy.HIGHEST_QUALITY))
     assert decision.model_id == "best"
 
 

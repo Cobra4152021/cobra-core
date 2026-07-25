@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
+from typing import Any
+
 from cobra_core.cial.capabilities import Capability
 from cobra_core.cial.errors import CialError, CialErrorCode
 from cobra_core.cial.health import HealthState, is_routable_health
@@ -178,9 +181,9 @@ class DeterministicRouter:
         self,
         candidates: list[ModelRecord],
         *,
-        key,
+        key: Callable[[ModelRecord], tuple[Any, ...]],
     ) -> ModelRecord:
-        def sort_key(m: ModelRecord) -> tuple:
+        def sort_key(m: ModelRecord) -> tuple[Any, ...]:
             return (
                 *key(m),
                 _health_preference(m.health),

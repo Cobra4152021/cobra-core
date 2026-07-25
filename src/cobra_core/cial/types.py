@@ -4,14 +4,14 @@ from __future__ import annotations
 
 import threading
 from dataclasses import dataclass, field
-from enum import Enum
+from enum import StrEnum
 from typing import Any
 
 from cobra_core.cial.capabilities import Capability
 from cobra_core.cial.health import HealthState
 
 
-class RoutingPolicy(str, Enum):
+class RoutingPolicy(StrEnum):
     """Deterministic routing policies (Phase 1; fallback execution is later)."""
 
     DEFAULT = "default"
@@ -23,7 +23,7 @@ class RoutingPolicy(str, Enum):
     MANUAL = "manual"
 
 
-class QualityTier(str, Enum):
+class QualityTier(StrEnum):
     """Relative quality ranking for deterministic highest_quality routing."""
 
     LOW = "low"
@@ -32,7 +32,7 @@ class QualityTier(str, Enum):
     PREMIUM = "premium"
 
 
-class LatencyTier(str, Enum):
+class LatencyTier(StrEnum):
     """Relative latency ranking for deterministic lowest_latency routing."""
 
     FAST = "fast"

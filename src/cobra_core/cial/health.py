@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from enum import Enum
+from enum import StrEnum
 
 
-class HealthState(str, Enum):
+class HealthState(StrEnum):
     """Typed health for providers and registered models."""
 
     UNKNOWN = "unknown"

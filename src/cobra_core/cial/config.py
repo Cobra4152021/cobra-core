@@ -5,8 +5,8 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass
 
-from cobra_core.protocol_v1.constants import DEFAULT_MODEL
 from cobra_core.cial.types import RoutingPolicy
+from cobra_core.protocol_v1.constants import DEFAULT_MODEL
 
 DEFAULT_PROVIDER = "mock"
 
@@ -46,15 +46,12 @@ def load_cial_config() -> CialConfig:
         policy = RoutingPolicy(policy_raw)
     except ValueError as exc:
         raise CialConfigError(
-            "CIAL_ROUTING_POLICY must be one of: "
-            + ", ".join(p.value for p in RoutingPolicy)
+            "CIAL_ROUTING_POLICY must be one of: " + ", ".join(p.value for p in RoutingPolicy)
         ) from exc
 
     return CialConfig(
         enabled=_env_bool("CIAL_ENABLED", True),
-        default_provider=(
-            os.environ.get("CIAL_DEFAULT_PROVIDER", "").strip() or DEFAULT_PROVIDER
-        ),
+        default_provider=(os.environ.get("CIAL_DEFAULT_PROVIDER", "").strip() or DEFAULT_PROVIDER),
         default_model=(os.environ.get("CIAL_DEFAULT_MODEL", "").strip() or DEFAULT_MODEL),
         routing_policy=policy,
     )

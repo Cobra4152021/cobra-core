@@ -17,7 +17,12 @@ from cobra_core.cial.types import (
     RoutingPolicy,
     RoutingRequest,
 )
-from cobra_core.protocol_v1.inference import InferenceCancelledError, InferenceResult as ProtoResult
+from cobra_core.protocol_v1.inference import (
+    InferenceCancelledError,
+)
+from cobra_core.protocol_v1.inference import (
+    InferenceResult as ProtoResult,
+)
 
 
 class CialEngine:

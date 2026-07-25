@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from enum import Enum
+from enum import StrEnum
 
 
-class Capability(str, Enum):
+class Capability(StrEnum):
     """Machine-readable capabilities a model may declare."""
 
     TEXT = "text"
@@ -17,7 +17,9 @@ class Capability(str, Enum):
     RESEARCH = "research"
 
 
-def parse_capabilities(values: list[str] | tuple[str, ...] | frozenset[str]) -> frozenset[Capability]:
+def parse_capabilities(
+    values: list[str] | tuple[str, ...] | frozenset[str],
+) -> frozenset[Capability]:
     """Parse capability strings into a frozenset; unknown names raise ValueError."""
     out: set[Capability] = set()
     for raw in values:
