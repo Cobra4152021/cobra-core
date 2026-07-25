@@ -47,7 +47,9 @@
 			"image": "registry.cloudflare.com/ef3a70f5368245d987e2f2bb4a351b4a/cobra-core-staging:v0.9.0-rc1",
 			// Allow overlap during secret-rotation / CIAL instance bumps (KC-018/021).
 			"max_instances": 10,
-			"instance_type": "basic"
+			"instance_type": "basic",
+			"rollout_active_grace_period": 0,
+			"rollout_step_percentage": 100
 		}
 	],
 	"durable_objects": {
