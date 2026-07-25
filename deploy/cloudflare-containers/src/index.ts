@@ -171,8 +171,8 @@ export default {
     // Shared staging instance (stateless mock Protocol V1).
     // Bump the name after auth-secret rotation so a fresh Container boots with
     // current Worker secrets (DO constructor envVars are not hot-reloaded).
-    // Bump after KC-021 CIAL env/secret wiring so containers pick up new envVars.
-    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc021a");
+    // Bump after OPENAI secret/var binding so containers pick up new envVars.
+    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc021b");
     return container.fetch(request);
   },
 };
