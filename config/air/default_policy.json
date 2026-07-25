@@ -1,0 +1,14 @@
+{
+  "policy_id": "default_v1",
+  "prefer_live_when_required": true,
+  "prefer_healthy_over_degraded": true,
+  "provider_preference": {
+    "openai": 10,
+    "mock": 50
+  },
+  "excluded_providers": [],
+  "excluded_models": [],
+  "metadata": {
+    "description": "KC-022 human-governed AIR policy (deterministic, no learning)"
+  }
+}
