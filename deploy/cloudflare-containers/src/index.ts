@@ -193,8 +193,8 @@ export default {
     // Bump the name after auth-secret rotation so a fresh Container boots with
     // current Worker secrets (DO constructor envVars are not hot-reloaded).
     // Bump after OPENAI secret/var binding so containers pick up new envVars.
-    // kc021k: edgeBuild stamp + unique image tag (force image rollout).
-    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc021k");
+    // kc021m: raise live max output tokens to 2048 for Computer proposals.
+    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc021m");
     return container.fetch(request);
   },
 };
