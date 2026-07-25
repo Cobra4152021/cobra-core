@@ -1,0 +1,34 @@
+"""
+Cobra Intelligence Abstraction Layer (CIAL).
+
+Provider-neutral inference contracts inside Cobra Core. Protocol V1 remains
+the external wire; Computer continues to talk only to Core.
+"""
+
+from __future__ import annotations
+
+from cobra_core.cial.capabilities import Capability
+from cobra_core.cial.config import CialConfig, load_cial_config
+from cobra_core.cial.errors import CialError, CialErrorCode
+from cobra_core.cial.health import HealthState
+from cobra_core.cial.types import (
+    GenerateRequest,
+    InferenceResult,
+    ModelRecord,
+    RoutingPolicy,
+    RoutingRequest,
+)
+
+__all__ = [
+    "Capability",
+    "CialConfig",
+    "CialError",
+    "CialErrorCode",
+    "GenerateRequest",
+    "HealthState",
+    "InferenceResult",
+    "ModelRecord",
+    "RoutingPolicy",
+    "RoutingRequest",
+    "load_cial_config",
+]
