@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
-import json
-from typing import Any
-
 import pytest
 
+from cial_fakes import FakeTransport
+from cial_fakes import completion_body as _completion_body
 from cobra_core.cial.config import CialConfig, load_cial_config
 from cobra_core.cial.engine import CialEngine
 from cobra_core.cial.errors import CialError, CialErrorCode
@@ -20,50 +19,6 @@ from cobra_core.cial.registry import ModelRegistry, ProviderRegistry
 from cobra_core.cial.router import DeterministicRouter
 from cobra_core.cial.types import GenerateRequest, RoutingPolicy, RoutingRequest
 from cobra_core.protocol_v1.constants import DEFAULT_MODEL
-
-
-class FakeTransport:
-    """Scripted HTTP responses for deterministic provider tests."""
-
-    def __init__(self, script: list[HttpResponse | Exception] | None = None) -> None:
-        self.script = list(script or [])
-        self.calls: list[dict[str, Any]] = []
-
-    def request(
-        self,
-        *,
-        method: str,
-        url: str,
-        headers: dict[str, str],
-        body: bytes | None,
-        timeout_seconds: float,
-    ) -> HttpResponse:
-        # Never retain secrets in call log beyond presence flag.
-        self.calls.append(
-            {
-                "method": method,
-                "url": url,
-                "has_auth": "Authorization" in headers,
-                "auth_redacted": headers.get("Authorization", "").startswith("Bearer "),
-                "body": body,
-                "timeout_seconds": timeout_seconds,
-            }
-        )
-        if not self.script:
-            raise AssertionError("FakeTransport script exhausted")
-        item = self.script.pop(0)
-        if isinstance(item, Exception):
-            raise item
-        return item
-
-
-def _completion_body(content: str = "hello", *, prompt: int = 3, completion: int = 2) -> bytes:
-    payload = {
-        "id": "chatcmpl-test",
-        "choices": [{"index": 0, "message": {"role": "assistant", "content": content}}],
-        "usage": {"prompt_tokens": prompt, "completion_tokens": completion},
-    }
-    return json.dumps(payload).encode("utf-8")
 
 
 def test_map_http_status_taxonomy() -> None:
@@ -294,6 +249,8 @@ def test_engine_routes_openai_when_configured() -> None:
         default_provider="openai",
         default_model="gpt-test",
         routing_policy=RoutingPolicy.DEFAULT,
+        app_env="staging",
+        live_provider_enabled=True,
         openai_api_key="k",
         openai_model="gpt-test",
         openai_max_retries=0,
