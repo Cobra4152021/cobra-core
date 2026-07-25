@@ -2,7 +2,7 @@
 
 **Status:** Certified for staging  
 **Branch:** `kc-023-air-staging-cert`  
-**Certification commit / tag:** `e892128be0681b5968762197e59042ee81fda707`  
+**Certification tag:** `kc-023-air-staging-cert` → `d7c0de350d5ecc1a3a7d076804bb11a377347c6d`  
 **Deployed image commit:** `2b92b4194507202cd6c296e40a358be2af56cefc`  
 
 **Base:** KC-022 `a2b466d`  
