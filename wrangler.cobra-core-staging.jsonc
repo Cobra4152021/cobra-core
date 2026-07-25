@@ -1,0 +1,53 @@
+/**
+ * KC-016 — Cobra Core Protocol V1 on Cloudflare Containers (STAGING ONLY).
+ *
+ * NO LOCAL DOCKER. Image is built/pushed by GitHub Actions
+ * (.github/workflows/deploy-cobra-core-staging.yml), then this Worker
+ * references the Cloudflare Registry image below.
+ *
+ * Never deploy this as production.
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "cobra-core-staging",
+	"main": "deploy/cloudflare-containers/src/index.ts",
+	"compatibility_date": "2026-07-24",
+	"compatibility_flags": ["nodejs_compat"],
+	"workers_dev": true,
+	"preview_urls": false,
+	"observability": {
+		"enabled": true
+	},
+	"vars": {
+		"APP_ENV": "staging",
+		"COBRA_CORE_VERSION": "v0.9.0-rc1",
+		"COBRA_CORE_REVISION": "ec400d83a9cc8105557bda2105f177cc619638b2",
+		"COBRA_CORE_KILL_SWITCH": "false"
+	},
+	// Secret via GitHub Actions or:
+	//   npx wrangler secret put COBRA_CORE_AUTH_SECRET -c wrangler.cobra-core-staging.jsonc
+	"containers": [
+		{
+			"class_name": "CobraCoreContainer",
+			// Pre-built in CI — no local Dockerfile build on deploy
+			"image": "registry.cloudflare.com/ef3a70f5368245d987e2f2bb4a351b4a/cobra-core-staging:v0.9.0-rc1",
+			// Allow brief overlap during secret-rotation instance bumps (KC-018).
+			"max_instances": 4,
+			"instance_type": "basic"
+		}
+	],
+	"durable_objects": {
+		"bindings": [
+			{
+				"name": "COBRA_CORE_CONTAINER",
+				"class_name": "CobraCoreContainer"
+			}
+		]
+	},
+	"migrations": [
+		{
+			"tag": "kc016_v1",
+			"new_sqlite_classes": ["CobraCoreContainer"]
+		}
+	]
+}

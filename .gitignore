@@ -144,6 +144,17 @@ datasets/curated/**
 !datasets/curated/.gitkeep
 !datasets/curated/README.md
 
+# Node / accidental local toolchains (never cloud-build)
+node_modules/
+**/node_modules/
+
+# Local experiment scratch (not KC product; never cloud-build)
+cobra/
+kc001/artifacts/
+kc002/artifacts/
+kc001/
+kc002/
+
 # OS / IDE
 .DS_Store
 Thumbs.db

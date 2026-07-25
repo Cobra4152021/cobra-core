@@ -1,0 +1,41 @@
+# KC-016 — local/staging compose for Cobra Core RC1 (mock inference)
+# Usage:
+#   export COBRA_CORE_AUTH_SECRET=...   # never commit
+#   docker compose -f deploy/staging-rc1/docker-compose.yml up --build
+
+services:
+  cobra-core-staging:
+    build:
+      context: ../..
+      dockerfile: deploy/staging-rc1/Dockerfile
+    image: cobra-core-staging-rc1:v0.9.0-rc1
+    ports:
+      - "8080:8080"
+    environment:
+      COBRA_CORE_AUTH_SECRET: ${COBRA_CORE_AUTH_SECRET:?set COBRA_CORE_AUTH_SECRET}
+      COBRA_CORE_ENABLED: ${COBRA_CORE_ENABLED:-true}
+      COBRA_CORE_REVISION: ec400d83a9cc8105557bda2105f177cc619638b2
+      COBRA_CORE_GIT_SHA: ec400d83a9cc8105557bda2105f177cc619638b2
+      COBRA_INFERENCE_MODE: ${COBRA_INFERENCE_MODE:-mock}
+      COBRA_CORE_MODEL: ${COBRA_CORE_MODEL:-cobra-core-qwen3-8b}
+      COBRA_CORE_METRICS_ENABLED: "true"
+      COBRA_CORE_MAX_CONCURRENT: ${COBRA_CORE_MAX_CONCURRENT:-2}
+      COBRA_CORE_DAILY_REQUEST_LIMIT: ${COBRA_CORE_DAILY_REQUEST_LIMIT:-}
+      COBRA_CORE_TIMEOUT_MS: ${COBRA_CORE_TIMEOUT_MS:-120000}
+      COBRA_CORE_REQUIRE_ORG_HEADER: ${COBRA_CORE_REQUIRE_ORG_HEADER:-true}
+      COBRA_PROTOCOL_VERSION: "1"
+      COBRA_COMPATIBILITY_VERSION: "1"
+      PORT: "8080"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import os,urllib.request; s=os.environ['COBRA_CORE_AUTH_SECRET']; r=urllib.request.Request('http://127.0.0.1:8080/health', headers={'Authorization':'Bearer '+s}); urllib.request.urlopen(r, timeout=4)",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped

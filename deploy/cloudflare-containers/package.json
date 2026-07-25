@@ -1,0 +1,19 @@
+{
+  "name": "cobra-core-staging-containers",
+  "private": true,
+  "version": "0.9.0-rc1",
+  "description": "KC-016 Cloudflare Containers Worker for Cobra Core staging",
+  "type": "module",
+  "scripts": {
+    "deploy": "wrangler deploy -c ../../wrangler.cobra-core-staging.jsonc",
+    "secret:auth": "wrangler secret put COBRA_CORE_AUTH_SECRET -c ../../wrangler.cobra-core-staging.jsonc",
+    "tail": "wrangler tail -c ../../wrangler.cobra-core-staging.jsonc"
+  },
+  "dependencies": {
+    "@cloudflare/containers": "^0.0.30"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0",
+    "wrangler": "^4.114.0"
+  }
+}

@@ -1,0 +1,44 @@
+# KC-016 — Fly.io staging app for Cobra Core RC1 (Internal Alpha)
+# Deploy from repository root (checked out at certified SHA or with that tree):
+#
+#   flyctl apps create cobra-core-staging-rc1
+#   flyctl secrets set COBRA_CORE_AUTH_SECRET="..." -a cobra-core-staging-rc1
+#   flyctl deploy --remote-only -c fly.staging-rc1.toml
+#
+# Do not deploy production from this file.
+
+app = "cobra-core-staging-rc1"
+primary_region = "ord"
+
+[build]
+  dockerfile = "deploy/staging-rc1/Dockerfile"
+
+[env]
+  COBRA_CORE_REVISION = "ec400d83a9cc8105557bda2105f177cc619638b2"
+  COBRA_CORE_GIT_SHA = "ec400d83a9cc8105557bda2105f177cc619638b2"
+  COBRA_PROTOCOL_VERSION = "1"
+  COBRA_COMPATIBILITY_VERSION = "1"
+  COBRA_INFERENCE_MODE = "mock"
+  COBRA_CORE_ENABLED = "true"
+  COBRA_CORE_METRICS_ENABLED = "true"
+  COBRA_CORE_MAX_CONCURRENT = "2"
+  COBRA_CORE_REQUIRE_ORG_HEADER = "true"
+  COBRA_CORE_MODEL = "cobra-core-qwen3-8b"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
+
+  [[http_service.tcp_checks]]
+    interval = "15s"
+    timeout = "2s"
+    grace_period = "20s"
+
+[[vm]]
+  memory = "512mb"
+  cpu_kind = "shared"
+  cpus = 1

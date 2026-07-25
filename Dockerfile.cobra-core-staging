@@ -1,0 +1,54 @@
+# KC-016 — Cobra Core Protocol V1 for Cloudflare Containers (staging only)
+# Certified Core package: v0.9.0-rc1 / ec400d83a9cc8105557bda2105f177cc619638b2
+# Build context: repository root. Do not bake secrets into the image.
+# Platform: linux/amd64 (Cloudflare Containers requirement)
+
+FROM python:3.12-slim-bookworm
+
+LABEL org.opencontainers.image.title="cobra-core-staging"
+LABEL org.opencontainers.image.version="v0.9.0-rc1"
+LABEL org.opencontainers.image.revision="ec400d83a9cc8105557bda2105f177cc619638b2"
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    COBRA_CORE_VERSION=v0.9.0-rc1 \
+    COBRA_CORE_REVISION=ec400d83a9cc8105557bda2105f177cc619638b2 \
+    COBRA_CORE_GIT_SHA=ec400d83a9cc8105557bda2105f177cc619638b2 \
+    COBRA_PROTOCOL_VERSION=1 \
+    COBRA_COMPATIBILITY_VERSION=1 \
+    COBRA_INFERENCE_MODE=mock \
+    COBRA_CORE_ENABLED=true \
+    COBRA_CORE_KILL_SWITCH=false \
+    COBRA_CORE_METRICS_ENABLED=true \
+    COBRA_CORE_MAX_CONCURRENT=2 \
+    COBRA_CORE_REQUIRE_ORG_HEADER=true \
+    COBRA_CORE_INTERNAL_PORT=18080 \
+    PORT=8080 \
+    APP_ENV=staging
+
+WORKDIR /app
+
+RUN useradd --create-home --uid 10001 --shell /usr/sbin/nologin cobra \
+  && mkdir -p /app \
+  && chown -R cobra:cobra /app
+
+COPY --chown=cobra:cobra pyproject.toml README.md ./
+COPY --chown=cobra:cobra src ./src
+COPY --chown=cobra:cobra scripts ./scripts
+COPY --chown=cobra:cobra deploy/staging-rc1/staging_edge.py /app/staging_edge.py
+
+RUN pip install --no-cache-dir . \
+  && rm -rf /root/.cache/pip
+
+USER cobra
+
+EXPOSE 8080
+
+# Authenticated health requires secret at runtime — TCP-level readiness only here.
+# Smoke tests use Bearer against /health after deploy.
+HEALTHCHECK --interval=30s --timeout=5s --start-period=25s --retries=3 \
+  CMD python -c "import socket; s=socket.create_connection(('127.0.0.1', int(__import__('os').environ.get('PORT','8080'))), 3); s.close()"
+
+# staging_edge binds 0.0.0.0:$PORT and fails closed on revision mismatch
+CMD ["python", "/app/staging_edge.py"]
