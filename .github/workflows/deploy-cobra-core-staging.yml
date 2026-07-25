@@ -68,19 +68,29 @@ jobs:
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      # Unique tag per commit — same :v0.9.0-rc1 tag was not rolling containers to new digests.
+      - name: Resolve image tag
+        id: image
+        run: |
+          SHORT_SHA="$(echo "${GITHUB_SHA}" | cut -c1-12)"
+          IMAGE_TAG="${CERTIFIED_TAG}-${SHORT_SHA}"
+          echo "tag=${IMAGE_TAG}" >> "$GITHUB_OUTPUT"
+          echo "IMAGE_TAG=${IMAGE_TAG}"
+          echo "registry.cloudflare.com/${CF_ACCOUNT_ID}/${IMAGE_NAME}:${IMAGE_TAG}"
+
       - name: Build image (GitHub runner Docker — not local)
         run: |
           docker build \
             --platform linux/amd64 \
             -f Dockerfile.cobra-core-staging \
-            -t "${IMAGE_NAME}:${CERTIFIED_TAG}" \
+            -t "${IMAGE_NAME}:${{ steps.image.outputs.tag }}" \
             .
 
       - name: Push image to Cloudflare Registry
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
-          npx wrangler containers push "${IMAGE_NAME}:${CERTIFIED_TAG}" \
+          npx wrangler containers push "${IMAGE_NAME}:${{ steps.image.outputs.tag }}" \
             -c wrangler.cobra-core-staging.jsonc
 
       # Bind secrets BEFORE deploy so Container DO envVars capture them on boot.
@@ -111,6 +121,29 @@ jobs:
             -c wrangler.cobra-core-staging.jsonc
           echo "OPENAI_API_KEY secret bound (value not logged)."
 
+      - name: Point wrangler at this commit's image tag
+        run: |
+          IMAGE_REF="registry.cloudflare.com/${CF_ACCOUNT_ID}/${IMAGE_NAME}:${{ steps.image.outputs.tag }}"
+          python3 - <<'PY'
+          import json, os, pathlib, re
+          path = pathlib.Path("wrangler.cobra-core-staging.jsonc")
+          text = path.read_text(encoding="utf-8")
+          # Strip // comments for a safe patch of the image field only.
+          image_ref = os.environ["IMAGE_REF"]
+          patched, n = re.subn(
+              r'("image"\s*:\s*")[^"]*(")',
+              rf'\g<1>{image_ref}\g<2>',
+              text,
+              count=1,
+          )
+          if n != 1:
+              raise SystemExit(f"failed to patch image field (replacements={n})")
+          path.write_text(patched, encoding="utf-8")
+          print(f"wrangler image -> {image_ref}")
+          PY
+        env:
+          IMAGE_REF: registry.cloudflare.com/${{ env.CF_ACCOUNT_ID }}/${{ env.IMAGE_NAME }}:${{ steps.image.outputs.tag }}
+
       - name: Deploy Worker (uses pre-built registry image)
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -121,7 +154,7 @@ jobs:
         run: |
           echo "Staging Worker: cobra-core-staging"
           echo "Expected URL: https://cobra-core-staging.<subdomain>.workers.dev"
-          echo "Image: registry.cloudflare.com/${CF_ACCOUNT_ID}/${IMAGE_NAME}:${CERTIFIED_TAG}"
+          echo "Image: registry.cloudflare.com/${CF_ACCOUNT_ID}/${IMAGE_NAME}:${{ steps.image.outputs.tag }}"
           echo "CIAL_LIVE_PROVIDER_ENABLED default: false (opt-in via wrangler vars after approval)"
 
       # KC-021: secret-safe provider probe (no keys/prompts/message text in logs).
