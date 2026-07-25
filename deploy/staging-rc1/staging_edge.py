@@ -234,6 +234,30 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
 
                     cfg = load_cial_config()
                     profile = cfg.resolved_profile()
+                    from cobra_core.cial.providers import openai_compatible as oai_mod
+                    from cobra_core.cial.types import GenerateRequest
+
+                    uses_mct = hasattr(oai_mod, "_uses_max_completion_tokens") and (
+                        oai_mod._uses_max_completion_tokens(profile.model_id)
+                    )
+                    token_field = "unknown"
+                    if cfg.openai_configured:
+                        probe = oai_mod.OpenAICompatibleProvider(
+                            api_key="probe",
+                            model_id=profile.model_id,
+                            base_url=cfg.openai_base_url,
+                        )
+                        built = probe._build_payload(
+                            GenerateRequest(
+                                messages=[{"role": "user", "content": "x"}],
+                                max_tokens=16,
+                                model_id=profile.model_id,
+                            )
+                        )
+                        if "max_completion_tokens" in built:
+                            token_field = "max_completion_tokens"
+                        elif "max_tokens" in built:
+                            token_field = "max_tokens"
                     cial_gate = {
                         "enabled": cfg.enabled,
                         "appEnv": cfg.app_env,
@@ -248,6 +272,9 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                             else ""
                         ),
                         "canUseLive": cfg.can_use_live_provider,
+                        "hasGpt5TokenHelper": hasattr(oai_mod, "_uses_max_completion_tokens"),
+                        "usesMaxCompletionTokens": bool(uses_mct),
+                        "payloadTokenField": token_field,
                     }
                 except Exception as exc:  # noqa: BLE001 — diagnostic only
                     cial_gate = {"error": type(exc).__name__}
