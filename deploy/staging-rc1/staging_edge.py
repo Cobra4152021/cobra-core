@@ -27,6 +27,8 @@ from urllib.parse import urlparse
 
 CERTIFIED_VERSION = "v0.9.0-rc1"
 CERTIFIED_REVISION = "ec400d83a9cc8105557bda2105f177cc619638b2"
+# Bump when staging_edge diagnostics change — proves which image is serving.
+STAGING_EDGE_BUILD = "kc021-edge-20260725j"
 
 logger = logging.getLogger("cobra_core.staging_edge")
 
@@ -259,6 +261,7 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                         elif "max_tokens" in built:
                             token_field = "max_tokens"
                     cial_gate = {
+                        "edgeBuild": STAGING_EDGE_BUILD,
                         "enabled": cfg.enabled,
                         "appEnv": cfg.app_env,
                         "profile": cfg.active_profile,
