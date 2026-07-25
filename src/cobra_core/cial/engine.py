@@ -1,11 +1,19 @@
-"""CIAL engine: route + generate through registered providers."""
+"""CIAL engine: AIR route + generate through registered providers."""
 
 from __future__ import annotations
 
+import os
 import threading
 import time
 from typing import Any
 
+from cobra_core.air.bridge import (
+    air_decision_to_route_decision,
+    air_request_for_config,
+    build_adaptive_router,
+)
+from cobra_core.air.errors import AirRoutingError
+from cobra_core.air.router import AdaptiveRouter
 from cobra_core.cial.config import CialConfig, load_cial_config
 from cobra_core.cial.errors import CialError, CialErrorCode, to_inference_failed
 from cobra_core.cial.guards import LiveRequestGuard
@@ -29,12 +37,19 @@ from cobra_core.protocol_v1.inference import (
 )
 
 
+def _air_enabled() -> bool:
+    """AIR is on by default (KC-022). Set AIR_ENABLED=false to use legacy router."""
+    raw = os.environ.get("AIR_ENABLED", "true").strip().lower()
+    return raw not in {"0", "false", "no", "off"}
+
+
 class CialEngine:
     """
-    Orchestrates deterministic routing and provider generation.
+    Orchestrates adaptive (AIR) or legacy deterministic routing + generation.
 
     Live OpenAI-compatible use is opt-in via ``CIAL_LIVE_PROVIDER_ENABLED``
     and only on staging. Mock remains the safe default / rollback path.
+    Computer never selects provider/model — AIR chooses from capabilities.
     """
 
     def __init__(
@@ -44,25 +59,27 @@ class CialEngine:
         providers: ProviderRegistry | None = None,
         models: ModelRegistry | None = None,
         router: DeterministicRouter | None = None,
+        air_router: AdaptiveRouter | None = None,
         live_guard: LiveRequestGuard | None = None,
     ) -> None:
         self.config = config or load_cial_config()
         self.providers = providers or ProviderRegistry()
         self.models = models or ModelRegistry()
         self.router = router or DeterministicRouter(self.models)
+        self.air_router = air_router
         self.live_guard = live_guard or LiveRequestGuard(self.config)
+        self._use_air = _air_enabled()
 
     @classmethod
     def build_default(cls, config: CialConfig | None = None) -> CialEngine:
         """Construct engine with mock always registered; openai only when live-ready."""
         cfg = config or load_cial_config()
         engine = cls(config=cfg)
-        profile = cfg.resolved_profile()
         mock_model_id = cfg.mock_model or DEFAULT_MODEL
         mock = MockProvider(model_id=mock_model_id)
         engine.providers.register_provider_models(mock, engine.models)
 
-        if cfg.can_use_live_provider and profile.provider_id == "openai":
+        if cfg.can_use_live_provider:
             openai = OpenAICompatibleProvider(
                 api_key=cfg.openai_api_key,
                 base_url=cfg.openai_base_url,
@@ -71,6 +88,9 @@ class CialEngine:
                 max_retries=cfg.openai_max_retries,
             )
             engine.providers.register_provider_models(openai, engine.models)
+
+        if engine._use_air:
+            engine.air_router = build_adaptive_router(cfg)
 
         return engine
 
@@ -89,28 +109,22 @@ class CialEngine:
         """Route then generate; raises CialError or InferenceCancelledError."""
         t0 = time.perf_counter()
         route_policy = policy or self.config.routing_policy
-        preferred, effective_provider, forced_mock = self._resolve_route_target(preferred_model_id)
-
-        if route_policy == RoutingPolicy.MANUAL:
-            request = RoutingRequest(
-                policy=RoutingPolicy.MANUAL,
-                manual_provider_id=effective_provider,
-                manual_model_id=(
-                    self.config.openai_model if effective_provider == "openai" else preferred
-                ),
-            )
-        else:
-            request = RoutingRequest(
-                policy=route_policy,
-                preferred_model_id=preferred,
-            )
 
         acquired = False
         model: ModelRecord | None = None
         decision = None
         result: InferenceResult | None = None
+        air_reason: str | None = None
+        forced_mock = False
         try:
-            decision = self.router.route(request)
+            if self._use_air and route_policy != RoutingPolicy.MANUAL:
+                decision, air_reason, forced_mock = self._route_with_air()
+            else:
+                decision, forced_mock = self._route_legacy(
+                    route_policy, preferred_model_id
+                )
+                air_reason = None
+
             if decision.provider_id == "openai" and not self.config.can_use_live_provider:
                 raise CialError(
                     CialErrorCode.LIVE_PROVIDER_DISABLED,
@@ -139,6 +153,8 @@ class CialEngine:
             result = provider.generate(gen_req)
         except InferenceCancelledError:
             raise
+        except AirRoutingError:
+            raise
         except CialError:
             raise
         finally:
@@ -157,18 +173,61 @@ class CialEngine:
         result.cial_provider_id = decision.provider_id
         result.cial_model_id = decision.model_id
         result.cial_profile = profile.profile_id
+        # Keep CIAL RoutingPolicy wire value for KC-018/019 compatibility.
+        # AIR detail lives in cial_route_reason (auditable, no prompts).
         result.cial_routing_policy = decision.policy.value
-        result.cial_route_reason = (
-            "profile_live_unavailable_use_offline" if forced_mock else decision.reason
-        )
+        if forced_mock:
+            result.cial_route_reason = "profile_live_unavailable_use_offline"
+        elif air_reason is not None:
+            result.cial_route_reason = air_reason
+        else:
+            result.cial_route_reason = decision.reason
         result.cial_latency_ms = elapsed
         result.cial_fallback_count = decision.fallback_count
         result.cial_health_state = decision.health_state.value
         return result
 
+    def _route_with_air(self) -> tuple[Any, str, bool]:
+        """AIR capability routing; returns (RouteDecision, reason, forced_offline)."""
+        router = self.air_router or build_adaptive_router(self.config)
+        self.air_router = router
+        request = air_request_for_config(self.config)
+        profile = self.config.resolved_profile()
+        forced = bool(
+            profile.requires_live
+            and not self.config.can_use_live_provider
+            and request.metadata.get("live_gate_closed")
+        )
+        air_decision = router.route(request)
+        return air_decision_to_route_decision(air_decision), air_decision.reason, forced
+
+    def _route_legacy(
+        self,
+        route_policy: RoutingPolicy,
+        preferred_model_id: str | None,
+    ) -> tuple[Any, bool]:
+        preferred, effective_provider, forced_mock = self._resolve_route_target(
+            preferred_model_id
+        )
+        if route_policy == RoutingPolicy.MANUAL:
+            request = RoutingRequest(
+                policy=RoutingPolicy.MANUAL,
+                manual_provider_id=effective_provider,
+                manual_model_id=(
+                    self.config.openai_model if effective_provider == "openai" else preferred
+                ),
+            )
+        else:
+            request = RoutingRequest(
+                policy=route_policy,
+                preferred_model_id=preferred,
+            )
+        decision = self.router.route(request)
+        return decision, forced_mock
+
     def _resolve_route_target(self, preferred_model_id: str | None) -> tuple[str, str, bool]:
         """
-        Return (preferred_model_id, effective_provider, forced_offline).
+        Legacy path: Return (preferred_model_id, effective_provider, forced_offline).
 
         Profiles that require live (e.g. research) fall back to mock/offline when
         the live gate is closed — never silently activate a vendor.
