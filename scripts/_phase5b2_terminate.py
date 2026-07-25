@@ -17,7 +17,9 @@ OUT = Path(__file__).resolve().parents[1] / "evaluations/diagnostics/phase-5b2-l
 def api(method: str, url: str) -> tuple[int, object]:
     key = (os.environ.get("RUNPOD_API_KEY") or "").strip()
     req = urllib.request.Request(
-        url, method=method, headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
+        url,
+        method=method,
+        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
     )
     try:
         with urllib.request.urlopen(req, timeout=120) as resp:
@@ -57,7 +59,14 @@ def main() -> int:
     if not pod_id:
         print("no_pod")
         (OUT / "teardown.json").write_text(
-            json.dumps({"terminated_at": datetime.now(UTC).isoformat(), "no_pod": True, "zero_billable_remaining": True}, indent=2)
+            json.dumps(
+                {
+                    "terminated_at": datetime.now(UTC).isoformat(),
+                    "no_pod": True,
+                    "zero_billable_remaining": True,
+                },
+                indent=2,
+            )
             + "\n",
             encoding="utf-8",
         )
@@ -66,7 +75,11 @@ def main() -> int:
     dst, _ = api("DELETE", f"https://rest.runpod.io/v1/pods/{pod_id}")
     time.sleep(4)
     _, pods = api("GET", "https://rest.runpod.io/v1/pods")
-    remain = [p.get("id") for p in pods if isinstance(pods, list) and p.get("id") == pod_id] if isinstance(pods, list) else []
+    remain = (
+        [p.get("id") for p in pods if isinstance(pods, list) and p.get("id") == pod_id]
+        if isinstance(pods, list)
+        else []
+    )
     ended = datetime.now(UTC)
     hours = 0.0
     if started:

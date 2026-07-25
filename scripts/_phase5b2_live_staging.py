@@ -86,7 +86,9 @@ def ssh_base(ip: str, port: int) -> list[str]:
     ]
 
 
-def remote(ip: str, port: int, script: str, timeout: int = 3600) -> subprocess.CompletedProcess[bytes]:
+def remote(
+    ip: str, port: int, script: str, timeout: int = 3600
+) -> subprocess.CompletedProcess[bytes]:
     b64 = base64.b64encode(script.encode()).decode()
     return subprocess.run(
         ssh_base(ip, port) + [f"echo {b64} | base64 -d | bash -s"],
@@ -225,7 +227,16 @@ def make_source_tarball() -> Path:
     tgz = tmp / "cobra-core.tgz"
     # Prefer git archive at exact commit when available.
     r = subprocess.run(
-        ["git", "-c", f"safe.directory={ROOT}", "archive", "--format=tar.gz", CORE_COMMIT, "-o", str(tgz)],
+        [
+            "git",
+            "-c",
+            f"safe.directory={ROOT}",
+            "archive",
+            "--format=tar.gz",
+            CORE_COMMIT,
+            "-o",
+            str(tgz),
+        ],
         cwd=ROOT,
         capture_output=True,
         text=True,
@@ -268,9 +279,12 @@ def direct_validate_via_pod(
     spec.loader.exec_module(mod)
     results = mod.validate(ip, port, base, token, revision, git_sha)
     for item in results:
-        log(("PASS" if item.get("pass") else "FAIL"), item.get("name"), str(item.get("detail", ""))[:120])
+        log(
+            ("PASS" if item.get("pass") else "FAIL"),
+            item.get("name"),
+            str(item.get("detail", ""))[:120],
+        )
     return results
-
 
 
 def main() -> int:
@@ -287,7 +301,12 @@ def main() -> int:
 
     cost_plan = {
         "provider": "RunPod",
-        "preferred_gpus": ["NVIDIA L4", "NVIDIA RTX A5000", "NVIDIA GeForce RTX 3090", "NVIDIA A40"],
+        "preferred_gpus": [
+            "NVIDIA L4",
+            "NVIDIA RTX A5000",
+            "NVIDIA GeForce RTX 3090",
+            "NVIDIA A40",
+        ],
         "hourly_cap_usd": COST_CAP_HR,
         "budget_usd": BUDGET_USD,
         "kill_deadline_minutes": KILL_DEADLINE_S // 60,
@@ -346,7 +365,11 @@ def main() -> int:
             raise RuntimeError("kill deadline before deploy")
 
         tgz = make_source_tarball()
-        remote(ip, port, "mkdir -p /workspace/transfer /workspace/models /workspace/cobra-core /workspace/logs")
+        remote(
+            ip,
+            port,
+            "mkdir -p /workspace/transfer /workspace/models /workspace/cobra-core /workspace/logs",
+        )
         scp_to(ip, port, tgz, "/workspace/transfer/cobra-core.tgz")
         scp_to(ip, port, RUNTIME_REQ, "/workspace/transfer/requirements-cloud-runtime.txt")
 
@@ -489,8 +512,12 @@ exit 1
         # Direct HTTPS validation from the pod (Cloudflare tunnel DNS may fail on local Windows).
         log("direct_validate", base_url)
         ip, port, cost, gpu = refresh(pod_id)
-        direct_results = direct_validate_via_pod(ip, port, base_url, auth_secret, revision, CORE_COMMIT)
-        write_json(OUT / "direct-core-results.json", {"base_url": base_url, "results": direct_results})
+        direct_results = direct_validate_via_pod(
+            ip, port, base_url, auth_secret, revision, CORE_COMMIT
+        )
+        write_json(
+            OUT / "direct-core-results.json", {"base_url": base_url, "results": direct_results}
+        )
         if not all(x.get("pass") for x in direct_results):
             raise RuntimeError("direct Core validation failed")
 

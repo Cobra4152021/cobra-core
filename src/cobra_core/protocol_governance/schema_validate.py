@@ -69,8 +69,10 @@ def validate_instance(
     if "type" in schema and not _type_ok(instance, schema["type"]):
         raise SchemaValidationError(f"{path}: type mismatch (expected {schema['type']})")
 
-    if isinstance(instance, str) and "minLength" in schema and len(instance) < int(
-        schema["minLength"]
+    if (
+        isinstance(instance, str)
+        and "minLength" in schema
+        and len(instance) < int(schema["minLength"])
     ):
         raise SchemaValidationError(f"{path}: shorter than minLength")
 

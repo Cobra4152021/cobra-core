@@ -71,7 +71,9 @@ def ssh_base(ip: str, port: int) -> list[str]:
     ]
 
 
-def remote(ip: str, port: int, script: str, timeout: int = 3600) -> subprocess.CompletedProcess[bytes]:
+def remote(
+    ip: str, port: int, script: str, timeout: int = 3600
+) -> subprocess.CompletedProcess[bytes]:
     b64 = base64.b64encode(script.encode()).decode()
     return subprocess.run(
         ssh_base(ip, port) + [f"echo {b64} | base64 -d | bash -s"],
@@ -135,7 +137,12 @@ def create_pod(pub: str) -> str:
             **v,
         }
         st, payload = api("POST", "https://rest.runpod.io/v1/pods", body)
-        log("create_try", v.get("gpuTypeIds"), st, (payload or {}).get("error") if isinstance(payload, dict) else None)
+        log(
+            "create_try",
+            v.get("gpuTypeIds"),
+            st,
+            (payload or {}).get("error") if isinstance(payload, dict) else None,
+        )
         if st in (200, 201) and isinstance(payload, dict) and payload.get("id"):
             return str(payload["id"])
     raise RuntimeError("no capacity for create")
@@ -181,7 +188,7 @@ def wait_ssh(pod_id: str) -> tuple[str, int, float, str | None]:
     api("POST", f"https://rest.runpod.io/v1/pods/{pod_id}/stop")
     time.sleep(8)
     api("POST", f"https://rest.runpod.io/v1/pods/{pod_id}/start")
-    for i in range(40):
+    for _i in range(40):
         try:
             ip, port, cost, gpu = refresh(pod_id)
             r = subprocess.run(
@@ -323,7 +330,11 @@ echo STARTED:$!
         dst, _ = api("DELETE", f"https://rest.runpod.io/v1/pods/{pod_id}")
         time.sleep(3)
         _, pods = api("GET", "https://rest.runpod.io/v1/pods")
-        remain = [p.get("id") for p in pods if isinstance(pods, list) and p.get("id") == pod_id] if isinstance(pods, list) else []
+        remain = (
+            [p.get("id") for p in pods if isinstance(pods, list) and p.get("id") == pod_id]
+            if isinstance(pods, list)
+            else []
+        )
         cost_rec = {
             "schema": "cobra.cloud.cost_record.v1",
             "phase": "4-full",
@@ -340,9 +351,20 @@ echo STARTED:$!
             "delete_http_status": dst,
             "remaining_matching_pod_ids": remain,
         }
-        (OUT / "cost-record.json").write_text(json.dumps(cost_rec, indent=2) + "\n", encoding="utf-8")
-        (CLOUD / "phase4-full-cost-record.json").write_text(json.dumps(cost_rec, indent=2) + "\n", encoding="utf-8")
-        log("terminated", dst, "cost", cost_rec["estimated_compute_cost_usd"], "hours", round(hours, 4))
+        (OUT / "cost-record.json").write_text(
+            json.dumps(cost_rec, indent=2) + "\n", encoding="utf-8"
+        )
+        (CLOUD / "phase4-full-cost-record.json").write_text(
+            json.dumps(cost_rec, indent=2) + "\n", encoding="utf-8"
+        )
+        log(
+            "terminated",
+            dst,
+            "cost",
+            cost_rec["estimated_compute_cost_usd"],
+            "hours",
+            round(hours, 4),
+        )
     return 0
 
 

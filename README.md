@@ -80,6 +80,13 @@ Only then is LoRA / adapter work justified.
 
 This does **not** designate any model as Cobra Core.
 
+## Current release
+
+**v0.9.0-rc1** (`0.9.0rc1`) — Protocol V1 software release candidate.  
+See `docs/releases/v0.9.0-rc1/RELEASE_NOTES.md` and `CHANGELOG.md`.
+
+Official CobraBench score remains **0.840** (`prepared-not-run` for this RC).
+
 ## Requirements
 
 - Python **3.12+**

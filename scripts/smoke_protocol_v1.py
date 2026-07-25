@@ -84,7 +84,11 @@ def main() -> int:
 
     try:
         st, body, _ = req("GET", f"{base}/health", token="wrong")
-        check("missing_or_invalid_auth", st == 401 and body.get("code") == "auth_failed", f"status={st}")
+        check(
+            "missing_or_invalid_auth",
+            st == 401 and body.get("code") == "auth_failed",
+            f"status={st}",
+        )
 
         st, body, hdrs = req("GET", f"{base}/health", token=None)
         check("missing_auth", st == 401, f"status={st}")
@@ -125,8 +129,16 @@ def main() -> int:
         )
         check(
             "latency_fields",
-            all(k in latency for k in ("queue_ms", "provider_latency_ms", "inference_ms", "total_ms")),
-            str({k: latency.get(k) for k in ("queue_ms", "provider_latency_ms", "inference_ms", "total_ms")}),
+            all(
+                k in latency
+                for k in ("queue_ms", "provider_latency_ms", "inference_ms", "total_ms")
+            ),
+            str(
+                {
+                    k: latency.get(k)
+                    for k in ("queue_ms", "provider_latency_ms", "inference_ms", "total_ms")
+                }
+            ),
         )
         check("request_id_header", hdrs.get("x-request-id") == "cc_smoke_complete", "")
         check(
@@ -138,7 +150,9 @@ def main() -> int:
         # Protocol V1 streaming mode = one-shot wire + local event synthesis
         events = oneshot_stream_events(text=text, request_id="cc_smoke_complete")
         try:
-            schema = json.loads((schema_dir / "streaming.events.schema.json").read_text(encoding="utf-8"))
+            schema = json.loads(
+                (schema_dir / "streaming.events.schema.json").read_text(encoding="utf-8")
+            )
             validate_instance(events, schema, base_dir=schema_dir)
             check("streaming_v1_oneshot_events", True, "schema ok")
         except Exception as exc:
@@ -195,7 +209,9 @@ def main() -> int:
         "results": [{"name": n, "pass": ok} for n, ok, _ in results],
         "secret_redacted": True,
     }
-    (EVIDENCE / "smoke-summary.json").write_text(json.dumps(evidence, indent=2) + "\n", encoding="utf-8")
+    (EVIDENCE / "smoke-summary.json").write_text(
+        json.dumps(evidence, indent=2) + "\n", encoding="utf-8"
+    )
 
     failed = [n for n, ok, _ in results if not ok]
     print("summary", f"{len(results) - len(failed)}/{len(results)} passed")

@@ -26,6 +26,8 @@ KNOWN_CODES = frozenset(
         "unsupported_protocol",
         "incompatible_compatibility",
         "internal_error",
+        # RC1 admission / kill-switch (schema allows arbitrary string codes).
+        "rate_limited",
     }
 )
 
@@ -71,5 +73,6 @@ def http_status_for_code(code: str) -> int:
         "provider_error": 502,
         "model_unavailable": 503,
         "provider_disabled": 503,
+        "rate_limited": 429,
         "internal_error": 500,
     }.get(code, 500)

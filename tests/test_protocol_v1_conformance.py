@@ -436,10 +436,20 @@ def test_approx_tokens() -> None:
     assert approx_tokens("abcd") == 1
 
 
-def test_cobrabench_not_imported() -> None:
-    import sys
+def test_protocol_v1_does_not_depend_on_cobrabench() -> None:
+    """Protocol V1 must not import CobraBench (static source check; suite-order safe)."""
+    import ast
+    from pathlib import Path
 
-    assert not any("cobrabench_run" in m for m in sys.modules)
+    root = Path(__file__).resolve().parents[1] / "src" / "cobra_core" / "protocol_v1"
+    for path in root.rglob("*.py"):
+        tree = ast.parse(path.read_text(encoding="utf-8"))
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Import):
+                for alias in node.names:
+                    assert "cobrabench" not in alias.name.lower(), path
+            elif isinstance(node, ast.ImportFrom) and node.module:
+                assert "cobrabench" not in node.module.lower(), path
 
 
 def test_http_server_valid_auth(cfg) -> None:

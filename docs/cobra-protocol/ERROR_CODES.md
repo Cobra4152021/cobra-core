@@ -21,12 +21,15 @@ Normalized error object (always):
 | `bad_request` | 400 | Invalid JSON shape or field values |
 | `timeout` | 408 / 504 | Deadline exceeded |
 | `provider_error` | 5xx / other HTTP | Generic provider failure |
-| `provider_disabled` | 503 | Provider disabled (often client-local) |
+| `provider_disabled` | 503 | Provider disabled, or `COBRA_CORE_ENABLED=false` (kill switch) |
 | `missing_base_url` | — | Client config (Computer) |
 | `missing_auth_secret` | — | Client config (Computer) |
 | `malformed_response` | 502 | Non-JSON or unusable body |
 | `empty_response` | 502 | Empty completion text |
 | `cancelled` | 499 | Caller abort |
+| `rate_limited` | 429 | Server admission: concurrency or daily quota exceeded (RC1) |
+| `context_limit` / `output_limit` | 400 | Server-enforced limits |
+| `model_unavailable` | 503 | Runtime not loaded / load failed |
 
 Computer may synthesize `http_<status>` style reasons on health failure paths; Core server responses use the normalized object above.
 

@@ -33,7 +33,9 @@ def log(*a: object) -> None:
     print(*a, flush=True)
 
 
-def run(cmd: list[str] | str, *, cwd: Path, env: dict | None = None, timeout: int = 3600) -> subprocess.CompletedProcess[str]:
+def run(
+    cmd: list[str] | str, *, cwd: Path, env: dict | None = None, timeout: int = 3600
+) -> subprocess.CompletedProcess[str]:
     merged = os.environ.copy()
     if env:
         merged.update(env)
@@ -76,8 +78,12 @@ def main() -> int:
             env=env,
             timeout=9000,
         )
-        (OUT / "core-provision-stdout.txt").write_text((prov.stdout or "")[-8000:], encoding="utf-8")
-        (OUT / "core-provision-stderr.txt").write_text((prov.stderr or "")[-4000:], encoding="utf-8")
+        (OUT / "core-provision-stdout.txt").write_text(
+            (prov.stdout or "")[-8000:], encoding="utf-8"
+        )
+        (OUT / "core-provision-stderr.txt").write_text(
+            (prov.stderr or "")[-4000:], encoding="utf-8"
+        )
         if prov.returncode != 0:
             raise RuntimeError("core provision failed")
         handoff_src = LEGACY_OUT / "connection-handoff.json"
@@ -91,7 +97,11 @@ def main() -> int:
 
         # 2) Recover auth secret from pod process env
         log("recover_secret")
-        rec = run([sys.executable, str(CORE_ROOT / "scripts/_phase5b2_recover_secret.py")], cwd=CORE_ROOT, timeout=180)
+        rec = run(
+            [sys.executable, str(CORE_ROOT / "scripts/_phase5b2_recover_secret.py")],
+            cwd=CORE_ROOT,
+            timeout=180,
+        )
         (OUT / "recover-secret-stdout.txt").write_text(
             (rec.stdout or "").replace("SECRET", "[redacted-token]")[-2000:], encoding="utf-8"
         )
@@ -137,7 +147,9 @@ def main() -> int:
         if "PHASE5B2_CORE_BEGIN" not in patched2:
             raise RuntimeError("deploy-staging overlay lost after npm run build")
         deploy = run(["node", "scripts/deploy-staging.mjs"], cwd=COMPUTER_ROOT, timeout=900)
-        (OUT / "computer-deploy-enable-stdout.txt").write_text((deploy.stdout or "")[-8000:], encoding="utf-8")
+        (OUT / "computer-deploy-enable-stdout.txt").write_text(
+            (deploy.stdout or "")[-8000:], encoding="utf-8"
+        )
         if deploy.returncode != 0:
             raise RuntimeError("computer staging enable deploy failed")
         # Verify generated wrangler config actually carries Core enablement.
@@ -172,24 +184,32 @@ def main() -> int:
             env={"COBRA_CORE_STAGING_MARKER": "staging"},
             timeout=900,
         )
-        (OUT / "auth-session-proof-stdout.txt").write_text((proof.stdout or "")[-8000:], encoding="utf-8")
-        (OUT / "auth-session-proof-stderr.txt").write_text((proof.stderr or "")[-4000:], encoding="utf-8")
+        (OUT / "auth-session-proof-stdout.txt").write_text(
+            (proof.stdout or "")[-8000:], encoding="utf-8"
+        )
+        (OUT / "auth-session-proof-stderr.txt").write_text(
+            (proof.stderr or "")[-4000:], encoding="utf-8"
+        )
         # Copy computer evidence into Core evidence dir
         comp_ev = COMPUTER_ROOT / "evaluations/diagnostics/phase-5b3-authenticated-session"
         if comp_ev.is_dir():
             for f in comp_ev.glob("*"):
                 if f.is_file():
                     shutil.copy2(f, OUT / f.name)
-        results["steps"].append({"auth_session_proof": proof.returncode == 0, "exit": proof.returncode})
+        results["steps"].append(
+            {"auth_session_proof": proof.returncode == 0, "exit": proof.returncode}
+        )
         if proof.returncode != 0:
             raise RuntimeError("auth-session-proof failed")
 
         # 5) Kill-switch: disable staging Core, redeploy, delete secret
         log("kill_switch")
         mod.patch_deploy_staging(False, handoff)
-        build2 = run(["npm", "run", "build"], cwd=COMPUTER_ROOT, timeout=600)
+        run(["npm", "run", "build"], cwd=COMPUTER_ROOT, timeout=600)
         deploy2 = run(["node", "scripts/deploy-staging.mjs"], cwd=COMPUTER_ROOT, timeout=900)
-        (OUT / "computer-deploy-disable-stdout.txt").write_text((deploy2.stdout or "")[-4000:], encoding="utf-8")
+        (OUT / "computer-deploy-disable-stdout.txt").write_text(
+            (deploy2.stdout or "")[-4000:], encoding="utf-8"
+        )
         ks = run(
             ["npm", "run", "cobra-core:kill-switch", "--", "--staging", "--dry-run"],
             cwd=COMPUTER_ROOT,
@@ -220,7 +240,11 @@ def main() -> int:
     finally:
         # Always terminate GPU + wipe local secret
         try:
-            term = run([sys.executable, str(CORE_ROOT / "scripts/_phase5b2_terminate.py")], cwd=CORE_ROOT, timeout=180)
+            term = run(
+                [sys.executable, str(CORE_ROOT / "scripts/_phase5b2_terminate.py")],
+                cwd=CORE_ROOT,
+                timeout=180,
+            )
             (OUT / "terminate-stdout.txt").write_text((term.stdout or "")[-2000:], encoding="utf-8")
             results["terminate_rc"] = term.returncode
         except Exception as exc:

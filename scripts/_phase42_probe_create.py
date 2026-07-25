@@ -78,13 +78,27 @@ def main() -> int:
         st, payload = try_create(body)
         err = payload.get("error") if isinstance(payload, dict) else None
         pid = payload.get("id") if isinstance(payload, dict) else None
-        attempts.append({"name": name, "status": st, "error": err, "pod_id": pid, "cost": payload.get("costPerHr") if isinstance(payload, dict) else None})
+        attempts.append(
+            {
+                "name": name,
+                "status": st,
+                "error": err,
+                "pod_id": pid,
+                "cost": payload.get("costPerHr") if isinstance(payload, dict) else None,
+            }
+        )
         print(name, st, err or pid)
         if pid:
-            (OUT / "probe-success.json").write_text(json.dumps(payload, indent=2)[:20000] + "\n", encoding="utf-8")
-            (OUT / "create-attempts.json").write_text(json.dumps(attempts, indent=2) + "\n", encoding="utf-8")
+            (OUT / "probe-success.json").write_text(
+                json.dumps(payload, indent=2)[:20000] + "\n", encoding="utf-8"
+            )
+            (OUT / "create-attempts.json").write_text(
+                json.dumps(attempts, indent=2) + "\n", encoding="utf-8"
+            )
             return 0
-    (OUT / "create-attempts.json").write_text(json.dumps(attempts, indent=2) + "\n", encoding="utf-8")
+    (OUT / "create-attempts.json").write_text(
+        json.dumps(attempts, indent=2) + "\n", encoding="utf-8"
+    )
     return 1
 
 

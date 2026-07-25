@@ -146,7 +146,7 @@ def main() -> int:
             for i in range(repeats):
                 g = generate(tokenizer, model, device, task["prompt"], max_new)
                 outputs.append(g)
-                (task_dir / f"output_{i+1}.txt").write_text(g["text"], encoding="utf-8")
+                (task_dir / f"output_{i + 1}.txt").write_text(g["text"], encoding="utf-8")
         except Exception as exc:  # noqa: BLE001
             err = f"{type(exc).__name__}: {exc}"
             (task_dir / "error.txt").write_text(traceback.format_exc()[-4000:], encoding="utf-8")
@@ -173,7 +173,9 @@ def main() -> int:
         }
         report["tasks"].append(entry)
         (task_dir / "metrics.json").write_text(json.dumps(entry, indent=2) + "\n", encoding="utf-8")
-        (out_dir / "run_partial.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+        (out_dir / "run_partial.json").write_text(
+            json.dumps(report, indent=2) + "\n", encoding="utf-8"
+        )
         print(f"task_end {tid} success={entry['success']}", flush=True)
 
     report["ended_at"] = datetime.now(UTC).isoformat()

@@ -14,7 +14,6 @@ import json
 import os
 import re
 import subprocess
-import sys
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -32,7 +31,9 @@ def log(*a: object) -> None:
     print(*a, flush=True)
 
 
-def run(cmd: list[str], *, cwd: Path, env: dict | None = None, timeout: int = 1800) -> subprocess.CompletedProcess[str]:
+def run(
+    cmd: list[str], *, cwd: Path, env: dict | None = None, timeout: int = 1800
+) -> subprocess.CompletedProcess[str]:
     merged = os.environ.copy()
     if env:
         merged.update(env)
@@ -94,7 +95,15 @@ cfg.vars = {{
 def put_secret(secret: str) -> None:
     # Pipe secret to wrangler without echoing. Staging Worker name is custom.
     attempts = (
-        ["npx", "wrangler", "secret", "put", "COBRA_CORE_AUTH_SECRET", "--name", "hidden-grid-os-staging"],
+        [
+            "npx",
+            "wrangler",
+            "secret",
+            "put",
+            "COBRA_CORE_AUTH_SECRET",
+            "--name",
+            "hidden-grid-os-staging",
+        ],
         ["npx", "wrangler", "secret", "put", "COBRA_CORE_AUTH_SECRET", "--env", "staging"],
     )
     last_err = ""
@@ -118,8 +127,26 @@ def put_secret(secret: str) -> None:
 
 def delete_secret() -> None:
     for args in (
-        ["npx", "wrangler", "secret", "delete", "COBRA_CORE_AUTH_SECRET", "--name", "hidden-grid-os-staging", "--force"],
-        ["npx", "wrangler", "secret", "delete", "COBRA_CORE_AUTH_SECRET", "--env", "staging", "--force"],
+        [
+            "npx",
+            "wrangler",
+            "secret",
+            "delete",
+            "COBRA_CORE_AUTH_SECRET",
+            "--name",
+            "hidden-grid-os-staging",
+            "--force",
+        ],
+        [
+            "npx",
+            "wrangler",
+            "secret",
+            "delete",
+            "COBRA_CORE_AUTH_SECRET",
+            "--env",
+            "staging",
+            "--force",
+        ],
     ):
         subprocess.run(
             args,
@@ -168,14 +195,22 @@ def main() -> int:
         log("deploy_staging_enable")
         # Rebuild so dist wrangler picks up current sources, then deploy with Core overlay.
         build = run(["npm", "run", "build"], cwd=COMPUTER_ROOT, timeout=600)
-        (OUT / "computer-build-enable-stdout.txt").write_text(build.stdout[-4000:], encoding="utf-8")
-        (OUT / "computer-build-enable-stderr.txt").write_text(build.stderr[-4000:], encoding="utf-8")
+        (OUT / "computer-build-enable-stdout.txt").write_text(
+            build.stdout[-4000:], encoding="utf-8"
+        )
+        (OUT / "computer-build-enable-stderr.txt").write_text(
+            build.stderr[-4000:], encoding="utf-8"
+        )
         if build.returncode != 0:
             raise RuntimeError("npm run build failed")
 
         deploy = run(["node", "scripts/deploy-staging.mjs"], cwd=COMPUTER_ROOT, timeout=900)
-        (OUT / "computer-deploy-enable-stdout.txt").write_text(deploy.stdout[-5000:], encoding="utf-8")
-        (OUT / "computer-deploy-enable-stderr.txt").write_text(deploy.stderr[-5000:], encoding="utf-8")
+        (OUT / "computer-deploy-enable-stdout.txt").write_text(
+            deploy.stdout[-5000:], encoding="utf-8"
+        )
+        (OUT / "computer-deploy-enable-stderr.txt").write_text(
+            deploy.stderr[-5000:], encoding="utf-8"
+        )
         if deploy.returncode != 0:
             raise RuntimeError("deploy:staging (enable) failed")
         results["steps"].append({"deploy_enable": True})
@@ -238,7 +273,9 @@ def main() -> int:
             try:
                 with urllib.request.urlopen(req, timeout=300) as resp:
                     data = json.loads(resp.read().decode())
-                text = (((data.get("choices") or [{}])[0].get("message") or {}).get("content")) or ""
+                text = (
+                    ((data.get("choices") or [{}])[0].get("message") or {}).get("content")
+                ) or ""
                 sanity.append(
                     {
                         "i": i,
@@ -250,7 +287,9 @@ def main() -> int:
                 )
             except Exception as exc:
                 sanity.append({"i": i, "ok": False, "error": type(exc).__name__})
-        (OUT / "real-model-sanity.json").write_text(json.dumps(sanity, indent=2) + "\n", encoding="utf-8")
+        (OUT / "real-model-sanity.json").write_text(
+            json.dumps(sanity, indent=2) + "\n", encoding="utf-8"
+        )
         results["steps"].append({"sanity": all(x.get("ok") for x in sanity), "count": len(sanity)})
 
         return 0 if all(x.get("ok") for x in sanity) else 1
@@ -265,7 +304,9 @@ def main() -> int:
             patch_deploy_staging(False, handoff)
             build = run(["npm", "run", "build"], cwd=COMPUTER_ROOT, timeout=600)
             deploy = run(["node", "scripts/deploy-staging.mjs"], cwd=COMPUTER_ROOT, timeout=900)
-            (OUT / "computer-deploy-disable-stdout.txt").write_text(deploy.stdout[-4000:], encoding="utf-8")
+            (OUT / "computer-deploy-disable-stdout.txt").write_text(
+                deploy.stdout[-4000:], encoding="utf-8"
+            )
             ks = run(
                 ["npm", "run", "cobra-core:kill-switch", "--", "--staging", "--dry-run"],
                 cwd=COMPUTER_ROOT,
@@ -286,7 +327,9 @@ def main() -> int:
             results["kill_switch_error"] = type(exc).__name__
             log("kill_switch_error", type(exc).__name__)
         results["ended_at"] = datetime.now(UTC).isoformat()
-        (OUT / "computer-staging-results.json").write_text(json.dumps(results, indent=2) + "\n", encoding="utf-8")
+        (OUT / "computer-staging-results.json").write_text(
+            json.dumps(results, indent=2) + "\n", encoding="utf-8"
+        )
 
 
 if __name__ == "__main__":

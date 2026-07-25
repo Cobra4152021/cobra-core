@@ -109,7 +109,9 @@ def scp_to(ip: str, port: int, local: Path, remote: str) -> None:
         raise RuntimeError(f"scp failed: {r.stderr[-500:]}")
 
 
-def remote(ip: str, port: int, script: str, timeout: int = 3600) -> subprocess.CompletedProcess[str]:
+def remote(
+    ip: str, port: int, script: str, timeout: int = 3600
+) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         ssh_base(ip, port) + ["bash", "-lc", script],
         capture_output=True,
@@ -149,9 +151,13 @@ def main() -> int:
     }
     log("creating_pod")
     st, pod = api("POST", "https://rest.runpod.io/v1/pods", create_body)
-    (OUT / "create-response.json").write_text(json.dumps(pod, indent=2)[:20000] + "\n", encoding="utf-8")
+    (OUT / "create-response.json").write_text(
+        json.dumps(pod, indent=2)[:20000] + "\n", encoding="utf-8"
+    )
     if st not in (200, 201) or not isinstance(pod, dict) or not pod.get("id"):
-        raise RuntimeError(f"create failed status={st} body_keys={list(pod) if isinstance(pod, dict) else type(pod)}")
+        raise RuntimeError(
+            f"create failed status={st} body_keys={list(pod) if isinstance(pod, dict) else type(pod)}"
+        )
     pod_id = pod["id"]
     log("pod_id", pod_id)
 
@@ -195,7 +201,9 @@ def main() -> int:
         "started_at": started.isoformat(),
     }
     (OUT / "pod-meta.json").write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
-    (CLOUD / "phase42-pod-meta.json").write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
+    (CLOUD / "phase42-pod-meta.json").write_text(
+        json.dumps(meta, indent=2) + "\n", encoding="utf-8"
+    )
 
     try:
         wait_ssh(ip, port)
@@ -323,8 +331,12 @@ python /workspace/cobra-pilot/_phase42_pilot_worker.py
             "delete_http_status": dst,
             "remaining_matching_pod_ids": remaining,
         }
-        (OUT / "cost-record.json").write_text(json.dumps(cost_rec, indent=2) + "\n", encoding="utf-8")
-        (CLOUD / "phase42-cost-record.json").write_text(json.dumps(cost_rec, indent=2) + "\n", encoding="utf-8")
+        (OUT / "cost-record.json").write_text(
+            json.dumps(cost_rec, indent=2) + "\n", encoding="utf-8"
+        )
+        (CLOUD / "phase42-cost-record.json").write_text(
+            json.dumps(cost_rec, indent=2) + "\n", encoding="utf-8"
+        )
         log("cost_usd", est_cost, "hours", round(hours, 4), "delete", dst)
 
     return 0

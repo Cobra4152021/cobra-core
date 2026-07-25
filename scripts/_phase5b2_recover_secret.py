@@ -126,7 +126,15 @@ def main() -> int:
         capture_output=True,
         timeout=60,
     )
-    print("secret_bytes", DEST.stat().st_size, "path", str(DEST), "base", keep.get("base_url"), flush=True)
+    print(
+        "secret_bytes",
+        DEST.stat().st_size,
+        "path",
+        str(DEST),
+        "base",
+        keep.get("base_url"),
+        flush=True,
+    )
     return 0
 
 

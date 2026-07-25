@@ -54,12 +54,15 @@ Gates apply to **future product/runtime releases** of the Cobra Core line. Passi
 
 | Requirement | Evidence | Status |
 | --- | --- | --- |
-| Repeated validation stable | Second full or agreed spot-check wave; REL-01 still Pass+ | **Not met** |
-| Reproducible evidence package | Hashes, env snapshot, fixtures, SHA256SUMS | **Not met** |
-| Operational documentation complete | Ops + DR + checklist exercised | Partially met (docs exist; drill not done) |
-| No Suite Invalid conditions | No bench gaming; no mid-run prompt tuning | Pending |
-| Security review current | `docs/security/SECURITY_REVIEW.md` + delta notes | Docs met; re-affirm at RC |
-| Product positioning / vision unchanged or versioned | `docs/product/` | Met as baseline |
+| Repeated validation stable | Second full or agreed spot-check wave; REL-01 still Pass+ | **Not met** (GPU-gated; prior Phase 4 stands) |
+| Reproducible software evidence package | `docs/releases/v0.9.0-rc1/`, CI, wheel build, frozen hashes | **Met** (software RC package) |
+| Operational documentation complete | Ops + RC1 deploy/rollback/config/troubleshoot | **Met** for loopback server; cloud DR drill still optional |
+| No Suite Invalid conditions | No bench gaming; no mid-run prompt tuning; CobraBench prepared-not-run | **Met** |
+| Security review current | `docs/security/SECURITY_REVIEW.md` + `docs/releases/v0.9.0-rc1/SECURITY_REVIEW_DELTA.md` | **Met** for RC1 scope |
+| Product positioning / vision unchanged or versioned | `docs/product/` + RC1 release notes | **Met** |
+| Process controls (kill switch, concurrency, quota, metrics) | Protocol V1 RC1 controls + tests | **Met** |
+| Offline soak (mock) | `test_offline_soak_mock_100_requests` | **Met** |
+| Live GPU soak / CobraBench re-run | Separate authorization | **Not met** (explicitly out of software-RC scope unless authorized) |
 
 ---
 

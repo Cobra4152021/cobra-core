@@ -13,6 +13,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from cobra_core.protocol_v1.admission import AdmissionController
 from cobra_core.protocol_v1.config import ServerConfig
 from cobra_core.protocol_v1.inference import (
     InferenceCancelledError,
@@ -22,6 +23,7 @@ from cobra_core.protocol_v1.inference import (
     run_local_qwen,
     truncate_messages,
 )
+from cobra_core.protocol_v1.metrics import METRICS, MetricsRegistry
 from cobra_core.protocol_v1.runtime_state import RuntimeState
 
 
@@ -42,9 +44,21 @@ class ServiceOutcome:
 
 
 class InferenceService:
-    def __init__(self, cfg: ServerConfig, state: RuntimeState) -> None:
+    def __init__(
+        self,
+        cfg: ServerConfig,
+        state: RuntimeState,
+        *,
+        admission: AdmissionController | None = None,
+        metrics: MetricsRegistry | None = None,
+    ) -> None:
         self.cfg = cfg
         self.state = state
+        self.admission = admission or AdmissionController(
+            max_concurrent=cfg.max_concurrent,
+            daily_request_limit=cfg.daily_request_limit,
+        )
+        self.metrics = metrics or METRICS
         self._adapter: Any | None = None
         self._manifest: Any | None = None
         self._artifact_dir: Path | None = None

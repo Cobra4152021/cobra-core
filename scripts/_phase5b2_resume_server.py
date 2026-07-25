@@ -8,7 +8,6 @@ import json
 import os
 import secrets
 import subprocess
-import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -92,7 +91,9 @@ def main() -> int:
     gpu = (p.get("machine") or {}).get("gpuTypeId")
     base_url = f"https://{pod_id}-8080.proxy.runpod.net"
     revision = f"phase-5b2-{CORE_COMMIT[:12]}"
-    auth_secret = (os.environ.get("COBRA_CORE_AUTH_SECRET") or "").strip() or secrets.token_urlsafe(32)
+    auth_secret = (os.environ.get("COBRA_CORE_AUTH_SECRET") or "").strip() or secrets.token_urlsafe(
+        32
+    )
     os.environ["COBRA_CORE_AUTH_SECRET"] = auth_secret
     secret_b64 = base64.b64encode(auth_secret.encode()).decode()
 
@@ -172,8 +173,12 @@ exit 1
 
     # Direct checks
     results = []
-    st, body, _ = http_json("GET", f"{base_url}/health", token=auth_secret, request_id="cc_resume_h")
-    results.append({"health": st, "reason": body.get("reason"), "protocolVersion": body.get("protocolVersion")})
+    st, body, _ = http_json(
+        "GET", f"{base_url}/health", token=auth_secret, request_id="cc_resume_h"
+    )
+    results.append(
+        {"health": st, "reason": body.get("reason"), "protocolVersion": body.get("protocolVersion")}
+    )
     st2, body2, _ = http_json(
         "POST",
         f"{base_url}/v1/chat/completions",
@@ -189,7 +194,9 @@ exit 1
     )
     text = (((body2.get("choices") or [{}])[0].get("message") or {}).get("content")) or ""
     results.append({"completion": st2, "chars": len(str(text)), "usage": body2.get("usage")})
-    (OUT / "direct-core-results.json").write_text(json.dumps({"base_url": base_url, "results": results}, indent=2) + "\n")
+    (OUT / "direct-core-results.json").write_text(
+        json.dumps({"base_url": base_url, "results": results}, indent=2) + "\n"
+    )
     (OUT / "connection-handoff.json").write_text(
         json.dumps(
             {

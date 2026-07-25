@@ -12,7 +12,9 @@ SSH_KEY = Path.home() / ".runpod/ssh/runpodctl-ssh-key"
 OUT = Path(__file__).resolve().parents[1] / "evaluations/diagnostics/phase-5b2-live-staging"
 
 
-def remote(ip: str, port: int, script: str, timeout: int = 900) -> subprocess.CompletedProcess[bytes]:
+def remote(
+    ip: str, port: int, script: str, timeout: int = 900
+) -> subprocess.CompletedProcess[bytes]:
     b64 = base64.b64encode(script.encode()).decode()
     return subprocess.run(
         [
@@ -35,7 +37,7 @@ def remote(ip: str, port: int, script: str, timeout: int = 900) -> subprocess.Co
     )
 
 
-REMOTE_PY = r'''
+REMOTE_PY = r"""
 import json, os, socket, time, urllib.request, urllib.error
 from urllib.parse import urlparse
 
@@ -127,7 +129,7 @@ check("tunnel_https_health", https_ok, https_detail)
 
 open("/workspace/logs/direct-results.json","w").write(json.dumps(results, indent=2))
 print("RESULTS_JSON_OK")
-'''
+"""
 
 
 def validate(

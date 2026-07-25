@@ -152,9 +152,13 @@ def handle_chat_completions(
     request_id = new_request_id(request_id_header)
     rt = state or RuntimeState(inference_mode=cfg.inference_mode)
     svc = service or InferenceService(cfg, rt)
+    metrics = svc.metrics
     cancel = cancel_event or threading.Event()
+    metrics.inc("requests_total")
 
     if not cfg.auth_configured or not verify_bearer(authorization, cfg.auth_secret):
+        metrics.inc("auth_failures")
+        metrics.inc("requests_error")
         err = normalized_error(
             code="auth_failed",
             message="Cobra Core authentication failed",
@@ -169,126 +173,192 @@ def handle_chat_completions(
         )
         return http_status_for_code("auth_failed"), err, request_id
 
-    normalized, err = validate_completion_request(payload, cfg, request_id=request_id)
-    if err is not None or normalized is None:
-        assert err is not None
+    if not cfg.enabled:
+        metrics.inc("kill_switch_blocks")
+        metrics.inc("requests_error")
+        err = normalized_error(
+            code="provider_disabled",
+            message="Cobra Core is disabled",
+            request_id=request_id,
+        )
         log_event(
             "completion",
-            status=400,
-            code=err.get("code"),
+            status=503,
+            code="provider_disabled",
             requestId=request_id,
             endpoint="/v1/chat/completions",
         )
-        return 400, err, request_id
+        return http_status_for_code("provider_disabled"), err, request_id
 
-    if not rt.inference_ready and cfg.inference_mode not in {"mock", "echo", "test"}:
-        # Attempt lazy load once; failures become model_unavailable.
-        try:
-            svc.ensure_runtime()
-        except Exception:
-            e = normalized_error(
-                code="model_unavailable",
-                message="Model runtime is unavailable",
-                request_id=request_id,
-            )
-            log_event(
-                "completion",
-                status=503,
-                code="model_unavailable",
-                requestId=request_id,
-                endpoint="/v1/chat/completions",
-            )
-            return 503, e, request_id
-
-    outcome = svc.complete(
-        normalized["messages"],
-        int(normalized["max_tokens"]),
-        cancel_event=cancel,
-        timeout_ms=cfg.timeout_ms,
-    )
-    total = sw.ms_since()
-
-    if not outcome.ok:
-        code = outcome.error_code or "provider_error"
-        status = http_status_for_code(code)
-        err_body = normalized_error(
-            code=code,
-            message=outcome.error_message or "Request failed",
+    validated = validate_completion_request(payload, cfg, request_id=request_id)
+    validated_err = validated[1]
+    if validated_err is not None:
+        metrics.inc("requests_error")
+        log_event(
+            "completion",
+            status=400,
+            code=validated_err.get("code"),
+            requestId=request_id,
+            endpoint="/v1/chat/completions",
+        )
+        return 400, validated_err, request_id
+    validated_req = validated[0]
+    if validated_req is None:
+        metrics.inc("requests_error")
+        fallback_err = normalized_error(
+            code="bad_request",
+            message="Invalid request",
             request_id=request_id,
         )
-        # Frozen error.schema.json sets additionalProperties:false — do not attach latency.
+        return 400, fallback_err, request_id
+    normalized = validated_req
+
+    admit = svc.admission.try_acquire()
+    if not admit.allowed:
+        metrics.inc("rate_limited")
+        metrics.inc("requests_error")
+        code = admit.code or "rate_limited"
+        err = normalized_error(
+            code=code,
+            message=admit.message or "Request rejected by admission control",
+            request_id=request_id,
+        )
+        status = http_status_for_code(code)
         log_event(
             "completion",
             status=status,
             code=code,
             requestId=request_id,
             endpoint="/v1/chat/completions",
+        )
+        return status, err, request_id
+
+    metrics.set_inflight(svc.admission.active)
+    try:
+        if not rt.inference_ready and cfg.inference_mode not in {"mock", "echo", "test"}:
+            # Attempt lazy load once; failures become model_unavailable.
+            try:
+                svc.ensure_runtime()
+            except Exception:
+                e = normalized_error(
+                    code="model_unavailable",
+                    message="Model runtime is unavailable",
+                    request_id=request_id,
+                )
+                metrics.inc("requests_error")
+                log_event(
+                    "completion",
+                    status=503,
+                    code="model_unavailable",
+                    requestId=request_id,
+                    endpoint="/v1/chat/completions",
+                )
+                return 503, e, request_id
+
+        outcome = svc.complete(
+            normalized["messages"],
+            int(normalized["max_tokens"]),
+            cancel_event=cancel,
+            timeout_ms=cfg.timeout_ms,
+        )
+        total = sw.ms_since()
+        metrics.observe_latency(total)
+
+        if not outcome.ok:
+            code = outcome.error_code or "provider_error"
+            status = http_status_for_code(code)
+            err_body = normalized_error(
+                code=code,
+                message=outcome.error_message or "Request failed",
+                request_id=request_id,
+            )
+            metrics.inc("requests_error")
+            if code == "timeout":
+                metrics.inc("timeouts")
+            if code == "cancelled":
+                metrics.inc("cancellations")
+            # Frozen error.schema.json sets additionalProperties:false — do not attach latency.
+            log_event(
+                "completion",
+                status=status,
+                code=code,
+                requestId=request_id,
+                endpoint="/v1/chat/completions",
+                model=cfg.model,
+                latency_ms=total,
+            )
+            return status, err_body, request_id
+
+        assert outcome.result is not None
+        inf = outcome.result
+        if not (inf.content or "").strip():
+            metrics.inc("requests_error")
+            err_body = normalized_error(
+                code="empty_response",
+                message="Cobra Core returned an empty completion",
+                request_id=request_id,
+            )
+            return http_status_for_code("empty_response"), err_body, request_id
+
+        # If client cancelled after inference finished, do not deliver success.
+        if cancel.is_set():
+            metrics.inc("cancellations")
+            metrics.inc("requests_error")
+            err_body = normalized_error(
+                code="cancelled",
+                message="Request cancelled",
+                request_id=request_id,
+            )
+            return http_status_for_code("cancelled"), err_body, request_id
+
+        body = {
+            "id": request_id,
+            "object": "chat.completion",
+            "model": normalized["model"],
+            "choices": [
+                {
+                    "index": 0,
+                    "message": {"role": "assistant", "content": inf.content},
+                    "finish_reason": "stop",
+                }
+            ],
+            "usage": {
+                "prompt_tokens": inf.prompt_tokens,
+                "completion_tokens": inf.completion_tokens,
+                "total_tokens": inf.prompt_tokens + inf.completion_tokens,
+            },
+            "latency": latency_block(
+                queue_ms=outcome.queue_ms,
+                provider_latency_ms=outcome.provider_latency_ms or total,
+                inference_ms=inf.inference_ms,
+                total_ms=total,
+            ),
+            "protocolVersion": PROTOCOL_VERSION,
+            "compatibilityVersion": COMPATIBILITY_VERSION,
+            "requestId": request_id,
+            **{k: identity(cfg)[k] for k in ("providerId", "revision", "gitSha", "capabilities")},
+        }
+        metrics.inc("requests_success")
+        metrics.inc("prompt_tokens_total", n=inf.prompt_tokens)
+        metrics.inc("completion_tokens_total", n=inf.completion_tokens)
+        log_event(
+            "completion",
+            status=200,
+            requestId=request_id,
+            endpoint="/v1/chat/completions",
+            protocolVersion=PROTOCOL_VERSION,
+            compatibilityVersion=COMPATIBILITY_VERSION,
             model=cfg.model,
+            revision=cfg.revision,
+            prompt_tokens=inf.prompt_tokens,
+            completion_tokens=inf.completion_tokens,
+            total_tokens=inf.prompt_tokens + inf.completion_tokens,
             latency_ms=total,
         )
-        return status, err_body, request_id
-
-    assert outcome.result is not None
-    inf = outcome.result
-    if not (inf.content or "").strip():
-        err_body = normalized_error(
-            code="empty_response",
-            message="Cobra Core returned an empty completion",
-            request_id=request_id,
-        )
-        return http_status_for_code("empty_response"), err_body, request_id
-
-    # If client cancelled after inference finished, do not deliver success.
-    if cancel.is_set():
-        err_body = normalized_error(
-            code="cancelled",
-            message="Request cancelled",
-            request_id=request_id,
-        )
-        return http_status_for_code("cancelled"), err_body, request_id
-
-    body = {
-        "id": request_id,
-        "object": "chat.completion",
-        "model": normalized["model"],
-        "choices": [
-            {
-                "index": 0,
-                "message": {"role": "assistant", "content": inf.content},
-                "finish_reason": "stop",
-            }
-        ],
-        "usage": {
-            "prompt_tokens": inf.prompt_tokens,
-            "completion_tokens": inf.completion_tokens,
-            "total_tokens": inf.prompt_tokens + inf.completion_tokens,
-        },
-        "latency": latency_block(
-            queue_ms=outcome.queue_ms,
-            provider_latency_ms=outcome.provider_latency_ms or total,
-            inference_ms=inf.inference_ms,
-            total_ms=total,
-        ),
-        "protocolVersion": PROTOCOL_VERSION,
-        "compatibilityVersion": COMPATIBILITY_VERSION,
-        "requestId": request_id,
-        **{k: identity(cfg)[k] for k in ("providerId", "revision", "gitSha", "capabilities")},
-    }
-    log_event(
-        "completion",
-        status=200,
-        requestId=request_id,
-        endpoint="/v1/chat/completions",
-        protocolVersion=PROTOCOL_VERSION,
-        compatibilityVersion=COMPATIBILITY_VERSION,
-        model=cfg.model,
-        revision=cfg.revision,
-        prompt_tokens=inf.prompt_tokens,
-        completion_tokens=inf.completion_tokens,
-        total_tokens=inf.prompt_tokens + inf.completion_tokens,
-        latency_ms=total,
-    )
-    return 200, body, request_id
+        return 200, body, request_id
+    finally:
+        svc.admission.release()
+        metrics.set_inflight(svc.admission.active)
 
 
 def dumps(obj: dict[str, Any]) -> bytes:

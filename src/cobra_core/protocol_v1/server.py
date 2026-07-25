@@ -10,6 +10,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Any
 from urllib.parse import urlparse
 
+from cobra_core.protocol_v1.auth import verify_bearer
 from cobra_core.protocol_v1.config import ConfigError, ServerConfig, load_config
 from cobra_core.protocol_v1.errors import normalized_error
 from cobra_core.protocol_v1.handlers import dumps, handle_chat_completions, handle_health
@@ -73,6 +74,38 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
         path = urlparse(self.path).path
         auth = self.headers.get("Authorization")
         rid_h = self.headers.get("x-request-id")
+        if path == "/metrics":
+            rid = new_request_id(rid_h)
+            if not self.config.metrics_enabled:
+                self._send(
+                    404,
+                    normalized_error(code="bad_request", message="Not found", request_id=rid),
+                    rid,
+                )
+                return
+            if not verify_bearer(auth, self.config.auth_secret):
+                self._send(
+                    401,
+                    normalized_error(
+                        code="auth_failed",
+                        message="Cobra Core authentication failed",
+                        request_id=rid,
+                    ),
+                    rid,
+                )
+                return
+            text = self.service.metrics.render_prometheus().encode("utf-8")
+            try:
+                self.send_response(200)
+                self.send_header("Content-Type", "text/plain; version=0.0.4; charset=utf-8")
+                self.send_header("Content-Length", str(len(text)))
+                self.send_header("x-request-id", rid)
+                self.end_headers()
+                self.wfile.write(text)
+                self._response_started = True
+            except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
+                self._cancelled = True
+            return
         if path != "/health":
             rid = new_request_id(rid_h)
             self._send(

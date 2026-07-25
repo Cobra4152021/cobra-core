@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cobra-core"
-version = "0.1.0"
-description = "Cobra Model Lab — research, benchmarking, and evaluation foundation for Cobra Core"
+version = "0.9.0rc1"
+description = "Cobra Core — model lab and Protocol V1 inference server (Release Candidate 1)"
 readme = "README.md"
 requires-python = ">=3.12"
 authors = [{ name = "Cobra Code" }]
@@ -22,6 +22,7 @@ dev = [
   "mypy>=1.10,<2",
   "ruff>=0.5,<1",
   "types-PyYAML>=6.0,<7",
+  "build>=1.2,<2",
 ]
 acquisition = [
   "huggingface_hub>=0.26",

@@ -9,9 +9,13 @@ SSH_KEY = Path.home() / ".runpod/ssh/runpodctl-ssh-key"
 key = (os.environ.get("RUNPOD_API_KEY") or "").strip()
 pods = json.loads(
     urllib.request.urlopen(
-        urllib.request.Request("https://rest.runpod.io/v1/pods", headers={"Authorization": f"Bearer {key}"}),
+        urllib.request.Request(
+            "https://rest.runpod.io/v1/pods", headers={"Authorization": f"Bearer {key}"}
+        ),
         timeout=30,
-    ).read().decode()
+    )
+    .read()
+    .decode()
 )
 print("pods", [(p.get("id"), p.get("desiredStatus"), p.get("costPerHr")) for p in pods])
 if not pods:

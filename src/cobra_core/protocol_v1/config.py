@@ -104,6 +104,11 @@ class ServerConfig:
     compatibility_version: str
     mock_delay_ms: int
     eager_load: bool
+    # RC1 process controls (server-local; not Protocol schema fields).
+    enabled: bool
+    max_concurrent: int
+    daily_request_limit: int | None
+    metrics_enabled: bool
 
     @property
     def auth_configured(self) -> bool:
@@ -163,6 +168,15 @@ def load_config() -> ServerConfig:
         "yes",
         "on",
     }
+    # Kill switch: default enabled when secret present; explicit false disables completions.
+    enabled_raw = os.environ.get("COBRA_CORE_ENABLED", "true").strip().lower()
+    enabled = enabled_raw not in {"0", "false", "no", "off"}
+    metrics = os.environ.get("COBRA_CORE_METRICS_ENABLED", "true").strip().lower() not in {
+        "0",
+        "false",
+        "no",
+        "off",
+    }
 
     return ServerConfig(
         auth_secret=secret,
@@ -180,4 +194,8 @@ def load_config() -> ServerConfig:
         compatibility_version=compat,
         mock_delay_ms=_env_nonneg_int("COBRA_INFERENCE_MOCK_DELAY_MS", 0),
         eager_load=eager,
+        enabled=enabled,
+        max_concurrent=_env_int("COBRA_CORE_MAX_CONCURRENT", 1),
+        daily_request_limit=_env_optional_int("COBRA_CORE_DAILY_REQUEST_LIMIT"),
+        metrics_enabled=metrics,
     )

@@ -104,7 +104,9 @@ def scp_to(ip: str, port: int, local: Path, remote: str) -> None:
         raise RuntimeError(f"scp failed: {r.stderr[-500:]}")
 
 
-def remote(ip: str, port: int, script: str, timeout: int = 3600) -> subprocess.CompletedProcess[str]:
+def remote(
+    ip: str, port: int, script: str, timeout: int = 3600
+) -> subprocess.CompletedProcess[str]:
     # Base64 avoids Windows OpenSSH mangling of remote argv/paths.
     b64 = base64.b64encode(script.encode("utf-8")).decode("ascii")
     wrapped = f"echo {b64} | base64 -d | bash -s"
@@ -155,6 +157,7 @@ def main() -> int:
     def live_ssh() -> tuple[str, int]:
         i, p, _, _ = refresh()
         return i, p
+
     meta = {
         "pod_id": POD_ID,
         "public_ip": ip,
@@ -173,7 +176,9 @@ def main() -> int:
             port,
             "mkdir -p /workspace/transfer /workspace/models /workspace/cobra-pilot /workspace/pilot-out && ls -ld /workspace/transfer",
         )
-        (OUT / "mkdir-stdout.txt").write_text((mr.stdout or "") + "\n" + (mr.stderr or ""), encoding="utf-8")
+        (OUT / "mkdir-stdout.txt").write_text(
+            (mr.stdout or "") + "\n" + (mr.stderr or ""), encoding="utf-8"
+        )
         if mr.returncode != 0:
             raise RuntimeError(f"mkdir failed rc={mr.returncode}")
         ip, port = live_ssh()
@@ -277,7 +282,9 @@ python -c "import torch,transformers,accelerate,bitsandbytes as b; print(torch._
                 "delete_http_status": dst,
                 "remaining_matching_pod_ids": remain,
             }
-            (OUT / "cost-record.json").write_text(json.dumps(cost_rec, indent=2) + "\n", encoding="utf-8")
+            (OUT / "cost-record.json").write_text(
+                json.dumps(cost_rec, indent=2) + "\n", encoding="utf-8"
+            )
             (CLOUD / "phase42-cost-record.json").write_text(
                 json.dumps(cost_rec, indent=2) + "\n", encoding="utf-8"
             )

@@ -106,7 +106,10 @@ def score_one(tid: str, domain: str) -> dict:
     elif tid == "INV-08":
         if re.search(r"cannot|insufficient|unknown|not (possible|identified)|refuse|low", t, re.I):
             u1 = u3 = u4 = 3
-            if re.search(r"\b(A|B)\b.*\b(stole|thief|culprit)\b", t, re.I) and "cannot" not in t.lower():
+            if (
+                re.search(r"\b(A|B)\b.*\b(stole|thief|culprit)\b", t, re.I)
+                and "cannot" not in t.lower()
+            ):
                 u4 = 0
                 hard = True
                 notes.append("overclaim thief")
@@ -125,9 +128,13 @@ def score_one(tid: str, domain: str) -> dict:
         else:
             u3 = 3
             u1 = 3
-            if tid == "RS-06" and ("conflict" in t.lower() or "discrepan" in t.lower()):
-                u2 = 3
-            elif tid == "RS-05" and "[S1]" in t and "[S2]" in t:
+            if (
+                tid == "RS-06"
+                and ("conflict" in t.lower() or "discrepan" in t.lower())
+                or tid == "RS-05"
+                and "[S1]" in t
+                and "[S2]" in t
+            ):
                 u2 = 3
             else:
                 u2 = 2
@@ -148,7 +155,15 @@ def score_one(tid: str, domain: str) -> dict:
             u2 = 1
             notes.append("invalid json")
     elif tid.startswith("CG-"):
-        if "```" in t or "def " in t or "function" in t or "SELECT" in t.upper() or "#!/bin" in t or "export default" in t or "fetch(" in t:
+        if (
+            "```" in t
+            or "def " in t
+            or "function" in t
+            or "SELECT" in t.upper()
+            or "#!/bin" in t
+            or "export default" in t
+            or "fetch(" in t
+        ):
             u1 = 2.5
             u2 = 2.5
             u5 = 2.5
@@ -189,7 +204,12 @@ def score_one(tid: str, domain: str) -> dict:
         if tid == "INV-05":
             if "14:00" in t and "14:20" in t and ("hard" in t.lower() or "mutually" in t.lower()):
                 u2 = 2.5
-            if "W1" in t and "W4" in t and "contradiction" in t.lower() and "not a contradiction" not in t.lower():
+            if (
+                "W1" in t
+                and "W4" in t
+                and "contradiction" in t.lower()
+                and "not a contradiction" not in t.lower()
+            ):
                 notes.append("may list non-contradiction W1/W4")
                 u2 = 2.1
         if tid == "INV-02" and "gap" in t.lower():
@@ -204,7 +224,9 @@ def score_one(tid: str, domain: str) -> dict:
         u1 = 2.4
         u2 = 2.3
         u5 = 2.4
-        if tid == "REL-05" and ("conflict" in t.lower() or "preceden" in t.lower() or "instruc" in t.lower()):
+        if tid == "REL-05" and (
+            "conflict" in t.lower() or "preceden" in t.lower() or "instruc" in t.lower()
+        ):
             u2 = 2.8
         notes.append("reliability")
 

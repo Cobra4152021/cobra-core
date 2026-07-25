@@ -23,7 +23,9 @@ STARTED = datetime.now(UTC)
 def api(method: str, url: str) -> tuple[int, object]:
     key = os.environ["RUNPOD_API_KEY"].strip()
     req = urllib.request.Request(
-        url, method=method, headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
+        url,
+        method=method,
+        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
     )
     with urllib.request.urlopen(req, timeout=60) as resp:
         raw = resp.read().decode()
@@ -142,7 +144,11 @@ def main() -> int:
     dst, _ = api("DELETE", f"https://rest.runpod.io/v1/pods/{POD_ID}")
     time.sleep(3)
     _, pods = api("GET", "https://rest.runpod.io/v1/pods")
-    remain = [p.get("id") for p in pods if isinstance(pods, list) and p.get("id") == POD_ID] if isinstance(pods, list) else []
+    remain = (
+        [p.get("id") for p in pods if isinstance(pods, list) and p.get("id") == POD_ID]
+        if isinstance(pods, list)
+        else []
+    )
     cost_rec = {
         "schema": "cobra.cloud.cost_record.v1",
         "phase": "4.2-pilot",
@@ -161,7 +167,9 @@ def main() -> int:
         "notes": "Software pins match phase-3f-qualified; host SKU A5000 (community capacity).",
     }
     (OUT / "cost-record.json").write_text(json.dumps(cost_rec, indent=2) + "\n", encoding="utf-8")
-    (CLOUD / "phase42-cost-record.json").write_text(json.dumps(cost_rec, indent=2) + "\n", encoding="utf-8")
+    (CLOUD / "phase42-cost-record.json").write_text(
+        json.dumps(cost_rec, indent=2) + "\n", encoding="utf-8"
+    )
     (OUT / "pod-meta.json").write_text(
         json.dumps(
             {
