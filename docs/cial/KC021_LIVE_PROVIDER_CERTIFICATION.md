@@ -66,16 +66,18 @@ Quota/cost breaches fail closed as `quota_exceeded` → Protocol `rate_limited`.
 
 ## Results placeholders (fill after live cert)
 
-- Git commit:
-- Workflow run URL:
-- Container image digest:
-- Worker version:
-- Health result:
-- Live inference summary:
-- Proposal status:
-- Audit result:
-- Soak summary:
-- Rollback result:
+See `KC021_STAGING_RESULTS.md` for live tracking.
+
+- Git commit: `f46e324` (Phase 1 deployed)
+- Workflow run URL: https://github.com/Cobra4152021/cobra-core/actions/runs/30171261323
+- Container image digest: `sha256:e829ad250a79f06833c7a49a61f5912ea3bbc5dfcde63e7f80b9ef524d34a4b7`
+- Worker version: `b6fa3d64-3f7a-4017-8f86-0443c1bf81c4`
+- Health result: Phase 1 PASS (`healthy`, certified revision)
+- Live inference summary: blocked (no OPENAI_API_KEY)
+- Proposal status: Phase 1 PASS (`pending_approval`, mock)
+- Audit result: Phase 1 partial (create OK; list/D1 probe limited)
+- Soak summary: blocked
+- Rollback result: blocked pending live activation
 
 ## Limitations
 

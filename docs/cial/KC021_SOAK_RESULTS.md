@@ -25,8 +25,9 @@ governance regression, audit failure, revision mismatch.
 
 ## Results
 
-**Not executed yet** — awaiting explicit staging deployment approval and live
-enablement.
+**Not executed yet** — Phase 1 mock-safe deploy completed (`f46e324` /
+workflow `30171261323`). Live soak blocked until `OPENAI_API_KEY` /
+`OPENAI_BASE_URL` / `OPENAI_MODEL` are provided and Phases 2–3 complete.
 
 | Stage | Success % | Avg ms | p50 | p95 | Retries | Timeouts | Errors | Est. tokens | Est. cost |
 |-------|-----------|--------|-----|-----|---------|----------|--------|-------------|-----------|
