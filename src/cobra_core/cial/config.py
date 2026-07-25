@@ -5,10 +5,16 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass
 
+from cobra_core.cial.profiles import (
+    BUILTIN_PROFILE_IDS,
+    PROFILE_DEFAULT,
+    InferenceProfile,
+    legacy_provider_to_profile,
+    resolve_profile,
+)
 from cobra_core.cial.types import RoutingPolicy
 from cobra_core.protocol_v1.constants import DEFAULT_MODEL
 
-DEFAULT_PROVIDER = "mock"
 DEFAULT_OPENAI_BASE_URL = "https://api.openai.com/v1"
 DEFAULT_OPENAI_MODEL = "gpt-4o-mini"
 DEFAULT_OPENAI_TIMEOUT_SECONDS = 60.0
@@ -24,15 +30,15 @@ class CialConfigError(ValueError):
 @dataclass(frozen=True)
 class CialConfig:
     """
-    Safe CIAL defaults — mock provider unless explicitly configured.
+    Profile-centric CIAL settings.
 
-    ``openai_api_key`` is process-local only; never serialize to Protocol V1,
-    Computer, logs, or audit payloads.
+    External activation selects ``active_profile`` (default / offline / research).
+    Provider/vendor bindings are resolved internally. ``openai_api_key`` is
+    process-local only and never logged.
     """
 
     enabled: bool
-    default_provider: str
-    default_model: str
+    active_profile: str
     routing_policy: RoutingPolicy
     app_env: str = "staging"
     live_provider_enabled: bool = False
@@ -46,6 +52,24 @@ class CialConfig:
     live_max_concurrent: int = DEFAULT_LIVE_MAX_CONCURRENT
     live_daily_request_quota: int | None = None
     live_daily_cost_ceiling: float | None = None
+    mock_model: str = DEFAULT_MODEL
+
+    def resolved_profile(self) -> InferenceProfile:
+        return resolve_profile(
+            self.active_profile,
+            openai_model=self.openai_model,
+            mock_model=self.mock_model,
+        )
+
+    @property
+    def default_provider(self) -> str:
+        """Internal provider id for the active profile (not an activation knob)."""
+        return self.resolved_profile().provider_id
+
+    @property
+    def default_model(self) -> str:
+        """Internal model id for the active profile."""
+        return self.resolved_profile().model_id
 
     @property
     def openai_configured(self) -> bool:
@@ -58,33 +82,35 @@ class CialConfig:
     @property
     def can_use_live_provider(self) -> bool:
         """
-        Opt-in live inference gate.
+        Opt-in live inference gate for profiles that require a live backend.
 
         Requires staging + CIAL enabled + live flag + complete OpenAI config +
-        explicit openai provider selection. Production never activates.
+        a profile with ``requires_live`` (e.g. research). Production never activates.
         """
+        profile = self.resolved_profile()
         return (
             self.is_staging
             and self.enabled
             and self.live_provider_enabled
             and self.openai_configured
-            and self.default_provider == "openai"
+            and profile.requires_live
         )
 
     def __repr__(self) -> str:
         key_state = "set" if self.openai_api_key else "unset"
+        profile = self.resolved_profile()
         return (
             "CialConfig("
             f"enabled={self.enabled!r}, "
             f"app_env={self.app_env!r}, "
+            f"active_profile={self.active_profile!r}, "
+            f"resolved_provider={profile.provider_id!r}, "
+            f"resolved_model={profile.model_id!r}, "
             f"live_provider_enabled={self.live_provider_enabled!r}, "
             f"can_use_live_provider={self.can_use_live_provider!r}, "
-            f"default_provider={self.default_provider!r}, "
-            f"default_model={self.default_model!r}, "
             f"routing_policy={self.routing_policy!r}, "
             f"openai_base_url={self.openai_base_url!r}, "
             f"openai_api_key=<{key_state}>, "
-            f"openai_model={self.openai_model!r}, "
             f"openai_timeout_seconds={self.openai_timeout_seconds!r}, "
             f"openai_max_retries={self.openai_max_retries!r})"
         )
@@ -149,12 +175,36 @@ def _env_optional_int(name: str) -> int | None:
     return value
 
 
+def _load_active_profile() -> str:
+    """
+    Prefer CIAL_PROFILE. Legacy CIAL_PROVIDER / CIAL_DEFAULT_PROVIDER map to
+    profiles for backward compatibility but are not the preferred surface.
+    """
+    explicit = os.environ.get("CIAL_PROFILE", "").strip().lower()
+    if explicit:
+        if explicit not in BUILTIN_PROFILE_IDS:
+            raise CialConfigError(
+                "CIAL_PROFILE must be one of: " + ", ".join(sorted(BUILTIN_PROFILE_IDS))
+            )
+        return explicit
+
+    legacy = (
+        os.environ.get("CIAL_PROVIDER", "").strip()
+        or os.environ.get("CIAL_DEFAULT_PROVIDER", "").strip()
+    )
+    if legacy:
+        if legacy.lower() not in {"mock", "openai"}:
+            raise CialConfigError("legacy CIAL_PROVIDER must be mock|openai; prefer CIAL_PROFILE")
+        return legacy_provider_to_profile(legacy)
+
+    return PROFILE_DEFAULT
+
+
 def load_cial_config() -> CialConfig:
     """
     Load CIAL settings.
 
-    Safe defaults preserve Internal Alpha mock behavior:
-    provider=mock, live flag off, model=cobra-core-qwen3-8b.
+    Safe defaults: profile=default (mock), live flag off, production never live.
     """
     policy_raw = (
         os.environ.get("CIAL_ROUTING_POLICY", "").strip().lower() or RoutingPolicy.DEFAULT.value
@@ -166,18 +216,16 @@ def load_cial_config() -> CialConfig:
             "CIAL_ROUTING_POLICY must be one of: " + ", ".join(p.value for p in RoutingPolicy)
         ) from exc
 
-    provider = (
-        os.environ.get("CIAL_PROVIDER", "").strip()
-        or os.environ.get("CIAL_DEFAULT_PROVIDER", "").strip()
-        or DEFAULT_PROVIDER
-    ).lower()
-    if provider not in {"mock", "openai"}:
-        raise CialConfigError("CIAL_PROVIDER must be one of: mock, openai")
-
     openai_model = os.environ.get("OPENAI_MODEL", "").strip() or DEFAULT_OPENAI_MODEL
-    default_model = os.environ.get("CIAL_DEFAULT_MODEL", "").strip()
-    if not default_model:
-        default_model = openai_model if provider == "openai" else DEFAULT_MODEL
+    mock_model = os.environ.get("CIAL_DEFAULT_MODEL", "").strip() or DEFAULT_MODEL
+    # If operator set CIAL_DEFAULT_MODEL while on research, treat it as openai model
+    # only when OPENAI_MODEL unset — keep mock wire identity separate.
+    if (
+        os.environ.get("OPENAI_MODEL", "").strip() == ""
+        and os.environ.get("CIAL_DEFAULT_MODEL", "").strip()
+    ):
+        # Prefer wire/mock identity for default/offline; research uses OPENAI_MODEL.
+        pass
 
     app_env = (
         os.environ.get("APP_ENV", "").strip()
@@ -187,8 +235,7 @@ def load_cial_config() -> CialConfig:
 
     return CialConfig(
         enabled=_env_bool("CIAL_ENABLED", True),
-        default_provider=provider,
-        default_model=default_model,
+        active_profile=_load_active_profile(),
         routing_policy=policy,
         app_env=app_env,
         live_provider_enabled=_env_bool("CIAL_LIVE_PROVIDER_ENABLED", False),
@@ -206,4 +253,5 @@ def load_cial_config() -> CialConfig:
         or DEFAULT_LIVE_MAX_CONCURRENT,
         live_daily_request_quota=_env_optional_int("CIAL_LIVE_DAILY_REQUEST_QUOTA"),
         live_daily_cost_ceiling=_env_optional_float("CIAL_LIVE_DAILY_COST_CEILING"),
+        mock_model=mock_model,
     )

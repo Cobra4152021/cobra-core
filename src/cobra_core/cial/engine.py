@@ -57,17 +57,12 @@ class CialEngine:
         """Construct engine with mock always registered; openai only when live-ready."""
         cfg = config or load_cial_config()
         engine = cls(config=cfg)
-        mock_model_id = (
-            cfg.default_model
-            if cfg.default_provider == "mock" or not cfg.can_use_live_provider
-            else DEFAULT_MODEL
-        )
-        if cfg.can_use_live_provider:
-            mock_model_id = DEFAULT_MODEL
+        profile = cfg.resolved_profile()
+        mock_model_id = cfg.mock_model or DEFAULT_MODEL
         mock = MockProvider(model_id=mock_model_id)
         engine.providers.register_provider_models(mock, engine.models)
 
-        if cfg.can_use_live_provider:
+        if cfg.can_use_live_provider and profile.provider_id == "openai":
             openai = OpenAICompatibleProvider(
                 api_key=cfg.openai_api_key,
                 base_url=cfg.openai_base_url,
@@ -158,11 +153,13 @@ class CialEngine:
 
         assert decision is not None and result is not None
         elapsed = max(0, int(round((time.perf_counter() - t0) * 1000)))
+        profile = self.config.resolved_profile()
         result.cial_provider_id = decision.provider_id
         result.cial_model_id = decision.model_id
+        result.cial_profile = profile.profile_id
         result.cial_routing_policy = decision.policy.value
         result.cial_route_reason = (
-            "live_provider_disabled_use_mock" if forced_mock else decision.reason
+            "profile_live_unavailable_use_offline" if forced_mock else decision.reason
         )
         result.cial_latency_ms = elapsed
         result.cial_fallback_count = decision.fallback_count
@@ -170,13 +167,17 @@ class CialEngine:
         return result
 
     def _resolve_route_target(self, preferred_model_id: str | None) -> tuple[str, str, bool]:
-        """Return (preferred_model_id, effective_provider, forced_mock)."""
+        """
+        Return (preferred_model_id, effective_provider, forced_offline).
+
+        Profiles that require live (e.g. research) fall back to mock/offline when
+        the live gate is closed — never silently activate a vendor.
+        """
+        profile = self.config.resolved_profile()
         if self.config.can_use_live_provider:
-            return self.config.openai_model, "openai", False
-        preferred = preferred_model_id or DEFAULT_MODEL
-        if self.config.default_provider == "mock":
-            preferred = preferred_model_id or self.config.default_model or DEFAULT_MODEL
-        forced = self.config.default_provider == "openai"
+            return profile.model_id, profile.provider_id, False
+        preferred = preferred_model_id or self.config.mock_model or DEFAULT_MODEL
+        forced = profile.requires_live
         return preferred, "mock", forced
 
     def complete_as_protocol(

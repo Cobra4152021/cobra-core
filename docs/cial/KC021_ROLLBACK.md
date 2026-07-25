@@ -8,7 +8,7 @@ without Computer code changes.
 ## Steps
 
 1. Set `CIAL_LIVE_PROVIDER_ENABLED=false` (wrangler var).
-2. Set `CIAL_PROVIDER=mock` and `CIAL_DEFAULT_PROVIDER=mock`.
+2. Set `CIAL_PROFILE=default` (or `offline`).
 3. Optionally clear or leave `OPENAI_*` secrets (unused when live gate closed).
 4. Redeploy Worker via GitHub Actions.
 5. Bump container instance name if envVars did not reload.
@@ -19,8 +19,8 @@ without Computer code changes.
 ## Expected CIAL behavior
 
 - OpenAI provider is not registered when live gate is closed.
-- If misconfigured toward openai without the live flag, engine forces mock with
-  route reason `live_provider_disabled_use_mock`.
+- If `CIAL_PROFILE=research` without the live flag, engine forces mock/offline with
+  route reason `profile_live_unavailable_use_offline`.
 
 ## Verification checklist
 

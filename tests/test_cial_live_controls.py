@@ -21,8 +21,7 @@ from cobra_core.protocol_v1.constants import DEFAULT_MODEL
 def _live_cfg(**overrides: object) -> CialConfig:
     base = dict(
         enabled=True,
-        default_provider="openai",
-        default_model="gpt-test",
+        active_profile="research",
         routing_policy=RoutingPolicy.DEFAULT,
         app_env="staging",
         live_provider_enabled=True,
@@ -32,6 +31,7 @@ def _live_cfg(**overrides: object) -> CialConfig:
         live_max_concurrent=1,
         live_max_input_chars=1000,
         live_daily_request_quota=5,
+        mock_model=DEFAULT_MODEL,
     )
     base.update(overrides)
     return CialConfig(**base)  # type: ignore[arg-type]
@@ -39,10 +39,12 @@ def _live_cfg(**overrides: object) -> CialConfig:
 
 def test_live_flag_defaults_false(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delenv("CIAL_LIVE_PROVIDER_ENABLED", raising=False)
+    monkeypatch.delenv("CIAL_PROFILE", raising=False)
     monkeypatch.delenv("CIAL_PROVIDER", raising=False)
     monkeypatch.delenv("OPENAI_API_KEY", raising=False)
     cfg = load_cial_config()
     assert cfg.live_provider_enabled is False
+    assert cfg.active_profile == "default"
     assert cfg.can_use_live_provider is False
 
 
@@ -50,7 +52,7 @@ def test_live_requires_all_gates(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("APP_ENV", "staging")
     monkeypatch.setenv("CIAL_ENABLED", "true")
     monkeypatch.setenv("CIAL_LIVE_PROVIDER_ENABLED", "true")
-    monkeypatch.setenv("CIAL_PROVIDER", "openai")
+    monkeypatch.setenv("CIAL_PROFILE", "research")
     monkeypatch.setenv("OPENAI_API_KEY", "k")
     monkeypatch.setenv("OPENAI_MODEL", "gpt-test")
     assert load_cial_config().can_use_live_provider is True
@@ -80,7 +82,8 @@ def test_openai_selection_forced_to_mock_when_live_disabled() -> None:
     result = engine.complete([{"role": "user", "content": "rollback"}], 16)
     assert result.content.startswith("[mock] rollback")
     assert result.cial_provider_id == "mock"
-    assert result.cial_route_reason == "live_provider_disabled_use_mock"
+    assert result.cial_route_reason == "profile_live_unavailable_use_offline"
+    assert result.cial_profile == "research"
 
 
 def test_live_engine_uses_openai_when_enabled() -> None:

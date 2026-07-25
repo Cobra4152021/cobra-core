@@ -147,6 +147,7 @@ class InferenceResult:
     inference_ms: int
     cial_provider_id: str = ""
     cial_model_id: str = ""
+    cial_profile: str = ""
     cial_routing_policy: str = ""
     cial_route_reason: str = ""
     cial_latency_ms: int = 0

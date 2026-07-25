@@ -25,8 +25,7 @@
 		"COBRA_CORE_KILL_SWITCH": "false",
 		"CIAL_ENABLED": "true",
 		"CIAL_LIVE_PROVIDER_ENABLED": "false",
-		"CIAL_PROVIDER": "mock",
-		"CIAL_DEFAULT_PROVIDER": "mock",
+		"CIAL_PROFILE": "default",
 		"CIAL_ROUTING_POLICY": "default"
 	},
 	// Secrets via GitHub Actions / wrangler secret put (never plain vars):

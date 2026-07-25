@@ -184,11 +184,13 @@ def test_timeout_failure() -> None:
 
 
 def test_config_defaults_remain_mock(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("CIAL_PROFILE", raising=False)
     monkeypatch.delenv("CIAL_PROVIDER", raising=False)
     monkeypatch.delenv("CIAL_DEFAULT_PROVIDER", raising=False)
     monkeypatch.delenv("OPENAI_API_KEY", raising=False)
     monkeypatch.delenv("OPENAI_MODEL", raising=False)
     cfg = load_cial_config()
+    assert cfg.active_profile == "default"
     assert cfg.default_provider == "mock"
     assert cfg.default_model == DEFAULT_MODEL
     assert cfg.openai_configured is False
@@ -196,13 +198,14 @@ def test_config_defaults_remain_mock(monkeypatch: pytest.MonkeyPatch) -> None:
 
 
 def test_config_openai_optional_fields(monkeypatch: pytest.MonkeyPatch) -> None:
-    monkeypatch.setenv("CIAL_PROVIDER", "openai")
+    monkeypatch.setenv("CIAL_PROFILE", "research")
     monkeypatch.setenv("OPENAI_API_KEY", "secret-should-not-appear-in-repr")
     monkeypatch.setenv("OPENAI_BASE_URL", "https://example.test/v1")
     monkeypatch.setenv("OPENAI_MODEL", "gpt-test")
     monkeypatch.setenv("OPENAI_TIMEOUT_SECONDS", "12.5")
     monkeypatch.setenv("OPENAI_MAX_RETRIES", "3")
     cfg = load_cial_config()
+    assert cfg.active_profile == "research"
     assert cfg.default_provider == "openai"
     assert cfg.openai_model == "gpt-test"
     assert cfg.openai_timeout_seconds == 12.5
@@ -246,14 +249,14 @@ def test_engine_routes_openai_when_configured() -> None:
     transport = FakeTransport([HttpResponse(200, _completion_body("engine-openai"), {})])
     cfg = CialConfig(
         enabled=True,
-        default_provider="openai",
-        default_model="gpt-test",
+        active_profile="research",
         routing_policy=RoutingPolicy.DEFAULT,
         app_env="staging",
         live_provider_enabled=True,
         openai_api_key="k",
         openai_model="gpt-test",
         openai_max_retries=0,
+        mock_model=DEFAULT_MODEL,
     )
     engine = CialEngine(config=cfg)
     from cobra_core.cial.providers.mock import MockProvider
@@ -277,12 +280,13 @@ def test_engine_routes_openai_when_configured() -> None:
 
 def test_build_default_keeps_mock_without_key(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delenv("OPENAI_API_KEY", raising=False)
-    monkeypatch.setenv("CIAL_PROVIDER", "mock")
+    monkeypatch.setenv("CIAL_PROFILE", "default")
     engine = CialEngine.build_default()
     assert len(engine.providers) == 1
     assert engine.providers.get("mock").provider_id == "mock"
     result = engine.complete([{"role": "user", "content": "alpha"}], 16)
     assert result.content.startswith("[mock] alpha")
+    assert result.cial_profile == "default"
 
 
 def test_repr_does_not_leak_api_key() -> None:

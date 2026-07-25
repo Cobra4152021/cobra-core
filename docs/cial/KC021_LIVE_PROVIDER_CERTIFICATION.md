@@ -25,17 +25,20 @@ endpoint, with mock rollback retained.
 
 ## Activation gates
 
-Live provider is selected only when **all** are true:
+Activation is **profile-centric** (`CIAL_PROFILE`). Vendors are internal.
+
+Live research path is selected only when **all** are true:
 
 1. `APP_ENV=staging`
 2. `CIAL_ENABLED=true`
 3. `CIAL_LIVE_PROVIDER_ENABLED=true`
-4. `CIAL_PROVIDER=openai` (or `CIAL_DEFAULT_PROVIDER`)
+4. `CIAL_PROFILE=research` (resolves internally to openai + `OPENAI_MODEL`)
 5. `OPENAI_API_KEY` configured (secret)
 6. Provider health acceptable at request time
 7. `COBRA_CORE_ENABLED` / kill switch allow completions
 
-Otherwise routing stays on **mock** (`live_provider_disabled_use_mock`).
+Otherwise routing stays on **mock/offline** (`profile_live_unavailable_use_offline`).
+Safe default profile: `default`.
 
 ## Safeguards
 

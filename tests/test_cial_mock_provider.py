@@ -84,9 +84,9 @@ def test_inference_service_cial_disabled_escape(monkeypatch: pytest.MonkeyPatch)
     state.mark_loaded()
     cial_cfg = CialConfig(
         enabled=False,
-        default_provider="mock",
-        default_model=DEFAULT_MODEL,
+        active_profile="default",
         routing_policy=RoutingPolicy.DEFAULT,
+        mock_model=DEFAULT_MODEL,
     )
     svc = InferenceService(cfg, state, cial_config=cial_cfg)
     outcome = svc.complete([{"role": "user", "content": "legacy"}], 32)

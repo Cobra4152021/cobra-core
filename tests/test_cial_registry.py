@@ -84,11 +84,13 @@ def test_model_lookup_and_not_found() -> None:
 
 def test_configuration_defaults(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delenv("CIAL_ENABLED", raising=False)
+    monkeypatch.delenv("CIAL_PROFILE", raising=False)
     monkeypatch.delenv("CIAL_DEFAULT_PROVIDER", raising=False)
     monkeypatch.delenv("CIAL_DEFAULT_MODEL", raising=False)
     monkeypatch.delenv("CIAL_ROUTING_POLICY", raising=False)
     cfg = load_cial_config()
     assert cfg.enabled is True
+    assert cfg.active_profile == "default"
     assert cfg.default_provider == "mock"
     assert cfg.default_model == DEFAULT_MODEL
     assert cfg.routing_policy.value == "default"

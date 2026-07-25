@@ -218,7 +218,7 @@ def run_live() -> list[CaseResult]:
                 "live_precheck",
                 "live",
                 False,
-                "live gate closed (need staging + CIAL_LIVE_PROVIDER_ENABLED + openai)",
+                "live gate closed (need staging + CIAL_LIVE_PROVIDER_ENABLED + CIAL_PROFILE=research)",
             )
         )
         return out

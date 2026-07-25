@@ -18,6 +18,9 @@ export type Env = {
   /** KC-021 — plain vars only (never secrets). */
   CIAL_ENABLED?: string;
   CIAL_LIVE_PROVIDER_ENABLED?: string;
+  /** Profile-centric activation (default | offline | research). */
+  CIAL_PROFILE?: string;
+  /** @deprecated Prefer CIAL_PROFILE. Kept for compat mapping only. */
   CIAL_PROVIDER?: string;
   CIAL_DEFAULT_PROVIDER?: string;
   CIAL_DEFAULT_MODEL?: string;
@@ -67,8 +70,10 @@ export class CobraCoreContainer extends Container<Env> {
       PORT: "8080",
       CIAL_ENABLED: env.CIAL_ENABLED || "true",
       CIAL_LIVE_PROVIDER_ENABLED: liveEnabled ? "true" : "false",
-      CIAL_PROVIDER: env.CIAL_PROVIDER || "mock",
-      CIAL_DEFAULT_PROVIDER: env.CIAL_DEFAULT_PROVIDER || env.CIAL_PROVIDER || "mock",
+      CIAL_PROFILE: env.CIAL_PROFILE || "default",
+      // Legacy vendor knobs (optional); Core maps them to profiles if CIAL_PROFILE unset.
+      CIAL_PROVIDER: env.CIAL_PROVIDER || "",
+      CIAL_DEFAULT_PROVIDER: env.CIAL_DEFAULT_PROVIDER || "",
       CIAL_DEFAULT_MODEL: env.CIAL_DEFAULT_MODEL || "",
       CIAL_ROUTING_POLICY: env.CIAL_ROUTING_POLICY || "default",
       OPENAI_BASE_URL: env.OPENAI_BASE_URL || "",
