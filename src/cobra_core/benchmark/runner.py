@@ -61,6 +61,14 @@ def mock_executor(case: BenchmarkCase, provider_id: str) -> dict[str, Any]:
         base["anomalies"] = list(gold.findings)
     if "themes" in base and gold.findings:
         base["themes"] = list(gold.findings)
+    # Contract analysis has no "findings" field — map gold findings onto risks.
+    if "risks" in base and gold.findings and not base.get("risks"):
+        base["risks"] = list(gold.findings)
+    elif "risks" in base and gold.findings:
+        # Prefer full gold finding set for scoring when structured risks are a subset.
+        structured_risks = gold.structured_fields.get("risks")
+        if isinstance(structured_risks, list) and len(structured_risks) < len(gold.findings):
+            base["risks"] = list(gold.findings)
     if "differences" in base:
         base["differences"] = list(
             gold.structured_fields.get("differences") or list(gold.findings[:1])

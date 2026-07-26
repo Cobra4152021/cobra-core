@@ -139,7 +139,16 @@ def confidence_calibration_score(
 
 
 def extract_findings(output: dict[str, Any]) -> list[str]:
-    for key in ("findings", "damage_locations", "anomalies", "themes", "patterns"):
+    for key in (
+        "findings",
+        "damage_locations",
+        "anomalies",
+        "themes",
+        "patterns",
+        "risks",
+        "obligations",
+        "key_terms",
+    ):
         val = output.get(key)
         if isinstance(val, list) and val:
             return [str(x) for x in val]
