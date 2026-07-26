@@ -184,7 +184,14 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
             "/kef/connectors",
             "/kef/status",
             "/kef/connectors/evidence-vault/health",
-        } or path.startswith("/kef/"):
+            "/operations/status",
+            "/operations/health",
+            "/operations/usage",
+            "/operations/alerts",
+            "/operations/feature-flags",
+            "/operations/metrics",
+            "/operations/audit",
+        } or path.startswith("/kef/") or path.startswith("/operations/"):
             # No anonymous requests — Bearer required for all staging edge GETs.
             if not self._auth_ok():
                 self._send_json(
@@ -226,6 +233,7 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                 or path.startswith("/isf/")
                 or path.startswith("/rrf/")
                 or path.startswith("/kef/")
+                or path.startswith("/operations/")
                 else path
             )
             status, resp_headers, raw = _proxy(

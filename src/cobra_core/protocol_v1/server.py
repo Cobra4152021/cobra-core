@@ -227,6 +227,61 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
                 body = handle_kef_audit(limit=limit)
             self._send(200, body, rid)
             return
+        if path in {
+            "/operations/status",
+            "/operations/health",
+            "/operations/usage",
+            "/operations/alerts",
+            "/operations/feature-flags",
+            "/operations/metrics",
+            "/operations/audit",
+        }:
+            rid = new_request_id(rid_h)
+            if not verify_bearer(auth, self.config.auth_secret):
+                self._send(
+                    401,
+                    normalized_error(
+                        code="auth_failed",
+                        message="Cobra Core authentication failed",
+                        request_id=rid,
+                    ),
+                    rid,
+                )
+                return
+            from cobra_core.operations.http_api import (
+                handle_operations_alerts,
+                handle_operations_audit,
+                handle_operations_feature_flags,
+                handle_operations_health,
+                handle_operations_metrics,
+                handle_operations_status,
+                handle_operations_usage,
+            )
+
+            if path == "/operations/status":
+                body = handle_operations_status()
+            elif path == "/operations/health":
+                body = handle_operations_health()
+            elif path == "/operations/usage":
+                body = handle_operations_usage()
+            elif path == "/operations/alerts":
+                body = handle_operations_alerts()
+            elif path == "/operations/feature-flags":
+                body = handle_operations_feature_flags()
+            elif path == "/operations/metrics":
+                body = handle_operations_metrics()
+            else:
+                from urllib.parse import parse_qs
+
+                qs = parse_qs(parsed.query or "")
+                limit_raw = (qs.get("limit") or ["50"])[0]
+                try:
+                    limit = int(limit_raw)
+                except ValueError:
+                    limit = 50
+                body = handle_operations_audit(limit=limit)
+            self._send(200, body, rid)
+            return
         if path in {"/isf/skills", "/isf/audit", "/isf/metrics"}:
             rid = new_request_id(rid_h)
             if not verify_bearer(auth, self.config.auth_secret):
