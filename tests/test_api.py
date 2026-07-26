@@ -282,7 +282,7 @@ def test_resource_groups_and_examples_flow():
     # Plugins / benchmark / ops / security
     assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/plugins", principal_id=inv.principal_id, organization_id="org_api")).status == 200
     assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/benchmark/datasets", principal_id=inv.principal_id, organization_id="org_api")).status == 200
-    assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/operations/status", principal_id=inv.principal_id, organization_id="org_api")).status == 200
+    assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/operations/status", principal_id=owner.principal_id, organization_id="org_api")).status == 200
     assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/security/status", principal_id=inv.principal_id, organization_id="org_api")).status == 200
 
 
