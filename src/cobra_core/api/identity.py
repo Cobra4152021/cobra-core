@@ -35,10 +35,9 @@ def identity_assertion_payload(
     method: str,
     path: str,
 ) -> bytes:
-    return (
-        f"{timestamp}\n{principal_id}\n{organization_id}\n"
-        f"{method.upper()}\n{path}"
-    ).encode("utf-8")
+    return (f"{timestamp}\n{principal_id}\n{organization_id}\n{method.upper()}\n{path}").encode(
+        "utf-8"
+    )
 
 
 def sign_identity_assertion(
