@@ -1,0 +1,17 @@
+{
+  "plugin_id": "sample.policy_report",
+  "name": "Sample Policy Report",
+  "version": "1.0.0",
+  "author": "Cobra Reference",
+  "description": "Demonstration report extension (not production).",
+  "license": "UNLICENSED",
+  "supported_core_version": "0.9.x",
+  "plugin_type": "report",
+  "entry_point": "cobra_core.plugins.samples.sample_policy_report.extension",
+  "required_permissions": ["register_report"],
+  "dependencies": [],
+  "required_apis": ["pef.extension_v1"],
+  "schema_version": "1",
+  "checksum": "",
+  "signature": ""
+}

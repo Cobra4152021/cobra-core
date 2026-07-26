@@ -1,0 +1,17 @@
+{
+  "plugin_id": "sample.case_template",
+  "name": "Sample Case Template",
+  "version": "1.0.0",
+  "author": "Cobra Reference",
+  "description": "Demonstration case template extension (not production).",
+  "license": "UNLICENSED",
+  "supported_core_version": "0.9.x",
+  "plugin_type": "case_template",
+  "entry_point": "cobra_core.plugins.samples.sample_case_template.extension",
+  "required_permissions": ["register_case_template"],
+  "dependencies": [],
+  "required_apis": ["pef.extension_v1"],
+  "schema_version": "1",
+  "checksum": "",
+  "signature": ""
+}

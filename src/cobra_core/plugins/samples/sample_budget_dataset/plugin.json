@@ -1,0 +1,17 @@
+{
+  "plugin_id": "sample.budget_dataset",
+  "name": "Sample Budget Dataset",
+  "version": "1.0.0",
+  "author": "Cobra Reference",
+  "description": "Demonstration benchmark dataset extension (not production).",
+  "license": "UNLICENSED",
+  "supported_core_version": "0.9.x",
+  "plugin_type": "benchmark_dataset",
+  "entry_point": "cobra_core.plugins.samples.sample_budget_dataset.extension",
+  "required_permissions": ["register_dataset"],
+  "dependencies": [],
+  "required_apis": ["pef.extension_v1"],
+  "schema_version": "1",
+  "checksum": "",
+  "signature": ""
+}

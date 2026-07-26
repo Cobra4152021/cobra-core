@@ -1,0 +1,10 @@
+{
+  "name": "@cobra/sdk",
+  "version": "0.1.0",
+  "description": "Cobra Public API TypeScript SDK (reference)",
+  "type": "module",
+  "main": "src/client.ts",
+  "types": "src/client.ts",
+  "license": "UNLICENSED",
+  "private": true
+}

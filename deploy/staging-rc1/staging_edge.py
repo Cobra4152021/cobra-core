@@ -191,7 +191,28 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
             "/operations/feature-flags",
             "/operations/metrics",
             "/operations/audit",
-        } or path.startswith("/kef/") or path.startswith("/operations/"):
+            "/plugins",
+            "/plugins/status",
+            "/security/status",
+            "/security/roles",
+            "/security/permissions",
+            "/security/policies",
+            "/security/sessions",
+            "/organizations",
+            "/production/status",
+            "/production/health",
+            "/production/diagnostics",
+            "/production/startup-report",
+            "/production/metrics",
+            "/production/integrity",
+            "/production/security-review",
+            "/production/migrations/dry-run",
+            "/production/audit",
+        } or path.startswith("/kef/") or path.startswith("/operations/") or path.startswith(
+            "/plugins/"
+        ) or path.startswith("/security/") or path.startswith("/organizations") or path.startswith(
+            "/api/"
+        ) or path.startswith("/production/"):
             # No anonymous requests — Bearer required for all staging edge GETs.
             if not self._auth_ok():
                 self._send_json(
@@ -226,6 +247,15 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
             rid = self.headers.get("x-request-id")
             if rid:
                 headers["x-request-id"] = rid
+            org = (self.headers.get("X-Cobra-Org-Id") or "").strip()
+            if org:
+                headers["X-Cobra-Org-Id"] = org
+            principal = (self.headers.get("X-Cobra-Principal-Id") or "").strip()
+            if principal:
+                headers["X-Cobra-Principal-Id"] = principal
+            sdk = (self.headers.get("X-Cobra-Sdk-Version") or "").strip()
+            if sdk:
+                headers["X-Cobra-Sdk-Version"] = sdk
             # Preserve query string for /air/audit and /isf/audit.
             proxy_path = (
                 self.path
@@ -234,6 +264,11 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                 or path.startswith("/rrf/")
                 or path.startswith("/kef/")
                 or path.startswith("/operations/")
+                or path.startswith("/plugins")
+                or path.startswith("/security/")
+                or path.startswith("/organizations")
+                or path.startswith("/api/")
+                or path.startswith("/production/")
                 else path
             )
             status, resp_headers, raw = _proxy(
@@ -399,7 +434,15 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:  # noqa: N802
         path = urlparse(self.path).path
-        if path not in {"/v1/chat/completions", "/air/route", "/isf/execute"}:
+        plugins_action = path.startswith("/plugins/") and (
+            path.endswith("/enable") or path.endswith("/disable")
+        )
+        api_action = path.startswith("/api/")
+        if (
+            path not in {"/v1/chat/completions", "/air/route", "/isf/execute"}
+            and not plugins_action
+            and not api_action
+        ):
             self._send_json(404, {"error": {"code": "bad_request", "message": "Not found"}})
             return
         if not self._auth_ok():
@@ -439,10 +482,17 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
             )
             return
         length = int(self.headers.get("Content-Length") or "0")
-        if length <= 0 or length > 2_000_000:
+        # Plugin enable/disable and public API POSTs allow empty body.
+        if plugins_action or api_action:
+            if length < 0 or length > 2_000_000:
+                self._send_json(400, {"error": {"code": "bad_request", "message": "Invalid body"}})
+                return
+            body = self.rfile.read(length) if length > 0 else b"{}"
+        elif length <= 0 or length > 2_000_000:
             self._send_json(400, {"error": {"code": "bad_request", "message": "Invalid body"}})
             return
-        body = self.rfile.read(length)
+        else:
+            body = self.rfile.read(length)
         headers = {
             "Authorization": self.headers.get("Authorization") or "",
             "Content-Type": self.headers.get("Content-Type") or "application/json",
@@ -453,6 +503,12 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
         org = (self.headers.get("X-Cobra-Org-Id") or "").strip()
         if org:
             headers["X-Cobra-Org-Id"] = org
+        principal = (self.headers.get("X-Cobra-Principal-Id") or "").strip()
+        if principal:
+            headers["X-Cobra-Principal-Id"] = principal
+        sdk = (self.headers.get("X-Cobra-Sdk-Version") or "").strip()
+        if sdk:
+            headers["X-Cobra-Sdk-Version"] = sdk
         timeout_ms = int(_env("COBRA_CORE_TIMEOUT_MS", "120000") or "120000")
         status, resp_headers, raw = _proxy(
             "POST",

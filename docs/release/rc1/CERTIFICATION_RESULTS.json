@@ -1,0 +1,225 @@
+{
+  "version": "v1.0.0-rc1",
+  "feature_freeze": true,
+  "production_enabled": false,
+  "offline_certification_ok": true,
+  "release_candidate_approved": false,
+  "blocking_issues": [
+    "phase_7_soak_24h_incomplete"
+  ],
+  "phases": {
+    "freeze": {
+      "ok": true,
+      "manifest": {
+        "version": "v1.0.0-rc1",
+        "frozen_surfaces": [
+          "protocol_v1",
+          "public_api_v1",
+          "plugin_manifests",
+          "organization_schema",
+          "security_schema",
+          "workflow_schema",
+          "case_schema",
+          "benchmark_schema",
+          "evidence_schema"
+        ],
+        "policy": "KC-038 feature freeze: only compatibility bug fixes allowed. Breaking changes require a new major/RC train. Production enablement remains disabled.",
+        "api": {
+          "current": "v1",
+          "supported": [
+            "v1"
+          ],
+          "deprecated": [],
+          "stability": "stable",
+          "deprecation_policy": "Breaking changes require a new major version (e.g. /api/v2/). Deprecated versions remain available for at least one minor release cycle with documented migration notes. No silent breaking changes in a version."
+        },
+        "openapi_info_version": "1.0.0",
+        "checksums": {
+          "openapi": "8c4573e3cfd22457b96f71edf0a54fefbb6ebd4aa9315108e4cf158b75741e4e",
+          "policy": "d7082b39a77535a33443b80d1baa54e56a18d94069d2cb82840cb5be818cc549",
+          "organization_metadata": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "production_enabled": false
+      }
+    },
+    "api_compatibility": {
+      "ok": true,
+      "openapi_checksum": "8c4573e3cfd22457b96f71edf0a54fefbb6ebd4aa9315108e4cf158b75741e4e",
+      "sdk_version": "0.1.0",
+      "versioning": {
+        "current": "v1",
+        "supported": [
+          "v1"
+        ],
+        "deprecated": [],
+        "stability": "stable",
+        "deprecation_policy": "Breaking changes require a new major version (e.g. /api/v2/). Deprecated versions remain available for at least one minor release cycle with documented migration notes. No silent breaking changes in a version."
+      },
+      "auth_unauthenticated_status": 401,
+      "auth_authenticated_status": 200,
+      "rate_limit_enforced": true,
+      "pagination_next_cursor": true
+    },
+    "plugin_compatibility": {
+      "ok": true,
+      "loaded": [
+        "sample.budget_dataset",
+        "sample.case_template",
+        "sample.policy_report",
+        "sample.vehicle_skill"
+      ],
+      "required": [
+        "sample.budget_dataset",
+        "sample.case_template",
+        "sample.policy_report",
+        "sample.vehicle_skill"
+      ],
+      "lifecycle": {
+        "sample.budget_dataset": "enabled",
+        "sample.case_template": "enabled",
+        "sample.policy_report": "enabled",
+        "sample.vehicle_skill": "enabled"
+      }
+    },
+    "security": {
+      "ok": true,
+      "security_review": {
+        "ok": true,
+        "checks": [
+          {
+            "id": "default_deny",
+            "ok": true,
+            "detail": "default_deny=True admin_bypass=False"
+          },
+          {
+            "id": "no_credential_logging",
+            "ok": true,
+            "detail": "scanned recent audit channels"
+          },
+          {
+            "id": "bearer_validation",
+            "ok": true,
+            "detail": "protocol_v1.verify_bearer present"
+          },
+          {
+            "id": "plugin_validation",
+            "ok": true,
+            "detail": "entry allow-list and reserved namespaces configured"
+          },
+          {
+            "id": "cross_org_isolation",
+            "ok": true,
+            "detail": "allow_cross_org=False"
+          },
+          {
+            "id": "openapi_exposure",
+            "ok": true,
+            "detail": "unauthenticated openapi status=401"
+          },
+          {
+            "id": "debug_endpoints_disabled",
+            "ok": true,
+            "detail": "COBRA_CORE_DEBUG=None"
+          },
+          {
+            "id": "production_disabled",
+            "ok": true,
+            "detail": "PRHF hard-locks production_enabled=false"
+          }
+        ],
+        "phase": "phase_4_security_review"
+      },
+      "cross_org_denied": true,
+      "allow_cross_org": false
+    },
+    "recovery": {
+      "ok": true,
+      "startup_ok": true,
+      "migration_dry_run": true,
+      "migration_apply_rollback": true,
+      "backup_restore": true
+    },
+    "performance": {
+      "ok": true,
+      "startup_duration_s": 0.0001360001042485237,
+      "sizes": {
+        "100": {
+          "ok": true,
+          "errors": 0,
+          "latency_ms": {
+            "avg": 0.055,
+            "p50": 0.049,
+            "p95": 0.079,
+            "max": 0.221
+          },
+          "elapsed_s": 0.1608
+        },
+        "500": {
+          "ok": true,
+          "errors": 0,
+          "latency_ms": {
+            "avg": 0.055,
+            "p50": 0.049,
+            "p95": 0.09,
+            "max": 0.484
+          },
+          "elapsed_s": 0.766
+        },
+        "1000": {
+          "ok": true,
+          "errors": 0,
+          "latency_ms": {
+            "avg": 0.052,
+            "p50": 0.045,
+            "p95": 0.086,
+            "max": 0.633
+          },
+          "elapsed_s": 1.4547
+        },
+        "5000": {
+          "ok": true,
+          "errors": 0,
+          "latency_ms": {
+            "avg": 0.045,
+            "p50": 0.041,
+            "p95": 0.067,
+            "max": 0.367
+          },
+          "elapsed_s": 6.3074
+        }
+      }
+    },
+    "benchmark": {
+      "ok": true,
+      "dataset": "policy_review_v1",
+      "overall_score": 0.9775
+    },
+    "local_soak": {
+      "ok": true,
+      "label": "rc1",
+      "duration_s_requested": 10.0,
+      "elapsed_s": 10.0103,
+      "requests": 193,
+      "errors": 0,
+      "latency_ms": {
+        "avg": 0.098,
+        "p50": 0.091,
+        "p95": 0.122,
+        "max": 0.418
+      },
+      "memory_mb_growth": 0.02,
+      "staging_24h_complete": false,
+      "note": "Timed local soak only. RC1 requires separate 24-hour staging soak."
+    },
+    "staging_soak_24h": {
+      "phase": "phase_7_soak_24h",
+      "complete": false,
+      "required_hours": 24,
+      "environment": "staging",
+      "blocking": true,
+      "message": "24-hour staging soak has not been executed in this certification run. RC1 exit criteria require completed soak with memory growth, latency drift, error count, and audit completeness evidence."
+    }
+  },
+  "elapsed_s": 19.0689,
+  "verdict": "PARTIAL \u2014 RC blocked by listed issues"
+}

@@ -35,7 +35,14 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
             msg = "[redacted]"
         logger.info("%s - %s", self.address_string(), msg)
 
-    def _send(self, status: int, body: dict[str, Any], request_id: str) -> None:
+    def _send(
+        self,
+        status: int,
+        body: dict[str, Any],
+        request_id: str,
+        *,
+        extra_headers: dict[str, str] | None = None,
+    ) -> None:
         if getattr(self, "_response_started", False):
             return
         # Client disconnect: avoid writing after cancel.
@@ -47,6 +54,9 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
             self.send_header("Content-Type", "application/json")
             self.send_header("Content-Length", str(len(data)))
             self.send_header("x-request-id", request_id)
+            for hk, hv in (extra_headers or {}).items():
+                if hv is not None and str(hv) != "":
+                    self.send_header(hk, str(hv))
             self.end_headers()
             self.wfile.write(data)
             self._response_started = True
@@ -282,6 +292,221 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
                 body = handle_operations_audit(limit=limit)
             self._send(200, body, rid)
             return
+        if path in {
+            "/production/status",
+            "/production/health",
+            "/production/diagnostics",
+            "/production/startup-report",
+            "/production/metrics",
+            "/production/integrity",
+            "/production/security-review",
+            "/production/migrations/dry-run",
+            "/production/audit",
+        }:
+            rid = new_request_id(rid_h)
+            if not verify_bearer(auth, self.config.auth_secret):
+                self._send(
+                    401,
+                    normalized_error(
+                        code="auth_failed",
+                        message="Cobra Core authentication failed",
+                        request_id=rid,
+                    ),
+                    rid,
+                )
+                return
+            from cobra_core.production.http_api import (
+                handle_production_audit,
+                handle_production_diagnostics,
+                handle_production_health,
+                handle_production_integrity,
+                handle_production_metrics,
+                handle_production_migrations_dry_run,
+                handle_production_security_review,
+                handle_production_startup_report,
+                handle_production_status,
+            )
+
+            if path == "/production/status":
+                body = handle_production_status()
+            elif path == "/production/health":
+                body = handle_production_health()
+            elif path == "/production/diagnostics":
+                body = handle_production_diagnostics()
+            elif path == "/production/startup-report":
+                body = handle_production_startup_report()
+            elif path == "/production/metrics":
+                body = handle_production_metrics()
+            elif path == "/production/integrity":
+                body = handle_production_integrity()
+            elif path == "/production/security-review":
+                body = handle_production_security_review()
+            elif path == "/production/migrations/dry-run":
+                body = handle_production_migrations_dry_run()
+            else:
+                from urllib.parse import parse_qs
+
+                qs = parse_qs(parsed.query or "")
+                try:
+                    limit = int((qs.get("limit") or ["50"])[0])
+                except ValueError:
+                    limit = 50
+                body = handle_production_audit(limit=limit)
+            self._send(200, body, rid)
+            return
+        if path.startswith("/api/"):
+            rid = new_request_id(rid_h)
+            authenticated = verify_bearer(auth, self.config.auth_secret)
+            from cobra_core.api.router import handle_public_api
+
+            principal = (
+                self.headers.get("X-Cobra-Principal-Id")
+                or self.headers.get("x-cobra-principal-id")
+                or ""
+            ).strip()
+            org = (
+                self.headers.get("X-Cobra-Org-Id") or self.headers.get("x-cobra-org-id") or ""
+            ).strip()
+            resp = handle_public_api(
+                method="GET",
+                path=path,
+                query=parsed.query or "",
+                headers={k: v for k, v in self.headers.items()},
+                request_id=rid,
+                authenticated=authenticated,
+                principal_id=principal,
+                organization_id=org,
+            )
+            body = resp.body if isinstance(resp.body, dict) else {"data": resp.body}
+            self._send(resp.status, body, rid, extra_headers=resp.headers)
+            return
+        if path == "/organizations" or path.startswith("/organizations/"):
+            rid = new_request_id(rid_h)
+            if not verify_bearer(auth, self.config.auth_secret):
+                self._send(
+                    401,
+                    normalized_error(
+                        code="auth_failed",
+                        message="Cobra Core authentication failed",
+                        request_id=rid,
+                    ),
+                    rid,
+                )
+                return
+            from cobra_core.organizations.http_api import (
+                handle_organization_departments,
+                handle_organization_get,
+                handle_organization_members,
+                handle_organization_metrics,
+                handle_organization_status,
+                handle_organizations_list,
+            )
+
+            if path == "/organizations":
+                self._send(200, handle_organizations_list(), rid)
+                return
+            parts = path.strip("/").split("/")
+            # organizations/{id}[/{members|departments|status|metrics}]
+            if len(parts) == 2:
+                status, body = handle_organization_get(parts[1])
+                self._send(status, body, rid)
+                return
+            if len(parts) == 3:
+                org_id, suffix = parts[1], parts[2]
+                if suffix == "members":
+                    status, body = handle_organization_members(org_id)
+                elif suffix == "departments":
+                    status, body = handle_organization_departments(org_id)
+                elif suffix == "status":
+                    status, body = handle_organization_status(org_id)
+                elif suffix == "metrics":
+                    status, body = handle_organization_metrics(org_id)
+                else:
+                    self._send(
+                        404,
+                        normalized_error(
+                            code="bad_request", message="Not found", request_id=rid
+                        ),
+                        rid,
+                    )
+                    return
+                self._send(status, body, rid)
+                return
+            self._send(
+                404,
+                normalized_error(code="bad_request", message="Not found", request_id=rid),
+                rid,
+            )
+            return
+        if path in {
+            "/security/status",
+            "/security/roles",
+            "/security/permissions",
+            "/security/policies",
+            "/security/sessions",
+        }:
+            rid = new_request_id(rid_h)
+            if not verify_bearer(auth, self.config.auth_secret):
+                self._send(
+                    401,
+                    normalized_error(
+                        code="auth_failed",
+                        message="Cobra Core authentication failed",
+                        request_id=rid,
+                    ),
+                    rid,
+                )
+                return
+            from cobra_core.security.http_api import (
+                handle_security_permissions,
+                handle_security_policies,
+                handle_security_roles,
+                handle_security_sessions,
+                handle_security_status,
+            )
+
+            if path == "/security/status":
+                body = handle_security_status()
+            elif path == "/security/roles":
+                body = handle_security_roles()
+            elif path == "/security/permissions":
+                body = handle_security_permissions()
+            elif path == "/security/policies":
+                body = handle_security_policies()
+            else:
+                body = handle_security_sessions()
+            self._send(200, body, rid)
+            return
+        if path in {"/plugins", "/plugins/status"} or (
+            path.startswith("/plugins/") and path.count("/") == 2
+        ):
+            rid = new_request_id(rid_h)
+            if not verify_bearer(auth, self.config.auth_secret):
+                self._send(
+                    401,
+                    normalized_error(
+                        code="auth_failed",
+                        message="Cobra Core authentication failed",
+                        request_id=rid,
+                    ),
+                    rid,
+                )
+                return
+            from cobra_core.plugins.http_api import (
+                handle_plugin_get,
+                handle_plugins_list,
+                handle_plugins_status,
+            )
+
+            if path == "/plugins":
+                self._send(200, handle_plugins_list(), rid)
+            elif path == "/plugins/status":
+                self._send(200, handle_plugins_status(), rid)
+            else:
+                plugin_id = path.removeprefix("/plugins/")
+                status, body = handle_plugin_get(plugin_id)
+                self._send(status, body, rid)
+            return
         if path in {"/isf/skills", "/isf/audit", "/isf/metrics"}:
             rid = new_request_id(rid_h)
             if not verify_bearer(auth, self.config.auth_secret):
@@ -399,6 +624,72 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
             from cobra_core.isf.http_api import handle_isf_execute
 
             status, body = handle_isf_execute(payload or {}, correlation_id=rid)
+            self._send(status, body, rid)
+            return
+        if path.startswith("/api/"):
+            rid = new_request_id(rid_h)
+            authenticated = verify_bearer(auth, self.config.auth_secret)
+            from cobra_core.api.router import handle_public_api
+
+            principal = (
+                self.headers.get("X-Cobra-Principal-Id")
+                or self.headers.get("x-cobra-principal-id")
+                or ""
+            ).strip()
+            org = (
+                self.headers.get("X-Cobra-Org-Id") or self.headers.get("x-cobra-org-id") or ""
+            ).strip()
+            payload = self._read_json() if int(self.headers.get("Content-Length") or "0") > 0 else {}
+            if payload is None:
+                self._send(
+                    400,
+                    normalized_error(
+                        code="bad_request",
+                        message="Malformed JSON body",
+                        request_id=rid,
+                    ),
+                    rid,
+                )
+                return
+            resp = handle_public_api(
+                method="POST",
+                path=path,
+                query=urlparse(self.path).query or "",
+                headers={k: v for k, v in self.headers.items()},
+                body=payload,
+                request_id=rid,
+                authenticated=authenticated,
+                principal_id=principal,
+                organization_id=org,
+            )
+            body = resp.body if isinstance(resp.body, dict) else {"data": resp.body}
+            self._send(resp.status, body, rid, extra_headers=resp.headers)
+            return
+        if path.startswith("/plugins/") and (
+            path.endswith("/enable") or path.endswith("/disable")
+        ):
+            rid = new_request_id(rid_h)
+            if not verify_bearer(auth, self.config.auth_secret):
+                self._send(
+                    401,
+                    normalized_error(
+                        code="auth_failed",
+                        message="Cobra Core authentication failed",
+                        request_id=rid,
+                    ),
+                    rid,
+                )
+                return
+            from cobra_core.plugins.http_api import handle_plugin_disable, handle_plugin_enable
+
+            # Body optional — empty POST is allowed (no upload / no remote install).
+            _ = self._read_json() if int(self.headers.get("Content-Length") or "0") > 0 else {}
+            if path.endswith("/enable"):
+                plugin_id = path.removeprefix("/plugins/").removesuffix("/enable")
+                status, body = handle_plugin_enable(plugin_id, actor="admin")
+            else:
+                plugin_id = path.removeprefix("/plugins/").removesuffix("/disable")
+                status, body = handle_plugin_disable(plugin_id, actor="admin")
             self._send(status, body, rid)
             return
         if path != "/v1/chat/completions":

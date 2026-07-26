@@ -5,6 +5,28 @@ All notable changes to Cobra Core are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0-rc1] — 2026-07-26
+
+### Added
+
+- King Cobra stack KC-033 → KC-037: PEF, ISPF, MOTF, PASF (`/api/v1` + SDKs), PRHF
+- RC1 certification pack (`cobra_core.release`) with freeze manifest, soak harness, offline cert orchestrator
+- Release documentation under `docs/release/rc1/`
+
+### Changed
+
+- Feature freeze for Protocol V1, Public API v1, and core schemas
+- Load harness extended to 5000 simulated requests for RC1
+
+### Security
+
+- Repeated security review gate in RC1 certification (default-deny, cross-org isolation, OpenAPI auth)
+- Production enablement remains disabled
+
+### Known limitations
+
+- 24-hour staging soak remains a blocking exit criterion (not completed in offline pack)
+
 ## [0.9.0rc1] — 2026-07-25
 
 ### Added
