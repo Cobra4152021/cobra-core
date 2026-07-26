@@ -16,8 +16,7 @@ _REDACT = frozenset(
 def _scrub(value: Any) -> Any:
     if isinstance(value, dict):
         return {
-            k: ("[redacted]" if str(k).lower() in _REDACT else _scrub(v))
-            for k, v in value.items()
+            k: ("[redacted]" if str(k).lower() in _REDACT else _scrub(v)) for k, v in value.items()
         }
     if isinstance(value, list):
         return [_scrub(v) for v in value[:100]]

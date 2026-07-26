@@ -44,8 +44,7 @@ class Organization:
             "security_policies": {
                 k: v
                 for k, v in self.security_policies.items()
-                if str(k).lower()
-                not in {"secret", "token", "api_key", "password", "credential"}
+                if str(k).lower() not in {"secret", "token", "api_key", "password", "credential"}
             },
             "quota": dict(self.quota or self.configuration.quotas),
             # branding reserved — not exposed

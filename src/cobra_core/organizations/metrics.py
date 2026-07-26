@@ -52,8 +52,7 @@ class OrganizationMetrics:
     def all_snapshots(self) -> list[dict[str, Any]]:
         with self._lock:
             return [
-                {"organization_id": oid, **dict(vals)}
-                for oid, vals in sorted(self._by_org.items())
+                {"organization_id": oid, **dict(vals)} for oid, vals in sorted(self._by_org.items())
             ]
 
 

@@ -147,6 +147,5 @@ def writes_allowed() -> bool:
         return False
     from cobra_core.operations.maintenance import MAINTENANCE
 
-    if MAINTENANCE.state().active and MAINTENANCE.state().reject_new_workflows:
-        return False
-    return True
+    state = MAINTENANCE.state()
+    return not (state.active and state.reject_new_workflows)

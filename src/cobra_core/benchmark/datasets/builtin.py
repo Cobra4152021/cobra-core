@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 from cobra_core.benchmark.registry import DATASET_REGISTRY, DatasetRegistry
 from cobra_core.benchmark.schemas import (
     BenchmarkCase,
@@ -23,7 +25,7 @@ def _case(
     findings: list[str],
     citations: list[str],
     confidence: tuple[float, float],
-    structured: dict | None = None,
+    structured: dict[str, Any] | None = None,
     summary_contains: list[str] | None = None,
     missing_information: list[str] | None = None,
     expect_missing_evidence: bool = False,

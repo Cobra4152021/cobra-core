@@ -34,13 +34,11 @@ from cobra_core.air.types import (
     CostClass,
     LatencyClass,
     ModelDescriptor,
-    PriorityClass,
     ProviderDescriptor,
 )
 from cobra_core.cial.config import CialConfig
 from cobra_core.cial.engine import CialEngine
 from cobra_core.cial.health import HealthState
-from cobra_core.cial.providers.mock import MockProvider
 from cobra_core.cial.types import RoutingPolicy
 from cobra_core.protocol_v1.constants import DEFAULT_MODEL
 

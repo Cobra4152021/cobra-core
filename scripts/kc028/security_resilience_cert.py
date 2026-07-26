@@ -10,9 +10,7 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-BASE = os.environ.get(
-    "COBRA_CORE_BASE_URL", "https://cobra-core-staging.cobra4152020.workers.dev"
-)
+BASE = os.environ.get("COBRA_CORE_BASE_URL", "https://cobra-core-staging.cobra4152020.workers.dev")
 ORG = "org_staging_smoke"
 UA = "CobraKC0281Cert/1.0 (compatible; Mozilla/5.0)"
 
@@ -22,8 +20,10 @@ def _token() -> str:
     if env:
         return env
     return (
-        Path(os.environ.get("TEMP", os.environ.get("TMP", "."))) / "kc018-core-auth.txt"
-    ).read_text(encoding="utf-8").strip()
+        (Path(os.environ.get("TEMP", os.environ.get("TMP", "."))) / "kc018-core-auth.txt")
+        .read_text(encoding="utf-8")
+        .strip()
+    )
 
 
 def _req(method: str, url: str, *, token: str | None, body: dict | None = None, timeout=60.0):
@@ -78,7 +78,9 @@ def main() -> int:
     st, health = _req("GET", f"{BASE}/health", token=token)
     kef = health.get("kefGate") if isinstance(health, dict) else {}
     ok = st == 200 and kef.get("liveGateOpen") is False and kef.get("allowRequestSeed") is False
-    print(f"  [{'PASS' if ok else 'FAIL'}] governance_gates: live={kef.get('liveGateOpen')} seed={kef.get('allowRequestSeed')}")
+    print(
+        f"  [{'PASS' if ok else 'FAIL'}] governance_gates: live={kef.get('liveGateOpen')} seed={kef.get('allowRequestSeed')}"
+    )
     fails += 0 if ok else 1
 
     # Resilience: vault health remains healthy under repeated probes

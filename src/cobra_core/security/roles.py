@@ -8,7 +8,6 @@ from typing import Any
 from cobra_core.security.errors import SecurityError, SecurityErrorCode
 from cobra_core.security.schemas import BuiltInRole, Permission
 
-
 # Explicit role → permission sets. Administrator lists every permission — no bypass flag.
 _BUILTIN_ROLE_PERMISSIONS: dict[str, frozenset[str]] = {
     BuiltInRole.ADMINISTRATOR.value: frozenset(p.value for p in Permission),
@@ -83,20 +82,20 @@ class RoleRegistry:
     def list_roles(self) -> list[dict[str, Any]]:
         with self._lock:
             out: list[dict[str, Any]] = []
-            for role, perms in sorted(_BUILTIN_ROLE_PERMISSIONS.items()):
+            for role, builtin_perms in sorted(_BUILTIN_ROLE_PERMISSIONS.items()):
                 out.append(
                     {
                         "role": role,
                         "builtin": True,
-                        "permissions": sorted(perms),
+                        "permissions": sorted(builtin_perms),
                     }
                 )
-            for role, perms in sorted(self._custom.items()):
+            for role, custom_perms in sorted(self._custom.items()):
                 out.append(
                     {
                         "role": role,
                         "builtin": False,
-                        "permissions": sorted(perms),
+                        "permissions": sorted(custom_perms),
                     }
                 )
             return out
@@ -119,9 +118,7 @@ class RoleRegistry:
                 elif key in self._custom:
                     granted |= set(self._custom[key])
                 else:
-                    raise SecurityError(
-                        SecurityErrorCode.ROLE_NOT_FOUND, f"unknown role: {role}"
-                    )
+                    raise SecurityError(SecurityErrorCode.ROLE_NOT_FOUND, f"unknown role: {role}")
         return granted
 
     def assign(self, principal_id: str, roles: list[str]) -> list[str]:

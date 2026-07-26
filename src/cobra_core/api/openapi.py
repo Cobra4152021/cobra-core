@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from typing import Any
+from typing import Any, cast
 
 from cobra_core.api.versioning import ApiVersionInfo, version_prefix
 
@@ -37,9 +37,7 @@ def _path_item(summary: str, *, method: str = "get", body: bool = False) -> dict
         op["requestBody"] = {
             "required": False,
             "content": {
-                "application/json": {
-                    "schema": {"type": "object", "additionalProperties": True}
-                }
+                "application/json": {"schema": {"type": "object", "additionalProperties": True}}
             },
         }
     return {method: op}
@@ -90,8 +88,7 @@ def build_openapi_document() -> dict[str, Any]:
             "title": "Cobra Public API",
             "version": "1.0.0",
             "description": (
-                "Stable public integration surface (PASF / KC-036). "
-                + info.deprecation_policy
+                "Stable public integration surface (PASF / KC-036). " + info.deprecation_policy
             ),
             "x-stability": info.stability,
             "x-supported-versions": list(info.supported),
@@ -153,7 +150,7 @@ def build_openapi_document() -> dict[str, Any]:
         ],
     }
     # Round-trip through sorted JSON for deterministic output
-    return json.loads(json.dumps(doc, sort_keys=True, separators=(",", ":")))
+    return cast(dict[str, Any], json.loads(json.dumps(doc, sort_keys=True, separators=(",", ":"))))
 
 
 def render_openapi_json() -> str:

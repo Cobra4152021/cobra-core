@@ -39,9 +39,7 @@ def load_plugin_config(env: dict[str, str] | None = None) -> PluginConfig:
         enabled=_bool(e.get("PEF_ENABLED"), True),
         hot_load=_bool(e.get("PEF_HOT_LOAD"), True),
         core_version=(e.get("COBRA_CORE_VERSION") or "0.9.0rc1").strip(),
-        allowed_entry_prefixes=tuple(
-            p.strip() for p in prefixes.split(",") if p.strip()
-        ),
+        allowed_entry_prefixes=tuple(p.strip() for p in prefixes.split(",") if p.strip()),
         reserved_namespaces=tuple(p.strip() for p in reserved.split(",") if p.strip()),
         plugins_root=(e.get("PEF_PLUGINS_ROOT") or "").strip(),
     )

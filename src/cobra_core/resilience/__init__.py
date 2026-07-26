@@ -7,6 +7,8 @@ constrained fallback, budget protection, and idempotency.
 
 from __future__ import annotations
 
+from typing import Any
+
 from cobra_core.resilience.config import ResilienceConfig, load_resilience_config, rrf_enabled
 from cobra_core.resilience.errors import FailureCategory, ResilienceError, traits_for
 from cobra_core.resilience.types import (
@@ -32,7 +34,7 @@ __all__ = [
 ]
 
 
-def __getattr__(name: str):
+def __getattr__(name: str) -> Any:
     # Lazy exports to avoid import cycles with ISF.
     if name == "ResilienceExecutor":
         from cobra_core.resilience.executor import ResilienceExecutor

@@ -31,8 +31,7 @@ class Principal:
             "attributes": {
                 k: v
                 for k, v in self.attributes.items()
-                if str(k).lower()
-                not in {"password", "secret", "token", "api_key", "authorization"}
+                if str(k).lower() not in {"password", "secret", "token", "api_key", "authorization"}
             },
             "active": self.active,
         }

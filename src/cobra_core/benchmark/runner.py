@@ -38,8 +38,7 @@ def mock_executor(case: BenchmarkCase, provider_id: str) -> dict[str, Any]:
                 case.skill_id,
                 summary="Missing required evidence",
                 confidence=0.0,
-                missing_information=list(gold.missing_information)
-                or ["required evidence missing"],
+                missing_information=list(gold.missing_information) or ["required evidence missing"],
                 citations=[],
             ),
         }
@@ -129,7 +128,9 @@ class BenchmarkRunner:
                 t0 = time.perf_counter()
                 raw = self.executor(case, provider_id)
                 ms = (time.perf_counter() - t0) * 1000
-                run_bucket.append(_to_execution(case, provider_id, workflow_id, raw, ms, self.config))
+                run_bucket.append(
+                    _to_execution(case, provider_id, workflow_id, raw, ms, self.config)
+                )
             primary.append(run_bucket[0])
             if repeats > 1:
                 scored = self.engine.score_executions(
@@ -166,9 +167,7 @@ class BenchmarkRunner:
                 t0 = time.perf_counter()
                 raw = self.executor(case, pid)
                 ms = (time.perf_counter() - t0) * 1000
-                executions.append(
-                    _to_execution(case, pid, workflow_id, raw, ms, self.config)
-                )
+                executions.append(_to_execution(case, pid, workflow_id, raw, ms, self.config))
             by_provider[pid] = executions
         return self.engine.compare_providers(dataset, by_provider, workflow_id=workflow_id)
 
@@ -184,7 +183,8 @@ def _to_execution(
     output = raw.get("output") if isinstance(raw.get("output"), dict) else raw
     if not isinstance(output, dict):
         output = {}
-    err = raw.get("error") if isinstance(raw.get("error"), dict) else {}
+    raw_error = raw.get("error")
+    err: dict[str, Any] = raw_error if isinstance(raw_error, dict) else {}
     return BenchmarkExecution(
         case_id=case.case_id,
         skill_id=case.skill_id,
@@ -200,7 +200,8 @@ def _to_execution(
 
 
 def _estimate_cost(config: BenchmarkConfig, raw: dict[str, Any]) -> float:
-    meta = raw.get("usage") if isinstance(raw.get("usage"), dict) else {}
+    raw_usage = raw.get("usage")
+    meta: dict[str, Any] = raw_usage if isinstance(raw_usage, dict) else {}
     inn = int(meta.get("input_tokens") or 0)
     out = int(meta.get("output_tokens") or 0)
     return round(

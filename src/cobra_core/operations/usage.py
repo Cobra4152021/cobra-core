@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import threading
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from cobra_core.operations.metrics import OPERATIONS_METRICS
@@ -51,7 +51,7 @@ class UsageTracker:
                 average_latency_ms=round(self._average_latency_ms, 2),
                 estimated_cost_usd=round(self._estimated_cost_usd, 6),
                 storage_growth_bytes=self._storage_growth_bytes,
-                day_key=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                day_key=datetime.now(UTC).strftime("%Y-%m-%d"),
                 extras={"quotas": QUOTAS.snapshot(), "checked_at": time.time()},
             )
 

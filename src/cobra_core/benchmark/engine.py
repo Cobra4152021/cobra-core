@@ -12,14 +12,15 @@ from cobra_core.benchmark.audit import BENCHMARK_AUDIT
 from cobra_core.benchmark.config import BenchmarkConfig, load_benchmark_config
 from cobra_core.benchmark.metrics import BENCHMARK_METRICS
 from cobra_core.benchmark.registry import DATASET_REGISTRY, DatasetRegistry
-from cobra_core.benchmark.scoring import build_calibration_curve, score_case
 from cobra_core.benchmark.schemas import (
     BenchmarkDataset,
     BenchmarkExecution,
     BenchmarkRunResult,
+    CalibrationBin,
     CaseScore,
     RepeatabilityResult,
 )
+from cobra_core.benchmark.scoring import build_calibration_curve, score_case
 
 
 def _output_fingerprint(output: dict[str, Any]) -> str:
@@ -27,7 +28,7 @@ def _output_fingerprint(output: dict[str, Any]) -> str:
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
-def _recommendations(scores: list[CaseScore], curve: tuple) -> tuple[str, ...]:
+def _recommendations(scores: list[CaseScore], curve: tuple[CalibrationBin, ...]) -> tuple[str, ...]:
     tips: list[str] = []
     if not scores:
         return ("No cases scored.",)
@@ -96,16 +97,12 @@ class BenchmarkEngine:
             scores.append(score_case(case, ex, self.config))
 
         overall = round(statistics.mean(s.overall for s in scores), 4) if scores else 0.0
-        lat_avg = (
-            round(statistics.mean(s.latency_ms for s in scores), 2) if scores else 0.0
-        )
+        lat_avg = round(statistics.mean(s.latency_ms for s in scores), 2) if scores else 0.0
         cost = round(sum(s.estimated_cost_usd for s in scores), 6)
         curve = build_calibration_curve(scores, executions)
         # Pass when overall clears threshold and no non-missing-evidence case hard-fails.
         hard_fails = [
-            s
-            for s in scores
-            if (not s.passed) and not case_expect_missing(dataset, s.case_id)
+            s for s in scores if (not s.passed) and not case_expect_missing(dataset, s.case_id)
         ]
         passed = overall >= self.config.pass_threshold and not hard_fails
 
@@ -156,7 +153,9 @@ class BenchmarkEngine:
     ) -> RepeatabilityResult:
         if not executions:
             return RepeatabilityResult(case_id, 0, 0.0, 0.0, 0.0, 0.0)
-        fps = [_output_fingerprint(e.output if isinstance(e.output, dict) else {}) for e in executions]
+        fps = [
+            _output_fingerprint(e.output if isinstance(e.output, dict) else {}) for e in executions
+        ]
         identical = sum(1 for f in fps if f == fps[0]) / len(fps)
         # Score each against a temporary case stub via overall fields if present.
         confs = [float((e.output or {}).get("confidence") or 0.0) for e in executions]

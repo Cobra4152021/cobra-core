@@ -4,12 +4,11 @@ from __future__ import annotations
 
 import base64
 import json
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Any, Sequence, TypeVar
+from typing import Any
 
 from cobra_core.api.errors import ApiError, ApiErrorCode
-
-T = TypeVar("T")
 
 DEFAULT_LIMIT = 25
 MAX_LIMIT = 100
@@ -77,7 +76,7 @@ def parse_limit(raw: str | int | None, *, default: int = DEFAULT_LIMIT) -> int:
     return n
 
 
-def paginate(
+def paginate[T](
     items: Sequence[T],
     *,
     limit: int | None = None,
@@ -89,8 +88,5 @@ def paginate(
     slice_ = list(items[offset : offset + lim])
     next_off = offset + lim
     next_cursor = encode_cursor(next_off) if next_off < len(items) else None
-    if serialize is not None:
-        data = [serialize(x) for x in slice_]
-    else:
-        data = list(slice_)
+    data = [serialize(x) for x in slice_] if serialize is not None else list(slice_)
     return Page(items=data, limit=lim, cursor=cursor, next_cursor=next_cursor)

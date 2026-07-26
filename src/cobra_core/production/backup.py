@@ -89,9 +89,7 @@ class BackupService:
             path = self.root / f"{backup_id}.json"
             payload = _collect_payload()
             payload["backup_id"] = backup_id
-            path.write_text(
-                json.dumps(payload, sort_keys=True, indent=2), encoding="utf-8"
-            )
+            path.write_text(json.dumps(payload, sort_keys=True, indent=2), encoding="utf-8")
             art = BackupArtifact(
                 backup_id=backup_id,
                 created_at=time.time(),
@@ -118,7 +116,9 @@ class BackupService:
             return art
         except Exception as exc:  # noqa: BLE001
             PRODUCTION_METRICS.incr("backup_failure")
-            PRODUCTION_AUDIT.record("backup", actor=actor, result="failure", error=type(exc).__name__)
+            PRODUCTION_AUDIT.record(
+                "backup", actor=actor, result="failure", error=type(exc).__name__
+            )
             raise
 
 

@@ -17,9 +17,9 @@ def _memory_mb() -> float | None:
         return round(usage.ru_maxrss / 1024.0, 2)
     except Exception:  # noqa: BLE001
         try:
-            import psutil  # optional
+            import psutil  # type: ignore[import-untyped]  # optional
 
-            return round(psutil.Process().memory_info().rss / (1024 * 1024), 2)
+            return round(float(psutil.Process().memory_info().rss) / (1024 * 1024), 2)
         except Exception:  # noqa: BLE001
             return None
 

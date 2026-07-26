@@ -8,7 +8,6 @@ import uuid
 from collections import deque
 from typing import Any
 
-
 _REDACT_KEYS = frozenset(
     {
         "authorization",

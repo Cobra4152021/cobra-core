@@ -67,9 +67,7 @@ class TenancyService:
         if department_id:
             dept = self.registry.get_department(department_id)
             if dept.organization_id != org.organization_id:
-                raise OrganizationValidationError(
-                    "dept_mismatch", "department not in organization"
-                )
+                raise OrganizationValidationError("dept_mismatch", "department not in organization")
             if m.department_ids and department_id not in m.department_ids:
                 # Department-scoped memberships must match; empty list = org-wide.
                 raise OrganizationValidationError(

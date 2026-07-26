@@ -54,7 +54,9 @@ EXPECTED_CATEGORY_COUNTS = {
 
 def _tree_hash(root: Path) -> str:
     entries: list[str] = []
-    for path in sorted(root.rglob("*")):
+    for path in sorted(
+        root.rglob("*"), key=lambda item: item.relative_to(root).as_posix().casefold()
+    ):
         if path.is_file() and path.name not in {"TREE_HASH.txt", "SHA256SUMS"}:
             rel = path.relative_to(root).as_posix()
             digest = hashlib.sha256(path.read_bytes()).hexdigest()

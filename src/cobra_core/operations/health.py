@@ -38,7 +38,9 @@ def _report(component: str, status: ComponentHealth, detail: str = "") -> Compon
 
 def _flag_health(flag: str, *, present_detail: str) -> ComponentHealthReport:
     if MAINTENANCE.state().active:
-        return _report(flag.lower().replace("_enabled", ""), ComponentHealth.MAINTENANCE, "maintenance")
+        return _report(
+            flag.lower().replace("_enabled", ""), ComponentHealth.MAINTENANCE, "maintenance"
+        )
     # Map flag name to component id
     component = {
         "CASES_ENABLED": "cases",

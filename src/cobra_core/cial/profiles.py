@@ -89,9 +89,7 @@ def resolve_profile(
             profile_id=PROFILE_ANALYSIS,
             requires_live=False,
             description="Analysis / classification requirements",
-            required_capabilities=frozenset(
-                {"reasoning", "classification", "structured_output"}
-            ),
+            required_capabilities=frozenset({"reasoning", "classification", "structured_output"}),
             budget="normal",
             latency="normal",
             provider_id="mock",

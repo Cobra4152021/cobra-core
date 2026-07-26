@@ -110,7 +110,9 @@ def completeness_score(output: dict[str, Any], gold: GoldStandard) -> float:
             else:
                 scores.append(len(a_set & e_set) / len(e_set))
         else:
-            scores.append(1.0 if normalize_text(str(actual)) == normalize_text(str(expected)) else 0.0)
+            scores.append(
+                1.0 if normalize_text(str(actual)) == normalize_text(str(expected)) else 0.0
+            )
     if gold.missing_information:
         actual_missing = _token_set([str(x) for x in (output.get("missing_information") or [])])
         expected_missing = _token_set(gold.missing_information)
@@ -257,7 +259,9 @@ def score_case(
     )
 
 
-def build_calibration_curve(scores: list[CaseScore], executions: list[BenchmarkExecution]) -> tuple[CalibrationBin, ...]:
+def build_calibration_curve(
+    scores: list[CaseScore], executions: list[BenchmarkExecution]
+) -> tuple[CalibrationBin, ...]:
     by_case = {e.case_id: e for e in executions}
     bins = {
         "high": {"count": 0, "correct": 0},

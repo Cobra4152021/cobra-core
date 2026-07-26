@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import threading
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from cobra_core.operations.audit import OPERATIONS_AUDIT
@@ -14,7 +14,7 @@ from cobra_core.operations.schemas import QuotaLimit, QuotaTier, QuotaUsage
 
 
 def _day_key() -> str:
-    return datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    return datetime.now(UTC).strftime("%Y-%m-%d")
 
 
 class QuotaTracker:

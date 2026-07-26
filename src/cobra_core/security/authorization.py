@@ -190,7 +190,7 @@ class AuthorizationEngine:
 
         # Roles/permissions: org membership roles when tenant context present.
         if membership_roles:
-            roles = set()
+            roles: set[str] = set()
             for mr in membership_roles:
                 from cobra_core.organizations.schemas import (
                     MEMBERSHIP_TO_ISPF_ROLES,

@@ -72,9 +72,9 @@ def run_vault_diagnostics(*, probe_manifest_key: str = "") -> dict[str, Any]:
         for family, _t, _p, _c, sockaddr in socket.getaddrinfo(host, port, type=socket.SOCK_STREAM):
             ip = sockaddr[0]
             if family == socket.AF_INET:
-                ipv4.append(ip)
+                ipv4.append(str(ip))
             elif family == socket.AF_INET6:
-                ipv6.append(ip)
+                ipv6.append(str(ip))
         dns_ms = int((time.perf_counter() - dns_t0) * 1000)
         latencies["dns_ms"] = dns_ms
         if not ipv4 and not ipv6:
@@ -100,19 +100,23 @@ def run_vault_diagnostics(*, probe_manifest_key: str = "") -> dict[str, Any]:
     tls_t0 = time.perf_counter()
     try:
         ctx = ssl.create_default_context()
-        with socket.create_connection((host, port), timeout=min(10.0, cfg.vault_timeout_ms / 1000)) as sock:
-            with ctx.wrap_socket(sock, server_hostname=host) as ssock:
-                tls_ms = int((time.perf_counter() - tls_t0) * 1000)
-                latencies["tls_ms"] = tls_ms
-                steps.append(
-                    _step(
-                        "tls",
-                        "ok",
-                        latency_ms=tls_ms,
-                        version=ssock.version() or "unknown",
-                        sni=host,
-                    )
+        with (
+            socket.create_connection(
+                (host, port), timeout=min(10.0, cfg.vault_timeout_ms / 1000)
+            ) as sock,
+            ctx.wrap_socket(sock, server_hostname=host) as ssock,
+        ):
+            tls_ms = int((time.perf_counter() - tls_t0) * 1000)
+            latencies["tls_ms"] = tls_ms
+            steps.append(
+                _step(
+                    "tls",
+                    "ok",
+                    latency_ms=tls_ms,
+                    version=ssock.version() or "unknown",
+                    sni=host,
                 )
+            )
     except OSError as exc:
         tls_ms = int((time.perf_counter() - tls_t0) * 1000)
         latencies["tls_ms"] = tls_ms
@@ -142,7 +146,9 @@ def run_vault_diagnostics(*, probe_manifest_key: str = "") -> dict[str, Any]:
                 overall = "fail"
             elif 200 <= status < 300:
                 kind = "ok"
-                if isinstance(body, str) and ("Just a moment" in body or "cf-browser-verification" in body):
+                if isinstance(body, str) and (
+                    "Just a moment" in body or "cf-browser-verification" in body
+                ):
                     kind = "challenge"
                     overall = "fail"
                 steps.append(
@@ -210,9 +216,7 @@ def run_vault_diagnostics(*, probe_manifest_key: str = "") -> dict[str, Any]:
         "content": by_name.get("content", "unknown"),
         "chunk_retrieval": by_name.get("chunk", "unknown"),
         "response_parsing": (
-            "ok"
-            if overall == "ok"
-            else ("fail" if overall == "fail" else "degraded")
+            "ok" if overall == "ok" else ("fail" if overall == "fail" else "degraded")
         ),
         "latency_ms": total_ms,
         "latencies": latencies,

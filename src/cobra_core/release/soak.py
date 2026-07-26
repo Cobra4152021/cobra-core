@@ -11,8 +11,8 @@ from __future__ import annotations
 import time
 from typing import Any
 
-from cobra_core.api.router import API_GATEWAY, ApiRequest
 from cobra_core.api.rate_limit import RATE_LIMITER
+from cobra_core.api.router import API_GATEWAY, ApiRequest
 from cobra_core.production.performance import PERFORMANCE
 
 
@@ -43,9 +43,10 @@ def run_timed_soak(
                 path="/api/v1/status",
                 request_id=f"soak_{label}_{i}",
                 authenticated=True,
-                principal_id="svc_soak",
-                organization_id="org_soak",
+                principal_id="sys_cobra",
+                organization_id="_system",
                 api_client_id="client_soak",
+                identity_verified=True,
             )
         )
         ms = (time.perf_counter() - st) * 1000

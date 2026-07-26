@@ -112,12 +112,11 @@ class PluginManager:
         from pathlib import Path
 
         from cobra_core.plugins.manifest import load_manifest_file
-        from cobra_core.plugins.schemas import PluginRecord as PR
 
         manifest_path = Path(path) / "plugin.json"
         m = load_manifest_file(manifest_path)
         self.registry.put(
-            PR(
+            PluginRecord(
                 plugin_id=m["plugin_id"],
                 state=PluginState.DISCOVERED,
                 manifest=m,

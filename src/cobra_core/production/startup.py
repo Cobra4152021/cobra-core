@@ -81,9 +81,7 @@ def run_startup_validation(
 
         snap = FEATURE_FLAGS.snapshot() if hasattr(FEATURE_FLAGS, "snapshot") else None
         checks["feature_flags"] = True
-        checks["feature_flags_detail"] = (
-            snap if isinstance(snap, dict) else {"ok": True}
-        )
+        checks["feature_flags_detail"] = snap if isinstance(snap, dict) else {"ok": True}
     except Exception as exc:  # noqa: BLE001
         findings.append(
             ConfigFinding(

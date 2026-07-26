@@ -111,8 +111,7 @@ def render_html(result: BenchmarkRunResult) -> str:
         f"<li><code>{html.escape(k)}</code>: {v:.4f}</li>" for k, v in d["skill_scores"].items()
     )
     calib = "".join(
-        f"<li><strong>{html.escape(b.label)}</strong>: n={b.count}, "
-        f"accuracy={b.accuracy:.3f}</li>"
+        f"<li><strong>{html.escape(b.label)}</strong>: n={b.count}, accuracy={b.accuracy:.3f}</li>"
         for b in result.calibration_curve
     )
     tips = "".join(f"<li>{html.escape(t)}</li>" for t in result.recommendations)
@@ -137,7 +136,7 @@ def render_html(result: BenchmarkRunResult) -> str:
     <div><strong>Provider:</strong> {html.escape(result.provider_id)}</div>
     <div><strong>Workflow:</strong> {html.escape(result.workflow_id)}</div>
     <div><strong>Overall:</strong> {result.overall_score:.4f}
-      ({'PASS' if result.passed else 'FAIL'})</div>
+      ({"PASS" if result.passed else "FAIL"})</div>
     <div><strong>Latency avg:</strong> {result.latency_avg_ms} ms</div>
     <div><strong>Cost:</strong> ${result.cost_total_usd}</div>
   </div>
@@ -147,7 +146,7 @@ def render_html(result: BenchmarkRunResult) -> str:
   <table>
     <thead><tr><th>Case</th><th>Overall</th><th>Findings</th><th>Citations</th>
     <th>Schema</th><th>Calib</th><th>Pass</th></tr></thead>
-    <tbody>{''.join(rows)}</tbody>
+    <tbody>{"".join(rows)}</tbody>
   </table>
   <h2>Calibration</h2>
   <ul>{calib}</ul>

@@ -30,7 +30,9 @@ def run_diagnostics(*, correlation_id: str | None = None) -> dict[str, Any]:
 
     import os
 
-    vault_url = (os.environ.get("EVIDENCE_VAULT_URL") or os.environ.get("COBRA_VAULT_URL") or "").strip()
+    vault_url = (
+        os.environ.get("EVIDENCE_VAULT_URL") or os.environ.get("COBRA_VAULT_URL") or ""
+    ).strip()
     vault["configured"] = bool(vault_url)
     # Do not perform network vault calls here (deterministic offline diagnostics).
 

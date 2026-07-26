@@ -20,8 +20,8 @@ from cobra_core.benchmark.schemas import BenchmarkExecution
 from cobra_core.benchmark.scoring import (
     confidence_calibration_score,
     finding_scores,
-    score_citations,
     score_case,
+    score_citations,
 )
 from cobra_core.isf.schemas import empty_skill_output
 

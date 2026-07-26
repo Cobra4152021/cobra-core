@@ -152,7 +152,9 @@ class OrganizationRegistry:
             self._ownership[key] = ownership
             return ownership
 
-    def ownership_of(self, resource_kind: ResourceKind | str, resource_id: str) -> ResourceOwnership:
+    def ownership_of(
+        self, resource_kind: ResourceKind | str, resource_id: str
+    ) -> ResourceOwnership:
         kind = (
             resource_kind
             if isinstance(resource_kind, ResourceKind)

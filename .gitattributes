@@ -1,0 +1,13 @@
+# Frozen certification artifacts were originally sealed from Windows checkouts.
+# Preserve their CRLF byte representation on every platform so recorded SHA-256
+# values remain reproducible in Linux CI as well as on Windows.
+benchmarks/releases/**/*.json text eol=crlf
+benchmarks/releases/**/*.md text eol=crlf
+evaluations/baselines/**/*.json text eol=crlf
+evaluations/protocols/**/*.json text eol=crlf
+evaluators/**/*.json text eol=crlf
+prompts/**/*.json text eol=crlf
+prompts/**/*.yaml text eol=crlf
+protocol/v1/**/*.json text eol=crlf
+protocol/v1/**/*.yaml text eol=crlf
+runtime_policies/**/*.yaml text eol=crlf

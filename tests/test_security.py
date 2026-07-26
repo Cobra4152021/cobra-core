@@ -303,8 +303,11 @@ def test_regression_kc_021_through_033():
     PLUGIN_MANAGER.bootstrap_samples()
     assert len(PLUGIN_MANAGER.list_plugins()) >= 4
     IDENTITY.bootstrap()
-    assert authorize(
-        principal_id="sys_cobra",
-        action="view_security",
-        resource_type=ResourceType.SYSTEM,
-    ).effect == DecisionEffect.ALLOW
+    assert (
+        authorize(
+            principal_id="sys_cobra",
+            action="view_security",
+            resource_type=ResourceType.SYSTEM,
+        ).effect
+        == DecisionEffect.ALLOW
+    )

@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-
 CURRENT_VERSION = "v1"
 SUPPORTED_VERSIONS: tuple[str, ...] = ("v1",)
 # Breaking changes require a new major version path (v2, …). No silent breaks.

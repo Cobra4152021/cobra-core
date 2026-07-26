@@ -16,7 +16,7 @@ def _api_compatibility() -> dict[str, Any]:
     from cobra_core.api.pagination import paginate
     from cobra_core.api.rate_limit import RateLimiter
     from cobra_core.api.router import API_GATEWAY, ApiRequest
-    from cobra_core.api.sdk.python.cobra_sdk.client import CobraClient, SDK_VERSION
+    from cobra_core.api.sdk.python.cobra_sdk.client import SDK_VERSION, CobraClient
     from cobra_core.api.versioning import ApiVersionInfo, is_supported_version
     from cobra_core.production.integrity import openapi_checksum
 
@@ -27,7 +27,15 @@ def _api_compatibility() -> dict[str, Any]:
         ApiRequest(method="GET", path="/api/v1/status", authenticated=False, request_id="rc1")
     )
     auth = API_GATEWAY.dispatch(
-        ApiRequest(method="GET", path="/api/v1/status", authenticated=True, request_id="rc1a")
+        ApiRequest(
+            method="GET",
+            path="/api/v1/status",
+            authenticated=True,
+            request_id="rc1a",
+            principal_id="sys_cobra",
+            organization_id="_system",
+            identity_verified=True,
+        )
     )
     rl = RateLimiter(org_limit=1, client_limit=1, window_seconds=60)
     rl.check(organization_id="o", api_client_id="c")
@@ -98,14 +106,14 @@ def _plugin_compatibility() -> dict[str, Any]:
 
 def _security_review() -> dict[str, Any]:
     from cobra_core.organizations.config import load_organizations_config
-    from cobra_core.production.security_review import run_security_review
-    from cobra_core.security import authorize
-    from cobra_core.security.identity import IDENTITY
-    from cobra_core.security.schemas import BuiltInRole, DecisionEffect, ResourceType
     from cobra_core.organizations.registry import ORGANIZATION_REGISTRY
     from cobra_core.organizations.schemas import MembershipRole
     from cobra_core.organizations.tenancy import TENANCY
+    from cobra_core.production.security_review import run_security_review
+    from cobra_core.security import authorize
+    from cobra_core.security.identity import IDENTITY
     from cobra_core.security.roles import ROLE_REGISTRY
+    from cobra_core.security.schemas import BuiltInRole, DecisionEffect, ResourceType
 
     TENANCY.reset_for_tests()
     ROLE_REGISTRY.reset_for_tests()
@@ -146,8 +154,8 @@ def _security_review() -> dict[str, Any]:
 
 
 def _recovery() -> dict[str, Any]:
-    from pathlib import Path
     import tempfile
+    from pathlib import Path
 
     from cobra_core.production.backup import BACKUP
     from cobra_core.production.migrations import MIGRATIONS
