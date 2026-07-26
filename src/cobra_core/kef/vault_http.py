@@ -11,6 +11,23 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urlparse, urlunparse
 from urllib.request import Request, urlopen
 
+# Cloudflare Bot Fight Mode returns 1010 / challenges for Python-urllib defaults.
+# Match the KC-018/025/028 cert harness UA pattern (never log tokens).
+_VAULT_USER_AGENT = "CobraCoreKEF/1.0 (compatible; Mozilla/5.0)"
+
+
+def vault_request_headers(auth_token: str, *, org_id: str = "") -> dict[str, str]:
+    """Safe outbound headers for Vault (token value never logged by callers)."""
+    headers = {
+        "X-Hidden-Grid-Key": auth_token,
+        "User-Agent": _VAULT_USER_AGENT,
+        "Accept": "application/json,text/plain,*/*",
+        "Accept-Language": "en-US,en;q=0.9",
+    }
+    if org_id:
+        headers["X-Cobra-Org-Id"] = org_id
+    return headers
+
 
 class VaultHttpTransport(Protocol):
     def request(
@@ -58,7 +75,11 @@ class UrllibVaultTransport:
             raise ValueError("invalid Evidence Vault path")
         parsed = urlparse(self.base_url)
         url = urlunparse((parsed.scheme, parsed.netloc, path, "", urlencode(query or {}), ""))
-        request = Request(url, method=method.upper(), headers=dict(headers))
+        merged = dict(headers)
+        # Ensure browser-compatible UA even if caller omitted it.
+        merged.setdefault("User-Agent", _VAULT_USER_AGENT)
+        merged.setdefault("Accept", "application/json,text/plain,*/*")
+        request = Request(url, method=method.upper(), headers=merged)
         try:
             with urlopen(request, timeout=self.timeout_ms / 1000) as response:
                 raw = response.read()

@@ -276,3 +276,33 @@ def test_gateway_vault_path_with_skill_type():
     assert result.provenance
     assert result.provenance[0].vault_document_id
     assert result.connector_ids == ["evidence_vault"]
+
+
+def test_vault_request_headers_browser_ua_no_token_leak_shape():
+    from cobra_core.kef.vault_http import vault_request_headers
+
+    headers = vault_request_headers("secret-token-value", org_id="org_x")
+    assert "Mozilla" in headers["User-Agent"]
+    assert headers["X-Hidden-Grid-Key"] == "secret-token-value"
+    assert headers["X-Cobra-Org-Id"] == "org_x"
+    assert "Accept" in headers
+
+
+def test_health_degraded_on_non_json_challenge_body():
+    class Challenge:
+        def request(self, method, path, query, headers):  # type: ignore[no-untyped-def]
+            assert "Mozilla" in headers.get("User-Agent", "")
+            return 200, "<html>Just a moment</html>"
+
+    conn = EvidenceVaultConnector(config=_cfg(), transport=Challenge())  # type: ignore[arg-type]
+    assert conn.health().value == "degraded"
+
+
+def test_diagnostics_disabled_when_vault_off(monkeypatch: pytest.MonkeyPatch):
+    monkeypatch.setenv("KEF_ENABLED", "true")
+    monkeypatch.setenv("KEF_EVIDENCE_VAULT_ENABLED", "false")
+    from cobra_core.kef.diagnostics import run_vault_diagnostics
+
+    out = run_vault_diagnostics()
+    assert out["ok"] is False
+    assert out["overall_status"] == "vault_disabled"

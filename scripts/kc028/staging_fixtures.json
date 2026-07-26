@@ -1,0 +1,37 @@
+[
+  {
+    "filename": "kc028-policy.txt",
+    "manifestKey": "manifests/dev/1785033088680-kc028-policy.txt.json",
+    "id": "9f7a91e4-f85f-45c1-843d-693a51328f3c"
+  },
+  {
+    "filename": "kc028-contract.txt",
+    "manifestKey": "manifests/dev/1785033089076-kc028-contract.txt.json",
+    "id": "22445ce4-790e-423d-9f03-7a0a60ba359f"
+  },
+  {
+    "filename": "kc028-budget.csv",
+    "manifestKey": "manifests/dev/1785033089633-kc028-budget.csv.json",
+    "id": "2dc7b74d-a4f2-4497-bb83-488b3b74346c"
+  },
+  {
+    "filename": "kc028-doc-a.txt",
+    "manifestKey": "manifests/dev/1785033089968-kc028-doc-a.txt.json",
+    "id": "67fb27d4-510c-49e7-8a3e-662c47596664"
+  },
+  {
+    "filename": "kc028-doc-b.txt",
+    "manifestKey": "manifests/dev/1785033090404-kc028-doc-b.txt.json",
+    "id": "39c1ba27-fffa-4f81-9fbf-d224ebcf00ae"
+  },
+  {
+    "filename": "kc028-timeline.txt",
+    "manifestKey": "manifests/dev/1785033091098-kc028-timeline.txt.json",
+    "id": "6ca711a2-10be-4c43-805d-3c94ad6fd529"
+  },
+  {
+    "filename": "kc028-bundle.txt",
+    "manifestKey": "manifests/dev/1785033091544-kc028-bundle.txt.json",
+    "id": "9789ec52-0aaa-490f-b309-ffaabcf927e8"
+  }
+]

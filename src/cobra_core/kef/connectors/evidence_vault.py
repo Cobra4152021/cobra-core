@@ -14,7 +14,11 @@ from cobra_core.kef.types import (
     HealthStatus,
     RetrievalQuery,
 )
-from cobra_core.kef.vault_http import UrllibVaultTransport, VaultHttpTransport
+from cobra_core.kef.vault_http import (
+    UrllibVaultTransport,
+    VaultHttpTransport,
+    vault_request_headers,
+)
 from cobra_core.resilience.circuit_breaker import CircuitBreaker
 from cobra_core.resilience.config import ResilienceConfig
 
@@ -71,9 +75,15 @@ class EvidenceVaultConnector:
             if self.transport is None:
                 result = HealthStatus.UNAVAILABLE
             else:
-                headers = {"X-Hidden-Grid-Key": self.config.vault_auth_token}
-                status, _ = self.transport.request("GET", "/api/r2-health", None, headers)
-                result = HealthStatus.HEALTHY if 200 <= status < 300 else HealthStatus.DEGRADED
+                headers = vault_request_headers(self.config.vault_auth_token)
+                status, body = self.transport.request("GET", "/api/r2-health", None, headers)
+                if 200 <= status < 300 and isinstance(body, dict):
+                    result = HealthStatus.HEALTHY
+                elif 200 <= status < 300:
+                    # JSON expected; HTML challenge pages are degraded/unavailable.
+                    result = HealthStatus.DEGRADED
+                else:
+                    result = HealthStatus.DEGRADED
         except Exception:
             result = HealthStatus.UNAVAILABLE
         self._health = (time.monotonic(), result)
@@ -130,9 +140,7 @@ class EvidenceVaultConnector:
             raise KefError(
                 KefErrorCode.CONNECTOR_UNAVAILABLE, "Evidence Vault temporarily unavailable"
             )
-        headers = {"X-Hidden-Grid-Key": self.config.vault_auth_token}
-        if org_id:
-            headers["X-Cobra-Org-Id"] = org_id
+        headers = vault_request_headers(self.config.vault_auth_token, org_id=org_id)
         for attempt in range(self.config.vault_max_attempts):
             try:
                 status, body = self.transport.request(method, path, query, headers)

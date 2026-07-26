@@ -9,6 +9,7 @@ import os
 import statistics
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -122,8 +123,52 @@ def phase_offline(base: str, token: str) -> list[CaseResult]:
     out.append(
         CaseResult(
             "vault_health",
-            st == 200 and isinstance(vhealth, dict) and vhealth.get("health") in {"healthy", "degraded"},
+            st == 200 and isinstance(vhealth, dict) and vhealth.get("health") == "healthy",
             str(vhealth)[:160],
+        )
+    )
+    probe_key = os.environ.get(
+        "KEF_DIAG_MANIFEST_KEY",
+        "manifests/dev/1785033088680-kc028-policy.txt.json",
+    )
+    st, diag = _req(
+        "GET",
+        f"{base}/kef/diagnostics?manifestKey={urllib.parse.quote(probe_key, safe='')}",
+        token=token,
+        timeout=120.0,
+    )
+    diag_ok = (
+        st == 200
+        and isinstance(diag, dict)
+        and diag.get("ok") is True
+        and diag.get("dns") == "ok"
+        and diag.get("tls") == "ok"
+        and diag.get("vault") == "ok"
+        and diag.get("search") == "ok"
+    )
+    out.append(
+        CaseResult(
+            "vault_diagnostics",
+            diag_ok,
+            json.dumps(
+                {
+                    k: diag.get(k)
+                    for k in (
+                        "overall_status",
+                        "dns",
+                        "tls",
+                        "auth",
+                        "vault",
+                        "search",
+                        "metadata",
+                        "content",
+                        "chunk_retrieval",
+                        "latency_ms",
+                    )
+                }
+                if isinstance(diag, dict)
+                else {"status": st}
+            )[:280],
         )
     )
     # Missing evidence must fail before provider (no seed).

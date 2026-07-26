@@ -45,3 +45,9 @@ def handle_vault_health() -> dict[str, Any]:
     except Exception:
         value = "unavailable"
     return {"ok": value == "healthy", "health": value}
+
+
+def handle_kef_diagnostics(*, probe_manifest_key: str = "") -> dict[str, Any]:
+    from cobra_core.kef.diagnostics import run_vault_diagnostics
+
+    return run_vault_diagnostics(probe_manifest_key=probe_manifest_key)

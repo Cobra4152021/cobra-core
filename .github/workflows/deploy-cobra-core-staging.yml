@@ -56,7 +56,7 @@ on:
       container_instance_suffix:
         description: "Bump container DO name suffix (forces fresh envVars)"
         required: false
-        default: "kc028a"
+        default: "kc0281a"
   push:
     branches: [kc-016-staging-deploy]
     paths:

@@ -178,6 +178,7 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
             "/kef/connectors",
             "/kef/status",
             "/kef/connectors/evidence-vault/health",
+            "/kef/diagnostics",
         }:
             rid = new_request_id(rid_h)
             if not verify_bearer(auth, self.config.auth_secret):
@@ -194,6 +195,7 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
             from cobra_core.kef.http_api import (
                 handle_kef_audit,
                 handle_kef_connectors,
+                handle_kef_diagnostics,
                 handle_kef_metrics_json,
                 handle_kef_status,
                 handle_vault_health,
@@ -207,6 +209,12 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
                 body = handle_kef_status()
             elif path == "/kef/connectors/evidence-vault/health":
                 body = handle_vault_health()
+            elif path == "/kef/diagnostics":
+                from urllib.parse import parse_qs
+
+                qs = parse_qs(parsed.query or "")
+                probe_key = (qs.get("manifestKey") or qs.get("probe_manifest_key") or [""])[0]
+                body = handle_kef_diagnostics(probe_manifest_key=str(probe_key or ""))
             else:
                 from urllib.parse import parse_qs
 

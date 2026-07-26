@@ -310,8 +310,8 @@ export default {
     // Bump the name after auth-secret rotation so a fresh Container boots with
     // current Worker secrets (DO constructor envVars are not hot-reloaded).
     // Bump after OPENAI secret/var binding so containers pick up new envVars.
-    // kc028a: Evidence Vault + KEF staging certification.
-    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc028a");
+    // kc0281a: Evidence Vault connectivity fix (browser UA) + diagnostics.
+    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc0281a");
     return container.fetch(request);
   },
 };
