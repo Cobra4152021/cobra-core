@@ -103,9 +103,7 @@ class AuthorizationEngine:
 
         if resource is None:
             if resource_type is None:
-                raise SecurityError(
-                    SecurityErrorCode.POLICY_INVALID, "resource_type required"
-                )
+                raise SecurityError(SecurityErrorCode.POLICY_INVALID, "resource_type required")
             rtype = (
                 resource_type
                 if isinstance(resource_type, ResourceType)
