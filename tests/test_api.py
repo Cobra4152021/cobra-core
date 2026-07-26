@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import json
-
 import pytest
 
 from cobra_core.api.audit import API_AUDIT
@@ -14,7 +12,7 @@ from cobra_core.api.openapi import build_openapi_document, render_openapi_json
 from cobra_core.api.pagination import decode_cursor, encode_cursor, paginate
 from cobra_core.api.rate_limit import RateLimiter
 from cobra_core.api.router import API_GATEWAY, ApiRequest, handle_public_api
-from cobra_core.api.sdk.python.cobra_sdk.client import CobraClient, SDK_VERSION
+from cobra_core.api.sdk.python.cobra_sdk.client import SDK_VERSION, CobraClient
 from cobra_core.api.versioning import ApiVersionInfo, is_supported_version, parse_api_version
 from cobra_core.api.webhooks import RESERVED_EVENTS
 from cobra_core.organizations.registry import ORGANIZATION_REGISTRY
@@ -28,10 +26,10 @@ def _reset() -> None:
     API_GATEWAY.reset_for_tests()
     TENANCY.reset_for_tests()
     IDENTITY.reset_for_tests()
-    from cobra_core.security.roles import ROLE_REGISTRY
-    from cobra_core.security.authorization import AUTHORIZATION
     from cobra_core.security.audit import SECURITY_AUDIT
+    from cobra_core.security.authorization import AUTHORIZATION
     from cobra_core.security.metrics import SECURITY_METRICS
+    from cobra_core.security.roles import ROLE_REGISTRY
 
     ROLE_REGISTRY.reset_for_tests()
     AUTHORIZATION.reset_for_tests()
