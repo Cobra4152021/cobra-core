@@ -171,8 +171,8 @@ def handle_case_create(
 
 
 def handle_workflows_list(*, query: str = "", organization_id: str = "") -> dict[str, Any]:
-    from cobra_core.organizations.registry import ORGANIZATION_REGISTRY
     from cobra_core.api.routing_helpers import workflow_catalog_for_org
+    from cobra_core.organizations.registry import ORGANIZATION_REGISTRY
 
     qs = _qs(query)
     limit = parse_limit(_first(qs, "limit") or None)
@@ -258,13 +258,11 @@ def handle_evidence_get(
     principal_id: str,
     organization_id: str,
 ) -> dict[str, Any]:
-    from cobra_core.organizations.registry import ORGANIZATION_REGISTRY
     from cobra_core.organizations.schemas import ResourceKind
+    from cobra_core.organizations.tenancy import TENANCY
     from cobra_core.organizations.validation import OrganizationValidationError
     from cobra_core.security import authorize
     from cobra_core.security.schemas import ResourceType
-
-    from cobra_core.organizations.tenancy import TENANCY
 
     try:
         ownership = TENANCY.assert_resource_access(
