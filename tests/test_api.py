@@ -8,6 +8,7 @@ import pytest
 
 from cobra_core.api.audit import API_AUDIT
 from cobra_core.api.errors import ApiErrorCode
+from cobra_core.api.identity import sign_identity_assertion, verify_identity_assertion
 from cobra_core.api.metrics import API_METRICS
 from cobra_core.api.openapi import build_openapi_document, render_openapi_json
 from cobra_core.api.pagination import decode_cursor, encode_cursor, paginate
@@ -51,9 +52,10 @@ def _auth_req(
     *,
     query: str = "",
     body: dict | None = None,
-    principal_id: str = "",
-    organization_id: str = "",
+    principal_id: str = "sys_cobra",
+    organization_id: str = "_system",
     authenticated: bool = True,
+    identity_verified: bool = True,
 ) -> ApiRequest:
     return ApiRequest(
         method=method,
@@ -63,6 +65,7 @@ def _auth_req(
         body=body,
         request_id="req_test",
         authenticated=authenticated,
+        identity_verified=identity_verified,
         principal_id=principal_id,
         organization_id=organization_id,
         api_client_id=principal_id or "client_test",
@@ -127,6 +130,66 @@ def test_health_public():
     assert resp.body["ok"] is True
 
 
+def test_unverified_identity_is_rejected():
+    resp = API_GATEWAY.dispatch(
+        _auth_req("GET", "/api/v1/status", identity_verified=False)
+    )
+    assert resp.status == 401
+    assert resp.body["error_code"] == "unauthenticated"
+
+
+def test_identity_assertion_rejects_spoofing_and_replay():
+    secret = "test-secret"
+    ts = 1_700_000_000
+    signature = sign_identity_assertion(
+        secret=secret,
+        timestamp=ts,
+        principal_id="user_a",
+        organization_id="org_a",
+        method="GET",
+        path="/api/v1/cases",
+    )
+    headers = {
+        "X-Cobra-Principal-Id": "user_a",
+        "X-Cobra-Org-Id": "org_a",
+        "X-Cobra-Identity-Timestamp": str(ts),
+        "X-Cobra-Identity-Signature": signature,
+    }
+    verified = verify_identity_assertion(
+        headers=headers,
+        secret=secret,
+        method="GET",
+        path="/api/v1/cases",
+        now=ts,
+    )
+    assert verified is not None
+    assert verified.principal_id == "user_a"
+
+    spoofed = dict(headers)
+    spoofed["X-Cobra-Principal-Id"] = "sys_cobra"
+    assert verify_identity_assertion(
+        headers=spoofed,
+        secret=secret,
+        method="GET",
+        path="/api/v1/cases",
+        now=ts,
+    ) is None
+    assert verify_identity_assertion(
+        headers=headers,
+        secret=secret,
+        method="POST",
+        path="/api/v1/cases",
+        now=ts,
+    ) is None
+    assert verify_identity_assertion(
+        headers=headers,
+        secret=secret,
+        method="GET",
+        path="/api/v1/cases",
+        now=ts + 301,
+    ) is None
+
+
 def test_resource_groups_and_examples_flow():
     IDENTITY.bootstrap()
     owner = IDENTITY.create_user(
@@ -151,7 +214,15 @@ def test_resource_groups_and_examples_flow():
     )
 
     # List organizations
-    resp = API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/organizations", query="limit=10"))
+    resp = API_GATEWAY.dispatch(
+        _auth_req(
+            "GET",
+            "/api/v1/organizations",
+            query="limit=10",
+            principal_id=owner.principal_id,
+            organization_id="org_api",
+        )
+    )
     assert resp.status == 200
     assert any(o["organization_id"] == "org_api" for o in resp.body["data"])
 
@@ -204,15 +275,15 @@ def test_resource_groups_and_examples_flow():
     PLUGIN_MANAGER.reset_for_tests()
     PLUGIN_MANAGER.bootstrap_samples()
     resp = API_GATEWAY.dispatch(
-        _auth_req("GET", "/api/v1/reports/policy_compliance_summary")
+        _auth_req("GET", "/api/v1/reports/policy_compliance_summary", principal_id=inv.principal_id, organization_id="org_api")
     )
     assert resp.status == 200
 
     # Plugins / benchmark / ops / security
-    assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/plugins")).status == 200
-    assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/benchmark/datasets")).status == 200
-    assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/operations/status")).status == 200
-    assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/security/status")).status == 200
+    assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/plugins", principal_id=inv.principal_id, organization_id="org_api")).status == 200
+    assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/benchmark/datasets", principal_id=inv.principal_id, organization_id="org_api")).status == 200
+    assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/operations/status", principal_id=inv.principal_id, organization_id="org_api")).status == 200
+    assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/security/status", principal_id=inv.principal_id, organization_id="org_api")).status == 200
 
 
 def test_sdk_generation_surface():
