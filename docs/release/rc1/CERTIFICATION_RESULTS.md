@@ -2,6 +2,8 @@
 
 **Date:** 2026-07-26  
 **Branch:** `kc-038-release-candidate-1`  
+**Commit:** `dcfc21b`  
+**Tag:** `v1.0.0-rc1.kc038` (legacy `v1.0.0-rc1` already pointed at KC-011 and was not force-moved)  
 **Offline pack:** PASS  
 **Release approval:** **BLOCKED** (24h staging soak incomplete)
 
