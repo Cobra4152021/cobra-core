@@ -95,7 +95,7 @@ class QwenLocalAdapter:
             try:
                 from transformers import BitsAndBytesConfig
 
-                load_kwargs["quantization_config"] = BitsAndBytesConfig(  # type: ignore[no-untyped-call]
+                load_kwargs["quantization_config"] = BitsAndBytesConfig(
                     load_in_4bit=True,
                     bnb_4bit_compute_dtype=torch.float16,
                     bnb_4bit_use_double_quant=True,

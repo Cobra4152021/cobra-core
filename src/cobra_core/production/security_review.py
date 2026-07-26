@@ -29,7 +29,11 @@ def run_security_review() -> dict[str, Any]:
         from cobra_core.production.audit import PRODUCTION_AUDIT
         from cobra_core.security.audit import SECURITY_AUDIT
 
-        blob = str(API_AUDIT.recent(limit=20) + PRODUCTION_AUDIT.recent(limit=20) + SECURITY_AUDIT.recent(limit=20))
+        blob = str(
+            API_AUDIT.recent(limit=20)
+            + PRODUCTION_AUDIT.recent(limit=20)
+            + SECURITY_AUDIT.recent(limit=20)
+        )
         leaked = any(x in blob.lower() for x in ("bearer ", "api_key=", "password="))
         checks.append(
             {

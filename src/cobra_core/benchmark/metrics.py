@@ -67,7 +67,9 @@ class BenchmarkMetrics:
                 "benchmark_pass": self.benchmark_pass,
                 "benchmark_fail": self.benchmark_fail,
                 "benchmark_latency": round(
-                    self.benchmark_latency_ms_sum / lat_n if self.benchmark_latency_ms_count else 0.0,
+                    self.benchmark_latency_ms_sum / lat_n
+                    if self.benchmark_latency_ms_count
+                    else 0.0,
                     2,
                 ),
                 "benchmark_cost": round(self.benchmark_cost_usd_sum, 6),

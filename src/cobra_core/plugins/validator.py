@@ -12,9 +12,7 @@ from cobra_core.plugins.errors import PluginError, PluginErrorCode
 from cobra_core.plugins.permissions import parse_permissions, require_type_permission
 from cobra_core.plugins.schemas import PluginType
 
-_SEMVER = re.compile(
-    r"^v?(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)(?P<pre>[0-9A-Za-z.\-]*)?$"
-)
+_SEMVER = re.compile(r"^v?(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)(?P<pre>[0-9A-Za-z.\-]*)?$")
 
 
 def _parse_ver(value: str) -> tuple[int, int, int, str]:

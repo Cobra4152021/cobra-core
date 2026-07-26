@@ -46,9 +46,8 @@ class CircuitBreaker:
             self.on_transition(self.key, old, new_state)
 
     def _refresh_unlocked(self, now: float) -> CircuitState:
-        if (
-            self.state == CircuitState.OPEN
-            and now - self.opened_at >= float(self.cfg.circuit_open_seconds)
+        if self.state == CircuitState.OPEN and now - self.opened_at >= float(
+            self.cfg.circuit_open_seconds
         ):
             self._transition_unlocked(CircuitState.HALF_OPEN)
         return self.state

@@ -34,10 +34,10 @@ def _reset_motf() -> None:
     ORGANIZATION_METRICS.clear()
     ORGANIZATION_AUDIT.clear()
     IDENTITY.reset_for_tests()
-    from cobra_core.security.roles import ROLE_REGISTRY
     from cobra_core.security.audit import SECURITY_AUDIT
-    from cobra_core.security.metrics import SECURITY_METRICS
     from cobra_core.security.authorization import AUTHORIZATION
+    from cobra_core.security.metrics import SECURITY_METRICS
+    from cobra_core.security.roles import ROLE_REGISTRY
 
     ROLE_REGISTRY.reset_for_tests()
     SECURITY_AUDIT.clear()

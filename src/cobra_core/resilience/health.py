@@ -52,9 +52,7 @@ class HealthTracker:
             state = ProviderHealthState.DEGRADED
         elif outcomes:
             fails = sum(1 for o in outcomes[-10:] if not o)
-            state = (
-                ProviderHealthState.DEGRADED if fails >= 5 else ProviderHealthState.HEALTHY
-            )
+            state = ProviderHealthState.DEGRADED if fails >= 5 else ProviderHealthState.HEALTHY
         else:
             state = ProviderHealthState.UNKNOWN
         return HealthSnapshot(

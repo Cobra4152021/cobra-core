@@ -64,7 +64,9 @@ def readiness(*, startup_ok: bool = True) -> dict[str, Any]:
     if overall in {"degraded", "maintenance"}:
         return {
             "ok": True,
-            "mode": HealthMode.DEGRADED.value if overall == "degraded" else HealthMode.MAINTENANCE.value,
+            "mode": HealthMode.DEGRADED.value
+            if overall == "degraded"
+            else HealthMode.MAINTENANCE.value,
             "reason": overall,
             "ts": time.time(),
         }
@@ -97,7 +99,9 @@ def dependency_readiness() -> dict[str, Any]:
     # Vault URL presence (connectivity probed separately in diagnostics)
     import os
 
-    vault = (os.environ.get("EVIDENCE_VAULT_URL") or os.environ.get("COBRA_VAULT_URL") or "").strip()
+    vault = (
+        os.environ.get("EVIDENCE_VAULT_URL") or os.environ.get("COBRA_VAULT_URL") or ""
+    ).strip()
     deps["vault_config"] = {"ok": True, "configured": bool(vault)}
     ok = all(bool(v.get("ok")) for v in deps.values())
     return {"ok": ok, "dependencies": deps, "ts": time.time()}

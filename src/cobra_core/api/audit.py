@@ -8,16 +8,13 @@ import uuid
 from collections import deque
 from typing import Any
 
-_REDACT = frozenset(
-    {"authorization", "api_key", "token", "secret", "password", "credential"}
-)
+_REDACT = frozenset({"authorization", "api_key", "token", "secret", "password", "credential"})
 
 
 def _scrub(value: Any) -> Any:
     if isinstance(value, dict):
         return {
-            k: ("[redacted]" if str(k).lower() in _REDACT else _scrub(v))
-            for k, v in value.items()
+            k: ("[redacted]" if str(k).lower() in _REDACT else _scrub(v)) for k, v in value.items()
         }
     if isinstance(value, list):
         return [_scrub(v) for v in value[:50]]

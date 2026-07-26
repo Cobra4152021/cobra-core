@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import Any
 
 from cobra_core.production.audit import PRODUCTION_AUDIT
-from cobra_core.production.backup import BACKUP
 from cobra_core.production.deployment import deployment_status
 from cobra_core.production.diagnostics import run_diagnostics
 from cobra_core.production.healthcheck import health_bundle

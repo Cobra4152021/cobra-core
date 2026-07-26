@@ -291,7 +291,8 @@ def soak(base: str, token: str, n: int) -> SoakStats:
             if err.get("code"):
                 status = str(err.get("code"))
         if status in {"pending_approval", "completed", "needs_human_review"} or (
-            isinstance(body, dict) and (body.get("proposal") or {}).get("status") == "pending_approval"
+            isinstance(body, dict)
+            and (body.get("proposal") or {}).get("status") == "pending_approval"
         ):
             stats.successes += 1
         elif "missing_required_evidence" in status or st in {400, 422}:

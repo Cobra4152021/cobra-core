@@ -42,7 +42,7 @@ def _ram_bytes() -> tuple[int | None, int | None]:
 
             stat = MEMORYSTATUSEX()
             stat.dwLength = ctypes.sizeof(MEMORYSTATUSEX)
-            if ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(stat)):
+            if ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(stat)):  # type: ignore[attr-defined]
                 return int(stat.ullTotalPhys), int(stat.ullAvailPhys)
         except Exception:
             return None, None

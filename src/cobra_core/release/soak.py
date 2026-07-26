@@ -11,8 +11,8 @@ from __future__ import annotations
 import time
 from typing import Any
 
-from cobra_core.api.router import API_GATEWAY, ApiRequest
 from cobra_core.api.rate_limit import RATE_LIMITER
+from cobra_core.api.router import API_GATEWAY, ApiRequest
 from cobra_core.production.performance import PERFORMANCE
 
 

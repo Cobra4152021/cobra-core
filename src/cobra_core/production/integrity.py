@@ -17,9 +17,7 @@ def configuration_hash(env: dict[str, str] | None = None) -> str:
     e = env if env is not None else dict(os.environ)
     # Only non-secret keys — never hash raw secrets into reports as plaintext values.
     keys = sorted(
-        k
-        for k in e
-        if not any(s in k.lower() for s in ("secret", "token", "password", "api_key"))
+        k for k in e if not any(s in k.lower() for s in ("secret", "token", "password", "api_key"))
     )
     payload = {k: e.get(k, "") for k in keys}
     return _sha256_text(json.dumps(payload, sort_keys=True, separators=(",", ":")))

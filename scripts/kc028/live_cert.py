@@ -12,9 +12,7 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-BASE = os.environ.get(
-    "COBRA_CORE_BASE_URL", "https://cobra-core-staging.cobra4152020.workers.dev"
-)
+BASE = os.environ.get("COBRA_CORE_BASE_URL", "https://cobra-core-staging.cobra4152020.workers.dev")
 ORG = "org_staging_smoke"
 UA = "CobraKC0281Cert/1.0 (compatible; Mozilla/5.0)"
 FIXTURES = Path(__file__).with_name("staging_fixtures.json")
@@ -108,8 +106,7 @@ def main() -> int:
         )
         # Mock provider + governance: pending_approval is the success path.
         print(
-            f"  [{'PASS' if ok else 'FAIL'}] {skill}: http={st} status={status} "
-            f"latency_ms={ms:.0f}"
+            f"  [{'PASS' if ok else 'FAIL'}] {skill}: http={st} status={status} latency_ms={ms:.0f}"
         )
         fails += 0 if ok else 1
 

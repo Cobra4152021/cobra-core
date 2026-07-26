@@ -27,8 +27,7 @@ def handle_organization_members(organization_id: str) -> tuple[int, dict[str, An
     try:
         ORGANIZATION_REGISTRY.get(organization_id)
         members = [
-            m.public_dict()
-            for m in ORGANIZATION_REGISTRY.membership.list_for_org(organization_id)
+            m.public_dict() for m in ORGANIZATION_REGISTRY.membership.list_for_org(organization_id)
         ]
         return 200, {"ok": True, "organization_id": organization_id, "members": members}
     except OrganizationValidationError as exc:
@@ -37,9 +36,7 @@ def handle_organization_members(organization_id: str) -> tuple[int, dict[str, An
 
 def handle_organization_departments(organization_id: str) -> tuple[int, dict[str, Any]]:
     try:
-        depts = [
-            d.public_dict() for d in ORGANIZATION_REGISTRY.list_departments(organization_id)
-        ]
+        depts = [d.public_dict() for d in ORGANIZATION_REGISTRY.list_departments(organization_id)]
         return 200, {
             "ok": True,
             "organization_id": organization_id,

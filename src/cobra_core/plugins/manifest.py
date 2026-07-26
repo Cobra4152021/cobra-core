@@ -9,7 +9,6 @@ from typing import Any
 from cobra_core.plugins.errors import PluginError, PluginErrorCode
 from cobra_core.plugins.schemas import PluginType
 
-
 REQUIRED_FIELDS = (
     "plugin_id",
     "name",

@@ -52,9 +52,7 @@ class RestoreService:
         errors = validate_backup_compatibility(payload)
         if errors:
             PRODUCTION_METRICS.incr("restore_failure")
-            PRODUCTION_AUDIT.record(
-                "restore", actor=actor, result="incompatible", errors=errors
-            )
+            PRODUCTION_AUDIT.record("restore", actor=actor, result="incompatible", errors=errors)
             raise RestoreError("incompatible", "; ".join(errors))
 
         report: dict[str, Any] = {

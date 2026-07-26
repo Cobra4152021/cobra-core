@@ -121,17 +121,11 @@ class CialEngine:
                 corr = ""
                 if metadata:
                     corr = str(
-                        metadata.get("correlation_id")
-                        or metadata.get("request_id")
-                        or ""
+                        metadata.get("correlation_id") or metadata.get("request_id") or ""
                     ).strip()
-                decision, air_reason, forced_mock = self._route_with_air(
-                    correlation_id=corr
-                )
+                decision, air_reason, forced_mock = self._route_with_air(correlation_id=corr)
             else:
-                decision, forced_mock = self._route_legacy(
-                    route_policy, preferred_model_id
-                )
+                decision, forced_mock = self._route_legacy(route_policy, preferred_model_id)
                 air_reason = None
 
             if decision.provider_id == "openai" and not self.config.can_use_live_provider:
@@ -290,9 +284,7 @@ class CialEngine:
         route_policy: RoutingPolicy,
         preferred_model_id: str | None,
     ) -> tuple[Any, bool]:
-        preferred, effective_provider, forced_mock = self._resolve_route_target(
-            preferred_model_id
-        )
+        preferred, effective_provider, forced_mock = self._resolve_route_target(preferred_model_id)
         if route_policy == RoutingPolicy.MANUAL:
             request = RoutingRequest(
                 policy=RoutingPolicy.MANUAL,

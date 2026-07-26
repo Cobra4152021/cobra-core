@@ -16,6 +16,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import contextlib
 import json
 import os
 import statistics
@@ -511,7 +512,6 @@ def phase_live_gate_close(base: str, token: str) -> list[CaseResult]:
 def run_soak(base: str, token: str, n: int) -> SoakStats:
     """Workload mix: 25% summary, 20% timeline, 15% policy, 15% docs, 15% vehicle, 10% fail."""
     stats = SoakStats()
-    mix: list[tuple[str, dict[str, Any], bool]] = []
     # Build proportional list
     plan = (
         [
@@ -621,10 +621,8 @@ def run_soak(base: str, token: str, n: int) -> SoakStats:
             m = str(prop.get("selected_model") or "none")
             stats.providers[p] = stats.providers.get(p, 0) + 1
             stats.models[m] = stats.models.get(m, 0) + 1
-            try:
+            with contextlib.suppress(TypeError, ValueError):
                 stats.confidences.append(float(prop.get("confidence") or 0))
-            except (TypeError, ValueError):
-                pass
             meta_repair = ((body.get("extensions") or {}).get("isf") or {}).get("metadata") or {}
             rc = int(meta_repair.get("repair_attempt_count") or 0)
             if rc:

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import time
-from typing import Any
+from typing import Any, cast
 
 from cobra_core.isf.evidence import EvidenceRef, EvidenceType, document_ref_count
 from cobra_core.kef.audit import KEF_AUDIT, KefAuditLog
@@ -20,12 +20,14 @@ from cobra_core.kef.registry import CONNECTOR_REGISTRY, ConnectorRegistry
 from cobra_core.kef.resolver import resolve_refs
 from cobra_core.kef.security import Principal, filter_permitted
 from cobra_core.kef.types import (
+    Citation,
+    CitationProvenance,
     IntegrityState,
     RetrievalMode,
     RetrievalQuery,
     RetrievalResult,
 )
-from cobra_core.kef.versioning import select_version
+from cobra_core.kef.versioning import VersionMode, select_version
 
 
 class KefGateway:
@@ -127,11 +129,18 @@ class KefGateway:
             allow_unverified=self.config.allow_unverified_integrity,
             required_ids=set(query.ref_ids),
         )
+        raw_version_mode = str(query.metadata_filters.get("version_mode") or "latest")
+        version_mode = cast(
+            VersionMode,
+            raw_version_mode
+            if raw_version_mode in {"latest", "specific", "effective_at", "all"}
+            else "latest",
+        )
         versioned = select_version(
             integrity_ok,
             event_date=str(query.metadata_filters.get("event_date") or "") or None,
             requested_version=str(query.metadata_filters.get("source_version") or "") or None,
-            mode=str(query.metadata_filters.get("version_mode") or "latest"),
+            mode=version_mode,
         )
         unique, dup_removed, _rels = deduplicate(versioned)
 
@@ -158,9 +167,12 @@ class KefGateway:
         missing = sorted(set(missing))
 
         if missing:
-            citations, provenance = [], []
+            citations: list[Citation] = []
+            provenance: list[CitationProvenance] = []
         else:
-            citations, provenance = assign_citation_labels(ranked, include_provenance=True)
+            citation_result = assign_citation_labels(ranked, include_provenance=True)
+            assert isinstance(citation_result, tuple)
+            citations, provenance = citation_result
         latency_ms = int((time.perf_counter() - t0) * 1000)
         status = "missing_required" if missing else "ok"
         result_label = "missing_required" if missing else "success"

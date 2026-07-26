@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from cobra_core.operations.feature_flags import FEATURE_FLAGS, read_only_mode
-from cobra_core.operations.health import health_public_dict, overall_status
+from cobra_core.operations.health import health_public_dict
 from cobra_core.operations.maintenance import MAINTENANCE
 from cobra_core.operations.metrics import OPERATIONS_METRICS
 from cobra_core.operations.quotas import QUOTAS
