@@ -55,9 +55,7 @@ def handle_status() -> dict[str, Any]:
     }
 
 
-def handle_organizations_list(
-    *, query: str = "", organization_id: str = ""
-) -> dict[str, Any]:
+def handle_organizations_list(*, query: str = "", organization_id: str = "") -> dict[str, Any]:
     from cobra_core.organizations.registry import ORGANIZATION_REGISTRY
 
     qs = _qs(query)
@@ -90,11 +88,7 @@ def handle_cases_list(*, query: str = "", organization_id: str = "") -> dict[str
     cursor = _first(qs, "cursor") or None
     org = organization_id or _first(qs, "organization_id")
     items: list[dict[str, Any]] = []
-    orgs = (
-        [ORGANIZATION_REGISTRY.get(org)]
-        if org
-        else ORGANIZATION_REGISTRY.list_organizations()
-    )
+    orgs = [ORGANIZATION_REGISTRY.get(org)] if org else ORGANIZATION_REGISTRY.list_organizations()
     for o in orgs:
         items.extend(
             r.public_dict()
@@ -207,7 +201,9 @@ def handle_workflow_run(
     body = require_object(payload or {})
     org_id = organization_id or require_str(body, "organization_id")
     if not TENANT_ROUTER.workflow_available(organization_id=org_id, workflow_id=workflow_id):
-        raise ApiError(ApiErrorCode.FORBIDDEN, "workflow not available for organization", status=403)
+        raise ApiError(
+            ApiErrorCode.FORBIDDEN, "workflow not available for organization", status=403
+        )
     decision = authorize(
         principal_id=principal_id,
         action="run_workflow",
@@ -245,11 +241,7 @@ def handle_evidence_list(*, query: str = "", organization_id: str = "") -> dict[
     cursor = _first(qs, "cursor") or None
     org = organization_id or _first(qs, "organization_id")
     items: list[dict[str, Any]] = []
-    orgs = (
-        [ORGANIZATION_REGISTRY.get(org)]
-        if org
-        else ORGANIZATION_REGISTRY.list_organizations()
-    )
+    orgs = [ORGANIZATION_REGISTRY.get(org)] if org else ORGANIZATION_REGISTRY.list_organizations()
     for o in orgs:
         items.extend(
             r.public_dict()
