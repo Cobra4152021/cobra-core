@@ -286,6 +286,52 @@ def test_resource_groups_and_examples_flow():
     assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/security/status", principal_id=inv.principal_id, organization_id="org_api")).status == 200
 
 
+def test_cross_tenant_case_and_organization_reads_are_denied():
+    IDENTITY.bootstrap()
+    owner_a = IDENTITY.create_user(
+        display_name="Owner A",
+        roles=[BuiltInRole.ADMINISTRATOR.value],
+        principal_id="owner_a",
+    )
+    owner_b = IDENTITY.create_user(
+        display_name="Owner B",
+        roles=[BuiltInRole.ADMINISTRATOR.value],
+        principal_id="owner_b",
+    )
+    ORGANIZATION_REGISTRY.create_organization(
+        name="Org A", owner=owner_a.principal_id, organization_id="org_a"
+    )
+    ORGANIZATION_REGISTRY.create_organization(
+        name="Org B", owner=owner_b.principal_id, organization_id="org_b"
+    )
+    ORGANIZATION_REGISTRY.tag_resource(
+        organization_id="org_b",
+        resource_kind=ResourceKind.CASE,
+        resource_id="case_b",
+        resource_owner=owner_b.principal_id,
+    )
+
+    cross_org = API_GATEWAY.dispatch(
+        _auth_req(
+            "GET",
+            "/api/v1/organizations/org_b",
+            principal_id=owner_a.principal_id,
+            organization_id="org_a",
+        )
+    )
+    assert cross_org.status == 403
+
+    cross_case = API_GATEWAY.dispatch(
+        _auth_req(
+            "GET",
+            "/api/v1/cases/case_b",
+            principal_id=owner_a.principal_id,
+            organization_id="org_a",
+        )
+    )
+    assert cross_case.status == 403
+
+
 def test_sdk_generation_surface():
     # Reference SDK importable; models/helpers present
     assert SDK_VERSION
