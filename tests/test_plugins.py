@@ -23,7 +23,7 @@ from cobra_core.plugins.manifest import normalize_manifest
 from cobra_core.plugins.metrics import PLUGIN_METRICS
 from cobra_core.plugins.permissions import parse_permissions, require_type_permission
 from cobra_core.plugins.registry import PluginRegistry
-from cobra_core.plugins.schemas import Permission, PluginState, PluginType
+from cobra_core.plugins.schemas import PluginState, PluginType
 from cobra_core.plugins.validator import validate_manifest
 
 
