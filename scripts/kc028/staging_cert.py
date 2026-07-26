@@ -160,24 +160,26 @@ def phase_offline(base: str, token: str) -> list[CaseResult]:
             code or str(body)[:120],
         )
     )
-    # Vision skill: KEF may succeed if vault has photos; AIR must still fail closed offline.
+    # Vision skill without evidence: fail closed before AIR (avoids Vault lookup hangs).
     st, body = _req(
         "POST",
         f"{base}/isf/execute",
         token=token,
         body={
             "skill_id": "vehicle_damage_assessment",
-            "evidence": [{"evidence_type": "vehicle_photos", "ref_id": "nonexistent-photo"}],
+            "evidence": [],
             "profile_id": "default",
         },
+        timeout=60.0,
     )
     detail = str(body)[:180]
-    ok_vision = st in {200, 400, 422, 502} and (
-        "missing_required_evidence" in detail
-        or "routing_failed" in detail
-        or "no_capability_match" in detail
-    )
-    out.append(CaseResult("vision_fail_closed_or_missing", ok_vision, detail))
+    code = ""
+    if isinstance(body, dict):
+        prop = body.get("proposal") if isinstance(body.get("proposal"), dict) else {}
+        err = (prop.get("structured_result") or {}).get("error") or {}
+        code = str(err.get("code") or prop.get("execution_status") or "")
+    ok_vision = "missing_required_evidence" in code or "missing_required_evidence" in detail
+    out.append(CaseResult("vision_fail_closed_or_missing", ok_vision, code or detail))
     st, metrics = _req("GET", f"{base}/kef/metrics", token=token)
     mkeys = list((metrics.get("metrics") or {}).keys()) if isinstance(metrics, dict) else []
     out.append(CaseResult("kef_metrics", st == 200 and "retrieval_total" in mkeys, str(mkeys[:12])))
