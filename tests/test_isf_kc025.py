@@ -26,7 +26,9 @@ from cobra_core.protocol_v1.constants import DEFAULT_MODEL
 
 
 @pytest.fixture(autouse=True)
-def _reset() -> None:
+def _reset(monkeypatch: pytest.MonkeyPatch) -> None:
+    # KC-025 structured-repair unit tests exercise the pre-RRF CIAL path.
+    monkeypatch.setenv("RRF_ENABLED", "false")
     ISF_AUDIT.clear()
     AIR_AUDIT.clear()
     AIR_METRICS.reset()

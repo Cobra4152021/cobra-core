@@ -28,7 +28,7 @@ from urllib.parse import urlparse
 CERTIFIED_VERSION = "v0.9.0-rc1"
 CERTIFIED_REVISION = "ec400d83a9cc8105557bda2105f177cc619638b2"
 # Bump when staging_edge diagnostics change — proves which image is serving.
-STAGING_EDGE_BUILD = "kc025-edge-20260725a"
+STAGING_EDGE_BUILD = "kc026-edge-20260725a"
 
 logger = logging.getLogger("cobra_core.staging_edge")
 
@@ -177,6 +177,8 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
             "/isf/skills",
             "/isf/audit",
             "/isf/metrics",
+            "/rrf/audit",
+            "/rrf/metrics",
         }:
             # No anonymous requests — Bearer required for all staging edge GETs.
             if not self._auth_ok():
@@ -215,7 +217,9 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
             # Preserve query string for /air/audit and /isf/audit.
             proxy_path = (
                 self.path
-                if path.startswith("/air/") or path.startswith("/isf/")
+                if path.startswith("/air/")
+                or path.startswith("/isf/")
+                or path.startswith("/rrf/")
                 else path
             )
             status, resp_headers, raw = _proxy(
@@ -243,6 +247,7 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                 cial_gate: dict[str, object] = {"error": "cial_unavailable"}
                 air_gate: dict[str, object] = {"error": "air_unavailable"}
                 isf_gate: dict[str, object] = {"error": "isf_unavailable"}
+                rrf_gate: dict[str, object] = {"error": "rrf_unavailable"}
                 try:
                     from cobra_core.cial.config import load_cial_config
 
@@ -318,10 +323,21 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                         "liveGateOpen": cfg.can_use_live_provider,
                         "activeProfile": cfg.active_profile,
                     }
+                    from cobra_core.resilience.config import rrf_enabled
+
+                    rrf_gate = {
+                        "edgeBuild": STAGING_EDGE_BUILD,
+                        "rrfEnabled": rrf_enabled(),
+                        "isfEnabled": isf_enabled(),
+                        "airEnabled": _air_enabled(),
+                        "liveGateOpen": cfg.can_use_live_provider,
+                        "activeProfile": cfg.active_profile,
+                    }
                 except Exception as exc:  # noqa: BLE001 — diagnostic only
                     cial_gate = {"error": type(exc).__name__}
                     air_gate = {"error": type(exc).__name__}
                     isf_gate = {"error": type(exc).__name__}
+                    rrf_gate = {"error": type(exc).__name__}
                 enriched = {
                     **core_body,
                     "status": "healthy" if healthy else "degraded",
@@ -331,6 +347,7 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                     "cialGate": cial_gate,
                     "airGate": air_gate,
                     "isfGate": isf_gate,
+                    "rrfGate": rrf_gate,
                 }
                 self._send_json(200, enriched, request_id=str(enriched.get("requestId") or ""))
                 return

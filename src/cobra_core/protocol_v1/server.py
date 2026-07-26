@@ -143,6 +143,35 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
                 body = handle_air_audit(limit=limit, correlation_id=corr or None)
             self._send(200, body, rid)
             return
+        if path in {"/rrf/audit", "/rrf/metrics"}:
+            rid = new_request_id(rid_h)
+            if not verify_bearer(auth, self.config.auth_secret):
+                self._send(
+                    401,
+                    normalized_error(
+                        code="auth_failed",
+                        message="Cobra Core authentication failed",
+                        request_id=rid,
+                    ),
+                    rid,
+                )
+                return
+            from cobra_core.resilience.http_api import handle_rrf_audit, handle_rrf_metrics_json
+
+            if path == "/rrf/metrics":
+                body = handle_rrf_metrics_json()
+            else:
+                from urllib.parse import parse_qs
+
+                qs = parse_qs(parsed.query or "")
+                limit_raw = (qs.get("limit") or ["50"])[0]
+                try:
+                    limit = int(limit_raw)
+                except ValueError:
+                    limit = 50
+                body = handle_rrf_audit(limit=limit)
+            self._send(200, body, rid)
+            return
         if path in {"/isf/skills", "/isf/audit", "/isf/metrics"}:
             rid = new_request_id(rid_h)
             if not verify_bearer(auth, self.config.auth_secret):

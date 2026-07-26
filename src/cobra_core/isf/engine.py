@@ -38,6 +38,12 @@ from cobra_core.isf.types import (
     SkillResult,
 )
 from cobra_core.isf.versioning import assert_version_compatible
+from cobra_core.resilience.config import rrf_enabled
+from cobra_core.resilience.errors import FailureCategory, ResilienceError
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from cobra_core.resilience.executor import ResilienceExecutor
 
 
 class SkillEngine:
@@ -51,12 +57,14 @@ class SkillEngine:
         cial_engine: CialEngine | None = None,
         audit: IsfAuditLog | None = None,
         metrics: IsfMetrics | None = None,
+        resilience_executor: ResilienceExecutor | None = None,
     ) -> None:
         self.registry = registry if registry is not None else SKILL_REGISTRY
         self.config = config or load_cial_config()
         self.cial_engine = cial_engine
         self.audit = audit if audit is not None else ISF_AUDIT
         self.metrics = metrics if metrics is not None else ISF_METRICS
+        self.resilience_executor = resilience_executor
 
     def expand(self, request: SkillRequest) -> CapabilityExpansion:
         manifest = self.registry.get(request.skill_id)
@@ -170,9 +178,100 @@ class SkillEngine:
         repair_count = 0
         schema_result = "valid"
         draft: dict[str, Any]
+        selected_provider = decision.provider_id
+        selected_model = decision.model_id
+        route_reason = decision.reason
+        rrf_meta: dict[str, Any] = {}
 
-        if mock_path or self.cial_engine is None:
-            # Offline / unit path: conservative schema-shaped draft (no free-form success).
+        use_rrf = rrf_enabled() or self.resilience_executor is not None
+        if use_rrf and (self.cial_engine is not None or self.resilience_executor is not None):
+            from cobra_core.isf.rrf_bridge import invoke_with_rrf
+
+            try:
+                draft, repair_count, schema_result, rres = invoke_with_rrf(
+                    manifest=manifest,
+                    request=request,
+                    provider_id=decision.provider_id,
+                    model_id=decision.model_id,
+                    route_reason=decision.reason,
+                    cial_engine=self.cial_engine,
+                    executor=self.resilience_executor,
+                )
+                selected_provider = rres.provider_id or selected_provider
+                selected_model = rres.model_id or selected_model
+                if rres.fallback_used:
+                    route_reason = f"rrf_fallback:{route_reason}"
+                rrf_meta = {
+                    "rrf_execution_id": rres.execution_id,
+                    "rrf_attempts": len(rres.attempts),
+                    "rrf_fallback_used": rres.fallback_used,
+                    "rrf_schema_repair_count": rres.schema_repair_count,
+                    "rrf_estimated_cost_usd": rres.total_estimated_cost_usd,
+                }
+            except ResilienceError as rerr:
+                if rerr.category in {
+                    FailureCategory.STRUCTURED_OUTPUT_INVALID,
+                    FailureCategory.SCHEMA_REPAIR_FAILED,
+                }:
+                    schema_result = "invalid"
+                    draft = {}
+                    repair_count = 1
+                else:
+                    self._metric_fail(
+                        skill_id=manifest.id,
+                        status=rerr.category.value,
+                        schema_result="skipped",
+                        latency_ms=int((time.perf_counter() - t0) * 1000),
+                    )
+                    raise IsfError(
+                        IsfErrorCode.EXECUTION_FAILED,
+                        rerr.traits.safe_public_message,
+                    ) from rerr
+            if schema_result == "invalid":
+                result = SkillResult(
+                    skill_id=manifest.id,
+                    skill_version=manifest.version,
+                    status=SkillExecutionStatus.STRUCTURED_OUTPUT_INVALID,
+                    output={
+                        "error": {
+                            "code": IsfErrorCode.STRUCTURED_OUTPUT_INVALID.value,
+                            "message": "provider structured output invalid after repair",
+                        }
+                    },
+                    confidence=0.0,
+                    confidence_disposition=ConfidenceDisposition.NEEDS_HUMAN_REVIEW,
+                    expanded_capabilities=expansion.effective_capabilities,
+                    selected_provider=selected_provider,
+                    selected_model=selected_model,
+                    route_reason=route_reason,
+                    correlation_id=request.correlation_id,
+                    needs_human_review=True,
+                    metadata={
+                        **audit_base,
+                        "evidence_validation_result": "pass",
+                        "schema_validation_result": "invalid",
+                        "repair_attempt_count": repair_count,
+                        "routing_reason": route_reason,
+                        "confidence_threshold": manifest.confidence_policy.minimum_confidence,
+                        **rrf_meta,
+                    },
+                )
+                self.audit.record(result)
+                self.metrics.record(
+                    skill_id=manifest.id,
+                    status=result.status.value,
+                    provider_id=selected_provider,
+                    schema_result="invalid",
+                    success=False,
+                    schema_failure=True,
+                    repair_attempted=repair_count > 0,
+                    repair_failed=True,
+                    human_review=True,
+                    latency_ms=int((time.perf_counter() - t0) * 1000),
+                )
+                return result
+        elif mock_path or self.cial_engine is None:
+            # KC-025 offline / unit path when RRF disabled.
             draft = self._build_structured_draft(
                 manifest,
                 request,
@@ -233,7 +332,9 @@ class SkillEngine:
         raw_conf = float(draft.get("confidence") or 0.0)
         # Model cannot override manifest threshold — clamp then disposition from policy.
         conf = manifest.confidence_policy.clamp(
-            raw_conf, incomplete_evidence=incomplete, mock_path=mock_path
+            raw_conf,
+            incomplete_evidence=incomplete,
+            mock_path=(selected_provider == "mock"),
         )
         disposition = manifest.confidence_policy.disposition(conf)
         needs_review = True  # human approval always required
@@ -272,9 +373,9 @@ class SkillEngine:
             confidence_disposition=disposition,
             expanded_capabilities=expansion.effective_capabilities,
             missing_evidence=(),
-            selected_provider=decision.provider_id,
-            selected_model=decision.model_id,
-            route_reason=decision.reason,
+            selected_provider=selected_provider,
+            selected_model=selected_model,
+            route_reason=route_reason,
             correlation_id=request.correlation_id,
             needs_human_review=needs_review,
             metadata={
@@ -282,9 +383,10 @@ class SkillEngine:
                 "evidence_validation_result": "pass",
                 "schema_validation_result": schema_result,
                 "repair_attempt_count": repair_count,
-                "routing_reason": decision.reason,
+                "routing_reason": route_reason,
                 "confidence_threshold": manifest.confidence_policy.minimum_confidence,
                 "policy_id": decision.policy_id,
+                **rrf_meta,
             },
         )
         self.audit.record(result)
@@ -292,7 +394,7 @@ class SkillEngine:
         self.metrics.record(
             skill_id=manifest.id,
             status=result.status.value,
-            provider_id=decision.provider_id,
+            provider_id=selected_provider,
             schema_result=schema_result,
             success=True,
             repair_attempted=repair_count > 0,

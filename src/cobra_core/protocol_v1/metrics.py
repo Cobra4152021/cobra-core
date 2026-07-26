@@ -114,6 +114,15 @@ class MetricsRegistry:
                 lines.append(isf_text)
         except Exception:  # noqa: BLE001 — metrics must never break exposition
             pass
+        # KC-026 — append RRF metrics (bounded labels; no prompts/ids).
+        try:
+            from cobra_core.resilience.metrics import RRF_METRICS
+
+            rrf_text = RRF_METRICS.render_prometheus().rstrip("\n")
+            if rrf_text:
+                lines.append(rrf_text)
+        except Exception:  # noqa: BLE001 — metrics must never break exposition
+            pass
         return "\n".join(lines) + "\n"
 
     def reset_for_tests(self) -> None:

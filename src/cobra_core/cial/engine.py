@@ -196,6 +196,81 @@ class CialEngine:
         result.cial_health_state = decision.health_state.value
         return result
 
+    def complete_on_route(
+        self,
+        messages: list[dict[str, Any]],
+        max_tokens: int,
+        *,
+        provider_id: str,
+        model_id: str,
+        cancel_event: threading.Event | None = None,
+        delay_ms: int = 0,
+        fail: bool = False,
+        metadata: dict[str, Any] | None = None,
+        route_reason: str = "rrf_preselected",
+    ) -> InferenceResult:
+        """
+        Execute a pre-selected AIR/RRF route without re-routing.
+
+        Used by the Reliability & Resilience Framework after AIR has chosen.
+        """
+        t0 = time.perf_counter()
+        acquired = False
+        model: ModelRecord | None = None
+        result: InferenceResult | None = None
+        try:
+            if provider_id == "openai" and not self.config.can_use_live_provider:
+                raise CialError(
+                    CialErrorCode.LIVE_PROVIDER_DISABLED,
+                    "live provider is not enabled for this environment",
+                )
+            provider = self.providers.get(provider_id)
+            model = self.models.get(provider_id, model_id)
+            if provider_id == "openai":
+                input_chars = sum(len(str(m.get("content") or "")) for m in messages)
+                self.live_guard.acquire(
+                    input_chars=input_chars,
+                    max_tokens=max_tokens,
+                    model=model,
+                )
+                acquired = True
+            gen_req = GenerateRequest(
+                messages=messages,
+                max_tokens=max_tokens,
+                model_id=model_id,
+                cancel_event=cancel_event,
+                delay_ms=delay_ms,
+                fail=fail,
+                metadata=dict(metadata or {}),
+            )
+            result = provider.generate(gen_req)
+        except InferenceCancelledError:
+            raise
+        except CialError:
+            raise
+        finally:
+            if acquired and model is not None:
+                prompt_tokens = result.prompt_tokens if result is not None else 0
+                completion_tokens = result.completion_tokens if result is not None else 0
+                self.live_guard.release(
+                    prompt_tokens=prompt_tokens,
+                    completion_tokens=completion_tokens,
+                    model=model,
+                )
+
+        assert result is not None
+        elapsed = max(0, int(round((time.perf_counter() - t0) * 1000)))
+        profile = self.config.resolved_profile()
+        result.cial_provider_id = provider_id
+        result.cial_model_id = model_id
+        result.cial_profile = profile.profile_id
+        result.cial_routing_policy = self.config.routing_policy.value
+        result.cial_route_reason = route_reason
+        result.cial_latency_ms = elapsed
+        result.cial_fallback_count = 0
+        result.cial_health_state = "unknown"
+        return result
+
     def _route_with_air(self, *, correlation_id: str = "") -> tuple[Any, str, bool]:
         """AIR capability routing; returns (RouteDecision, reason, forced_offline)."""
         router = self.air_router or build_adaptive_router(self.config)

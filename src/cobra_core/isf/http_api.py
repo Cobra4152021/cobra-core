@@ -71,9 +71,9 @@ def handle_isf_execute(
         }
 
     cfg = config or load_cial_config()
-    # Prefer injected engine; otherwise build default so live providers can return JSON.
+    # Prefer injected engine; otherwise build default (mock always; openai when live).
     resolved_cial = cial_engine
-    if resolved_cial is None and cfg.can_use_live_provider:
+    if resolved_cial is None:
         try:
             resolved_cial = CialEngine.build_default(cfg)
         except Exception:  # noqa: BLE001 — fall back to draft path if CIAL cannot boot

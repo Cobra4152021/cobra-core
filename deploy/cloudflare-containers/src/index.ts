@@ -41,6 +41,8 @@ export type Env = {
   AIR_EXCLUDE_PROVIDERS?: string;
   /** KC-025 Investigation Skills Framework */
   ISF_ENABLED?: string;
+  /** KC-026 Reliability & Resilience Framework */
+  RRF_ENABLED?: string;
   /** Wrangler secret — never log / never put in vars. */
   OPENAI_API_KEY?: string;
 };
@@ -103,6 +105,7 @@ export class CobraCoreContainer extends Container<Env> {
       AIR_POLICY_ID: pick("AIR_POLICY_ID", "default_v1"),
       AIR_EXCLUDE_PROVIDERS: pick("AIR_EXCLUDE_PROVIDERS"),
       ISF_ENABLED: pick("ISF_ENABLED", "true"),
+      RRF_ENABLED: pick("RRF_ENABLED", "true"),
     };
   }
 
@@ -196,6 +199,8 @@ export default {
           "/isf/skills",
           "/isf/audit",
           "/isf/metrics",
+          "/rrf/audit",
+          "/rrf/metrics",
         ],
         note: "Protocol V1 is served by the container; use Bearer auth.",
       });
@@ -242,12 +247,24 @@ export default {
       });
     }
 
+    // KC-026 Worker-side RRF gate probe (booleans / non-secret vars only).
+    if (url.pathname === "/rrf-gate" && request.method === "GET") {
+      return json({
+        appEnv: env.APP_ENV,
+        rrfEnabled: env.RRF_ENABLED ?? "true",
+        isfEnabled: env.ISF_ENABLED ?? "true",
+        airEnabled: env.AIR_ENABLED ?? "true",
+        cialProfile: env.CIAL_PROFILE ?? null,
+        liveFlag: env.CIAL_LIVE_PROVIDER_ENABLED ?? null,
+      });
+    }
+
     // Shared staging instance (stateless mock Protocol V1).
     // Bump the name after auth-secret rotation so a fresh Container boots with
     // current Worker secrets (DO constructor envVars are not hot-reloaded).
     // Bump after OPENAI secret/var binding so containers pick up new envVars.
-    // kc025a: ISF Computer integration + staging certification.
-    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc025a");
+    // kc026a: Reliability & Resilience Framework staging certification.
+    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc026a");
     return container.fetch(request);
   },
 };
