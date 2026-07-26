@@ -123,6 +123,15 @@ class MetricsRegistry:
                 lines.append(rrf_text)
         except Exception:  # noqa: BLE001 — metrics must never break exposition
             pass
+        # KC-027 — append KEF metrics (bounded labels; no document bodies).
+        try:
+            from cobra_core.kef.metrics import KEF_METRICS
+
+            kef_text = KEF_METRICS.render_prometheus().rstrip("\n")
+            if kef_text:
+                lines.append(kef_text)
+        except Exception:  # noqa: BLE001 — metrics must never break exposition
+            pass
         return "\n".join(lines) + "\n"
 
     def reset_for_tests(self) -> None:

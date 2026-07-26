@@ -248,6 +248,7 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                 air_gate: dict[str, object] = {"error": "air_unavailable"}
                 isf_gate: dict[str, object] = {"error": "isf_unavailable"}
                 rrf_gate: dict[str, object] = {"error": "rrf_unavailable"}
+                kef_gate: dict[str, object] = {"error": "kef_unavailable"}
                 try:
                     from cobra_core.cial.config import load_cial_config
 
@@ -333,11 +334,24 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                         "liveGateOpen": cfg.can_use_live_provider,
                         "activeProfile": cfg.active_profile,
                     }
+                    from cobra_core.kef.config import kef_enabled
+                    from cobra_core.kef.registry import CONNECTOR_REGISTRY
+
+                    kef_gate = {
+                        "edgeBuild": STAGING_EDGE_BUILD,
+                        "kefEnabled": kef_enabled(),
+                        "connectors": CONNECTOR_REGISTRY.list_ids(),
+                        "isfEnabled": isf_enabled(),
+                        "airEnabled": _air_enabled(),
+                        "liveGateOpen": cfg.can_use_live_provider,
+                        "activeProfile": cfg.active_profile,
+                    }
                 except Exception as exc:  # noqa: BLE001 — diagnostic only
                     cial_gate = {"error": type(exc).__name__}
                     air_gate = {"error": type(exc).__name__}
                     isf_gate = {"error": type(exc).__name__}
                     rrf_gate = {"error": type(exc).__name__}
+                    kef_gate = {"error": type(exc).__name__}
                 enriched = {
                     **core_body,
                     "status": "healthy" if healthy else "degraded",
@@ -348,6 +362,7 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                     "airGate": air_gate,
                     "isfGate": isf_gate,
                     "rrfGate": rrf_gate,
+                    "kefGate": kef_gate,
                 }
                 self._send_json(200, enriched, request_id=str(enriched.get("requestId") or ""))
                 return

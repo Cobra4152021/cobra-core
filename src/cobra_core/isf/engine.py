@@ -20,7 +20,7 @@ from cobra_core.isf.audit import ISF_AUDIT, IsfAuditLog
 from cobra_core.isf.confidence import ConfidenceDisposition
 from cobra_core.isf.enabled import isf_enabled
 from cobra_core.isf.errors import IsfError, IsfErrorCode
-from cobra_core.isf.evidence import skill_evidence_gaps
+from cobra_core.isf.evidence import EvidenceType, skill_evidence_gaps
 from cobra_core.isf.manifest import SkillManifest
 from cobra_core.isf.metrics import ISF_METRICS, IsfMetrics
 from cobra_core.isf.registry import SKILL_REGISTRY, SkillRegistry
@@ -38,11 +38,16 @@ from cobra_core.isf.types import (
     SkillResult,
 )
 from cobra_core.isf.versioning import assert_version_compatible
+from cobra_core.kef.citation import attach_citations_to_output
+from cobra_core.kef.config import kef_enabled
+from cobra_core.kef.security import Principal
+from cobra_core.kef.types import Citation, RetrievalMode
 from cobra_core.resilience.config import rrf_enabled
 from cobra_core.resilience.errors import FailureCategory, ResilienceError
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
+    from cobra_core.kef.retrieval import KefGateway
     from cobra_core.resilience.executor import ResilienceExecutor
 
 
@@ -58,6 +63,7 @@ class SkillEngine:
         audit: IsfAuditLog | None = None,
         metrics: IsfMetrics | None = None,
         resilience_executor: ResilienceExecutor | None = None,
+        kef_gateway: KefGateway | None = None,
     ) -> None:
         self.registry = registry if registry is not None else SKILL_REGISTRY
         self.config = config or load_cial_config()
@@ -65,6 +71,7 @@ class SkillEngine:
         self.audit = audit if audit is not None else ISF_AUDIT
         self.metrics = metrics if metrics is not None else ISF_METRICS
         self.resilience_executor = resilience_executor
+        self.kef_gateway = kef_gateway
 
     def expand(self, request: SkillRequest) -> CapabilityExpansion:
         manifest = self.registry.get(request.skill_id)
@@ -115,9 +122,7 @@ class SkillEngine:
 
         self._assert_profile(manifest, request.profile_id)
 
-        missing = skill_evidence_gaps(
-            manifest.id, manifest.required_evidence_types, request.evidence
-        )
+        missing, kef_meta, citations = self._validate_evidence_via_kef(manifest, request)
         audit_base = self._audit_base_meta(manifest, request, evidence_ok=not missing)
 
         if missing:
@@ -142,6 +147,7 @@ class SkillEngine:
                     "evidence_validation_result": "fail",
                     "schema_validation_result": "skipped",
                     "repair_attempt_count": 0,
+                    **kef_meta,
                 },
             )
             self.audit.record(result)
@@ -350,6 +356,10 @@ class SkillEngine:
                 "Route to human review (confidence below skill threshold)"
             )
 
+        # KC-027 — attach KEF citations before schema validation
+        if citations:
+            draft = attach_citations_to_output(draft, citations)
+
         try:
             output = validate_skill_output(manifest.schema_key, draft)
         except Exception as exc:  # pydantic ValidationError
@@ -386,6 +396,8 @@ class SkillEngine:
                 "routing_reason": route_reason,
                 "confidence_threshold": manifest.confidence_policy.minimum_confidence,
                 "policy_id": decision.policy_id,
+                "citations": list(output.get("citations") or []),
+                **kef_meta,
                 **rrf_meta,
             },
         )
@@ -504,6 +516,57 @@ class SkillEngine:
             success=False,
             latency_ms=latency_ms,
         )
+
+    def _validate_evidence_via_kef(
+        self, manifest: SkillManifest, request: SkillRequest
+    ) -> tuple[list[EvidenceType], dict[str, Any], list[Citation]]:
+        """
+        KEF gateway for evidence (before AIR).
+
+        When KEF_ENABLED=false, fall back to KC-025 type-gap checks.
+        """
+        if not kef_enabled() and self.kef_gateway is None:
+            missing = skill_evidence_gaps(
+                manifest.id, manifest.required_evidence_types, request.evidence
+            )
+            return missing, {"kef_enabled": False}, []
+
+        from cobra_core.kef.retrieval import KEF_GATEWAY
+
+        gateway = self.kef_gateway if self.kef_gateway is not None else KEF_GATEWAY
+        principal = Principal(
+            org_id=str((request.metadata or {}).get("org_id") or ""),
+            role=str((request.metadata or {}).get("actor_role") or "investigator"),
+            classification_ceiling=str(
+                (request.metadata or {}).get("classification_ceiling") or "confidential"
+            ),
+        )
+        kef_result = gateway.retrieve_for_skill(
+            skill_id=manifest.id,
+            required_evidence=manifest.required_evidence_types,
+            evidence_refs=request.evidence,
+            correlation_id=request.correlation_id,
+            principal=principal,
+            mode=RetrievalMode.EXACT,
+        )
+        missing_types: list[EvidenceType] = []
+        for raw in kef_result.missing_required:
+            if raw.startswith("integrity:"):
+                continue
+            try:
+                missing_types.append(EvidenceType(raw))
+            except ValueError:
+                continue
+        meta = {
+            "kef_enabled": True,
+            "kef_audit_id": kef_result.audit_id,
+            "kef_returned_count": len(kef_result.items),
+            "kef_duplicates_removed": kef_result.duplicates_removed,
+            "kef_permission_denials": kef_result.permission_denials,
+            "kef_connectors": list(kef_result.connector_ids),
+            "kef_citations": [c.public_id() for c in kef_result.citations],
+        }
+        return missing_types, meta, list(kef_result.citations)
 
     def _assert_profile(self, manifest: SkillManifest, profile_id: str) -> None:
         key = (profile_id or "default").strip().lower()

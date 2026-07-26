@@ -15,6 +15,8 @@ class SkillOutputBase(BaseModel):
     missing_information: list[str] = Field(default_factory=list)
     recommended_next_steps: list[str] = Field(default_factory=list)
     needs_human_review: bool = False
+    # KC-027 — supporting evidence references (EV-001 style or opaque ids)
+    citations: list[str] = Field(default_factory=list)
 
 
 class VehicleDamageAssessmentOutput(SkillOutputBase):

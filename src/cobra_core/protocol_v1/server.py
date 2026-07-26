@@ -172,6 +172,41 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
                 body = handle_rrf_audit(limit=limit)
             self._send(200, body, rid)
             return
+        if path in {"/kef/metrics", "/kef/audit", "/kef/connectors"}:
+            rid = new_request_id(rid_h)
+            if not verify_bearer(auth, self.config.auth_secret):
+                self._send(
+                    401,
+                    normalized_error(
+                        code="auth_failed",
+                        message="Cobra Core authentication failed",
+                        request_id=rid,
+                    ),
+                    rid,
+                )
+                return
+            from cobra_core.kef.http_api import (
+                handle_kef_audit,
+                handle_kef_connectors,
+                handle_kef_metrics_json,
+            )
+
+            if path == "/kef/metrics":
+                body = handle_kef_metrics_json()
+            elif path == "/kef/connectors":
+                body = handle_kef_connectors()
+            else:
+                from urllib.parse import parse_qs
+
+                qs = parse_qs(parsed.query or "")
+                limit_raw = (qs.get("limit") or ["50"])[0]
+                try:
+                    limit = int(limit_raw)
+                except ValueError:
+                    limit = 50
+                body = handle_kef_audit(limit=limit)
+            self._send(200, body, rid)
+            return
         if path in {"/isf/skills", "/isf/audit", "/isf/metrics"}:
             rid = new_request_id(rid_h)
             if not verify_bearer(auth, self.config.auth_secret):
