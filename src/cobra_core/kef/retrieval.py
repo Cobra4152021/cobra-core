@@ -9,19 +9,23 @@ from cobra_core.isf.evidence import EvidenceRef, EvidenceType, document_ref_coun
 from cobra_core.kef.audit import KEF_AUDIT, KefAuditLog
 from cobra_core.kef.citation import assign_citation_labels
 from cobra_core.kef.config import KefConfig, kef_enabled, load_kef_config
+from cobra_core.kef.context_budget import apply_budget
 from cobra_core.kef.deduplication import deduplicate
 from cobra_core.kef.errors import KefError, KefErrorCode
 from cobra_core.kef.filters import missing_skill_types
+from cobra_core.kef.integrity import classify_integrity, filter_integrity
 from cobra_core.kef.metrics import KEF_METRICS, KefMetrics
 from cobra_core.kef.ranking import rank_items
 from cobra_core.kef.registry import CONNECTOR_REGISTRY, ConnectorRegistry
 from cobra_core.kef.resolver import resolve_refs
 from cobra_core.kef.security import Principal, filter_permitted
 from cobra_core.kef.types import (
+    IntegrityState,
     RetrievalMode,
     RetrievalQuery,
     RetrievalResult,
 )
+from cobra_core.kef.versioning import select_version
 
 
 class KefGateway:
@@ -94,8 +98,6 @@ class KefGateway:
         if mode in {RetrievalMode.METADATA, RetrievalMode.HYBRID, RetrievalMode.REGISTRY}:
             for conn in self.registry.all():
                 cid = getattr(conn, "connector_id", "unknown")
-                if cid == "evidence_vault":
-                    continue
                 try:
                     found = conn.search(query)
                 except KefError:
@@ -107,8 +109,6 @@ class KefGateway:
             for ref in evidence_refs:
                 for conn in self.registry.all():
                     cid = getattr(conn, "connector_id", "")
-                    if cid == "evidence_vault":
-                        continue
                     try:
                         if conn.lookup(ref.ref_id) is not None and cid not in connector_ids:
                             connector_ids.append(cid)
@@ -120,11 +120,26 @@ class KefGateway:
         # 3) Permissions
         allowed, denied = filter_permitted(items, principal)
 
-        # 4) Deduplicate
-        unique, dup_removed, _rels = deduplicate(allowed)
+        # 4) Integrity gate, version choice, and deduplication. Mismatches never
+        # enter provider context; unverified required evidence fails closed by default.
+        integrity_ok, integrity_rejected, mismatch_ids = filter_integrity(
+            allowed,
+            allow_unverified=self.config.allow_unverified_integrity,
+            required_ids=set(query.ref_ids),
+        )
+        versioned = select_version(
+            integrity_ok,
+            event_date=str(query.metadata_filters.get("event_date") or "") or None,
+            requested_version=str(query.metadata_filters.get("source_version") or "") or None,
+            mode=str(query.metadata_filters.get("version_mode") or "latest"),
+        )
+        unique, dup_removed, _rels = deduplicate(versioned)
 
         # 5) Rank + cap
         ranked = rank_items(unique, query)[:limit]
+        ranked, truncated_count, _budget_excluded, evidence_chars, estimated_tokens = apply_budget(
+            ranked, self.config, required_ids=set(query.ref_ids)
+        )
 
         # 6) Required evidence validation (+ document_comparison cardinality)
         missing = missing_skill_types(ranked, required_types)
@@ -133,13 +148,19 @@ class KefGateway:
                 missing.append(EvidenceType.DOCUMENT_PAIR.value)
             missing = sorted(set(missing))
 
-        # Integrity gate (optional)
         if self.config.require_integrity_hash:
             for item in ranked:
                 if not item.integrity_hash:
                     missing.append("integrity:" + item.id)
+        for rejected in integrity_rejected:
+            if rejected.id in query.ref_ids:
+                missing.append("integrity:" + rejected.id)
+        missing = sorted(set(missing))
 
-        citations = assign_citation_labels(ranked) if not missing else []
+        if missing:
+            citations, provenance = [], []
+        else:
+            citations, provenance = assign_citation_labels(ranked, include_provenance=True)
         latency_ms = int((time.perf_counter() - t0) * 1000)
         status = "missing_required" if missing else "ok"
         result_label = "missing_required" if missing else "success"
@@ -164,6 +185,14 @@ class KefGateway:
                 "ranking_top_ids": [i.id for i in ranked[:10]],
                 "citations_produced": [c.public_id() for c in citations],
                 "permission_failures": len(denied),
+                "integrity_mismatch_count": len(mismatch_ids),
+                "integrity_counts": {
+                    state.value: sum(classify_integrity(item) == state for item in allowed)
+                    for state in IntegrityState
+                },
+                "truncated_count": truncated_count,
+                "evidence_characters": evidence_chars,
+                "estimated_tokens": estimated_tokens,
                 "missing_required": missing,
                 "status": status,
                 "latency_ms": latency_ms,
@@ -194,6 +223,16 @@ class KefGateway:
             mode=mode,
             latency_ms=latency_ms,
             audit_id=str(audit_entry.get("audit_id") or ""),
+            provenance=provenance,
+            integrity_counts={
+                state.value: sum(classify_integrity(item) == state for item in allowed)
+                for state in IntegrityState
+            },
+            truncated_count=truncated_count,
+            evidence_characters=evidence_chars,
+            estimated_tokens=estimated_tokens,
+            context_budget_ok=True,
+            denied_ids=[d.id for d in denied],
         )
 
 

@@ -11,9 +11,12 @@ from cobra_core.kef.config import KefConfig, kef_enabled, load_kef_config
 from cobra_core.kef.errors import KefError, KefErrorCode
 from cobra_core.kef.types import (
     Citation,
+    CitationProvenance,
+    ContentInclusionMode,
     EvidenceItem,
     EvidenceKind,
     EvidencePermissions,
+    IntegrityState,
     RetrievalMode,
     RetrievalQuery,
     RetrievalResult,
@@ -21,9 +24,12 @@ from cobra_core.kef.types import (
 
 __all__ = [
     "Citation",
+    "CitationProvenance",
+    "ContentInclusionMode",
     "EvidenceItem",
     "EvidenceKind",
     "EvidencePermissions",
+    "IntegrityState",
     "KefConfig",
     "KefError",
     "KefErrorCode",

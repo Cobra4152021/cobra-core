@@ -16,6 +16,14 @@ class KefErrorCode(StrEnum):
     INVALID_REQUEST = "invalid_request"
     KEF_DISABLED = "kef_disabled"
     NOT_IMPLEMENTED = "not_implemented"
+    EVIDENCE_ACCESS_DENIED = "evidence_access_denied"
+    INVALID_EVIDENCE_CITATION = "invalid_evidence_citation"
+    EVIDENCE_CONTEXT_BUDGET_EXCEEDED = "evidence_context_budget_exceeded"
+    INTEGRITY_MISMATCH = "integrity_mismatch"
+    VAULT_TIMEOUT = "vault_timeout"
+    VAULT_RATE_LIMITED = "vault_rate_limited"
+    VAULT_AUTH_FAILURE = "vault_auth_failure"
+    VAULT_FORBIDDEN = "vault_forbidden"
 
 
 class KefError(Exception):

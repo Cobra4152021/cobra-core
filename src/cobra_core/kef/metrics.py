@@ -43,6 +43,11 @@ class KefMetrics:
         self.missing_required_evidence_total = 0
         self.latency_ms_sum = 0
         self.latency_ms_count = 0
+        self.vault_timeout_total = 0
+        self.vault_rate_limited_total = 0
+        self.vault_auth_failure_total = 0
+        self.vault_forbidden_total = 0
+        self.vault_integrity_mismatch_total = 0
         self._by_connector: Counter[str] = Counter()
         self._by_mode: Counter[str] = Counter()
         self._by_result: Counter[str] = Counter()
@@ -59,6 +64,11 @@ class KefMetrics:
             self.missing_required_evidence_total = 0
             self.latency_ms_sum = 0
             self.latency_ms_count = 0
+            self.vault_timeout_total = 0
+            self.vault_rate_limited_total = 0
+            self.vault_auth_failure_total = 0
+            self.vault_forbidden_total = 0
+            self.vault_integrity_mismatch_total = 0
             self._by_connector.clear()
             self._by_mode.clear()
             self._by_result.clear()
@@ -101,6 +111,20 @@ class KefMetrics:
             self._by_skill[s] += 1
             _ = returned_count  # available for future histograms; not labeled
 
+    def record_vault_event(self, event: str) -> None:
+        """Record a bounded Vault failure/integrity event."""
+        with self._lock:
+            if event == "timeout":
+                self.vault_timeout_total += 1
+            elif event == "rate_limited":
+                self.vault_rate_limited_total += 1
+            elif event == "auth_failure":
+                self.vault_auth_failure_total += 1
+            elif event == "forbidden":
+                self.vault_forbidden_total += 1
+            elif event == "integrity_mismatch":
+                self.vault_integrity_mismatch_total += 1
+
     def snapshot(self) -> dict[str, Any]:
         with self._lock:
             avg = self.latency_ms_sum / self.latency_ms_count if self.latency_ms_count else 0.0
@@ -113,6 +137,11 @@ class KefMetrics:
                 "citations_generated_total": self.citations_generated_total,
                 "missing_required_evidence_total": self.missing_required_evidence_total,
                 "average_retrieval_ms": round(avg, 3),
+                "vault_timeout_total": self.vault_timeout_total,
+                "vault_rate_limited_total": self.vault_rate_limited_total,
+                "vault_auth_failure_total": self.vault_auth_failure_total,
+                "vault_forbidden_total": self.vault_forbidden_total,
+                "vault_integrity_mismatch_total": self.vault_integrity_mismatch_total,
                 "by_connector": dict(self._by_connector),
                 "by_mode": dict(self._by_mode),
                 "by_result": dict(self._by_result),
@@ -146,6 +175,11 @@ class KefMetrics:
             "# HELP kef_average_retrieval_ms Average KEF retrieval latency",
             "# TYPE kef_average_retrieval_ms gauge",
             f"kef_average_retrieval_ms {s['average_retrieval_ms']}",
+            f"kef_vault_timeout_total {s['vault_timeout_total']}",
+            f"kef_vault_rate_limited_total {s['vault_rate_limited_total']}",
+            f"kef_vault_auth_failure_total {s['vault_auth_failure_total']}",
+            f"kef_vault_forbidden_total {s['vault_forbidden_total']}",
+            f"kef_vault_integrity_mismatch_total {s['vault_integrity_mismatch_total']}",
         ]
         for connector, n in sorted(s["by_connector"].items()):
             lines.append(f'kef_retrieval_total{{connector_id="{connector}"}} {n}')

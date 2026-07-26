@@ -2,14 +2,19 @@
 
 from __future__ import annotations
 
+import time
 from typing import Any
 
-from cobra_core.kef.types import Citation, EvidenceItem
+from cobra_core.kef.types import Citation, CitationProvenance, EvidenceItem
 
 
-def assign_citation_labels(items: list[EvidenceItem]) -> list[Citation]:
+def assign_citation_labels(
+    items: list[EvidenceItem], *, include_provenance: bool = False
+) -> list[Citation] | tuple[list[Citation], list[CitationProvenance]]:
     """Produce EV-001 style citations in ranked order."""
     citations: list[Citation] = []
+    provenance: list[CitationProvenance] = []
+    retrieved_at = int(time.time() * 1000)
     for idx, item in enumerate(items, start=1):
         label = f"EV-{idx:03d}"
         citations.append(
@@ -19,7 +24,20 @@ def assign_citation_labels(items: list[EvidenceItem]) -> list[Citation]:
                 skill_evidence_type=item.skill_evidence_type,
             )
         )
-    return citations
+        provenance.append(
+            CitationProvenance(
+                citation_label=label,
+                connector_id=item.source.split(":", 1)[0],
+                vault_source_id=str(item.metadata.get("vault_source_id") or ""),
+                vault_document_id=str(item.metadata.get("vault_document_id") or ""),
+                source_version=str(item.metadata.get("source_version") or ""),
+                chunk_or_excerpt_location=str(item.metadata.get("excerpt_location") or ""),
+                integrity_hash=item.integrity_hash,
+                retrieval_timestamp_ms=retrieved_at,
+                display_title=item.title,
+            )
+        )
+    return (citations, provenance) if include_provenance else citations
 
 
 def citation_ids(citations: list[Citation]) -> list[str]:

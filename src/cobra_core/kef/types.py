@@ -46,6 +46,19 @@ class HealthStatus(StrEnum):
     UNKNOWN = "unknown"
 
 
+class IntegrityState(StrEnum):
+    VERIFIED = "verified"
+    UNVERIFIED = "unverified"
+    MISMATCH = "mismatch"
+    UNAVAILABLE = "unavailable"
+
+
+class ContentInclusionMode(StrEnum):
+    METADATA_ONLY = "metadata_only"
+    EXCERPT = "excerpt"
+    CHUNKS = "chunks"
+
+
 @dataclass(frozen=True)
 class EvidencePermissions:
     """Access control metadata for an evidence item."""
@@ -77,7 +90,13 @@ class EvidencePermissions:
 
 @dataclass(frozen=True)
 class EvidenceItem:
-    """Normalized evidence object returned by KEF (no raw document body)."""
+    """
+    Normalized evidence object returned by KEF (no raw document body).
+
+    Connector metadata conventions: ``vault_source_id``, ``vault_document_id``,
+    ``source_version``, ``integrity_state``, ``partial``, ``truncated``, and
+    ``native_score``. Content excerpts/chunks are bounded and never audited.
+    """
 
     id: str
     type: EvidenceKind
@@ -119,6 +138,21 @@ class Citation:
 
 
 @dataclass(frozen=True)
+class CitationProvenance:
+    """Non-secret source lineage retained alongside a public citation label."""
+
+    citation_label: str
+    connector_id: str
+    vault_source_id: str = ""
+    vault_document_id: str = ""
+    source_version: str = ""
+    chunk_or_excerpt_location: str = ""
+    integrity_hash: str = ""
+    retrieval_timestamp_ms: int = 0
+    display_title: str = ""
+
+
+@dataclass(frozen=True)
 class RetrievalQuery:
     """Connector-facing retrieval request (never includes document bodies)."""
 
@@ -150,3 +184,10 @@ class RetrievalResult:
     mode: RetrievalMode = RetrievalMode.EXACT
     latency_ms: int = 0
     audit_id: str = ""
+    provenance: list[CitationProvenance] = field(default_factory=list)
+    integrity_counts: dict[str, int] = field(default_factory=dict)
+    truncated_count: int = 0
+    evidence_characters: int = 0
+    estimated_tokens: int = 0
+    context_budget_ok: bool = True
+    denied_ids: list[str] = field(default_factory=list)

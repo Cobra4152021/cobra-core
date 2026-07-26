@@ -1,0 +1,28 @@
+# KC-028 Rollback Results
+
+Target rollback:
+
+```
+KEF_ENABLED=false
+KEF_EVIDENCE_VAULT_ENABLED=false
+RRF_ENABLED=true
+ISF_ENABLED=true
+AIR_ENABLED=true
+CIAL_PROFILE=default
+CIAL_LIVE_PROVIDER_ENABLED=false
+```
+
+Restore:
+
+```
+KEF_ENABLED=true
+KEF_EVIDENCE_VAULT_ENABLED=true
+KEF_ALLOW_REQUEST_SEED=false
+RRF_ENABLED=true
+ISF_ENABLED=true
+AIR_ENABLED=true
+CIAL_PROFILE=default
+CIAL_LIVE_PROVIDER_ENABLED=false
+```
+
+_Pending staging evidence._

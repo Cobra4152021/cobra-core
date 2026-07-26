@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import threading
 
+from cobra_core.kef.config import KefConfig, load_kef_config
 from cobra_core.kef.connectors.base import EvidenceConnector
 from cobra_core.kef.connectors.evidence_vault import EvidenceVaultConnector
 from cobra_core.kef.connectors.memory import MemoryConnector
@@ -59,12 +60,15 @@ class ConnectorRegistry:
             return list(self._connectors.values())
 
 
-def build_default_registry(*, include_mock: bool = True) -> ConnectorRegistry:
+def build_default_registry(
+    *, include_mock: bool = True, config: KefConfig | None = None
+) -> ConnectorRegistry:
+    cfg = config or load_kef_config()
     reg = ConnectorRegistry()
     reg.register(MemoryConnector())
     if include_mock:
         reg.register(MockConnector(seed_defaults=True))
-    reg.register(EvidenceVaultConnector(enabled=False))
+    reg.register(EvidenceVaultConnector(config=cfg))
     return reg
 
 

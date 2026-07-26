@@ -172,7 +172,13 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
                 body = handle_rrf_audit(limit=limit)
             self._send(200, body, rid)
             return
-        if path in {"/kef/metrics", "/kef/audit", "/kef/connectors"}:
+        if path in {
+            "/kef/metrics",
+            "/kef/audit",
+            "/kef/connectors",
+            "/kef/status",
+            "/kef/connectors/evidence-vault/health",
+        }:
             rid = new_request_id(rid_h)
             if not verify_bearer(auth, self.config.auth_secret):
                 self._send(
@@ -189,12 +195,18 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
                 handle_kef_audit,
                 handle_kef_connectors,
                 handle_kef_metrics_json,
+                handle_kef_status,
+                handle_vault_health,
             )
 
             if path == "/kef/metrics":
                 body = handle_kef_metrics_json()
             elif path == "/kef/connectors":
                 body = handle_kef_connectors()
+            elif path == "/kef/status":
+                body = handle_kef_status()
+            elif path == "/kef/connectors/evidence-vault/health":
+                body = handle_vault_health()
             else:
                 from urllib.parse import parse_qs
 

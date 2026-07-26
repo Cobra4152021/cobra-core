@@ -22,7 +22,7 @@ from cobra_core.kef.metrics import KEF_METRICS
 from cobra_core.kef.normalizer import normalize_evidence_ref, normalize_native
 from cobra_core.kef.ranking import rank_items
 from cobra_core.kef.registry import ConnectorRegistry, build_default_registry
-from cobra_core.kef.retrieval import KefGateway
+from cobra_core.kef.retrieval import KEF_GATEWAY, KefGateway
 from cobra_core.kef.security import Principal
 from cobra_core.kef.types import (
     EvidenceItem,
@@ -34,10 +34,15 @@ from cobra_core.kef.types import (
 
 
 @pytest.fixture(autouse=True)
-def _kef_clean():
+def _kef_clean(monkeypatch: pytest.MonkeyPatch):
+    # Legacy KC-027 request-ref fixtures intentionally exercise MemoryConnector.
+    monkeypatch.setenv("KEF_ALLOW_REQUEST_SEED", "true")
+    original_config = KEF_GATEWAY.config
+    KEF_GATEWAY.config = load_kef_config()
     KEF_AUDIT.clear()
     KEF_METRICS.clear()
     yield
+    KEF_GATEWAY.config = original_config
     KEF_AUDIT.clear()
     KEF_METRICS.clear()
 

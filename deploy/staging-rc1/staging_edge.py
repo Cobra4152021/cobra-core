@@ -28,7 +28,7 @@ from urllib.parse import urlparse
 CERTIFIED_VERSION = "v0.9.0-rc1"
 CERTIFIED_REVISION = "ec400d83a9cc8105557bda2105f177cc619638b2"
 # Bump when staging_edge diagnostics change — proves which image is serving.
-STAGING_EDGE_BUILD = "kc026-edge-20260725a"
+STAGING_EDGE_BUILD = "kc028-edge-20260726a"
 
 logger = logging.getLogger("cobra_core.staging_edge")
 
@@ -337,12 +337,24 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                     from cobra_core.kef.config import kef_enabled
                     from cobra_core.kef.registry import CONNECTOR_REGISTRY
 
+                    from cobra_core.kef.config import load_kef_config
+
+                    kef_cfg = load_kef_config()
+                    vault_host = ""
+                    if kef_cfg.vault_base_url:
+                        vault_host = kef_cfg.vault_base_url.split("://", 1)[-1].split("/", 1)[0]
                     kef_gate = {
                         "edgeBuild": STAGING_EDGE_BUILD,
                         "kefEnabled": kef_enabled(),
+                        "vaultEnabled": kef_cfg.vault_enabled,
+                        "allowRequestSeed": kef_cfg.allow_request_seed,
+                        "vaultBaseUrlHost": vault_host,
+                        "vaultTokenConfigured": bool(kef_cfg.vault_auth_token),
                         "connectors": CONNECTOR_REGISTRY.list_ids(),
+                        "connectorHealth": CONNECTOR_REGISTRY.health_snapshot(),
                         "isfEnabled": isf_enabled(),
                         "airEnabled": _air_enabled(),
+                        "rrfEnabled": rrf_enabled(),
                         "liveGateOpen": cfg.can_use_live_provider,
                         "activeProfile": cfg.active_profile,
                     }

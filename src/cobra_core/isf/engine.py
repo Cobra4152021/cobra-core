@@ -8,7 +8,7 @@ Provider JSON is parsed into the skill schema (one repair attempt max).
 from __future__ import annotations
 
 import time
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from cobra_core.air.bridge import air_request_for_config, build_adaptive_router
 from cobra_core.air.capabilities import AirCapability
@@ -44,7 +44,6 @@ from cobra_core.kef.security import Principal
 from cobra_core.kef.types import Citation, RetrievalMode
 from cobra_core.resilience.config import rrf_enabled
 from cobra_core.resilience.errors import FailureCategory, ResilienceError
-from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from cobra_core.kef.retrieval import KefGateway
@@ -356,9 +355,22 @@ class SkillEngine:
                 "Route to human review (confidence below skill threshold)"
             )
 
-        # KC-027 — attach KEF citations before schema validation
+        # KC-027/028 — attach KEF citations, then reject invented/denied aliases
         if citations:
             draft = attach_citations_to_output(draft, citations)
+        from cobra_core.kef.citation_validate import validate_citations
+
+        cite_violations = validate_citations(
+            draft,
+            citations,
+            set(kef_meta.get("kef_denied_ids") or []),
+            set(kef_meta.get("kef_integrity_failed_ids") or []),
+        )
+        if cite_violations:
+            raise IsfError(
+                IsfErrorCode.STRUCTURED_OUTPUT_INVALID,
+                "invalid evidence citation",
+            )
 
         try:
             output = validate_skill_output(manifest.schema_key, draft)
@@ -541,6 +553,13 @@ class SkillEngine:
                 (request.metadata or {}).get("classification_ceiling") or "confidential"
             ),
         )
+        metadata_filters: dict[str, Any] = {}
+        if (request.metadata or {}).get("case_id"):
+            metadata_filters["case_id"] = request.metadata["case_id"]
+        if (request.metadata or {}).get("event_date"):
+            metadata_filters["event_date"] = request.metadata["event_date"]
+        if (request.metadata or {}).get("source_version"):
+            metadata_filters["source_version"] = request.metadata["source_version"]
         kef_result = gateway.retrieve_for_skill(
             skill_id=manifest.id,
             required_evidence=manifest.required_evidence_types,
@@ -548,15 +567,30 @@ class SkillEngine:
             correlation_id=request.correlation_id,
             principal=principal,
             mode=RetrievalMode.EXACT,
+            metadata_filters=metadata_filters or None,
         )
         missing_types: list[EvidenceType] = []
+        integrity_failed: list[str] = []
         for raw in kef_result.missing_required:
             if raw.startswith("integrity:"):
+                integrity_failed.append(raw.split(":", 1)[1])
                 continue
             try:
                 missing_types.append(EvidenceType(raw))
             except ValueError:
                 continue
+        provenance = [
+            {
+                "citation_label": p.citation_label,
+                "connector_id": p.connector_id,
+                "vault_source_id": p.vault_source_id,
+                "vault_document_id": p.vault_document_id,
+                "source_version": p.source_version,
+                "integrity_hash": p.integrity_hash,
+                "display_title": p.display_title,
+            }
+            for p in (kef_result.provenance or [])
+        ]
         meta = {
             "kef_enabled": True,
             "kef_audit_id": kef_result.audit_id,
@@ -565,6 +599,13 @@ class SkillEngine:
             "kef_permission_denials": kef_result.permission_denials,
             "kef_connectors": list(kef_result.connector_ids),
             "kef_citations": [c.public_id() for c in kef_result.citations],
+            "kef_citation_provenance": provenance,
+            "kef_denied_ids": list(kef_result.denied_ids or []),
+            "kef_integrity_failed_ids": integrity_failed,
+            "kef_integrity_counts": dict(kef_result.integrity_counts or {}),
+            "kef_truncated_count": kef_result.truncated_count,
+            "kef_evidence_characters": kef_result.evidence_characters,
+            "kef_estimated_tokens": kef_result.estimated_tokens,
         }
         return missing_types, meta, list(kef_result.citations)
 

@@ -29,6 +29,18 @@ on:
         description: "RRF_ENABLED"
         required: false
         default: "true"
+      kef_enabled:
+        description: "KEF_ENABLED"
+        required: false
+        default: "true"
+      kef_evidence_vault_enabled:
+        description: "KEF_EVIDENCE_VAULT_ENABLED"
+        required: false
+        default: "false"
+      kef_allow_request_seed:
+        description: "KEF_ALLOW_REQUEST_SEED"
+        required: false
+        default: "false"
       cial_profile:
         description: "CIAL_PROFILE"
         required: false
@@ -44,7 +56,7 @@ on:
       container_instance_suffix:
         description: "Bump container DO name suffix (forces fresh envVars)"
         required: false
-        default: "kc026a"
+        default: "kc028a"
   push:
     branches: [kc-016-staging-deploy]
     paths:
@@ -150,12 +162,33 @@ jobs:
             -c wrangler.cobra-core-staging.jsonc
           echo "OPENAI_API_KEY secret bound (value not logged)."
 
-      - name: Apply KC-026 staging gate vars (workflow_dispatch inputs)
+      - name: Optional Evidence Vault read token (KC-028)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          KEF_EVIDENCE_VAULT_AUTH_TOKEN: ${{ secrets.KEF_EVIDENCE_VAULT_AUTH_TOKEN }}
+          HIDDEN_GRID_DEV_KEY: ${{ secrets.HIDDEN_GRID_DEV_KEY }}
+        run: |
+          TOKEN="${KEF_EVIDENCE_VAULT_AUTH_TOKEN:-}"
+          if [ -z "$TOKEN" ]; then
+            TOKEN="${HIDDEN_GRID_DEV_KEY:-}"
+          fi
+          if [ -z "$TOKEN" ]; then
+            echo "KEF_EVIDENCE_VAULT_AUTH_TOKEN (or HIDDEN_GRID_DEV_KEY) not set — vault connector stays disabled."
+            exit 0
+          fi
+          printf '%s' "$TOKEN" | npx wrangler secret put KEF_EVIDENCE_VAULT_AUTH_TOKEN \
+            -c wrangler.cobra-core-staging.jsonc
+          echo "KEF_EVIDENCE_VAULT_AUTH_TOKEN secret bound (value not logged)."
+
+      - name: Apply KC-028 staging gate vars (workflow_dispatch inputs)
         if: github.event_name == 'workflow_dispatch'
         env:
           AIR_ENABLED: ${{ inputs.air_enabled }}
           ISF_ENABLED: ${{ inputs.isf_enabled }}
           RRF_ENABLED: ${{ inputs.rrf_enabled }}
+          KEF_ENABLED: ${{ inputs.kef_enabled }}
+          KEF_EVIDENCE_VAULT_ENABLED: ${{ inputs.kef_evidence_vault_enabled }}
+          KEF_ALLOW_REQUEST_SEED: ${{ inputs.kef_allow_request_seed }}
           CIAL_PROFILE: ${{ inputs.cial_profile }}
           CIAL_LIVE_PROVIDER_ENABLED: ${{ inputs.cial_live_provider_enabled }}
           AIR_EXCLUDE_PROVIDERS: ${{ inputs.air_exclude_providers }}
@@ -176,6 +209,17 @@ jobs:
           text = set_var(text, "AIR_ENABLED", os.environ.get("AIR_ENABLED") or "true")
           text = set_var(text, "ISF_ENABLED", os.environ.get("ISF_ENABLED") or "true")
           text = set_var(text, "RRF_ENABLED", os.environ.get("RRF_ENABLED") or "true")
+          text = set_var(text, "KEF_ENABLED", os.environ.get("KEF_ENABLED") or "true")
+          text = set_var(
+              text,
+              "KEF_EVIDENCE_VAULT_ENABLED",
+              os.environ.get("KEF_EVIDENCE_VAULT_ENABLED") or "false",
+          )
+          text = set_var(
+              text,
+              "KEF_ALLOW_REQUEST_SEED",
+              os.environ.get("KEF_ALLOW_REQUEST_SEED") or "false",
+          )
           text = set_var(text, "CIAL_PROFILE", os.environ.get("CIAL_PROFILE") or "default")
           text = set_var(
               text,
@@ -193,13 +237,15 @@ jobs:
               "AIR_ENABLED=", os.environ.get("AIR_ENABLED"),
               "ISF_ENABLED=", os.environ.get("ISF_ENABLED"),
               "RRF_ENABLED=", os.environ.get("RRF_ENABLED"),
+              "KEF_ENABLED=", os.environ.get("KEF_ENABLED"),
+              "VAULT=", os.environ.get("KEF_EVIDENCE_VAULT_ENABLED"),
+              "SEED=", os.environ.get("KEF_ALLOW_REQUEST_SEED"),
               "CIAL_PROFILE=", os.environ.get("CIAL_PROFILE"),
               "CIAL_LIVE=", os.environ.get("CIAL_LIVE_PROVIDER_ENABLED"),
-              "AIR_EXCLUDE=", os.environ.get("AIR_EXCLUDE_PROVIDERS") or "(none)",
           )
           idx = pathlib.Path("deploy/cloudflare-containers/src/index.ts")
           src = idx.read_text(encoding="utf-8")
-          suffix = (os.environ.get("CONTAINER_SUFFIX") or "kc026a").strip()
+          suffix = (os.environ.get("CONTAINER_SUFFIX") or "kc028a").strip()
           patched, n = re.subn(
               r'(getContainer\(env\.COBRA_CORE_CONTAINER,\s*")[^"]*("\))',
               rf"\g<1>staging-rc1-{suffix}\g<2>",

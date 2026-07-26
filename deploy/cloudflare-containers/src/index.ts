@@ -43,8 +43,18 @@ export type Env = {
   ISF_ENABLED?: string;
   /** KC-026 Reliability & Resilience Framework */
   RRF_ENABLED?: string;
-  /** Wrangler secret — never log / never put in vars. */
+  /** KC-027/028 Knowledge & Evidence Framework */
+  KEF_ENABLED?: string;
+  KEF_ALLOW_REQUEST_SEED?: string;
+  KEF_EVIDENCE_VAULT_ENABLED?: string;
+  KEF_EVIDENCE_VAULT_BASE_URL?: string;
+  KEF_EVIDENCE_VAULT_TIMEOUT_MS?: string;
+  KEF_EVIDENCE_VAULT_MAX_RESULTS?: string;
+  KEF_EVIDENCE_VAULT_REQUIRE_TLS?: string;
+  KEF_EVIDENCE_VAULT_ALLOW_PRIVATE_HOSTS?: string;
+  /** Wrangler secrets — never log / never put in vars. */
   OPENAI_API_KEY?: string;
+  KEF_EVIDENCE_VAULT_AUTH_TOKEN?: string;
 };
 
 const CERTIFIED_REVISION = "ec400d83a9cc8105557bda2105f177cc619638b2";
@@ -106,6 +116,18 @@ export class CobraCoreContainer extends Container<Env> {
       AIR_EXCLUDE_PROVIDERS: pick("AIR_EXCLUDE_PROVIDERS"),
       ISF_ENABLED: pick("ISF_ENABLED", "true"),
       RRF_ENABLED: pick("RRF_ENABLED", "true"),
+      KEF_ENABLED: pick("KEF_ENABLED", "true"),
+      KEF_ALLOW_REQUEST_SEED: pick("KEF_ALLOW_REQUEST_SEED", "false"),
+      KEF_EVIDENCE_VAULT_ENABLED: pick("KEF_EVIDENCE_VAULT_ENABLED", "false"),
+      KEF_EVIDENCE_VAULT_BASE_URL: pick("KEF_EVIDENCE_VAULT_BASE_URL"),
+      KEF_EVIDENCE_VAULT_TIMEOUT_MS: pick("KEF_EVIDENCE_VAULT_TIMEOUT_MS", "10000"),
+      KEF_EVIDENCE_VAULT_MAX_RESULTS: pick("KEF_EVIDENCE_VAULT_MAX_RESULTS", "25"),
+      KEF_EVIDENCE_VAULT_REQUIRE_TLS: pick("KEF_EVIDENCE_VAULT_REQUIRE_TLS", "true"),
+      KEF_EVIDENCE_VAULT_ALLOW_PRIVATE_HOSTS: pick(
+        "KEF_EVIDENCE_VAULT_ALLOW_PRIVATE_HOSTS",
+        "false",
+      ),
+      KEF_EVIDENCE_VAULT_AUTH_TOKEN: pick("KEF_EVIDENCE_VAULT_AUTH_TOKEN"),
     };
   }
 
@@ -259,12 +281,37 @@ export default {
       });
     }
 
+    // KC-028 Worker-side KEF/Vault gate probe (booleans / non-secret vars only).
+    if (url.pathname === "/kef-gate" && request.method === "GET") {
+      return json({
+        appEnv: env.APP_ENV,
+        kefEnabled: env.KEF_ENABLED ?? "true",
+        vaultEnabled: env.KEF_EVIDENCE_VAULT_ENABLED ?? "false",
+        allowRequestSeed: env.KEF_ALLOW_REQUEST_SEED ?? "false",
+        vaultBaseUrlHost: (() => {
+          try {
+            return env.KEF_EVIDENCE_VAULT_BASE_URL
+              ? new URL(env.KEF_EVIDENCE_VAULT_BASE_URL).host
+              : null;
+          } catch {
+            return null;
+          }
+        })(),
+        vaultTokenConfigured: Boolean(env.KEF_EVIDENCE_VAULT_AUTH_TOKEN?.trim()),
+        isfEnabled: env.ISF_ENABLED ?? "true",
+        airEnabled: env.AIR_ENABLED ?? "true",
+        rrfEnabled: env.RRF_ENABLED ?? "true",
+        cialProfile: env.CIAL_PROFILE ?? null,
+        liveFlag: env.CIAL_LIVE_PROVIDER_ENABLED ?? null,
+      });
+    }
+
     // Shared staging instance (stateless mock Protocol V1).
     // Bump the name after auth-secret rotation so a fresh Container boots with
     // current Worker secrets (DO constructor envVars are not hot-reloaded).
     // Bump after OPENAI secret/var binding so containers pick up new envVars.
-    // kc026a: Reliability & Resilience Framework staging certification.
-    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc026a");
+    // kc028a: Evidence Vault + KEF staging certification.
+    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc028a");
     return container.fetch(request);
   },
 };

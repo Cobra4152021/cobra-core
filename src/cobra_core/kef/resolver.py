@@ -20,7 +20,7 @@ def resolve_refs(
     """
     Resolve opaque evidence handles.
 
-    Lookup order: all connectors by ref_id, then optional request-seed into memory.
+    Vault is preferred when configured; request seeding is explicitly opt-in.
     """
     resolved: list[EvidenceItem] = []
     seen: set[str] = set()
@@ -50,16 +50,18 @@ def resolve_refs(
 
 
 def _lookup_across(registry: ConnectorRegistry, ref_id: str) -> EvidenceItem | None:
-    for conn in registry.all():
-        if getattr(conn, "connector_id", "") == "evidence_vault":
-            # Stub — skip hard failures during multi-connector resolve
-            continue
+    connectors = registry.all()
+    connectors.sort(
+        key=lambda connector: getattr(connector, "connector_id", "") != "evidence_vault"
+    )
+    for conn in connectors:
         try:
             found = conn.lookup(ref_id)
         except KefError as exc:
             if exc.code in {
                 KefErrorCode.CONNECTOR_UNAVAILABLE,
                 KefErrorCode.NOT_IMPLEMENTED,
+                KefErrorCode.VAULT_TIMEOUT,
             }:
                 continue
             raise

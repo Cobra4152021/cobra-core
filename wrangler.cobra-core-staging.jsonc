@@ -32,6 +32,14 @@
 		"AIR_EXCLUDE_PROVIDERS": "",
 		"ISF_ENABLED": "true",
 		"RRF_ENABLED": "true",
+		"KEF_ENABLED": "true",
+		"KEF_ALLOW_REQUEST_SEED": "false",
+		"KEF_EVIDENCE_VAULT_ENABLED": "false",
+		"KEF_EVIDENCE_VAULT_BASE_URL": "https://hidden-grid-os-staging.cobra4152020.workers.dev",
+		"KEF_EVIDENCE_VAULT_TIMEOUT_MS": "10000",
+		"KEF_EVIDENCE_VAULT_MAX_RESULTS": "25",
+		"KEF_EVIDENCE_VAULT_REQUIRE_TLS": "true",
+		"KEF_EVIDENCE_VAULT_ALLOW_PRIVATE_HOSTS": "false",
 		"OPENAI_BASE_URL": "https://api.openai.com/v1",
 		"OPENAI_MODEL": "gpt-5.4-mini",
 		"OPENAI_TIMEOUT_SECONDS": "60",
@@ -45,6 +53,7 @@
 	// Secrets via GitHub Actions / wrangler secret put (never plain vars):
 	//   COBRA_CORE_AUTH_SECRET
 	//   OPENAI_API_KEY
+	//   KEF_EVIDENCE_VAULT_AUTH_TOKEN (staging Vault read credential)
 	"containers": [
 		{
 			"class_name": "CobraCoreContainer",
