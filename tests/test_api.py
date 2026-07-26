@@ -115,25 +115,19 @@ def test_rate_limits():
 
 
 def test_authentication_required():
-    resp = API_GATEWAY.dispatch(
-        _auth_req("GET", "/api/v1/status", authenticated=False)
-    )
+    resp = API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/status", authenticated=False))
     assert resp.status == 401
     assert resp.body["error_code"] == "unauthenticated"
 
 
 def test_health_public():
-    resp = API_GATEWAY.dispatch(
-        _auth_req("GET", "/api/v1/health", authenticated=False)
-    )
+    resp = API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/health", authenticated=False))
     assert resp.status == 200
     assert resp.body["ok"] is True
 
 
 def test_unverified_identity_is_rejected():
-    resp = API_GATEWAY.dispatch(
-        _auth_req("GET", "/api/v1/status", identity_verified=False)
-    )
+    resp = API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/status", identity_verified=False))
     assert resp.status == 401
     assert resp.body["error_code"] == "unauthenticated"
 
@@ -167,27 +161,36 @@ def test_identity_assertion_rejects_spoofing_and_replay():
 
     spoofed = dict(headers)
     spoofed["X-Cobra-Principal-Id"] = "sys_cobra"
-    assert verify_identity_assertion(
-        headers=spoofed,
-        secret=secret,
-        method="GET",
-        path="/api/v1/cases",
-        now=ts,
-    ) is None
-    assert verify_identity_assertion(
-        headers=headers,
-        secret=secret,
-        method="POST",
-        path="/api/v1/cases",
-        now=ts,
-    ) is None
-    assert verify_identity_assertion(
-        headers=headers,
-        secret=secret,
-        method="GET",
-        path="/api/v1/cases",
-        now=ts + 301,
-    ) is None
+    assert (
+        verify_identity_assertion(
+            headers=spoofed,
+            secret=secret,
+            method="GET",
+            path="/api/v1/cases",
+            now=ts,
+        )
+        is None
+    )
+    assert (
+        verify_identity_assertion(
+            headers=headers,
+            secret=secret,
+            method="POST",
+            path="/api/v1/cases",
+            now=ts,
+        )
+        is None
+    )
+    assert (
+        verify_identity_assertion(
+            headers=headers,
+            secret=secret,
+            method="GET",
+            path="/api/v1/cases",
+            now=ts + 301,
+        )
+        is None
+    )
 
 
 def test_resource_groups_and_examples_flow():
@@ -275,15 +278,57 @@ def test_resource_groups_and_examples_flow():
     PLUGIN_MANAGER.reset_for_tests()
     PLUGIN_MANAGER.bootstrap_samples()
     resp = API_GATEWAY.dispatch(
-        _auth_req("GET", "/api/v1/reports/policy_compliance_summary", principal_id=inv.principal_id, organization_id="org_api")
+        _auth_req(
+            "GET",
+            "/api/v1/reports/policy_compliance_summary",
+            principal_id=inv.principal_id,
+            organization_id="org_api",
+        )
     )
     assert resp.status == 200
 
     # Plugins / benchmark / ops / security
-    assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/plugins", principal_id=inv.principal_id, organization_id="org_api")).status == 200
-    assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/benchmark/datasets", principal_id=inv.principal_id, organization_id="org_api")).status == 200
-    assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/operations/status", principal_id=owner.principal_id, organization_id="org_api")).status == 200
-    assert API_GATEWAY.dispatch(_auth_req("GET", "/api/v1/security/status", principal_id=inv.principal_id, organization_id="org_api")).status == 200
+    assert (
+        API_GATEWAY.dispatch(
+            _auth_req(
+                "GET", "/api/v1/plugins", principal_id=inv.principal_id, organization_id="org_api"
+            )
+        ).status
+        == 200
+    )
+    assert (
+        API_GATEWAY.dispatch(
+            _auth_req(
+                "GET",
+                "/api/v1/benchmark/datasets",
+                principal_id=inv.principal_id,
+                organization_id="org_api",
+            )
+        ).status
+        == 200
+    )
+    assert (
+        API_GATEWAY.dispatch(
+            _auth_req(
+                "GET",
+                "/api/v1/operations/status",
+                principal_id=owner.principal_id,
+                organization_id="org_api",
+            )
+        ).status
+        == 200
+    )
+    assert (
+        API_GATEWAY.dispatch(
+            _auth_req(
+                "GET",
+                "/api/v1/security/status",
+                principal_id=inv.principal_id,
+                organization_id="org_api",
+            )
+        ).status
+        == 200
+    )
 
 
 def test_cross_tenant_case_and_organization_reads_are_denied():
