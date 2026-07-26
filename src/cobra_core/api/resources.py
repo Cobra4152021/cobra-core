@@ -55,13 +55,15 @@ def handle_status() -> dict[str, Any]:
     }
 
 
-def handle_organizations_list(*, query: str = "") -> dict[str, Any]:
+def handle_organizations_list(*, query: str = "", organization_id: str = "") -> dict[str, Any]:
     from cobra_core.organizations.registry import ORGANIZATION_REGISTRY
 
     qs = _qs(query)
     limit = parse_limit(_first(qs, "limit") or None)
     cursor = _first(qs, "cursor") or None
-    items = [o.public_dict() for o in ORGANIZATION_REGISTRY.list_organizations()]
+    if not organization_id:
+        raise ApiError(ApiErrorCode.FORBIDDEN, "organization scope required", status=403)
+    items = [ORGANIZATION_REGISTRY.get(organization_id).public_dict()]
     page = paginate(items, limit=limit, cursor=cursor)
     return {"ok": True, **page.public_dict()}
 
@@ -86,11 +88,7 @@ def handle_cases_list(*, query: str = "", organization_id: str = "") -> dict[str
     cursor = _first(qs, "cursor") or None
     org = organization_id or _first(qs, "organization_id")
     items: list[dict[str, Any]] = []
-    orgs = (
-        [ORGANIZATION_REGISTRY.get(org)]
-        if org
-        else ORGANIZATION_REGISTRY.list_organizations()
-    )
+    orgs = [ORGANIZATION_REGISTRY.get(org)] if org else ORGANIZATION_REGISTRY.list_organizations()
     for o in orgs:
         items.extend(
             r.public_dict()
@@ -101,15 +99,25 @@ def handle_cases_list(*, query: str = "", organization_id: str = "") -> dict[str
     return {"ok": True, **page.public_dict()}
 
 
-def handle_case_get(case_id: str) -> dict[str, Any]:
-    from cobra_core.organizations.registry import ORGANIZATION_REGISTRY
+def handle_case_get(
+    case_id: str,
+    *,
+    principal_id: str,
+    organization_id: str,
+) -> dict[str, Any]:
     from cobra_core.organizations.schemas import ResourceKind
+    from cobra_core.organizations.tenancy import TENANCY
     from cobra_core.organizations.validation import OrganizationValidationError
 
     try:
-        ownership = ORGANIZATION_REGISTRY.ownership_of(ResourceKind.CASE, case_id)
+        ownership = TENANCY.assert_resource_access(
+            principal_id=principal_id,
+            organization_id=organization_id,
+            resource_kind=ResourceKind.CASE,
+            resource_id=case_id,
+        )
     except OrganizationValidationError as exc:
-        raise ApiError(ApiErrorCode.NOT_FOUND, exc.message, status=404) from exc
+        raise ApiError(ApiErrorCode.FORBIDDEN, exc.message, status=403) from exc
     return {"ok": True, "case": ownership.public_dict()}
 
 
@@ -163,8 +171,8 @@ def handle_case_create(
 
 
 def handle_workflows_list(*, query: str = "", organization_id: str = "") -> dict[str, Any]:
-    from cobra_core.organizations.registry import ORGANIZATION_REGISTRY
     from cobra_core.api.routing_helpers import workflow_catalog_for_org
+    from cobra_core.organizations.registry import ORGANIZATION_REGISTRY
 
     qs = _qs(query)
     limit = parse_limit(_first(qs, "limit") or None)
@@ -193,7 +201,9 @@ def handle_workflow_run(
     body = require_object(payload or {})
     org_id = organization_id or require_str(body, "organization_id")
     if not TENANT_ROUTER.workflow_available(organization_id=org_id, workflow_id=workflow_id):
-        raise ApiError(ApiErrorCode.FORBIDDEN, "workflow not available for organization", status=403)
+        raise ApiError(
+            ApiErrorCode.FORBIDDEN, "workflow not available for organization", status=403
+        )
     decision = authorize(
         principal_id=principal_id,
         action="run_workflow",
@@ -231,11 +241,7 @@ def handle_evidence_list(*, query: str = "", organization_id: str = "") -> dict[
     cursor = _first(qs, "cursor") or None
     org = organization_id or _first(qs, "organization_id")
     items: list[dict[str, Any]] = []
-    orgs = (
-        [ORGANIZATION_REGISTRY.get(org)]
-        if org
-        else ORGANIZATION_REGISTRY.list_organizations()
-    )
+    orgs = [ORGANIZATION_REGISTRY.get(org)] if org else ORGANIZATION_REGISTRY.list_organizations()
     for o in orgs:
         items.extend(
             r.public_dict()
@@ -252,17 +258,22 @@ def handle_evidence_get(
     principal_id: str,
     organization_id: str,
 ) -> dict[str, Any]:
-    from cobra_core.organizations.registry import ORGANIZATION_REGISTRY
     from cobra_core.organizations.schemas import ResourceKind
+    from cobra_core.organizations.tenancy import TENANCY
     from cobra_core.organizations.validation import OrganizationValidationError
     from cobra_core.security import authorize
     from cobra_core.security.schemas import ResourceType
 
     try:
-        ownership = ORGANIZATION_REGISTRY.ownership_of(ResourceKind.EVIDENCE_REF, evidence_id)
+        ownership = TENANCY.assert_resource_access(
+            principal_id=principal_id,
+            organization_id=organization_id,
+            resource_kind=ResourceKind.EVIDENCE_REF,
+            resource_id=evidence_id,
+        )
     except OrganizationValidationError as exc:
-        raise ApiError(ApiErrorCode.NOT_FOUND, exc.message, status=404) from exc
-    org_id = organization_id or ownership.organization_id
+        raise ApiError(ApiErrorCode.FORBIDDEN, exc.message, status=403) from exc
+    org_id = organization_id
     decision = authorize(
         principal_id=principal_id,
         action="retrieve_evidence",

@@ -39,12 +39,20 @@ def discover_manifests(root: Path) -> list[Path]:
 
 
 def _entry_file_for(entry_point: str) -> Path | None:
-    # Map module path to file under src if possible (best-effort for checksum).
-    try:
-        mod = importlib.import_module(entry_point)
-        return Path(getattr(mod, "__file__", "") or "")
-    except Exception:
+    """Resolve a Core-local module path without importing or executing plugin code."""
+    parts = [part for part in entry_point.split(".") if part]
+    if not parts or any(part in {".", ".."} for part in parts):
         return None
+    source_root = Path(__file__).resolve().parents[2]
+    module_path = source_root.joinpath(*parts)
+    py_file = module_path.with_suffix(".py")
+    package_file = module_path / "__init__.py"
+    candidate = py_file if py_file.is_file() else package_file
+    try:
+        candidate.resolve().relative_to(source_root.resolve())
+    except (OSError, ValueError):
+        return None
+    return candidate if candidate.is_file() else None
 
 
 def load_plugin_module(entry_point: str, config: PluginConfig) -> Any:

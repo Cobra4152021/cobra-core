@@ -23,7 +23,7 @@ from cobra_core.plugins.manifest import normalize_manifest
 from cobra_core.plugins.metrics import PLUGIN_METRICS
 from cobra_core.plugins.permissions import parse_permissions, require_type_permission
 from cobra_core.plugins.registry import PluginRegistry
-from cobra_core.plugins.schemas import Permission, PluginState, PluginType
+from cobra_core.plugins.schemas import PluginState, PluginType
 from cobra_core.plugins.validator import validate_manifest
 
 
@@ -161,6 +161,18 @@ def test_entry_point_must_be_allowed():
             config=cfg,
         )
     assert exc.value.code == PluginErrorCode.VALIDATION_FAILED
+
+
+def test_validation_does_not_import_or_execute_plugin(monkeypatch):
+    loader = PluginLoader(config=PluginConfig(), registry=PluginRegistry())
+    loader.discover()
+
+    def _unexpected_import(_entry_point: str):
+        raise AssertionError("plugin code executed before validation completed")
+
+    monkeypatch.setattr("cobra_core.plugins.loader.importlib.import_module", _unexpected_import)
+    rec = loader.validate("sample.vehicle_skill")
+    assert rec.state == PluginState.VALIDATED
 
 
 def test_discover_load_enable_disable_unload_samples():

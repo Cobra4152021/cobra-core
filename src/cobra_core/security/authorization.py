@@ -103,9 +103,7 @@ class AuthorizationEngine:
 
         if resource is None:
             if resource_type is None:
-                raise SecurityError(
-                    SecurityErrorCode.POLICY_INVALID, "resource_type required"
-                )
+                raise SecurityError(SecurityErrorCode.POLICY_INVALID, "resource_type required")
             rtype = (
                 resource_type
                 if isinstance(resource_type, ResourceType)
@@ -118,6 +116,17 @@ class AuthorizationEngine:
             )
 
         # --- KC-035 tenancy gate ---
+        resource_org = str(resource.attributes.get("organization_id") or "").strip()
+        if resource_org and not tenant_org:
+            return self._decide(
+                effect=DecisionEffect.DENY,
+                reason="tenant context required for organization-scoped resource",
+                policy_id="tenant_context_required",
+                principal_id=principal_id,
+                action=action,
+                resource_type=resource.resource_type.value,
+                policy_evals=1,
+            )
         if tenant_org:
             try:
                 from cobra_core.organizations.tenancy import TENANCY
@@ -150,10 +159,20 @@ class AuthorizationEngine:
                     membership_roles = ctx.membership_roles
                     policy_version = ctx.policy_version
                     tenant_dept = ctx.department_id
-            except ImportError:
-                pass
+            except ImportError as exc:
+                return self._decide(
+                    effect=DecisionEffect.DENY,
+                    reason=f"tenancy enforcement unavailable: {type(exc).__name__}",
+                    policy_id="tenancy_unavailable",
+                    principal_id=principal_id,
+                    action=action,
+                    resource_type=resource.resource_type.value,
+                    policy_evals=1,
+                    organization_id=tenant_org,
+                    department_id=tenant_dept,
+                )
 
-            res_org = str(resource.attributes.get("organization_id") or "").strip()
+            res_org = resource_org
             if res_org and res_org != tenant_org:
                 return self._decide(
                     effect=DecisionEffect.DENY,

@@ -10,6 +10,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Any
 from urllib.parse import urlparse
 
+from cobra_core.api.identity import verify_identity_assertion
 from cobra_core.protocol_v1.auth import verify_bearer
 from cobra_core.protocol_v1.config import ConfigError, ServerConfig, load_config
 from cobra_core.protocol_v1.errors import normalized_error
@@ -359,14 +360,27 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
             authenticated = verify_bearer(auth, self.config.auth_secret)
             from cobra_core.api.router import handle_public_api
 
-            principal = (
-                self.headers.get("X-Cobra-Principal-Id")
-                or self.headers.get("x-cobra-principal-id")
-                or ""
-            ).strip()
-            org = (
-                self.headers.get("X-Cobra-Org-Id") or self.headers.get("x-cobra-org-id") or ""
-            ).strip()
+            identity = None
+            if path != "/api/v1/health":
+                identity = verify_identity_assertion(
+                    headers={k: v for k, v in self.headers.items()},
+                    secret=self.config.auth_secret,
+                    method=self.command,
+                    path=path,
+                )
+                if identity is None:
+                    self._send(
+                        401,
+                        normalized_error(
+                            code="auth_failed",
+                            message="Verified identity assertion required",
+                            request_id=rid,
+                        ),
+                        rid,
+                    )
+                    return
+            principal = identity.principal_id if identity else ""
+            org = identity.organization_id if identity else ""
             resp = handle_public_api(
                 method="GET",
                 path=path,
@@ -374,6 +388,7 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
                 headers={k: v for k, v in self.headers.items()},
                 request_id=rid,
                 authenticated=authenticated,
+                identity_verified=identity is not None,
                 principal_id=principal,
                 organization_id=org,
             )
@@ -424,9 +439,7 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
                 else:
                     self._send(
                         404,
-                        normalized_error(
-                            code="bad_request", message="Not found", request_id=rid
-                        ),
+                        normalized_error(code="bad_request", message="Not found", request_id=rid),
                         rid,
                     )
                     return
@@ -631,15 +644,30 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
             authenticated = verify_bearer(auth, self.config.auth_secret)
             from cobra_core.api.router import handle_public_api
 
-            principal = (
-                self.headers.get("X-Cobra-Principal-Id")
-                or self.headers.get("x-cobra-principal-id")
-                or ""
-            ).strip()
-            org = (
-                self.headers.get("X-Cobra-Org-Id") or self.headers.get("x-cobra-org-id") or ""
-            ).strip()
-            payload = self._read_json() if int(self.headers.get("Content-Length") or "0") > 0 else {}
+            identity = None
+            if path != "/api/v1/health":
+                identity = verify_identity_assertion(
+                    headers={k: v for k, v in self.headers.items()},
+                    secret=self.config.auth_secret,
+                    method=self.command,
+                    path=path,
+                )
+                if identity is None:
+                    self._send(
+                        401,
+                        normalized_error(
+                            code="auth_failed",
+                            message="Verified identity assertion required",
+                            request_id=rid,
+                        ),
+                        rid,
+                    )
+                    return
+            principal = identity.principal_id if identity else ""
+            org = identity.organization_id if identity else ""
+            payload = (
+                self._read_json() if int(self.headers.get("Content-Length") or "0") > 0 else {}
+            )
             if payload is None:
                 self._send(
                     400,
@@ -659,15 +687,14 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
                 body=payload,
                 request_id=rid,
                 authenticated=authenticated,
+                identity_verified=identity is not None,
                 principal_id=principal,
                 organization_id=org,
             )
             body = resp.body if isinstance(resp.body, dict) else {"data": resp.body}
             self._send(resp.status, body, rid, extra_headers=resp.headers)
             return
-        if path.startswith("/plugins/") and (
-            path.endswith("/enable") or path.endswith("/disable")
-        ):
+        if path.startswith("/plugins/") and (path.endswith("/enable") or path.endswith("/disable")):
             rid = new_request_id(rid_h)
             if not verify_bearer(auth, self.config.auth_secret):
                 self._send(

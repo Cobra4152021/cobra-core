@@ -18,8 +18,9 @@ def _one_request(i: int) -> tuple[bool, float]:
             path="/api/v1/status",
             request_id=f"load_{i}",
             authenticated=True,
-            principal_id="svc_loadtest",
-            organization_id="org_load",
+            identity_verified=True,
+            principal_id="sys_cobra",
+            organization_id="_system",
             api_client_id="client_load",
             headers={"X-Cobra-Sdk-Version": "loadtest/1.0"},
         )

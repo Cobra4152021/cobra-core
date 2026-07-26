@@ -7,19 +7,19 @@ Client → Public REST API → API Gateway → ISPF Authorization → subsystems
 from __future__ import annotations
 
 import time
+from collections.abc import Callable
 from dataclasses import dataclass, field
-from typing import Any, Callable
+from typing import Any
 from urllib.parse import urlparse
 
+from cobra_core.api import resources
 from cobra_core.api.audit import API_AUDIT
 from cobra_core.api.config import ApiConfig, load_api_config
 from cobra_core.api.errors import ApiError, ApiErrorCode, error_response
 from cobra_core.api.metrics import API_METRICS
 from cobra_core.api.openapi import build_openapi_document
-from cobra_core.api import resources
 from cobra_core.api.rate_limit import RATE_LIMITER, RateLimiter
 from cobra_core.api.versioning import (
-    CURRENT_VERSION,
     is_supported_version,
     parse_api_version,
     version_prefix,
@@ -35,6 +35,7 @@ class ApiRequest:
     body: dict[str, Any] | None = None
     request_id: str = ""
     authenticated: bool = False
+    identity_verified: bool = False
     principal_id: str = ""
     organization_id: str = ""
     api_client_id: str = ""
@@ -98,12 +99,19 @@ class ApiGateway:
             if not rel.startswith("/"):
                 rel = "/" + rel
 
-            # Health is public (still counted)
+            # Health is the only public route. All others require a bearer-authenticated,
+            # cryptographically bound principal and organization assertion.
             needs_auth = rel != "/health"
             if needs_auth and not request.authenticated:
                 raise ApiError(
                     ApiErrorCode.UNAUTHENTICATED,
                     "Bearer authentication required",
+                    status=401,
+                )
+            if needs_auth and not request.identity_verified:
+                raise ApiError(
+                    ApiErrorCode.UNAUTHENTICATED,
+                    "Verified identity assertion required",
                     status=401,
                 )
 
@@ -121,6 +129,12 @@ class ApiGateway:
             ).strip()
 
             if needs_auth:
+                if not request.principal_id.strip() or not org_id:
+                    raise ApiError(
+                        ApiErrorCode.UNAUTHENTICATED,
+                        "Bound principal and organization are required",
+                        status=401,
+                    )
                 try:
                     rl = self.rate_limiter.check(
                         organization_id=org_id or "_none",
@@ -130,6 +144,7 @@ class ApiGateway:
                 except ApiError:
                     API_METRICS.record_rate_limit()
                     raise
+                self._authorize_route(request, rel=rel, organization_id=org_id)
 
             body = self._route(request, rel=rel, organization_id=org_id)
             latency = (time.perf_counter() - t0) * 1000
@@ -151,12 +166,8 @@ class ApiGateway:
             if exc.error_code == ApiErrorCode.RATE_LIMITED:
                 API_METRICS.record_rate_limit()
                 if exc.details:
-                    extra_headers.setdefault(
-                        "X-RateLimit-Limit", str(exc.details.get("limit", ""))
-                    )
-                    extra_headers.setdefault(
-                        "X-RateLimit-Reset", str(exc.details.get("reset", ""))
-                    )
+                    extra_headers.setdefault("X-RateLimit-Limit", str(exc.details.get("limit", "")))
+                    extra_headers.setdefault("X-RateLimit-Reset", str(exc.details.get("reset", "")))
                     extra_headers.setdefault("X-RateLimit-Remaining", "0")
             API_AUDIT.record(
                 api_client=request.api_client_id or request.principal_id or "anonymous",
@@ -185,11 +196,62 @@ class ApiGateway:
             )
             return ApiResponse(status=status, body=body, headers=extra_headers)
 
-    def _route(
-        self, request: ApiRequest, *, rel: str, organization_id: str
-    ) -> dict[str, Any]:
+    def _authorize_route(self, request: ApiRequest, *, rel: str, organization_id: str) -> None:
+        from cobra_core.security import authorize
+        from cobra_core.security.errors import SecurityError
+        from cobra_core.security.schemas import ResourceType
+
         method = request.method.upper()
-        principal = request.principal_id or "sys_cobra"
+        action = "view_security"
+        resource_type = ResourceType.SYSTEM
+        resource_id = "*"
+        if rel.startswith("/cases"):
+            action, resource_type = (
+                ("create_case", ResourceType.CASE)
+                if method == "POST" and rel == "/cases"
+                else ("retrieve_evidence", ResourceType.CASE)
+            )
+            resource_id = rel.removeprefix("/cases/").split("/")[0] if rel != "/cases" else "*"
+        elif rel.startswith("/workflows"):
+            action, resource_type = "run_workflow", ResourceType.WORKFLOW
+            resource_id = rel.removeprefix("/workflows/").split("/")[0] or "*"
+        elif rel.startswith("/evidence"):
+            action, resource_type = "retrieve_evidence", ResourceType.EVIDENCE
+            resource_id = (
+                rel.removeprefix("/evidence/").split("/")[0] if rel != "/evidence" else "*"
+            )
+        elif rel.startswith("/plugins"):
+            action, resource_type = "view_security", ResourceType.PLUGIN
+        elif rel.startswith("/benchmark"):
+            action, resource_type = "run_benchmark", ResourceType.BENCHMARK
+        elif rel.startswith("/operations"):
+            action, resource_type = "manage_operations", ResourceType.OPERATIONS
+        elif rel.startswith("/reports"):
+            action, resource_type = "retrieve_evidence", ResourceType.REPORT
+            resource_id = rel.removeprefix("/reports/").split("/")[0] or "*"
+
+        try:
+            decision = authorize(
+                principal_id=request.principal_id,
+                action=action,
+                resource_type=resource_type,
+                resource_id=resource_id,
+                attributes={"organization_id": organization_id},
+                organization_id=organization_id,
+            )
+        except SecurityError as exc:
+            raise ApiError(ApiErrorCode.FORBIDDEN, exc.message, status=403) from exc
+        if not decision.allowed():
+            raise ApiError(
+                ApiErrorCode.FORBIDDEN,
+                decision.reason,
+                status=403,
+                details={"audit_ref": decision.audit_ref, "policy_id": decision.policy_id},
+            )
+
+    def _route(self, request: ApiRequest, *, rel: str, organization_id: str) -> dict[str, Any]:
+        method = request.method.upper()
+        principal = request.principal_id
 
         if rel == "/health" and method == "GET":
             return resources.handle_health()
@@ -199,15 +261,21 @@ class ApiGateway:
             return build_openapi_document()
 
         if rel == "/organizations" and method == "GET":
-            return resources.handle_organizations_list(query=request.query)
+            return resources.handle_organizations_list(
+                query=request.query, organization_id=organization_id
+            )
         if rel.startswith("/organizations/") and method == "GET":
             org_id = rel.removeprefix("/organizations/").split("/")[0]
+            if org_id != organization_id:
+                raise ApiError(
+                    ApiErrorCode.FORBIDDEN,
+                    "cross-organization access denied",
+                    status=403,
+                )
             return resources.handle_organization_get(org_id)
 
         if rel == "/cases" and method == "GET":
-            return resources.handle_cases_list(
-                query=request.query, organization_id=organization_id
-            )
+            return resources.handle_cases_list(query=request.query, organization_id=organization_id)
         if rel == "/cases" and method == "POST":
             return resources.handle_case_create(
                 request.body,
@@ -216,7 +284,11 @@ class ApiGateway:
             )
         if rel.startswith("/cases/") and method == "GET":
             case_id = rel.removeprefix("/cases/").split("/")[0]
-            return resources.handle_case_get(case_id)
+            return resources.handle_case_get(
+                case_id,
+                principal_id=principal,
+                organization_id=organization_id,
+            )
 
         if rel == "/workflows" and method == "GET":
             return resources.handle_workflows_list(
@@ -268,6 +340,7 @@ def handle_public_api(
     body: dict[str, Any] | None = None,
     request_id: str = "",
     authenticated: bool = False,
+    identity_verified: bool = False,
     principal_id: str = "",
     organization_id: str = "",
 ) -> ApiResponse:
@@ -279,6 +352,7 @@ def handle_public_api(
         body=body,
         request_id=request_id,
         authenticated=authenticated,
+        identity_verified=identity_verified,
         principal_id=principal_id,
         organization_id=organization_id,
         api_client_id=principal_id,
