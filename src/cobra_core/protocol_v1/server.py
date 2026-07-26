@@ -439,9 +439,7 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
                 else:
                     self._send(
                         404,
-                        normalized_error(
-                            code="bad_request", message="Not found", request_id=rid
-                        ),
+                        normalized_error(code="bad_request", message="Not found", request_id=rid),
                         rid,
                     )
                     return
@@ -667,7 +665,9 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
                     return
             principal = identity.principal_id if identity else ""
             org = identity.organization_id if identity else ""
-            payload = self._read_json() if int(self.headers.get("Content-Length") or "0") > 0 else {}
+            payload = (
+                self._read_json() if int(self.headers.get("Content-Length") or "0") > 0 else {}
+            )
             if payload is None:
                 self._send(
                     400,
@@ -694,9 +694,7 @@ class ProtocolV1Handler(BaseHTTPRequestHandler):
             body = resp.body if isinstance(resp.body, dict) else {"data": resp.body}
             self._send(resp.status, body, rid, extra_headers=resp.headers)
             return
-        if path.startswith("/plugins/") and (
-            path.endswith("/enable") or path.endswith("/disable")
-        ):
+        if path.startswith("/plugins/") and (path.endswith("/enable") or path.endswith("/disable")):
             rid = new_request_id(rid_h)
             if not verify_bearer(auth, self.config.auth_secret):
                 self._send(
