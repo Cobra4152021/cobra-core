@@ -351,7 +351,7 @@ class StagingEdgeHandler(BaseHTTPRequestHandler):
                         "vaultBaseUrlHost": vault_host,
                         "vaultTokenConfigured": bool(kef_cfg.vault_auth_token),
                         "connectors": CONNECTOR_REGISTRY.list_ids(),
-                        "connectorHealth": CONNECTOR_REGISTRY.health_snapshot(),
+                        # Do not call live Vault health on /health (avoids blocking cold start).
                         "isfEnabled": isf_enabled(),
                         "airEnabled": _air_enabled(),
                         "rrfEnabled": rrf_enabled(),
