@@ -38,6 +38,10 @@ class UrllibVaultTransport:
             raise ValueError("Evidence Vault URL host is required")
         if self.allow_private_hosts:
             return
+        # Public Cloudflare Workers hostnames are allowed without DNS IP probing
+        # (avoids slow/hanging getaddrinfo during container cold start).
+        if host.endswith(".workers.dev") or host.endswith(".cloudflare.com"):
+            return
         try:
             addresses = {item[4][0] for item in socket.getaddrinfo(host, None)}
         except socket.gaierror as exc:

@@ -68,9 +68,13 @@ class EvidenceVaultConnector:
         ):
             return self._health[1]
         try:
-            status, _ = self._request("GET", "/api/r2-health", None)
-            result = HealthStatus.HEALTHY if 200 <= status < 300 else HealthStatus.UNAVAILABLE
-        except KefError:
+            if self.transport is None:
+                result = HealthStatus.UNAVAILABLE
+            else:
+                headers = {"X-Hidden-Grid-Key": self.config.vault_auth_token}
+                status, _ = self.transport.request("GET", "/api/r2-health", None, headers)
+                result = HealthStatus.HEALTHY if 200 <= status < 300 else HealthStatus.DEGRADED
+        except Exception:
             result = HealthStatus.UNAVAILABLE
         self._health = (time.monotonic(), result)
         return result
