@@ -7,19 +7,19 @@ Client → Public REST API → API Gateway → ISPF Authorization → subsystems
 from __future__ import annotations
 
 import time
+from collections.abc import Callable
 from dataclasses import dataclass, field
-from typing import Any, Callable
+from typing import Any
 from urllib.parse import urlparse
 
+from cobra_core.api import resources
 from cobra_core.api.audit import API_AUDIT
 from cobra_core.api.config import ApiConfig, load_api_config
 from cobra_core.api.errors import ApiError, ApiErrorCode, error_response
 from cobra_core.api.metrics import API_METRICS
 from cobra_core.api.openapi import build_openapi_document
-from cobra_core.api import resources
 from cobra_core.api.rate_limit import RATE_LIMITER, RateLimiter
 from cobra_core.api.versioning import (
-    CURRENT_VERSION,
     is_supported_version,
     parse_api_version,
     version_prefix,
