@@ -225,6 +225,9 @@ def test_regression_kc_021_through_036():
         method="GET",
         path="/api/v1/status",
         authenticated=True,
+        identity_verified=True,
+        principal_id="sys_cobra",
+        organization_id="_system",
         request_id="prhf_reg",
     )
     assert resp.status == 200
