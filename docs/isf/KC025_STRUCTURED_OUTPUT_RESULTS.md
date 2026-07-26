@@ -9,7 +9,6 @@ Provider content is parsed by `src/cobra_core/isf/structured_json.py`:
 - Whitespace tolerated
 - Truncated / non-JSON / refusal → `structured_output_invalid`
 - Validated against skill Pydantic schema
-- Unknown fields: Pydantic default (ignore extras unless schema forbids)
 
 ## Repair
 
@@ -28,5 +27,6 @@ Provider content is parsed by `src/cobra_core/isf/structured_json.py`:
 | Repair then valid | `schema_validation_result=repaired` |
 | Repair then invalid | status `structured_output_invalid` |
 
-Offline mock path uses conservative schema-shaped drafts (no free-form).  
-Live path (`CIAL_LIVE_PROVIDER_ENABLED=true`) invokes CIAL and requires schema-valid JSON.
+## Staging live (Phase 6)
+
+All five live skills returned `pending_approval` with schema-valid `structured_result` via OpenAI (`gpt-5.4-mini`). Offline mock path uses conservative schema-shaped drafts (confidence capped).

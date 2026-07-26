@@ -1,6 +1,6 @@
 # KC-025 — Rollback Results
 
-## Rollback config
+## Rollback config (run 30180522421, container `kc025d`)
 
 ```
 ISF_ENABLED=false
@@ -9,14 +9,15 @@ CIAL_PROFILE=default
 CIAL_LIVE_PROVIDER_ENABLED=false
 ```
 
-Expected:
+| Check | Result |
+|-------|--------|
+| `isfGate.isfEnabled` | false |
+| `airGate.airEnabled` | true |
+| `/isf/execute` | 503 `isf_disabled` |
+| Legacy `/v1/chat/completions` mock | 200 |
+| Computer `kc018:approval` | 13/13 PASS |
 
-- `/isf/execute` → `isf_disabled` (503)
-- Legacy `/v1/chat/completions` mock path remains
-- AIR remains enabled
-- pending_approval / Computer approval suite remains green
-
-## Restore after certification
+## Restore after certification (run 30180591011, container `kc025e`)
 
 ```
 ISF_ENABLED=true
@@ -25,4 +26,4 @@ CIAL_PROFILE=default
 CIAL_LIVE_PROVIDER_ENABLED=false
 ```
 
-_Staging run results to be filled after Phase 12 deploy._
+Offline cert re-run: **9/9 PASS**.

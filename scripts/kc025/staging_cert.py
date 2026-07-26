@@ -435,7 +435,7 @@ def phase_rollback(base: str, token: str) -> list[CaseResult]:
         f"{base}/v1/chat/completions",
         token=token,
         body={
-            "model": "cobra-default",
+            "model": "cobra-core-qwen3-8b",
             "messages": [{"role": "user", "content": "ping"}],
             "max_tokens": 8,
             "stream": False,
