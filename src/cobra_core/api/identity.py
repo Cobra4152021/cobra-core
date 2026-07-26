@@ -5,9 +5,8 @@ from __future__ import annotations
 import hashlib
 import hmac
 import time
+from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import Mapping
-
 
 IDENTITY_ASSERTION_MAX_AGE_SECONDS = 300
 
@@ -35,9 +34,7 @@ def identity_assertion_payload(
     method: str,
     path: str,
 ) -> bytes:
-    return (f"{timestamp}\n{principal_id}\n{organization_id}\n{method.upper()}\n{path}").encode(
-        "utf-8"
-    )
+    return (f"{timestamp}\n{principal_id}\n{organization_id}\n{method.upper()}\n{path}").encode()
 
 
 def sign_identity_assertion(
