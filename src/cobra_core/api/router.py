@@ -166,12 +166,8 @@ class ApiGateway:
             if exc.error_code == ApiErrorCode.RATE_LIMITED:
                 API_METRICS.record_rate_limit()
                 if exc.details:
-                    extra_headers.setdefault(
-                        "X-RateLimit-Limit", str(exc.details.get("limit", ""))
-                    )
-                    extra_headers.setdefault(
-                        "X-RateLimit-Reset", str(exc.details.get("reset", ""))
-                    )
+                    extra_headers.setdefault("X-RateLimit-Limit", str(exc.details.get("limit", "")))
+                    extra_headers.setdefault("X-RateLimit-Reset", str(exc.details.get("reset", "")))
                     extra_headers.setdefault("X-RateLimit-Remaining", "0")
             API_AUDIT.record(
                 api_client=request.api_client_id or request.principal_id or "anonymous",
@@ -200,9 +196,7 @@ class ApiGateway:
             )
             return ApiResponse(status=status, body=body, headers=extra_headers)
 
-    def _authorize_route(
-        self, request: ApiRequest, *, rel: str, organization_id: str
-    ) -> None:
+    def _authorize_route(self, request: ApiRequest, *, rel: str, organization_id: str) -> None:
         from cobra_core.security import authorize
         from cobra_core.security.errors import SecurityError
         from cobra_core.security.schemas import ResourceType
@@ -223,7 +217,9 @@ class ApiGateway:
             resource_id = rel.removeprefix("/workflows/").split("/")[0] or "*"
         elif rel.startswith("/evidence"):
             action, resource_type = "retrieve_evidence", ResourceType.EVIDENCE
-            resource_id = rel.removeprefix("/evidence/").split("/")[0] if rel != "/evidence" else "*"
+            resource_id = (
+                rel.removeprefix("/evidence/").split("/")[0] if rel != "/evidence" else "*"
+            )
         elif rel.startswith("/plugins"):
             action, resource_type = "view_security", ResourceType.PLUGIN
         elif rel.startswith("/benchmark"):
@@ -253,9 +249,7 @@ class ApiGateway:
                 details={"audit_ref": decision.audit_ref, "policy_id": decision.policy_id},
             )
 
-    def _route(
-        self, request: ApiRequest, *, rel: str, organization_id: str
-    ) -> dict[str, Any]:
+    def _route(self, request: ApiRequest, *, rel: str, organization_id: str) -> dict[str, Any]:
         method = request.method.upper()
         principal = request.principal_id
 
@@ -281,9 +275,7 @@ class ApiGateway:
             return resources.handle_organization_get(org_id)
 
         if rel == "/cases" and method == "GET":
-            return resources.handle_cases_list(
-                query=request.query, organization_id=organization_id
-            )
+            return resources.handle_cases_list(query=request.query, organization_id=organization_id)
         if rel == "/cases" and method == "POST":
             return resources.handle_case_create(
                 request.body,
