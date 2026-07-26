@@ -64,6 +64,8 @@ export class CobraCoreContainer extends Container<Env> {
   defaultPort = 8080;
   /** Keep warm enough for Internal Alpha; sleep after idle. */
   sleepAfter = "15m";
+  /** Required for Evidence Vault HTTPS egress (public Workers hostname). */
+  enableInternet = true;
 
   constructor(ctx: DurableObjectState, env: Env) {
     super(ctx, env);
@@ -303,6 +305,10 @@ export default {
         rrfEnabled: env.RRF_ENABLED ?? "true",
         cialProfile: env.CIAL_PROFILE ?? null,
         liveFlag: env.CIAL_LIVE_PROVIDER_ENABLED ?? null,
+        // KC-028.1: prove which DO name this Worker script targets.
+        containerInstance: "staging-rc1-kc0281b",
+        workerBuild: "kc0281b",
+        enableInternet: true,
       });
     }
 
@@ -310,8 +316,8 @@ export default {
     // Bump the name after auth-secret rotation so a fresh Container boots with
     // current Worker secrets (DO constructor envVars are not hot-reloaded).
     // Bump after OPENAI secret/var binding so containers pick up new envVars.
-    // kc0281a: Evidence Vault connectivity fix (browser UA) + diagnostics.
-    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc0281a");
+    // kc0281b: force fresh DO after image/UA/diagnostics rollout.
+    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc0281b");
     return container.fetch(request);
   },
 };

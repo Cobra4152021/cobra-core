@@ -28,7 +28,7 @@ from urllib.parse import urlparse
 CERTIFIED_VERSION = "v0.9.0-rc1"
 CERTIFIED_REVISION = "ec400d83a9cc8105557bda2105f177cc619638b2"
 # Bump when staging_edge diagnostics change — proves which image is serving.
-STAGING_EDGE_BUILD = "kc0281-edge-20260726a"
+STAGING_EDGE_BUILD = "kc0281-edge-20260726b"
 
 logger = logging.getLogger("cobra_core.staging_edge")
 
