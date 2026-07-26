@@ -70,9 +70,12 @@ def _req(
     except urllib.error.HTTPError as exc:
         raw = exc.read().decode("utf-8", errors="replace")
         try:
-            return int(exc.code), json.loads(raw)
+            parsed: dict[str, Any] | str = json.loads(raw)
         except json.JSONDecodeError:
-            return int(exc.code), {"raw_len": len(raw)}
+            parsed = {"raw_len": len(raw), "raw_prefix": raw[:120]}
+        return int(exc.code), parsed
+    except TimeoutError:
+        return 598, {"error": "timeout"}
 
 
 def phase_offline(base: str, token: str) -> list[CaseResult]:
@@ -136,12 +139,24 @@ def phase_offline(base: str, token: str) -> list[CaseResult]:
     )
     code = ""
     if isinstance(body, dict):
-        err = (body.get("output") or {}).get("error") or body.get("error") or {}
-        code = str(err.get("code") or body.get("execution_status") or body.get("status") or "")
+        prop = body.get("proposal") if isinstance(body.get("proposal"), dict) else {}
+        err = (
+            (body.get("output") or {}).get("error")
+            or (prop.get("structured_result") or {}).get("error")
+            or body.get("error")
+            or {}
+        )
+        code = str(
+            err.get("code")
+            or prop.get("execution_status")
+            or body.get("execution_status")
+            or body.get("status")
+            or ""
+        )
     out.append(
         CaseResult(
             "missing_evidence_no_seed",
-            "missing_required_evidence" in code or (isinstance(body, dict) and body.get("status") == "missing_required_evidence"),
+            "missing_required_evidence" in code,
             code or str(body)[:120],
         )
     )
