@@ -27,7 +27,15 @@ def _api_compatibility() -> dict[str, Any]:
         ApiRequest(method="GET", path="/api/v1/status", authenticated=False, request_id="rc1")
     )
     auth = API_GATEWAY.dispatch(
-        ApiRequest(method="GET", path="/api/v1/status", authenticated=True, request_id="rc1a")
+        ApiRequest(
+            method="GET",
+            path="/api/v1/status",
+            authenticated=True,
+            request_id="rc1a",
+            principal_id="sys_cobra",
+            organization_id="_system",
+            identity_verified=True,
+        )
     )
     rl = RateLimiter(org_limit=1, client_limit=1, window_seconds=60)
     rl.check(organization_id="o", api_client_id="c")

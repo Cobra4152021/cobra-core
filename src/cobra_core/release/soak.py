@@ -43,9 +43,10 @@ def run_timed_soak(
                 path="/api/v1/status",
                 request_id=f"soak_{label}_{i}",
                 authenticated=True,
-                principal_id="svc_soak",
-                organization_id="org_soak",
+                principal_id="sys_cobra",
+                organization_id="_system",
                 api_client_id="client_soak",
+                identity_verified=True,
             )
         )
         ms = (time.perf_counter() - st) * 1000
