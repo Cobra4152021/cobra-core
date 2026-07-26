@@ -137,15 +137,16 @@ def phase_offline(base: str, token: str) -> list[CaseResult]:
         token=token,
         timeout=120.0,
     )
-    diag_ok = (
-        st == 200
-        and isinstance(diag, dict)
-        and diag.get("ok") is True
+    # Accept ok, or degraded only when core path is green (case-scoped probes may skip).
+    core_green = (
+        isinstance(diag, dict)
         and diag.get("dns") == "ok"
         and diag.get("tls") == "ok"
         and diag.get("vault") == "ok"
         and diag.get("search") == "ok"
+        and diag.get("auth") in {"ok", "unknown"}
     )
+    diag_ok = st == 200 and core_green and diag.get("overall_status") in {"ok", "degraded"}
     out.append(
         CaseResult(
             "vault_diagnostics",

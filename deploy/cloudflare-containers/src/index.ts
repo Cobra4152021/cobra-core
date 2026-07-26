@@ -306,8 +306,8 @@ export default {
         cialProfile: env.CIAL_PROFILE ?? null,
         liveFlag: env.CIAL_LIVE_PROVIDER_ENABLED ?? null,
         // KC-028.1: prove which DO name this Worker script targets.
-        containerInstance: "staging-rc1-kc0281b",
-        workerBuild: "kc0281b",
+        containerInstance: "staging-rc1-kc0281c",
+        workerBuild: "kc0281c",
         enableInternet: true,
       });
     }
@@ -316,8 +316,8 @@ export default {
     // Bump the name after auth-secret rotation so a fresh Container boots with
     // current Worker secrets (DO constructor envVars are not hot-reloaded).
     // Bump after OPENAI secret/var binding so containers pick up new envVars.
-    // kc0281b: force fresh DO after image/UA/diagnostics rollout.
-    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc0281b");
+    // kc0281c: post-rollback restore (Vault enabled).
+    const container = getContainer(env.COBRA_CORE_CONTAINER, "staging-rc1-kc0281c");
     return container.fetch(request);
   },
 };

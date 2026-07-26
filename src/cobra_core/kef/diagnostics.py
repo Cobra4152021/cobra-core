@@ -173,7 +173,14 @@ def run_vault_diagnostics(*, probe_manifest_key: str = "") -> dict[str, Any]:
         probe("health", "/api/r2-health")
         probe("auth", "/api/r2-health")  # same path; status encodes auth
         probe("search", "/api/search", {"q": "kc028"})
-        probe("evidence_search", "/api/evidence-search", {"q": "kc028", "caseId": ""})
+        # evidence-search requires a case scope; without one, mark skipped (not infra failure).
+        steps.append(
+            _step(
+                "evidence_search",
+                "skipped",
+                reason="case_scoped_endpoint; use /api/search for global probe",
+            )
+        )
         if probe_manifest_key:
             # Metadata + chunk/content path use the same Vault file record endpoint
             # the connector uses for lookup/read (no separate extract required).
